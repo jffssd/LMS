@@ -16,5 +16,6 @@ class Home extends CI_Controller {
 		$this->load->view('template/header', $variaveis);
 		$this->load->view('template/sidebar', $variaveis);
 		$this->load->view('v_home', $variaveis);
+		$this->load->view('template/footer', $variaveis);
 	}
 }

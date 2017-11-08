@@ -1,29 +1,17 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
-<html lang="pt-br">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Mini-Crud com Bootstrap e CodeIgniter 3.0</title>
-	<?= link_tag('assets/bootstrap/css/bootstrap.min.css') ?>
-	<?= link_tag('assets/bootstrap/css/bootstrap-theme.min.css') ?>
-</head>
-<body>
+
 	<div class="container">
-		<h1 class="text-center">Mini-Crud com CodeIgniter 3.0 e Bootstrap!</h1>
+		<h1 class="text-center text-light">Mini-Crud com CodeIgniter 3.0 e Bootstrap!</h1>
 		<div class="col-md-12">
 			<div class="row">
 				<?= anchor('cadastro/create', 'Novo Cadastro', array('class' => 'btn btn-success')); ?>
 			</div>
 			<div class="row">
-				<h3><?= $cadastros->num_rows(); ?> registros(s)</h3>
+				<h3 class="text-light"><?= $cadastros->num_rows(); ?> registros(s)</h3>
 			</div>
-			<div class="row">
+			<div class="row table-background">
 			<?php if ($cadastros->num_rows() > 0){
-				echo '<table class="table table-striped">';
-				echo '<thead>';
+				echo '<table class="table table-inverse">';
+				echo '<thead style="text-light">';
 				echo '<tr>';
 				echo '<th>Código</th>';
 				echo '<th>Nome</th>';
@@ -48,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					echo '</tbody>';
 				echo '</table>';
 				} else{
-					echo '<h4>Nenhum registro cadastrado.</h4>';
+					echo '<h4 class="text-light">Nenhum registro cadastrado.</h4>';
 				} ?>
 			</div>
 		</div>	
@@ -61,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <h4 class="modal-title">Confirmação de Exclusão</h4>
       </div>
       <div class="modal-body">
-        <p>Deseja realmente excluir o registro <strong><span id="nome_exclusao"></span></strong>?</p>
+        <p style="color:#afafaf;">Deseja realmente excluir o registro <strong><span id="nome_exclusao"></span></strong>?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Agora não</button>
@@ -102,5 +90,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		});
 	</script>
 	
-</body>
-</html>
