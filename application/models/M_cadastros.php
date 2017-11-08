@@ -34,13 +34,16 @@ class M_cadastros extends CI_Model {
 	 * @param $id - Se indicado, retorna somente um registro, caso contário, todos os registros.
 	 * @return objeto da banco de dados da tabela cadastros
 	 */
-	public function get($id = null){
+
+
+	public function get_cadastros($id = null){
 		
 		if ($id) {
 			$this->db->where('id', $id);
 		}
 		$this->db->order_by("id", 'desc');
 		return $this->db->get('cadastros');
+
 	}
 	/**
 	 * Deleta um registro.

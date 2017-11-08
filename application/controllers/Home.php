@@ -12,7 +12,7 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		
-		$variaveis['cadastros'] = $this->m_cadastros->get();
+		$variaveis['cadastros'] = $this->m_cadastros->get_cadastros();
 		$this->load->view('template/header', $variaveis);
 		$this->load->view('template/sidebar', $variaveis);
 		$this->load->view('v_home', $variaveis);

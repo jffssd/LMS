@@ -1,17 +1,17 @@
 
 	<div class="container">
 		<h1 class="text-center text-light">Mini-Crud com CodeIgniter 3.0 e Bootstrap!</h1>
-		<div class="col-md-12">
-			<div class="row">
-				<?= anchor('cadastro/create', 'Novo Cadastro', array('class' => 'btn btn-success')); ?>
-			</div>
-			<div class="row">
+		<div class="col-md-12  table-background">
+			
+		  <div class="header-container">
 				<h3 class="text-light"><?= $cadastros->num_rows(); ?> registros(s)</h3>
 			</div>
-			<div class="row table-background">
+
+
+			<div class="row">
 			<?php if ($cadastros->num_rows() > 0){
-				echo '<table class="table table-inverse">';
-				echo '<thead style="text-light">';
+				echo '<table class="table table-dark">';
+				echo '<thead class="thead-light" style="text-light">';
 				echo '<tr>';
 				echo '<th>Código</th>';
 				echo '<th>Nome</th>';
@@ -39,8 +39,23 @@
 					echo '<h4 class="text-light">Nenhum registro cadastrado.</h4>';
 				} ?>
 			</div>
+			<div class="row">
+				<?= anchor('cadastro/create', 'Novo Cadastro', array('class' => 'btn btn-success')); ?>
+			</div>
+
+
+			</div>
 		</div>	
+
+
+		
 	</div>
+
+
+
+
+
+			
 <div class="modal fade" id="modal_confirmation">
   <div class="modal-dialog">
     <div class="modal-content">
