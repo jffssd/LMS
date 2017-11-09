@@ -11,10 +11,10 @@ class Pais extends CI_Controller {
 	
 	public function index()
 	{
-		$variaveis['paises'] = '$this->m_paises->get_paises()';
-		//$this->load->view('template/header', $variaveis);
-		//$this->load->view('template/sidebar', $variaveis);
+		$variaveis['paises'] = $this->m_paises->get_paises();
+		$this->load->view('template/header', $variaveis);
+		$this->load->view('template/sidebar', $variaveis);
 		$this->load->view('v_pais', $variaveis);
-		//$this->load->view('template/footer', $variaveis);
+		$this->load->view('template/footer', $variaveis);
 	}
 }

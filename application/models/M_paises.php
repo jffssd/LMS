@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_pais extends CI_Model {
+class M_paises extends CI_Model {
 	
-	public function get_pais($id = null){
+	public function get_paises($id = null){
 		
 		if ($id) {
 			$this->db->where('id', $id);
