@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Pais extends CI_Controller {
+class Equipe extends CI_Controller {
 
 	/**
 	 * Método principal do mini-crud
@@ -11,10 +11,10 @@ class Pais extends CI_Controller {
 	
 	public function index()
 	{
-		$variaveis['paises'] = $this->m_paises->get_paises();
+		$variaveis['equipes'] = $this->m_equipes->get_equipes();
 		$this->load->view('template/header', $variaveis);
 		$this->load->view('template/sidebar', $variaveis);
-		$this->load->view('pais/v_pais', $variaveis);
+		$this->load->view('equipe/v_equipe', $variaveis);
 		$this->load->view('template/footer', $variaveis);
 	}
 

@@ -22,7 +22,7 @@ USE `lmdb` ;
 -- -----------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS `lmdb`.`pais` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
@@ -533,6 +533,9 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`equipe` (
   `sede_id` INT NOT NULL,
   `tecnico_id` INT NOT NULL,
   `qtd_comissao` INT NOT NULL,
+  `logo` VARCHAR(45) NOT NULL,
+  `cor_primaria` VARCHAR(45) NOT NULL,
+  `cor_secundaria` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`, `regiao_id`, `pais_id`, `sede_id`, `tecnico_id`),
   INDEX `fk_equipe_regiao1_idx` (`regiao_id` ASC),
   INDEX `fk_equipe_pais1_idx` (`pais_id` ASC),
@@ -644,26 +647,6 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`equipe_jogador` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `lmdb`.`equipe_estilo`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmdb`.`equipe_estilo` (
-  `id` INT NOT NULL,
-  `equipe_id` INT NOT NULL,
-  `logo` VARCHAR(45) NOT NULL,
-  `cor_primaria` VARCHAR(45) NOT NULL,
-  `cor_secundaria` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`, `equipe_id`),
-  INDEX `fk_equipe_estilo_equipe1_idx` (`equipe_id` ASC),
-  CONSTRAINT `fk_equipe_estilo_equipe1`
-    FOREIGN KEY (`equipe_id`)
-    REFERENCES `lmdb`.`equipe` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `lmdb`.`patrocinador`

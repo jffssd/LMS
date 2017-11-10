@@ -32,7 +32,7 @@
 						echo '<td>'.$pais->id.'</td>';
 						echo '<td>'.$pais->nome.'</td>';
 						echo '<td>'.$pais->name.'</td>';
-						echo '<td>'.anchor("pais/edit/$pais->id", "Editar"); 
+						echo '<td>'.anchor("index.php/pais/edit/$pais->id", "Editar"); 
 						echo '<a href="#" class="confirma_exclusao" data-id="'.$pais->id.'" data-nome="'.$pais->nome.'" />Excluir</a></td>';
 						echo '</tr>';
 						}
@@ -50,7 +50,7 @@
 				} ?>
 			</div>
 			<div class="row">
-				<?= anchor('pais/create', 'Novo pais', array('class' => 'btn btn-success')); ?>
+				<?= anchor('index.php/pais/create', 'Novo pais', array('class' => 'btn btn-success')); ?>
 			</div>
 
 

@@ -1,6 +1,7 @@
 
 	<div class="container">
 	<h1 class="text-center text-light">Mini-Crud com CodeIgniter 3.0 e Bootstrap!</h1>
+	<?php echo '<h1>'.$mensagem.'</h1>'; ?>
 	<div class="col-md-12  table-background">
 		
 	  <div class="header-container">
