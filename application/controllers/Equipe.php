@@ -20,8 +20,8 @@ class Equipe extends CI_Controller {
 
 	public function create()
 	{
-		$variaveis['titulo'] = 'Cadastrar País';
-		$this->load->view('v_cadastro_pais', $variaveis);
+		$variaveis['titulo'] = 'Cadastrar Equipe';
+		$this->load->view('equipe/v_cadastro_equipe', $variaveis);
 	}
 	
 	public function store(){
@@ -35,8 +35,8 @@ class Equipe extends CI_Controller {
 		                'rules' => 'required'
 		        ),
 		        array(
-		                'field' => 'name',
-		                'label' => 'Name',
+		                'field' => 'sigla',
+		                'label' => 'Sigla',
 		                'rules' => 'required'		                
 		        )
 		);
@@ -44,8 +44,8 @@ class Equipe extends CI_Controller {
 		$this->form_validation->set_rules($regras);
 
 		if ($this->form_validation->run() == FALSE) {
-			$variaveis['titulo'] = 'Novo Registro de País';
-			$this->load->view('v_cadastro_pais', $variaveis);
+			$variaveis['titulo'] = 'Novo Registro de Equipe';
+			$this->load->view('equipe/v_cadastro_equipe', $variaveis);
 		} else {
 			
 			$id = $this->input->post('id');
@@ -53,10 +53,19 @@ class Equipe extends CI_Controller {
 			$dados = array(
 			
 				"nome" => $this->input->post('nome'),
-				"name" => $this->input->post('name'),
+				"sigla" => $this->input->post('sigla'),
+				"regiao_id" => $this->input->post('regiao'),
+				"pais_id" => $this->input->post('pais'),
+				"status" => $this->input->post('status'),
+				"sede_id" => $this->input->post('sede'),
+				"tecnico_id" => $this->input->post('tecnico'),
+				"qtd_comissao" => $this->input->post('comissao'),
+				"logo" => $this->input->post('logo'),
+				"cor_primaria" => $this->input->post('cor_primaria'),
+				"cor_secundaria" => $this->input->post('cor_secundaria'),
 			
 			);
-			if ($this->m_paises->store($dados, $id)) {
+			if ($this->m_equipes->store($dados, $id)) {
 				$variaveis['mensagem'] = "Dados gravados com sucesso!";
 				$this->load->view('v_sucesso', $variaveis);
 			} else {
@@ -72,14 +81,23 @@ class Equipe extends CI_Controller {
 		
 		if ($id) {
 			
-			$paises = $this->m_paises->get_paises($id);
+			$equipes = $this->m_equipes->get_equipes($id);
 			
-			if ($paises->num_rows() > 0 ) {
+			if ($equipes->num_rows() > 0 ) {
 				$variaveis['titulo'] = 'Edição de Registro';
-				$variaveis['id'] = $paises->row()->id;
-				$variaveis['nome'] = $paises->row()->nome;
-				$variaveis['name'] = $paises->row()->name;
-				$this->load->view('v_cadastro_pais', $variaveis);
+				$variaveis['id'] = $equipes->row()->id;
+				$variaveis['sigla'] = $equipes->row()->sigla;
+				$variaveis['regiao'] = $equipes->row()->regiao;
+				$variaveis['pais'] = $equipes->row()->pais;
+				$variaveis['status'] = $equipes->row()->status;
+				$variaveis['sede'] = $equipes->row()->status;
+				$variaveis['tecnico'] = $equipes->row()->tecnico;
+				$variaveis['comissao'] = $equipes->row()->comissao;
+				$variaveis['logo'] = $equipes->row()->logo;
+				$variaveis['cor_primaria'] = $equipes->row()->cor_primaria;
+				$variaveis['cor_secundaria'] = $equipes->row()->cor_secundaria;
+
+				$this->load->view('equipe/v_cadastro_equipe', $variaveis);
 			} else {
 				$variaveis['mensagem'] = "Registro não encontrado." ;
 				$this->load->view('errors/html/v_erro', $variaveis);
@@ -90,7 +108,7 @@ class Equipe extends CI_Controller {
 	}
 
 	public function delete($id = null) {
-		if ($this->m_paises->delete($id)) {
+		if ($this->m_equipes->delete($id)) {
 			$variaveis['mensagem'] = "Registro excluído com sucesso!";
 			$this->load->view('v_sucesso', $variaveis);
 		}

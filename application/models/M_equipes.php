@@ -18,13 +18,13 @@ class M_equipes extends CI_Model {
 		if ($dados) {
 			if ($id) {
 				$this->db->where('id', $id);
-				if ($this->db->update("pais", $dados)) {
+				if ($this->db->update("equipe", $dados)) {
 					return true;
 				} else {
 					return false;
 				}
 			} else {
-				if ($this->db->insert("pais", $dados)) {
+				if ($this->db->insert("equipe", $dados)) {
 					return true;
 				} else {
 					return false;
@@ -36,7 +36,7 @@ class M_equipes extends CI_Model {
 
 	public function delete($id = null){
 		if ($id) {
-			return $this->db->where('id', $id)->delete('pais');
+			return $this->db->where('id', $id)->delete('equipe');
 		}
 	}
 }
