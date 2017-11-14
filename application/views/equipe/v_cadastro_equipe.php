@@ -31,19 +31,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 					<div class="form-group">
 						<label for="regiao">Regiao</label><span class="regiao"><?php echo form_error('regiao') ?  : ''; ?></span>
-						<textarea name="regiao" id="regiao" class="form-control" /><?= set_value('regiao') ? : (isset($regiao) ? $regiao : ''); ?></textarea>
+						<input type="text" name="regiao" id="regiao" class="form-control" value="<?= set_value('regiao') ? : (isset($regiao) ? $regiao : '') ?>" autofocus='true' />
 					</div>
-
+					
 					<div class="form-group">
-						<label for="pais">Pais</label><span class="pais"><?php echo form_error('pais') ?  : ''; ?></span>
-						<textarea name="pais" id="pais" class="form-control" /><?= set_value('pais') ? : (isset($pais) ? $pais : ''); ?></textarea>
-					</div>
+					<label for="regiao">País</label><span class="regiao"><?php echo form_error('regiao') ?  : ''; ?></span>
 
+					<?php	
+					echo '<select name="pais" id="pais" class="form-control">';
+					foreach($paises -> result() as $pais){
+							echo '<option value="'.$pais->id.'">'.$pais->nome.'</option>';
+					}
+					echo '</select>';
+					
+					?>
+					</div>
 					<div class="form-group">
 						<label for="status">Status</label><span class="status"><?php echo form_error('status') ?  : ''; ?></span>
 						<textarea name="status" id="status" class="form-control" /><?= set_value('status') ? : (isset($status) ? $status : ''); ?></textarea>
 					</div>
-
+					
 					<div class="form-group">
 						<label for="sede">Sede</label><span class="sede"><?php echo form_error('sede') ?  : ''; ?></span>
 						<textarea name="sede" id="sede" class="form-control" /><?= set_value('sede') ? : (isset($sede) ? $sede : ''); ?></textarea>
@@ -77,7 +84,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="form-group text-right">
 						<input type="submit" value="Salvar" class="btn btn-success" />
 					</div>
-
 
 
 					<input type='hidden' name="id" value="<?= set_value('id') ? : (isset($id) ? $id : ''); ?>">

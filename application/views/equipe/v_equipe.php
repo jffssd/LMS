@@ -44,7 +44,7 @@
 				echo '<tbody>';
 						foreach($equipes -> result() as $equipe){
 						echo '<tr>';
-						echo '<td><img src="'.site_url().'assets/img/teams/'.$equipe->logo.'" class="logo-team"></td>';
+						echo '<td><img src="'.site_url().'assets/img/logo-equipes/'.$equipe->logo.'" class="logo-team"></td>';
 						echo '<td>'.$equipe->sigla.'</td>';
 						echo '<td><div style="border: 1px solid white; width:30px; height:30px; background-color:'.$equipe->cor_primaria.';"></div></td>';
 						echo '<td><div style="border: 1px solid white; width:30px; height:30px; background-color:'.$equipe->cor_secundaria.';"></div></td>';

@@ -8,7 +8,7 @@ class M_paises extends CI_Model {
 		if ($id) {
 			$this->db->where('id', $id);
 		}
-		$this->db->order_by("id", 'desc');
+		$this->db->order_by("nome");
 		return $this->db->get('pais');
 
 	}

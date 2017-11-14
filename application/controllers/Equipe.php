@@ -96,6 +96,7 @@ class Equipe extends CI_Controller {
 				$variaveis['logo'] = $equipes->row()->logo;
 				$variaveis['cor_primaria'] = $equipes->row()->cor_primaria;
 				$variaveis['cor_secundaria'] = $equipes->row()->cor_secundaria;
+				$variaveis['paises'] = $this->m_paises->get_paises();
 
 				$this->load->view('equipe/v_cadastro_equipe', $variaveis);
 			} else {
