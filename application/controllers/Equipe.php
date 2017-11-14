@@ -15,6 +15,7 @@ class Equipe extends CI_Controller {
 		$this->load->view('template/header', $variaveis);
 		$this->load->view('template/sidebar', $variaveis);
 		$this->load->view('equipe/v_equipe', $variaveis);
+		$variaveis['v_equipe'] = $this->load->view('equipe/v_equipe', $variaveis, true);
 		$this->load->view('template/footer', $variaveis);
 	}
 
@@ -83,20 +84,33 @@ class Equipe extends CI_Controller {
 			
 			$equipes = $this->m_equipes->get_equipes($id);
 			
+			$status_equipe = array( 
+				1 => 'Ativo',
+				2 => 'Inativo'
+			);
+
 			if ($equipes->num_rows() > 0 ) {
 				$variaveis['titulo'] = 'Edição de Registro';
 				$variaveis['id'] = $equipes->row()->id;
+				$variaveis['nome'] = $equipes->row()->nome;
 				$variaveis['sigla'] = $equipes->row()->sigla;
-				$variaveis['regiao'] = $equipes->row()->regiao;
-				$variaveis['pais'] = $equipes->row()->pais;
+				$variaveis['regiao'] = $equipes->row()->regiao_id;
+				$variaveis['pais'] = $equipes->row()->pais_id;
 				$variaveis['status'] = $equipes->row()->status;
-				$variaveis['sede'] = $equipes->row()->status;
+				$variaveis['sede'] = $equipes->row()->sede;
 				$variaveis['tecnico'] = $equipes->row()->tecnico;
-				$variaveis['comissao'] = $equipes->row()->comissao;
+				$variaveis['comissao'] = $equipes->row()->qtd_comissao;
 				$variaveis['logo'] = $equipes->row()->logo;
 				$variaveis['cor_primaria'] = $equipes->row()->cor_primaria;
 				$variaveis['cor_secundaria'] = $equipes->row()->cor_secundaria;
 				$variaveis['paises'] = $this->m_paises->get_paises();
+				$variaveis['regioes'] = $this->m_base->get_regioes();
+				$variaveis['sedes'] = $this->m_base->get_sedes();
+				$variaveis['tecnicos'] = $this->m_base->get_tecnicos();
+				$variaveis['status_equipe'] = $status_equipe;
+
+
+
 
 				$this->load->view('equipe/v_cadastro_equipe', $variaveis);
 			} else {
