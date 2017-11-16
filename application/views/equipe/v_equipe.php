@@ -1,37 +1,12 @@
-<style>
-
-}
-	</style>
-	<div class="container">
-
-		<div class="col-md-12  table-background">
-		<div class="col-md-6 table-team-view">
-
-		<?= anchor('index.php/equipe/create', 'Nova equipe', array('class' => 'btn btn-success')); ?>
-				<?php 
-						echo '<div class="form-group">';
-							echo '<select class="form-control">';
-							foreach($equipes -> result() as $equipe){
-							echo '<option value="'.$equipe->id.'">'.$equipe->nome.'</option>';
-							}
-						echo '</select>';?>
-						</div>
-		</div>
-
-
-		<div class="col-md-6">
-	
+		<div class="col-md-12">
 			<div class="row">
-			<div class="panel panel-default ">
-      <div class="panel-heading panel-heading-team" >Times Cadastrados</div>
-			<div class="panel-body team-list panel-body-custom">
 			<?php
 
 			if ($equipes->num_rows() > 0){
 
 				
 				
-				echo '<table class="table table-dark">';
+				echo '<table class="table table-striped">';
 				echo '<thead class="thead-light" style="text-light">';
 				echo '<tr>';
 				echo '<th>Código</th>';
@@ -61,17 +36,7 @@
 				} ?>
 
 			</div>
-			<div class="panel-footer panel-heading-team">Panel Footer</div>
-			</div>
-			
-
-			</div>
-		</div>
 		</div>	
-
-
-		
-	</div>
 
 
 

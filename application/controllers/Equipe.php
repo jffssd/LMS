@@ -12,16 +12,27 @@ class Equipe extends CI_Controller {
 	public function index()
 	{
 		$variaveis['equipes'] = $this->m_equipes->get_equipes();
-		$this->load->view('template/header', $variaveis);
+		/*$this->load->view('template/header', $variaveis);
 		$this->load->view('template/sidebar', $variaveis);
 		$this->load->view('equipe/v_equipe', $variaveis);
 		$variaveis['v_equipe'] = $this->load->view('equipe/v_equipe', $variaveis, true);
-		$this->load->view('template/footer', $variaveis);
+		$this->load->view('template/footer', $variaveis);*/
+		$variaveis['v_equipe'] = $this->load->view('equipe/v_equipe', $variaveis, true);
+		$this->load->view('template/template', $variaveis);
 	}
 
 	public function create()
 	{
 		$variaveis['titulo'] = 'Cadastrar Equipe';
+		$status_equipe = array( 
+			1 => 'Ativo',
+			2 => 'Inativo'
+		);
+		$variaveis['status_equipe'] = $status_equipe;
+		$variaveis['paises'] = $this->m_paises->get_paises();
+		$variaveis['regioes'] = $this->m_base->get_regioes();
+		$variaveis['sedes'] = $this->m_base->get_sedes();
+		$variaveis['tecnicos'] = $this->m_base->get_tecnicos();
 		$this->load->view('equipe/v_cadastro_equipe', $variaveis);
 	}
 	
@@ -39,7 +50,18 @@ class Equipe extends CI_Controller {
 		                'field' => 'sigla',
 		                'label' => 'Sigla',
 		                'rules' => 'required'		                
-		        )
+				),
+				array(
+						'field' => 'regiao',
+						'label' => 'Sigla',
+						'rules' => 'required'	
+				),
+        
+				array(
+						'field' => 'sede',
+						'label' => 'Sede',
+						'rules' => 'required'	
+				)
 		);
 		
 		$this->form_validation->set_rules($regras);
@@ -97,8 +119,8 @@ class Equipe extends CI_Controller {
 				$variaveis['regiao'] = $equipes->row()->regiao_id;
 				$variaveis['pais'] = $equipes->row()->pais_id;
 				$variaveis['status'] = $equipes->row()->status;
-				$variaveis['sede'] = $equipes->row()->sede;
-				$variaveis['tecnico'] = $equipes->row()->tecnico;
+				$variaveis['sede'] = $equipes->row()->sede_id;
+				$variaveis['tecnico'] = $equipes->row()->tecnico_id;
 				$variaveis['comissao'] = $equipes->row()->qtd_comissao;
 				$variaveis['logo'] = $equipes->row()->logo;
 				$variaveis['cor_primaria'] = $equipes->row()->cor_primaria;
@@ -107,6 +129,7 @@ class Equipe extends CI_Controller {
 				$variaveis['regioes'] = $this->m_base->get_regioes();
 				$variaveis['sedes'] = $this->m_base->get_sedes();
 				$variaveis['tecnicos'] = $this->m_base->get_tecnicos();
+				
 				$variaveis['status_equipe'] = $status_equipe;
 
 
@@ -121,6 +144,51 @@ class Equipe extends CI_Controller {
 		}
 		
 	}
+
+	public function view($id = null){
+		
+		if ($id) {
+			
+			$equipes = $this->m_equipes->get_equipes($id);
+			
+			$status_equipe = array( 
+				1 => 'Ativo',
+				2 => 'Inativo'
+			);
+
+			if ($equipes->num_rows() > 0 ) {
+				$variaveis['titulo'] = 'Edição de Registro';
+				$variaveis['id'] = $equipes->row()->id;
+				$variaveis['nome'] = $equipes->row()->nome;
+				$variaveis['sigla'] = $equipes->row()->sigla;
+				$variaveis['regiao'] = $equipes->row()->regiao_id;
+				$variaveis['pais'] = $equipes->row()->pais_id;
+				$variaveis['status'] = $equipes->row()->status;
+				$variaveis['sede'] = $equipes->row()->sede_id;
+				$variaveis['tecnico'] = $equipes->row()->tecnico_id;
+				$variaveis['comissao'] = $equipes->row()->qtd_comissao;
+				$variaveis['logo'] = $equipes->row()->logo;
+				$variaveis['cor_primaria'] = $equipes->row()->cor_primaria;
+				$variaveis['cor_secundaria'] = $equipes->row()->cor_secundaria;
+				$variaveis['paises'] = $this->m_paises->get_paises();
+				$variaveis['regioes'] = $this->m_base->get_regioes();
+				$variaveis['sedes'] = $this->m_base->get_sedes();
+				$variaveis['tecnicos'] = $this->m_base->get_tecnicos();
+				$variaveis['status_equipe'] = $status_equipe;
+
+
+
+
+				$this->load->view('equipe/v_equipe_view', $variaveis);
+			} else {
+				$variaveis['mensagem'] = "Registro não encontrado." ;
+				$this->load->view('errors/html/v_erro', $variaveis);
+			}
+			
+		}
+		
+	}
+
 
 	public function delete($id = null) {
 		if ($this->m_equipes->delete($id)) {
