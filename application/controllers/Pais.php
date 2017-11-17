@@ -12,16 +12,15 @@ class Pais extends CI_Controller {
 	public function index()
 	{
 		$variaveis['paises'] = $this->m_paises->get_paises();
-		$this->load->view('template/header', $variaveis);
-		$this->load->view('template/sidebar', $variaveis);
-		$this->load->view('pais/v_pais', $variaveis);
-		$this->load->view('template/footer', $variaveis);
+		$variaveis['conteudo'] = $this->load->view('pais/v_pais', $variaveis,true);
+		$this->load->view('template/template', $variaveis);
 	}
 
 	public function create()
 	{
 		$variaveis['titulo'] = 'Cadastrar País';
-		$this->load->view('v_cadastro_pais', $variaveis);
+		$variaveis['conteudo'] = $this->load->view('pais/v_cadastro_pais', $variaveis,true);
+		$this->load->view('template/template', $variaveis);
 	}
 	
 	public function store(){
@@ -45,7 +44,8 @@ class Pais extends CI_Controller {
 
 		if ($this->form_validation->run() == FALSE) {
 			$variaveis['titulo'] = 'Novo Registro de País';
-			$this->load->view('v_cadastro_pais', $variaveis);
+			$variaveis['conteudo'] = $this->load->view('pais/v_cadastro_pais', $variaveis,true);
+			$this->load->view('template/template', $variaveis);
 		} else {
 			
 			$id = $this->input->post('id');
@@ -79,7 +79,8 @@ class Pais extends CI_Controller {
 				$variaveis['id'] = $paises->row()->id;
 				$variaveis['nome'] = $paises->row()->nome;
 				$variaveis['name'] = $paises->row()->name;
-				$this->load->view('v_cadastro_pais', $variaveis);
+				$variaveis['conteudo'] = $this->load->view('pais/v_cadastro_pais', $variaveis,true);
+				$this->load->view('template/template', $variaveis);
 			} else {
 				$variaveis['mensagem'] = "Registro não encontrado." ;
 				$this->load->view('errors/html/v_erro', $variaveis);

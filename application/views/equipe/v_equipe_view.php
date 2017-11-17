@@ -1,23 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
-<html lang="pt-br">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?= $titulo ?> LMS</title>
-	<?= link_tag('assets/bootstrap/css/bootstrap.min.css') ?>
-	<?= link_tag('assets/bootstrap/css/bootstrap-theme.min.css') ?>
-	<style>
-		.erro {
-			color: #f00;
-		}
-	</style>
-</head>
-<body>
+?>
+<div style="height:100%; width:10%; background-color:red;">
 	<div class="container">
+	
 		<h1 class="text-center"><?= $titulo ?></h1>
+		
+		
+		</div>
 		<div class="col-md-6 col-md-offset-3">
 			<div class="row">
                     <div class="row">
@@ -84,9 +74,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 			<div class="row"><hr></div>
 			<div class="row">
-				<?= anchor('', 'Página Inicial') ?>
+				<?= anchor('index.php/equipe', 'Voltar') ?>
 			</div>
 		</div>	
-	</div>
-</body>
-</html>

@@ -32,21 +32,27 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="index.html">
+          <?php echo '<a class="nav-link" href="'.site_url().'index.php">'; ?>
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Dashboard</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-          <a class="nav-link" href="#">
-            <i class="fa fa-fw fa-area-chart"></i>
-            <span class="nav-link-text">Charts</span>
+          <?php echo '<a class="nav-link" href="'.site_url().'index.php/equipe">'; ?>
+            <i class="fa fa-fw fa-users "></i>
+            <span class="nav-link-text">Equipes</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-          <a class="nav-link" href="#">
-            <i class="fa fa-fw fa-table"></i>
-            <span class="nav-link-text">Tables</span>
+          <?php echo '<a class="nav-link" href="'.site_url().'index.php/pais">'; ?>
+            <i class="fa fa-fw fa-flag"></i>
+            <span class="nav-link-text">Países</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <?php echo '<a class="nav-link" href="'.site_url().'index.php/jogador">'; ?>
+            <i class="fa fa-fw fa-user"></i>
+            <span class="nav-link-text">Jogadores</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
@@ -225,10 +231,12 @@
       </ul>
     </div>
   </nav>
+  <div style="position: fixed; bottom: 0; width: 100%; height:56px; background-color: #343a40; z-index: 1">
+  </div>
   <div class="content-wrapper">
     <div class="container-fluid">
       <!-- Breadcrumbs-->
-        <?php echo $v_equipe;?>
+        <?php echo $conteudo;?>
     </div>
   </div>
     <!-- Bootstrap core JavaScript-->
