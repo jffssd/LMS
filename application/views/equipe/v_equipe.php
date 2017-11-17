@@ -1,4 +1,4 @@
-		<div class="col-md-12">
+		<div class="col-md-8">
 			<div class="row">
 			<?php
 
@@ -9,23 +9,25 @@
 				echo '<table class="table table-striped">';
 				echo '<thead class="thead-light" style="text-light">';
 				echo '<tr>';
-				echo '<th>Código</th>';
+				echo '<th> </th>';
 				echo '<th>Nome</th>';
+				echo '<th>Sigla</th>';
 				echo '<th>CP</th>';
 				echo '<th>CS</th>';
-				echo '<th>Ações</th>';
+				echo '<th width="10%" colspan="3">Ações</th>';
 				echo '</tr>';
 				echo '</thead>';
 				echo '<tbody>';
 						foreach($equipes -> result() as $equipe){
 						echo '<tr>';
-						echo '<td><img src="'.site_url().'assets/img/logo-equipes/'.$equipe->logo.'" class="logo-team"></td>';
-						echo '<td>'.$equipe->sigla.'</td>';
-						echo '<td><div style="border: 1px solid white; width:30px; height:30px; background-color:'.$equipe->cor_primaria.';"></div></td>';
-						echo '<td><div style="border: 1px solid white; width:30px; height:30px; background-color:'.$equipe->cor_secundaria.';"></div></td>';
-						echo '<td><a href="'.site_url().'index.php/equipe/view/'.$equipe->id.'" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>';	
-						echo ' <a href="'.site_url().'index.php/equipe/edit/'.$equipe->id.'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>';
-						echo ' <a href="#" class="confirma_exclusao btn btn-danger btn-sm" data-id="'.$equipe->id.'" data-nome="'.$equipe->nome.'" /> <span class="glyphicon glyphicon-remove"></span></a></td>';
+						echo '<td class="td_row"><img src="'.site_url().'assets/img/logo-equipes/'.$equipe->logo.'" class="logo-team"></td>';
+						echo '<td class="td_row">'.$equipe->nome.'</td>';
+						echo '<td class="td_row">'.$equipe->sigla.'</td>';
+						echo '<td class="td_row"><div class="team_color_box" style="background-color:'.$equipe->cor_primaria.';"></div></td>';
+						echo '<td class="td_row"><div class="team_color_box" style="background-color:'.$equipe->cor_secundaria.';"></div></td>';
+						echo '<td class="td_row"><a href="'.site_url().'index.php/equipe/view/'.$equipe->id.'" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a></td>';	
+						echo '<td class="td_row"><a href="'.site_url().'index.php/equipe/edit/'.$equipe->id.'" class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>';
+						echo '<td class="td_row"><a href="#" class="confirma_exclusao btn btn-danger btn-sm" data-id="'.$equipe->id.'" data-nome="'.$equipe->nome.'" /><i class="fa fa-times" aria-hidden="true"></i></a></td>';
 						echo '</tr>';
 						}
 					echo '</tbody>';

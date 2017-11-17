@@ -624,6 +624,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`equipe_jogador` (
   `salario` DECIMAL(10,2) NOT NULL,
   `temporada` INT NOT NULL,
   `ano` INT NOT NULL,
+  `titular` CHAR(1) NOT NULL,
   `equipe_id` INT NOT NULL,
   `jogador_id` INT NOT NULL,
   `jogador_custom_id` INT NOT NULL,

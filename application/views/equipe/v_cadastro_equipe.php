@@ -1,24 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
-<html lang="pt-br">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?= $titulo ?> LMS</title>
-	<?= link_tag('assets/bootstrap/css/bootstrap.min.css') ?>
-	<?= link_tag('assets/bootstrap/css/bootstrap-theme.min.css') ?>
-	<style>
-		.erro {
-			color: #f00;
-		}
-	</style>
-</head>
-<body>
-	<div class="container">
-		<h1 class="text-center"><?= $titulo ?></h1>
+?>
+
 		<div class="col-md-6 col-md-offset-3">
+			<div class="row">
+				<div class="page_title">
+				<?php echo '<h1>'.$titulo.'</h1>';?>
+				</div>
+			</div>
 			<div class="row">
 				<?= form_open('index.php/equipe/store')  ?>
 					<div class="form-group">
@@ -111,14 +100,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<?php echo '<input type="text" name="logo" id="logo" class="form-control" value="'.$logo.'" autofocus="true" />'; ?>
 					</div>
 					
-					<div class="form-inline">
-						<div class="form-group">
-							<label for="cor_primaria">Cor Primária</label><span class="cor_primaria"><?php echo form_error('cor_primaria') ?  : ''; ?></span>
+					<div class="form-inline" >
+						<div class="form-group inline-spaced">
+							<label for="cor_primaria">Cor Primária</label><span class="cor_primaria inline-spaced"><?php echo form_error('cor_primaria') ?  : ''; ?></span>
 							<?php echo '<input type="color" name="cor_primaria" id="cor_primaria" value="'.$cor_primaria.'">'; ?>
 						</div>
+					
 						
-						<div class="form-group">
-							<label for="cor_secundaria">Cor Secundária</label><span class="cor_secundaria"><?php echo form_error('cor_secundaria') ?  : ''; ?></span>
+						<div class="form-group inline-spaced">
+							<label for="cor_secundaria">Cor Secundária</label><span class="cor_secundaria inline-spaced"><?php echo form_error('cor_secundaria') ?  : ''; ?></span>
 							<?php echo '<input type="color" name="cor_secundaria" id="cor_secundaria" value="'.$cor_secundaria.'">'; ?>
 						</div>
 					</div>
@@ -133,9 +123,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 			<div class="row"><hr></div>
 			<div class="row">
-				<?= anchor('', 'Página Inicial') ?>
+				<?= anchor('index.php/equipe', 'Voltar') ?>
 			</div>
 		</div>	
-	</div>
-</body>
-</html>

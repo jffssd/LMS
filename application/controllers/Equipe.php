@@ -33,7 +33,8 @@ class Equipe extends CI_Controller {
 		$variaveis['regioes'] = $this->m_base->get_regioes();
 		$variaveis['sedes'] = $this->m_base->get_sedes();
 		$variaveis['tecnicos'] = $this->m_base->get_tecnicos();
-		$this->load->view('equipe/v_cadastro_equipe', $variaveis);
+		$variaveis['v_equipe'] = $this->load->view('equipe/v_cadastro_equipe', $variaveis, true);
+		$this->load->view('template/template', $variaveis);
 	}
 	
 	public function store(){
@@ -135,7 +136,8 @@ class Equipe extends CI_Controller {
 
 
 
-				$this->load->view('equipe/v_cadastro_equipe', $variaveis);
+				$variaveis['v_equipe'] = $this->load->view('equipe/v_cadastro_equipe', $variaveis, true);
+				$this->load->view('template/template', $variaveis);
 			} else {
 				$variaveis['mensagem'] = "Registro não encontrado." ;
 				$this->load->view('errors/html/v_erro', $variaveis);
@@ -179,7 +181,8 @@ class Equipe extends CI_Controller {
 
 
 
-				$this->load->view('equipe/v_equipe_view', $variaveis);
+				$variaveis['v_equipe'] = $this->load->view('equipe/v_equipe_view', $variaveis,true);
+				$this->load->view('template/template', $variaveis);
 			} else {
 				$variaveis['mensagem'] = "Registro não encontrado." ;
 				$this->load->view('errors/html/v_erro', $variaveis);
