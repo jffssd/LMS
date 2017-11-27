@@ -53,11 +53,11 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador` (
   `funcao` VARCHAR(20) NOT NULL,
   `pais_id` INT NOT NULL,
   `status_jogador_id` INT NOT NULL,
-  `at_adap` INT NOT NULL,
-  `at_ment` INT NOT NULL,
-  `at_consist` INT NOT NULL,
-  `at_mec` INT NOT NULL,
-  `at_vis` INT NOT NULL,
+  `at_adap` INT NOT NULL, -- Adaptabilidade
+  `at_ment` INT NOT NULL, -- Mentalidade
+  `at_consist` INT NOT NULL, -- Consistência
+  `at_mec` INT NOT NULL, -- Mecênica Fina
+  `at_vis` INT NOT NULL, --Visão de Jogo
   `foto` VARCHAR(120) NULL,
   `status_transacao` CHAR(1) NOT NULL,
   PRIMARY KEY (`id`),
