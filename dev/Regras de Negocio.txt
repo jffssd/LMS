@@ -1,0 +1,23 @@
+Jogador possui:
+
+Conhecimento
+Concentração
+Destreza
+Reflexos
+Trabalho em Grupo
+Visão de Jogo
+
+
+mesa de passar
+
+
+
+Perspicaz
+Sagaz
+Astuto
+Passivo
+Agressivo
+Defensivo
+Ofensivo
+Dominante
+

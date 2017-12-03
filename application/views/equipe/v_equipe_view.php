@@ -1,42 +1,69 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-<div style="height:100%; width:10%; background-color:red;">
-	<div class="container">
+<div>
+	<div class="container-fluid">
 	
 		<h1 class="text-center"><?= $titulo ?></h1>
 		
 		
 		</div>
-		<div class="col-md-6 col-md-offset-3">
+		<div class="col-md-12" style="background-color: grey; ">
 			<div class="row">
-                    <div class="row">
-						<?php echo '<p>ID: '.$id.'</p>'; ?>
+				<div class="col-md-4">
+					<div class="logo-equipe" style="height:450px; background-color:red; ">
+						<div class="row">
+								<?php echo '<img src="'.site_url().'/assets/img/logo-equipes/'.$logo.'">'; ?>
+						</div>
+						<div class="row">
+
+							<?php
+								var_dump($pais_id);
+								foreach($paises -> result() as $s_s){
+									if ($p_s->id == $pais_id){
+										echo '<p>Pais: '.$p_s->nome.' ID: '.$p_s->id.'</p>';
+									}
+								}
+							?>
+						</div>
 					</div>
-					<div class="row">
-						<?php echo '<p>Equipe: '.$nome.'</p>'; ?>
-					</div>
-					<div class="row">
-						<?php echo '<p>Sigla: '.$sigla.'</p>'; ?>
-					</div>
-                    <div class="row">
-                    <?php
+				</div>
+				<div class="col-md-4">
+					<div class="logo-equipe" style="height:450px; background-color:blue; ">
+						<div class="row">
+							<?php echo '<p>Equipe: '.$nome.'</p>'; ?>
+						</div>
+						<div class="row">
+							<?php echo '<p>Sigla: '.$sigla.'</p>'; ?>
+						</div>
+						<div class="row">
+                    	<?php
 						foreach($regioes -> result() as $r_s){
 								if ($r_s->id == $regiao){
 									echo '<p>Região: '.$r_s->sigla.' ID: '.$r_s->id.'</p>';
 								}
 						}
 						?>
-                    </div>
-                    <div class="row">
-                    <?php
-						foreach($paises -> result() as $s_s){
-								if ($p_s->id == $pais){
-									echo '<p>Pais: '.$p_s->nome.' ID: '.$p_s->id.'</p>';
-								}
-						}
-						?>
-                    </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="logo-equipe" style="height:450px; background-color:yellow;">
+
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="col-md-3">
+
+
+					
+					
+                    
+			</div>
+			<div class="row">
+
                     <div class="row">
 						<?php echo '<p>Status: '.$status.'</p>'; ?>
 					</div>

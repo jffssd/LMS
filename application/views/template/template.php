@@ -17,7 +17,6 @@
         echo '<link href="'.site_url().'assets/datatables/dataTables.bootstrap4.css" rel="stylesheet">';
         echo '<link href="'.site_url().'assets/css/sb-admin.css" rel="stylesheet">';
         echo '<link href="'.site_url().'assets/css/style.css" rel="stylesheet">';
-        
   ?>
 
 </head>
