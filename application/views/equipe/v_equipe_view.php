@@ -3,11 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <div>
 	<div class="container-fluid">
-	
-		<h1 class="text-center"><?= $titulo ?></h1>
-		
-		
-		</div>
+		<ul class="team-nav-menu">
+			<li class="team-nav-li"><a href="#home">O Time</a></li>
+			<li class="team-nav-li"><a href="#news">História</a></li>
+			<li class="team-nav-li"><a href="#contact">Conquistas</a></li>
+			<li class="team-nav-li"><a href="#about">Jogadores</a></li>
+			<li class="team-nav-li"><a href="#about">Comissão</a></li>
+		</ul>
+	</div>
 		<div class="col-md-12" style="background-color: grey; ">
 			<div class="row">
 				<div class="col-md-4">
@@ -16,11 +19,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<?php echo '<img src="'.site_url().'/assets/img/logo-equipes/'.$logo.'">'; ?>
 						</div>
 						<div class="row">
-
 							<?php
-								var_dump($pais_id);
-								foreach($paises -> result() as $s_s){
-									if ($p_s->id == $pais_id){
+								var_dump($pais);
+								foreach($paises -> result() as $p_s){
+									if ($p_s->id == $pais){
 										echo '<p>Pais: '.$p_s->nome.' ID: '.$p_s->id.'</p>';
 									}
 								}

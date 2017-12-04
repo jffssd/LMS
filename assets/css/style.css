@@ -1,3 +1,31 @@
+.team-nav-menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: red;
+    margin-bottom: 10px;
+}
+
+.team-nav-li {
+    float: left;
+    margin-right: 25px;
+
+}
+
+.team-nav-li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    width: 150px;
+}
+
+.team-nav-li a:hover {
+    background-color:  black;
+}
+
 .row{
     margin-left:0px;
     margin-right:0px;
