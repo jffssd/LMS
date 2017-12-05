@@ -167,6 +167,7 @@ class Equipe extends CI_Controller {
 				$variaveis['logo'] = $equipes->row()->logo;
 				$variaveis['cor_primaria'] = $equipes->row()->cor_primaria;
 				$variaveis['cor_secundaria'] = $equipes->row()->cor_secundaria;
+				$variaveis['cor_terciaria'] = $equipes->row()->cor_terciaria;
 				$variaveis['paises'] = $this->m_paises->get_paises();
 				$variaveis['regioes'] = $this->m_base->get_regioes();
 				$variaveis['sedes'] = $this->m_base->get_sedes();

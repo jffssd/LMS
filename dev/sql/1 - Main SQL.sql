@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador` (
   `at_ment` INT NOT NULL, -- Mentalidade
   `at_consist` INT NOT NULL, -- Consistência
   `at_mec` INT NOT NULL, -- Mecênica Fina
-  `at_vis` INT NOT NULL, --Visão de Jogo
+  `at_vis` INT NOT NULL, -- Visão de Jogo
   `foto` VARCHAR(120) NULL,
   `status_transacao` CHAR(1) NOT NULL,
   PRIMARY KEY (`id`),
@@ -536,6 +536,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`equipe` (
   `logo` VARCHAR(45) NOT NULL,
   `cor_primaria` VARCHAR(45) NOT NULL,
   `cor_secundaria` VARCHAR(45) NOT NULL,
+  `cor_terciaria` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`, `regiao_id`, `pais_id`, `sede_id`, `tecnico_id`),
   INDEX `fk_equipe_regiao1_idx` (`regiao_id` ASC),
   INDEX `fk_equipe_pais1_idx` (`pais_id` ASC),

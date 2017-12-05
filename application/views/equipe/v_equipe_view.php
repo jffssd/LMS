@@ -1,16 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-<div>
+
+
+
 	<div class="container-fluid">
-		<ul class="team-nav-menu">
-			<li class="team-nav-li"><a href="#home">O Time</a></li>
-			<li class="team-nav-li"><a href="#news">História</a></li>
-			<li class="team-nav-li"><a href="#contact">Conquistas</a></li>
-			<li class="team-nav-li"><a href="#about">Jogadores</a></li>
-			<li class="team-nav-li"><a href="#about">Comissão</a></li>
-		</ul>
-	</div>
+		<div class="menu-nav-team">
+			<?php echo '<ul class="team-nav-menu" style="background-color: '.$cor_primaria.';">';
+				echo '<li class="team-nav-li" style="color: '.$cor_terciaria.';"><a href="#home">O Time</a></li>';
+				echo '<li class="team-nav-li" style="color: '.$cor_terciaria.';"><a href="#news">História</a></li>';
+				echo '<li class="team-nav-li" style="color: '.$cor_terciaria.';"><a href="#contact">Conquistas</a></li>';
+				echo '<li class="team-nav-li" style="color: '.$cor_terciaria.';"><a href="#about">Jogadores</a></li>';
+				echo '<li class="team-nav-li" style="color: '.$cor_terciaria.';"><a href="#about">Comissão</a></li>';
+				?>
+			</ul>
+		</div>
 		<div class="col-md-12" style="background-color: grey; ">
 			<div class="row">
 				<div class="col-md-4">
@@ -47,62 +51,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						}
 						?>
 						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="logo-equipe" style="height:450px; background-color:yellow;">
-
+						<div class="row">
+							<?php
+							foreach($tecnicos -> result() as $t_s){
+									if ($t_s->id == $tecnico){
+										echo '<p>Tecnico: '.$t_s->nome.' "'.$t_s->nick.'" '.$t_s->sobrenome.' - ID: '.$t_s->id.'</p>';
+									}
+							}
+						?>
+                    	</div>
+						<div class="row">
+								<?php echo '<p>Comissão: '.$comissao.'</p>'; ?>
+						</div>
+						<div class="row">
+							<?= anchor('index.php/equipe', 'Voltar') ?>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		</div>
-		<div class="col-md-3">
-
-
-					
-					
-                    
-			</div>
-			<div class="row">
-
-                    <div class="row">
-						<?php echo '<p>Status: '.$status.'</p>'; ?>
-					</div>
-                    <div class="row">
-                    <?php
-						foreach($sedes -> result() as $s_s){
-								if ($s_s->id == $sede){
-									echo '<p>Sede: '.$s_s->nome.' ID: '.$s_s->id.'</p>';
-								}
-						}
-						?>
-                    </div>
-                    <div class="row">
-                    <?php
-						foreach($tecnicos -> result() as $t_s){
-								if ($t_s->id == $tecnico){
-									echo '<p>Tecnico: '.$t_s->nome.' "'.$t_s->nick.'" '.$t_s->sobrenome.' - ID: '.$t_s->id.'</p>';
-								}
-						}
-						?>
-                    </div>
-                    <div class="row">
-						<?php echo '<p>Comissão: '.$comissao.'</p>'; ?>
-					</div>
-					<div class="row">
-						<?php echo '<p>Logo: '.$logo.'</p>'; ?>
-					</div>
-                    <div class="row">
-						<?php echo '<p>Cor Primária: '.$cor_primaria.'</p>'; ?>
-					</div>
-                    <div class="row">
-						<?php echo '<p>Cor Secundária: '.$cor_secundaria.'</p>'; ?>
-					</div>
-				</div>
-			</div>
-			<div class="row"><hr></div>
-			<div class="row">
-				<?= anchor('index.php/equipe', 'Voltar') ?>
-			</div>
-		</div>	
+	</div>	
