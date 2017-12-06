@@ -29,9 +29,9 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`pais` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `lmdb`.`status_jogador`
+-- Table `lmdb`.`personalidade_jogador`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmdb`.`status_jogador` (
+CREATE TABLE IF NOT EXISTS `lmdb`.`personalidade_jogador` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `descricao` VARCHAR(45) NOT NULL,
@@ -48,12 +48,12 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador` (
   `nome` VARCHAR(50) NOT NULL,
   `sobrenome` VARCHAR(50) NOT NULL,
   `nick` VARCHAR(15) NOT NULL,
-  `data_nasc` DATETIME NOT NULL,
+  `data_nasc` DATETIME,
   `genero` CHAR(1) NOT NULL,
   `funcao` VARCHAR(20) NOT NULL,
   `pais_id` INT NOT NULL,
-  `status_jogador_id` INT NOT NULL,
-  `at_adap` INT NOT NULL, -- Adaptabilidade
+  `personalidade_id` INT NOT NULL,
+  `at_trab` INT NOT NULL, -- Trabalho em Equipe
   `at_ment` INT NOT NULL, -- Mentalidade
   `at_consist` INT NOT NULL, -- Consistência
   `at_mec` INT NOT NULL, -- Mecênica Fina
@@ -62,15 +62,15 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador` (
   `status_transacao` CHAR(1) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_jogador_pais_idx` (`pais_id` ASC),
-  INDEX `fk_jogador_status_jogador1_idx` (`status_jogador_id` ASC),
+  INDEX `fk_jogador_personalidade1_idx` (`personalidade_id` ASC),
   CONSTRAINT `fk_jogador_pais`
     FOREIGN KEY (`pais_id`)
     REFERENCES `lmdb`.`pais` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_jogador_status_jogador1`
-    FOREIGN KEY (`status_jogador_id`)
-    REFERENCES `lmdb`.`status_jogador` (`id`)
+  CONSTRAINT `fk_jogador_personalidade1`
+    FOREIGN KEY (`personalidade_id`)
+    REFERENCES `lmdb`.`personalidade_jogador` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -238,7 +238,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador_custom` (
   `curva` VARCHAR(200) NOT NULL,
   `posicao` VARCHAR(45) NOT NULL,
   `pais_id` INT NOT NULL,
-  `status_jogador_id` INT NOT NULL,
+  `personalidade_id` INT NOT NULL,
   `at_adap` INT NOT NULL,
   `at_ment` INT NOT NULL,
   `at_consist` INT NOT NULL,
@@ -248,9 +248,9 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador_custom` (
   `nivel` INT NOT NULL,
   `exp` INT NOT NULL,
   `status_transacao` CHAR(1) NOT NULL,
-  PRIMARY KEY (`id`, `usuario_id`, `pais_id`, `status_jogador_id`),
+  PRIMARY KEY (`id`, `usuario_id`, `pais_id`, `personalidade_id`),
   INDEX `fk_jogador_custom_pais1_idx` (`pais_id` ASC),
-  INDEX `fk_jogador_custom_status_jogador1_idx` (`status_jogador_id` ASC),
+  INDEX `fk_jogador_custom_personalidade1_idx` (`personalidade_id` ASC),
   CONSTRAINT `fk_jogador_custom_usuario1`
     FOREIGN KEY (`usuario_id`)
     REFERENCES `lmdb`.`usuario` (`id`)
@@ -261,9 +261,9 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador_custom` (
     REFERENCES `lmdb`.`pais` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_jogador_custom_status_jogador1`
-    FOREIGN KEY (`status_jogador_id`)
-    REFERENCES `lmdb`.`status_jogador` (`id`)
+  CONSTRAINT `fk_jogador_custom_personalidade1`
+    FOREIGN KEY (`personalidade_id`)
+    REFERENCES `lmdb`.`personalidade_jogador` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -524,7 +524,7 @@ ENGINE = InnoDB;
 -- Table `lmdb`.`equipe`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `lmdb`.`equipe` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL UNIQUE,
   `nome` VARCHAR(45) NOT NULL,
   `sigla` VARCHAR(10) NOT NULL,
   `regiao_id` INT NOT NULL,
