@@ -15,41 +15,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				?>
 			</ul>
 		</div>
-		<div class="col-md-12" style="background-color: grey; ">
+		<div class="col-md-12" style="background-color: #f5f5f5; border: 1px solid #e2e2e2; border-radius: 7px;">
 			<div class="row">
-				<div class="col-md-4">
-					<div class="logo-equipe" style="height:450px; background-color:red; ">
-						<div class="row">
-								<?php echo '<img src="'.site_url().'/assets/img/logo-equipes/'.$logo.'">'; ?>
+				<div class="col-md-3">
+					<div class="logo-equipe">
+						<div class="row"  style="background-color: white; margin-top: 10px; border: 1px solid #2f3f3f3; border-radius: 7px;">
+								<?php echo '<img src="'.site_url().'/assets/img/logo-equipes/'.$logo.'" width="200" height="200">'; ?>
 						</div>
 						<div class="row">
-							<?php
-								var_dump($pais);
+							<?php echo '<h3 align="center">'.$nome.'</h1>'; ?>
+						</div>
+						<div class="row">
+							<?php 
 								foreach($paises -> result() as $p_s){
 									if ($p_s->id == $pais){
-										echo '<p>Pais: '.$p_s->nome.' ID: '.$p_s->id.'</p>';
+										echo '<h5 align="center">'.$sigla.'</h3>';
+										echo '<p>'.$p_s->nome.'</p>';
 									}
 								}
 							?>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="logo-equipe" style="height:450px; background-color:blue; ">
-						<div class="row">
-							<?php echo '<p>Equipe: '.$nome.'</p>'; ?>
-						</div>
-						<div class="row">
-							<?php echo '<p>Sigla: '.$sigla.'</p>'; ?>
 						</div>
 						<div class="row">
                     	<?php
 						foreach($regioes -> result() as $r_s){
 								if ($r_s->id == $regiao){
-									echo '<p>Região: '.$r_s->sigla.' ID: '.$r_s->id.'</p>';
+									echo '<p>'.$r_s->sigla.'</p>';
 								}
 						}
 						?>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="logo-equipe" style="background-color:blue; ">
+						<div class="row" style="height:200px; background-color:pink;">
+
 						</div>
 						<div class="row">
 							<?php
@@ -58,13 +58,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										echo '<p>Tecnico: '.$t_s->nome.' "'.$t_s->nick.'" '.$t_s->sobrenome.' - ID: '.$t_s->id.'</p>';
 									}
 							}
-						?>
-                    	</div>
+							?>
+						</div>
 						<div class="row">
 								<?php echo '<p>Comissão: '.$comissao.'</p>'; ?>
 						</div>
 						<div class="row">
+								<?php echo '<p>Status: '.$status.'</p>'; ?>
+						</div>
+						<div class="row">
 							<?= anchor('index.php/equipe', 'Voltar') ?>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6" style="background-color:green; ">
+					<div class="row">
+						<div class="col-md-6" style="height:120px; background-color: teal; border: 1px solid black;">
+						<p>ID: X</p>
+						<p>Nome: João da Silva</p>
+						<p>Cons: 8</p>
+						<p>Ment: 7</p>
+						<p>Trab: 8</p>
+						</div>
+						<div class="col-md-6" style="height:120px; background-color: teal; border: 1px solid black;">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6" style="height:120px; background-color: teal; border: 1px solid black;">
+						</div>
+						<div class="col-md-6" style="height:120px; background-color: teal; border: 1px solid black;">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6" style="height:120px; background-color: teal; border: 1px solid black;">
+						</div>
+						<div class="col-md-6" style="height:120px; background-color: teal; border: 1px solid black;">
 						</div>
 					</div>
 				</div>
