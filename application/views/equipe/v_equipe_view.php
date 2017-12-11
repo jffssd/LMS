@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								foreach($paises -> result() as $p_s){
 									if ($p_s->id == $pais){
 										echo '<h5 align="center">'.$sigla.'</h3>';
-										echo '<p>'.$p_s->nome.'</p>';
+										echo '<img src="'.site_url().'assets/img/bandeiras/'.$p_s->name.'.png" width="30" height="20" alt="'.$p_s->nome.'">';
 									}
 								}
 							?>
@@ -39,7 +39,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     	<?php
 						foreach($regioes -> result() as $r_s){
 								if ($r_s->id == $regiao){
-									echo '<p>'.$r_s->sigla.'</p>';
+									echo '<img src="'.site_url().'assets/img/logo-ligas/'.$r_s->sigla.'.png" width="30" height="20" alt="'.$r_s->sigla.'">';
+									
 								}
 						}
 						?>
@@ -74,14 +75,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="col-md-6" style="background-color:green; ">
 					<div class="row">
 						<div class="col-md-6" style="height:120px; background-color: teal; border: 1px solid black;">
-						<p>ID: X</p>
-						<p>Nome: João da Silva</p>
-						<p>Cons: 8</p>
-						<p>Ment: 7</p>
-						<p>Trab: 8</p>
+							<div class="row">
+								<div class="col-md-6">
+									<p>ID: X</p>
+									<p>João</p>
+									<p>Cons: 8</p>
+								</div>
+								<div class="col-md-6">
+									<p>Cons: 8</p>
+									<p>Ment: 7</p>
+									<p>Trab: 8</p>
+								</div>
+							</div>
 						</div>
 						<div class="col-md-6" style="height:120px; background-color: teal; border: 1px solid black;">
+						<div class="row">
+							<div class="col-md-6">
+								<p>ID: X</p>
+								<p>João</p>
+								<p>Cons: 8</p>
+							</div>
+							<div class="col-md-6">
+								<p>Cons: 8</p>
+								<p>Ment: 7</p>
+								<p>Trab: 8</p>
+							</div>
 						</div>
+					</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6" style="height:120px; background-color: teal; border: 1px solid black;">
