@@ -618,10 +618,10 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `lmdb`.`equipe_jogador`
+-- Table `lmdb`.`equipe_jogador_custom`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmdb`.`equipe_jogador` (
-  `id` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `lmdb`.`equipe_jogador_custom` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `salario` DECIMAL(10,2) NOT NULL,
   `temporada` INT NOT NULL,
   `ano` INT NOT NULL,
@@ -630,9 +630,40 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`equipe_jogador` (
   `jogador_id` INT NOT NULL,
   `jogador_custom_id` INT NOT NULL,
   PRIMARY KEY (`id`, `equipe_id`, `jogador_id`, `jogador_custom_id`),
+  INDEX `fk_equipe_jogador_custom_equipe1_idx` (`equipe_id` ASC),
+  INDEX `fk_equipe_jogador_custom_jogador1_idx` (`jogador_id` ASC),
+  INDEX `fk_equipe_jogador_custom_jogador_custom1_idx` (`jogador_custom_id` ASC),
+  CONSTRAINT `fk_equipe_jogador_custom_equipe1`
+    FOREIGN KEY (`equipe_id`)
+    REFERENCES `lmdb`.`equipe` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_equipe_jogador_custom_jogador1`
+    FOREIGN KEY (`jogador_id`)
+    REFERENCES `lmdb`.`jogador` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_equipe_jogador_custom_jogador_custom1`
+    FOREIGN KEY (`jogador_custom_id`)
+    REFERENCES `lmdb`.`jogador_custom` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `lmdb`.`equipe_jogador`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `lmdb`.`equipe_jogador` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `salario` DECIMAL(10,2) NOT NULL,
+  `temporada` INT NOT NULL,
+  `ano` INT NOT NULL,
+  `titular` CHAR(1) NOT NULL,
+  `equipe_id` INT NOT NULL,
+  `jogador_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `equipe_id`, `jogador_id`),
   INDEX `fk_equipe_jogador_equipe1_idx` (`equipe_id` ASC),
   INDEX `fk_equipe_jogador_jogador1_idx` (`jogador_id` ASC),
-  INDEX `fk_equipe_jogador_jogador_custom1_idx` (`jogador_custom_id` ASC),
   CONSTRAINT `fk_equipe_jogador_equipe1`
     FOREIGN KEY (`equipe_id`)
     REFERENCES `lmdb`.`equipe` (`id`)
@@ -642,14 +673,8 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`equipe_jogador` (
     FOREIGN KEY (`jogador_id`)
     REFERENCES `lmdb`.`jogador` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_equipe_jogador_jogador_custom1`
-    FOREIGN KEY (`jogador_custom_id`)
-    REFERENCES `lmdb`.`jogador_custom` (`id`)
-    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
 -- -----------------------------------------------------
 -- Table `lmdb`.`patrocinador`
 -- -----------------------------------------------------
