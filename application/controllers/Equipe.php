@@ -145,15 +145,21 @@ class Equipe extends CI_Controller {
 	public function view($id = null){
 		
 		if ($id) {
-			
+
+			// Busca model para buscar equipe por id		
 			$equipes = $this->m_equipes->get_equipes($id);
+			
+			// Busca model para buscar jogadores vinculados a id da equipe
 			$variaveis['jogador_equipe'] = $this->m_equipes->get_jogador_by_equipe($id);
 		
+			// Atribui status da equipe
 
 			$status_equipe = array( 
 				1 => 'Ativo',
 				2 => 'Inativo'
 			);
+
+			//Verifica se há registros de equipe com este id	
 
 			if ($equipes->num_rows() > 0 ) {
 				$variaveis['titulo'] = 'Edição de Registro';
@@ -175,8 +181,6 @@ class Equipe extends CI_Controller {
 				$variaveis['sedes'] = $this->m_base->get_sedes();
 				$variaveis['tecnicos'] = $this->m_base->get_tecnicos();
 				$variaveis['status_equipe'] = $status_equipe;
-
-
 
 
 				$variaveis['conteudo'] = $this->load->view('equipe/v_equipe_view', $variaveis,true);

@@ -16,26 +16,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</ul>
 		</div>
 		<div>
-		<?php
 
-		foreach($jogador_equipe -> result() as $j_e){
-				echo '<img src="'.site_url().'assets/img/profiles/'.$j_e->foto.'" width="30" height="30">';
-				echo '<span>'.$j_e->funcao.'</span>';
-				echo '<span>'.$j_e->pais_id.'</span>';
-				echo '<span>'.$j_e->nick.'</span>';
-				echo '<span>'.$j_e->at_trab + $j_e->at_ment + $j_e->at_consist + $j_e->at_mec + $j_e->at_vis.'</span>';
-				echo '<br />';
-		}
-		?>
 		
 		</div>
 
 		<div class="col-md-12" style="background-color: #f5f5f5; border: 1px solid #e2e2e2; border-radius: 7px;">
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="logo-equipe">
 						<div class="row"  style="background-color: white; margin-top: 10px; border: 1px solid #2f3f3f3; border-radius: 7px;">
-								<?php echo '<img src="'.site_url().'/assets/img/logo-equipes/'.$logo.'" width="200" height="200">'; ?>
+								<?php echo '<img src="'.site_url().'/assets/img/logo-equipes/'.$logo.'" width="280" height="280">'; ?>
 						</div>
 						<div class="row">
 							<?php echo '<h3 align="center">'.$nome.'</h1>'; ?>
@@ -62,9 +52,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 					</div>
 				</div>
-				<div class="col-md-3">
-					<div class="logo-equipe" style="background-color:blue; ">
-						<div class="row" style="height:200px; background-color:pink;">
+				<div class="col-md-4">
+					<div class="logo-equipe" style="">
+						<div class="row" style="height:200px;">
 
 						</div>
 						<div class="row">
@@ -87,49 +77,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6" style="background-color:green; ">
-					<div class="row">
-						<div class="col-md-6" style="height:120px; background-color: teal; border: 1px solid black;">
-							<div class="row">
-								<div class="col-md-6">
-									<p>ID: X</p>
-									<p>João</p>
-									<p>Cons: 8</p>
-								</div>
-								<div class="col-md-6">
-									<p>Cons: 8</p>
-									<p>Ment: 7</p>
-									<p>Trab: 8</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6" style="height:120px; background-color: teal; border: 1px solid black;">
-						<div class="row">
-							<div class="col-md-6">
-								<p>ID: X</p>
-								<p>João</p>
-								<p>Cons: 8</p>
-							</div>
-							<div class="col-md-6">
-								<p>Cons: 8</p>
-								<p>Ment: 7</p>
-								<p>Trab: 8</p>
-							</div>
-						</div>
-					</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6" style="height:120px; background-color: teal; border: 1px solid black;">
-						</div>
-						<div class="col-md-6" style="height:120px; background-color: teal; border: 1px solid black;">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6" style="height:120px; background-color: teal; border: 1px solid black;">
-						</div>
-						<div class="col-md-6" style="height:120px; background-color: teal; border: 1px solid black;">
-						</div>
-					</div>
+
+				<div class="col-md-4" style="height: 488px; ">
+				<h2>Jogadores</h2>
+					<?php
+						$count = 0;
+						foreach($jogador_equipe -> result() as $j_e){
+							echo '<div class="row" style="background-color: red; margin-top: 10px; border: 1px solid black;">';
+							echo '<img src="'.site_url().'assets/img/profiles/'.$j_e->foto.'" width="120" height="120">';
+							echo '<h5>'.strtoupper($j_e->nick).'</h5>';								
+							echo '<p style="margin-left: 10px;">'.$j_e->funcao.'</p>';
+							foreach($paises -> result() as $p_s){
+								if ($p_s->id == $j_e->pais_id){
+									echo '<img src="'.site_url().'assets/img/bandeiras/'.$p_s->name.'.png" width="30" height="20" alt="'.$p_s->nome.'">';
+								}
+							}
+							echo '<h1>'.$j_e->at_trab + $j_e->at_ment + $j_e->at_consist + $j_e->at_mec + $j_e->at_vis.'</h1>';
+							echo '</div>';
+						}
+					?>
 				</div>
 			</div>
 		</div>
