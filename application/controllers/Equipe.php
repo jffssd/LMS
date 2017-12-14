@@ -147,7 +147,9 @@ class Equipe extends CI_Controller {
 		if ($id) {
 			
 			$equipes = $this->m_equipes->get_equipes($id);
-			
+			$variaveis['jogador_equipe'] = $this->m_equipes->get_jogador_by_equipe($id);
+		
+
 			$status_equipe = array( 
 				1 => 'Ativo',
 				2 => 'Inativo'

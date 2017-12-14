@@ -15,6 +15,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				?>
 			</ul>
 		</div>
+		<div>
+		<?php
+
+		foreach($jogador_equipe -> result() as $j_e){
+				echo '<img src="'.site_url().'assets/img/profiles/'.$j_e->foto.'" width="30" height="30">';
+				echo '<span>'.$j_e->funcao.'</span>';
+				echo '<span>'.$j_e->pais_id.'</span>';
+				echo '<span>'.$j_e->nick.'</span>';
+				echo '<span>'.$j_e->at_trab + $j_e->at_ment + $j_e->at_consist + $j_e->at_mec + $j_e->at_vis.'</span>';
+				echo '<br />';
+		}
+		?>
+		
+		</div>
+
 		<div class="col-md-12" style="background-color: #f5f5f5; border: 1px solid #e2e2e2; border-radius: 7px;">
 			<div class="row">
 				<div class="col-md-3">
