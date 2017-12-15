@@ -79,23 +79,82 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 
 				<div class="col-md-4" style="height: 488px; ">
-				<h2>Jogadores</h2>
+				<h2>JG</h2>
+
+				<style>
+
+					.player-profile-rows{
+						margin: 5px;
+					}
+
+					.player-profile-cell {
+						height: 140px; 
+						width: 100%; 
+						border: 1px solid black; 
+						border-radius: 10px; 
+						padding: 10px;
+					}
+
+					.player-profile-pic {
+						height:120px; 
+						width: 35%; 
+						float: left;
+					}
+
+					.player-profile-info {
+						height:120px; 
+						width: 60%;
+					}
+
+					.player-profile-score {
+						float: right;
+						height:120px; 
+						width: 40%;
+						display: flex;
+  						align-items:center;
+  						justify-content:center;
+					}
+
+					.profile-score {
+						font-size: 80px;
+
+					}
+
+					p {
+						margin: 0;
+
+					}
+
+				</style>
+
+							<?php
+							foreach($jogador_equipe -> result() as $j_e){
+								echo '<div class="row player-profile-rows">';
+								echo '<div class="player-profile-cell">';
+									echo '<div class="row">';
+										echo '<div class="player-profile-pic" align="center">';
+										echo '<img src="'.site_url().'/assets/img/profiles/foto.jpg" width="120" height="120">';
+										echo '</div>';
+										echo '<div class="player-profile-info">';
+											echo '<div class="player-profile-score">';
+											echo '<h1 class="profile-score">91</h1>';
+											echo '</div>';
+												echo '<p><strong>'.strtoupper('Souldevourer').'</strong></p>';
+											echo '<p>Brasil</p>';
+											echo '<p><span class="badge badge-info">Atirador</span> <span class="badge badge-info">ADC</span></p>';
+											echo '<p><span class="badge badge-warning">Titular</span></p> ';
+										echo '</div>';
+									echo '</div>';
+								echo '</div>';
+							echo '</div>';
+							}
+							?>
 
 
 
+					
 
 
-					<div class="row">
-						<div style="background-color: red; height: 120px; width: 100%;">
-							<div class="row">
-								<div style="background-color: blue; height:120px; width: 40%; float: left;">	
-								</div>
-								<div style="background-color: green; height:120px; width: 60%;">	
-								asd
-								</div>
-							</div>
-						</div>
-					</div>
 
 
 
