@@ -80,22 +80,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 				<div class="col-md-4" style="height: 488px; ">
 				<h2>Jogadores</h2>
-					<?php
-						$count = 0;
-						foreach($jogador_equipe -> result() as $j_e){
-							echo '<div class="row" style="background-color: red; margin-top: 10px; border: 1px solid black;">';
-							echo '<img src="'.site_url().'assets/img/profiles/'.$j_e->foto.'" width="120" height="120">';
-							echo '<h5>'.strtoupper($j_e->nick).'</h5>';								
-							echo '<p style="margin-left: 10px;">'.$j_e->funcao.'</p>';
-							foreach($paises -> result() as $p_s){
-								if ($p_s->id == $j_e->pais_id){
-									echo '<img src="'.site_url().'assets/img/bandeiras/'.$p_s->name.'.png" width="30" height="20" alt="'.$p_s->nome.'">';
-								}
-							}
-							echo '<h1>'.$j_e->at_trab + $j_e->at_ment + $j_e->at_consist + $j_e->at_mec + $j_e->at_vis.'</h1>';
-							echo '</div>';
-						}
-					?>
+
+
+
+
+
+					<div class="row">
+						<div style="background-color: red; height: 120px; width: 100%;">
+							<div class="row">
+								<div style="background-color: blue; height:120px; width: 40%; float: left;">	
+								</div>
+								<div style="background-color: green; height:120px; width: 60%;">	
+								asd
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+
 				</div>
 			</div>
 		</div>
