@@ -233,8 +233,7 @@
       </ul>
     </div>
   </nav>
-  <div style="position: fixed; bottom: 0; width: 100%; height:56px; background-color: #343a40; z-index: 1">
-  </div>
+
   <div class="content-wrapper">
     <div class="container-fluid">
       <!-- Breadcrumbs-->

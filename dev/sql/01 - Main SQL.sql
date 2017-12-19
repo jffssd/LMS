@@ -374,17 +374,17 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `lmdb`.`jogador_bonus`
+-- Table `lmdb`.`jogador_custom_bonus`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmdb`.`jogador_bonus` (
+CREATE TABLE IF NOT EXISTS `lmdb`.`jogador_custom_bonus` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `qtd_boostxp` INT NOT NULL,
   `qtd_boostlearn` INT NOT NULL,
   `qtd_boostbonus` INT NOT NULL,
   `jogador_custom_id` INT NOT NULL,
   PRIMARY KEY (`id`, `jogador_custom_id`),
-  INDEX `fk_jogador_bonus_jogador_custom1_idx` (`jogador_custom_id` ASC),
-  CONSTRAINT `fk_jogador_bonus_jogador_custom1`
+  INDEX `fk_jogador_custom_bonus_jogador_custom1_idx` (`jogador_custom_id` ASC),
+  CONSTRAINT `fk_jogador_custom_bonus_jogador_custom1`
     FOREIGN KEY (`jogador_custom_id`)
     REFERENCES `lmdb`.`jogador_custom` (`id`)
     ON DELETE NO ACTION
@@ -479,19 +479,6 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`atualizacao` (
   `log` VARCHAR(300) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `lmdb`.`requisito`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmdb`.`requisito` (
-  `id` INT NOT NULL,
-  `categoria` VARCHAR(45) NOT NULL,
-  `descricao` VARCHAR(100) NOT NULL,
-  `status` CHAR(1) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `lmdb`.`sede`

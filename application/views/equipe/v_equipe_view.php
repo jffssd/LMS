@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-	<div class="container-fluid">
+
 		<div class="menu-nav-team">
 			<?php echo '<ul class="team-nav-menu" style="background-color: '.$cor_primaria.';">';
 				echo '<li class="team-nav-li" style="color: '.$cor_terciaria.';"><a href="#home">O Time</a></li>';
@@ -18,9 +18,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<div class="col-md-12">
 			<div class="row">
-				<?php echo '<div class="col-md-1" style="background-color: '.$cor_primaria.';     background: linear-gradient(to right, '.$cor_primaria.' , white;;">'; ?>
+				<?php echo '<div class="col-md-1" style="background-color: '.$cor_primaria.'; padding: 0px; min-height: 20px;">'; 
+				echo '<div style="float: right; width: 50%; height: 100%; background-color: '.$cor_secundaria.';     filter:alpha(opacity=50);	opacity: 0.5;	-moz-opacity:0.5; -webkit-opacity:0.5; "></div>';?>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-5">
 					<div class="logo-equipe">
 						<div class="row" align="center"  style="margin-top: 10px; border: 1px solid #2f3f3f3; border-radius: 7px;   display: flex; align-items: center;  justify-content: center;">
 							<?php 	
@@ -45,8 +46,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 					</div>
 				</div>
-				<div class="col-md-3" style="height: 488px; ">
+				<div class="col-md-5" style="height: 100%; "  align="center">
 				<h2>JG</h2>
+				<div class="col-md-12" >
+					<div class="row">
+						<div class="card" style="width: 8rem; height: 15rem; margin: 0.1rem;"><?php echo '<img src="'.site_url().'/assets/img/profiles/tinowns.jpg">'; ?>
+							<div class="card-body" align="center" style="padding: 0.5rem;"><?php echo '<h6 class="card-title" style="margin-bottom: 0.1rem;"><span><img src="'.site_url().'/assets/img/bandeiras/BRAZIL.png" width="25" height="15"></span> <strong>'.strtoupper('Tinowns').'</strong></h6>'; ?>
+								<div style="padding-top: 10px;float:left;   display: flex;  justify-content: center; align-items: center;" align="center" ><?php echo '<img src="'.site_url().'/assets/img/roles/Mid_icon.png" width="45" height="45">'; ?>
+								</div>
+								<div><h1 class="profile-score">91<h1>
+								</div>
+							</div>
+						</div>
+
+						<div class="card" style="width: 8rem; height: 15rem; margin: 0.1rem;"><?php echo '<img src="'.site_url().'/assets/img/profiles/tinowns.jpg">'; ?>
+							<div class="card-body" align="center" style="padding: 0.5rem;"><?php echo '<h6 class="card-title" style="margin-bottom: 0.1rem;"><span><img src="'.site_url().'/assets/img/bandeiras/BRAZIL.png" width="25" height="15"></span> <strong>'.strtoupper('Tinowns').'</strong></h6>'; ?>
+								<div style="padding-top: 10px;float:left;   display: flex;  justify-content: center; align-items: center;" align="center" ><?php echo '<img src="'.site_url().'/assets/img/roles/Mid_icon.png" width="45" height="45">'; ?>
+								</div>
+								<div><h1 class="profile-score">91<h1>
+								</div>
+							</div>
+						</div>
+
+						<div class="card" style="width: 8rem; height: 15rem; margin: 0.1rem;"><?php echo '<img src="'.site_url().'/assets/img/profiles/tinowns.jpg">'; ?>
+							<div class="card-body" align="center" style="padding: 0.5rem;"><?php echo '<h6 class="card-title" style="margin-bottom: 0.1rem;"><span><img src="'.site_url().'/assets/img/bandeiras/BRAZIL.png" width="25" height="15"></span> <strong>'.strtoupper('Tinowns').'</strong></h6>'; ?>
+								<div style="padding-top: 10px;float:left;   display: flex;  justify-content: center; align-items: center;" align="center" ><?php echo '<img src="'.site_url().'/assets/img/roles/Mid_icon.png" width="45" height="45">'; ?>
+								</div>
+								<div><h1 class="profile-score">91<h1>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
 				<style>
 					.player-profile-rows{
@@ -90,13 +121,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}
 
 					.profile-nick{
-						font-size: 20px;
+						font-size: 18px;
 						font-weight: bold;
 
 					}
 
 					.profile-nick-small{
-						font-size: 14px;
+						font-size: 12px;
 						font-weight: bold;
 
 					}
@@ -116,7 +147,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								echo '<div class="player-profile-cell">';
 									echo '<div class="row">';
 										echo '<div class="player-profile-pic" align="center">';
-										echo '<img src="'.site_url().'/assets/img/profiles/foto.jpg" width="80" height="80">';
+										echo '<img src="'.site_url().'/assets/img/profiles/'.$j_e->foto.'" width="80" height="80">';
 										echo '</div>';
 										echo '<div class="player-profile-info">';
 											echo '<div class="player-profile-score">';
@@ -170,8 +201,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 				</div>
 
-				<?php echo '<div class="col-md-1" style="background-color: '.$cor_primaria.';">'; ?>
+				<?php echo '<div class="col-md-1" style="background-color: '.$cor_primaria.'; padding: 0px; min-height: 20px;">'; 
+				echo '<div style="float: left; width: 50%; height: 100%; background-color: '.$cor_secundaria.';     filter:alpha(opacity=50);	opacity: 0.5;	-moz-opacity:0.5; -webkit-opacity:0.5; "></div>';?>
 				</div>
 			</div>
 		</div>
-	</div>	
+
