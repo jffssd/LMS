@@ -18,55 +18,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<div class="col-md-12">
 			<div class="row">
-				<div class="col-md-4">
-					<div class="logo-equipe" style="background-color: black;">
-						<div class="row" align="center"  style="height: 80%; background-color: blue;margin-top: 10px; border: 1px solid #2f3f3f3; border-radius: 7px;   display: flex; align-items: center;  justify-content: center;">
-							<?php 	echo '<img src="'.site_url().'/assets/img/logo-equipes/'.$logo.'" width="320" height="320">'; 
-									echo '<h3 align="center">'.$nome.'</h1>';
+				<?php echo '<div class="col-md-1" style="background-color: '.$cor_primaria.';     background: linear-gradient(to right, '.$cor_primaria.' , white;;">'; ?>
+				</div>
+				<div class="col-md-6">
+					<div class="logo-equipe">
+						<div class="row" align="center"  style="margin-top: 10px; border: 1px solid #2f3f3f3; border-radius: 7px;   display: flex; align-items: center;  justify-content: center;">
+							<?php 	
+									echo '<div class="col-md-12" align="center">';
+									echo '<img src="'.site_url().'/assets/img/logo-equipes/'.$logo.'" width="320" height="320">'; 
+									echo '</div';
+									echo '<div class="row" align="center">';
+									echo '<p><h3>'.strtoupper($nome).' <span class="badge badge-dark">'.strtoupper($sigla).'</span></h1></p>';
 									foreach($paises -> result() as $p_s){
 										if ($p_s->id == $pais){
-											echo '<h5 align="center">'.$sigla.'</h3>';
-											echo '<img src="'.site_url().'assets/img/bandeiras/'.$p_s->name.'.png" width="30" height="20" alt="'.$p_s->nome.'">';
+											echo '<p>País: <img src="'.site_url().'assets/img/bandeiras/'.$p_s->name.'.png" width="30" height="20" alt="'.$p_s->nome.'">'.$p_s->nome.'</p>';
 										}
 									}
-
+									echo '<p>Fundado em: <strong>2011</strong>';
 									foreach($regioes -> result() as $r_s){
 										if ($r_s->id == $regiao){
-											echo '<img src="'.site_url().'assets/img/logo-ligas/'.$r_s->sigla.'.png" width="30" height="20" alt="'.$r_s->sigla.'">';
-											
+											echo '<p>Região: <img src="'.site_url().'assets/img/logo-ligas/'.$r_s->sigla.'.png" width="30" height="20" alt="'.$r_s->sigla.'"> '.$r_s->sigla.'</p>';
 										}
 									}
 							?>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-3">
-					<div class="logo-equipe" style="background-color: green;">
-						<div class="row" style="height:200px;">
-						
-						</div>
-						<div class="row">
-							<?php
-							foreach($tecnicos -> result() as $t_s){
-									if ($t_s->id == $tecnico){
-										echo '<p>Tecnico: '.$t_s->nome.' "'.$t_s->nick.'" '.$t_s->sobrenome.' - ID: '.$t_s->id.'</p>';
-									}
-							}
-							?>
-						</div>
-						<div class="row">
-								<?php echo '<p>Comissão: '.$comissao.'</p>'; ?>
-						</div>
-						<div class="row">
-								<?php echo '<p>Status: '.$status.'</p>'; ?>
-						</div>
-						<div class="row">
-							<?= anchor('index.php/equipe', 'Voltar') ?>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-5" style="height: 488px; ">
+				<div class="col-md-3" style="height: 488px; ">
 				<h2>JG</h2>
 
 				<style>
@@ -77,7 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					.player-profile-cell {
 						border: 1px solid;
 						border-color: #e4e4e4;
-						height: 140px; 
+						height: 100px; 
 						width: 100%; 
 						border-radius: 10px; 
 						padding: 10px;
@@ -106,7 +85,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}
 
 					.profile-score {
-						font-size: 70px;
+						font-size: 50px;
 
 					}
 
@@ -117,7 +96,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}
 
 					.profile-nick-small{
-						font-size: 16px;
+						font-size: 14px;
 						font-weight: bold;
 
 					}
@@ -137,7 +116,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								echo '<div class="player-profile-cell">';
 									echo '<div class="row">';
 										echo '<div class="player-profile-pic" align="center">';
-										echo '<img src="'.site_url().'/assets/img/profiles/foto.jpg" width="120" height="120">';
+										echo '<img src="'.site_url().'/assets/img/profiles/foto.jpg" width="80" height="80">';
 										echo '</div>';
 										echo '<div class="player-profile-info">';
 											echo '<div class="player-profile-score">';
@@ -189,6 +168,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							}
 							?>
 
+				</div>
+
+				<?php echo '<div class="col-md-1" style="background-color: '.$cor_primaria.';">'; ?>
 				</div>
 			</div>
 		</div>
