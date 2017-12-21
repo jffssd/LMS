@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?php echo '<div class="col-md-1" style="background-color: '.$cor_primaria.'; padding: 0px; min-height: 20px;">'; 
 				echo '<div style="float: right; width: 50%; height: 100%; background-color: '.$cor_secundaria.';     filter:alpha(opacity=50);	opacity: 0.5;	-moz-opacity:0.5; -webkit-opacity:0.5; "></div>';?>
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-6">
 					<div class="logo-equipe">
 						<div class="row" align="center"  style="margin-top: 10px; border: 1px solid #2f3f3f3; border-radius: 7px;   display: flex; align-items: center;  justify-content: center;">
 							<?php 	
@@ -46,38 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 					</div>
 				</div>
-				<div class="col-md-5" style="height: 100%; "  align="center">
-				<h2>JG</h2>
-				<div class="col-md-12" >
-					<div class="row">
-						<div class="card" style="width: 8rem; height: 15rem; margin: 0.1rem;"><?php echo '<img src="'.site_url().'/assets/img/profiles/tinowns.jpg">'; ?>
-							<div class="card-body" align="center" style="padding: 0.5rem;"><?php echo '<h6 class="card-title" style="margin-bottom: 0.1rem;"><span><img src="'.site_url().'/assets/img/bandeiras/BRAZIL.png" width="25" height="15"></span> <strong>'.strtoupper('Tinowns').'</strong></h6>'; ?>
-								<div style="padding-top: 10px;float:left;   display: flex;  justify-content: center; align-items: center;" align="center" ><?php echo '<img src="'.site_url().'/assets/img/roles/Mid_icon.png" width="45" height="45">'; ?>
-								</div>
-								<div><h1 class="profile-score">91<h1>
-								</div>
-							</div>
-						</div>
 
-						<div class="card" style="width: 8rem; height: 15rem; margin: 0.1rem;"><?php echo '<img src="'.site_url().'/assets/img/profiles/tinowns.jpg">'; ?>
-							<div class="card-body" align="center" style="padding: 0.5rem;"><?php echo '<h6 class="card-title" style="margin-bottom: 0.1rem;"><span><img src="'.site_url().'/assets/img/bandeiras/BRAZIL.png" width="25" height="15"></span> <strong>'.strtoupper('Tinowns').'</strong></h6>'; ?>
-								<div style="padding-top: 10px;float:left;   display: flex;  justify-content: center; align-items: center;" align="center" ><?php echo '<img src="'.site_url().'/assets/img/roles/Mid_icon.png" width="45" height="45">'; ?>
-								</div>
-								<div><h1 class="profile-score">91<h1>
-								</div>
-							</div>
-						</div>
-
-						<div class="card" style="width: 8rem; height: 15rem; margin: 0.1rem;"><?php echo '<img src="'.site_url().'/assets/img/profiles/tinowns.jpg">'; ?>
-							<div class="card-body" align="center" style="padding: 0.5rem;"><?php echo '<h6 class="card-title" style="margin-bottom: 0.1rem;"><span><img src="'.site_url().'/assets/img/bandeiras/BRAZIL.png" width="25" height="15"></span> <strong>'.strtoupper('Tinowns').'</strong></h6>'; ?>
-								<div style="padding-top: 10px;float:left;   display: flex;  justify-content: center; align-items: center;" align="center" ><?php echo '<img src="'.site_url().'/assets/img/roles/Mid_icon.png" width="45" height="45">'; ?>
-								</div>
-								<div><h1 class="profile-score">91<h1>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
 
 				<style>
 					.player-profile-rows{
@@ -117,87 +86,77 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 					.profile-score {
 						font-size: 50px;
-
 					}
 
 					.profile-nick{
-						font-size: 18px;
-						font-weight: bold;
-
+						font-size: 20px;
 					}
 
 					.profile-nick-small{
-						font-size: 12px;
-						font-weight: bold;
-
+						font-size: 13px;
 					}
 
 					p {
 						margin: 0;
-
 					}
 
 
 
 				</style>
 
-							<?php
+				<div class="col-md-4" style="height: 100%; "  align="center">
+				<h2>JG</h2>
+					<div class="col-md-12" style=" padding-right: 0px !important; padding-left: 0px !important;" >
+						<?php 
+							$count = 0;
+							$break = $jogador_equipe->num_rows();
+							echo '<div class="row">';
 							foreach($jogador_equipe -> result() as $j_e){
-								echo '<div class="row player-profile-rows">';
-								echo '<div class="player-profile-cell">';
-									echo '<div class="row">';
-										echo '<div class="player-profile-pic" align="center">';
-										echo '<img src="'.site_url().'/assets/img/profiles/'.$j_e->foto.'" width="80" height="80">';
-										echo '</div>';
-										echo '<div class="player-profile-info">';
-											echo '<div class="player-profile-score">';
-											$score_result = $j_e->at_trab + $j_e->at_ment + $j_e->at_consist + $j_e->at_mec + $j_e->at_vis;
-											echo '<h1 class="profile-score">'.$score_result.'</h1>';
-											echo '</div>';
-											echo '<div>';
-											$length = strlen($j_e->nick);
-											if($length < 10){
-												foreach($paises -> result() as $p_s){
-													if ($p_s->id == $j_e->pais_id){
-														echo '<p class="profile-nick">'.strtoupper($j_e->nick).' <span><img src="'.site_url().'assets/img/bandeiras/'.$p_s->name.'.png" width="30" height="20" alt="'.$p_s->nome.'"></span></p>';
-													}
-												}
-											}else{
-												foreach($paises -> result() as $p_s){
-													if ($p_s->id == $j_e->pais_id){
-														echo '<p class="profile-nick-small">'.strtoupper($j_e->nick).' <span><img src="'.site_url().'assets/img/bandeiras/'.$p_s->name.'.png" width="30" height="20" alt="'.$p_s->nome.'"></span></p>';
-													}
-												}
-											}
-
-
-											echo '</div>';
-											
-											if($j_e->funcao == 'TOP'){
-												echo '<p><span class="badge badge-danger">Topo</span></p>';
-											}elseif($j_e->funcao == 'MID'){
-												echo '<p><span class="badge badge-info">Meio</span></p>';
-											}elseif($j_e->funcao =="JNG"){
-												echo '<p><span class="badge badge-success">Caçador</span></p>';
-											}elseif($j_e->funcao == "SUP"){
-												echo '<p><span class="badge badge-dark">Suporte</span></p>';
-											}elseif($j_e->funcao == "ADC"){
-												echo '<p><span class="badge badge-primary">Atirador</span></p>';
-											}else{
-
-											}
-
-											if($j_e->titular == 0){
-												echo '<p><span class="badge badge-warning">Titular</span></p> ';
-											}elseif($j_e->titular == 1){
-												echo '<p><span class="badge badge-secondary">Reserva</span></p> ';
-											}
-										echo '</div>';
+								if($count % 2 == 0){
 									echo '</div>';
+									echo '<div class="row">';
+								}
+								$count++;
+								echo '<div class="card" style="width: 152px; height: 240px; margin: 5px;"><img src="'.site_url().'/assets/img/profiles/'.$j_e->foto.'" width="150" height="150">';
+								echo '	<div class="card-body" align="center" style="padding: 0.5rem;">';
+								
+								if(strlen($j_e->nick) < 10){
+									echo '		<h4 class="card-title profile-nick" style="margin-bottom: 0.1rem; text-overflow: clip;">';
+									echo '			<span><img src="'.site_url().'/assets/img/bandeiras/'.$j_e->pais_id.'.png" width="25" height="15"></span> ';
+									echo '		<strong>'.strtoupper($j_e->nick).'</strong></h4>'; 
+								}else{
+									echo '		<h2 class="card-title profile-nick-small" style="margin-bottom: 0.1rem; text-overflow: clip; ">';
+									echo '			<span><img src="'.site_url().'/assets/img/bandeiras/'.$j_e->pais_id.'.png" width="25" height="15"></span> ';
+									echo '		<strong>'.strtoupper($j_e->nick).'</strong></h2>'; 
+								}
+
+									if($j_e->funcao == 'TOP'){
+										echo '		<div style="padding-top: 10px;float:left;   display: flex;  justify-content: center; align-items: center;" align="center" ><img src="'.site_url().'/assets/img/roles/Top_icon.png" width="45" height="45">'; 							
+									}elseif($j_e->funcao == 'MID'){
+										echo '		<div style="padding-top: 10px;float:left;   display: flex;  justify-content: center; align-items: center;" align="center" ><img src="'.site_url().'/assets/img/roles/Mid_icon.png" width="45" height="45">'; 							
+									}elseif($j_e->funcao =="JNG"){
+										echo '		<div style="padding-top: 10px;float:left;   display: flex;  justify-content: center; align-items: center;" align="center" ><img src="'.site_url().'/assets/img/roles/Jungle_icon.png" width="45" height="45">'; 							
+									}elseif($j_e->funcao == "SUP"){
+										echo '		<div style="padding-top: 10px;float:left;   display: flex;  justify-content: center; align-items: center;" align="center" ><img src="'.site_url().'/assets/img/roles/Support_icon.png" width="45" height="45">'; 							
+									}elseif($j_e->funcao == "ADC"){
+										echo '		<div style="padding-top: 10px;float:left;   display: flex;  justify-content: center; align-items: center;" align="center" ><img src="'.site_url().'/assets/img/roles/Bottom_icon.png" width="45" height="45">'; 							
+									}
+									echo '</div>';
+
+								echo '		<div><h1 class="profile-score">91<h1>';
+								echo '		</div>';
+								echo '	</div>';
 								echo '</div>';
-							echo '</div>';
+							
 							}
-							?>
+							if($count == $break){
+								echo '</div>';
+							}
+						?>
+					
+					</div>
+
+
 
 				</div>
 
