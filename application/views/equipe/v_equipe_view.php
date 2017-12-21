@@ -3,50 +3,79 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
 
+		<style>
+
+		a:hover{
+			background-color red;
+		}
+		</style>
 
 
-		<div class="menu-nav-team">
-			<?php echo '<ul class="team-nav-menu" style="background-color: '.$cor_primaria.';">';
-				echo '<li class="team-nav-li" style="color: '.$cor_terciaria.';"><a href="#home">O Time</a></li>';
-				echo '<li class="team-nav-li" style="color: '.$cor_terciaria.';"><a href="#news">História</a></li>';
-				echo '<li class="team-nav-li" style="color: '.$cor_terciaria.';"><a href="#contact">Conquistas</a></li>';
-				echo '<li class="team-nav-li" style="color: '.$cor_terciaria.';"><a href="#about">Jogadores</a></li>';
-				echo '<li class="team-nav-li" style="color: '.$cor_terciaria.';"><a href="#about">Comissão</a></li>';
-				?>
+		<?php echo '<div class="menu-nav-team" style="margin-bottom: 10px; background-color: #DFDFDF; padding: 10px; padding-bottom: 0px; border-radius: 7px;">'; ?>
+			<ul class="nav nav-tabs">
+				<li class="nav-item">
+					<?php echo '<a class="nav-link active" style="color: '.$cor_terciaria.';" href="#">HOME</a>'; ?>
+				</li>
+				<li class="nav-item">
+					<?php echo '<a class="nav-link" style="color: '.$cor_terciaria.';" href="#">JOGADORES</a>'; ?>
+				</li>
+				<li class="nav-item">
+					<?php echo '<a class="nav-link" style="color: '.$cor_terciaria.';" href="#">CONQUISTAS</a>'; ?>
+				</li>
 			</ul>
 		</div>
 
-		<div class="col-md-12">
+		<div class="col-md-12" style="background-color: #DFDFDF; border-radius: 15px;">
 			<div class="row">
-				<?php echo '<div class="col-md-1" style="background-color: '.$cor_primaria.'; padding: 0px; min-height: 20px;">'; 
-				echo '<div style="float: right; width: 50%; height: 100%; background-color: '.$cor_secundaria.';     filter:alpha(opacity=50);	opacity: 0.5;	-moz-opacity:0.5; -webkit-opacity:0.5; "></div>';?>
-				</div>
-				<div class="col-md-6">
-					<div class="logo-equipe">
-						<div class="row" align="center"  style="margin-top: 10px; border: 1px solid #2f3f3f3; border-radius: 7px;   display: flex; align-items: center;  justify-content: center;">
-							<?php 	
-									echo '<div class="col-md-12" align="center">';
-									echo '<img src="'.site_url().'/assets/img/logo-equipes/'.$logo.'" width="320" height="320">'; 
-									echo '</div';
-									echo '<div class="row" align="center">';
-									echo '<p><h3>'.strtoupper($nome).' <span class="badge badge-dark">'.strtoupper($sigla).'</span></h1></p>';
-									foreach($paises -> result() as $p_s){
-										if ($p_s->id == $pais){
-											echo '<p>País: <img src="'.site_url().'assets/img/bandeiras/'.$p_s->name.'.png" width="30" height="20" alt="'.$p_s->nome.'">'.$p_s->nome.'</p>';
-										}
-									}
-									echo '<p>Fundado em: <strong>2011</strong>';
-									foreach($regioes -> result() as $r_s){
-										if ($r_s->id == $regiao){
-											echo '<p>Região: <img src="'.site_url().'assets/img/logo-ligas/'.$r_s->sigla.'.png" width="30" height="20" alt="'.$r_s->sigla.'"> '.$r_s->sigla.'</p>';
-										}
-									}
-							?>
-							</div>
-						</div>
-					</div>
-				</div>
 
+			<?php 
+			echo '	<div class="col-md-1" style="background-color: '.$cor_primaria.'; padding: 0px; min-height: 20px;">'; 
+			echo '		<div style="float: right; width: 50%; height: 100%; background-color: '.$cor_secundaria.';     filter:alpha(opacity=50);	opacity: 0.5;	-moz-opacity:0.5; -webkit-opacity:0.5; ">';
+			echo '		</div>';
+			echo '	</div>';
+			?>
+				<div class="col-md-6">
+					<div class="row" align="center"  style="margin-top: 10px; display: flex; align-items: center;  justify-content: center;">
+						<?php 	
+							echo '<div class="col-md-12" align="center">';
+							echo '	<div class="card">';
+							echo '		<h4 class="card-header">'.strtoupper($nome).'  <span class="badge badge-dark">'.strtoupper($sigla).'</h4>';
+							echo '		<div class="card-body">';
+							echo '			<div><img src="'.site_url().'/assets/img/logo-equipes/'.$logo.'" width="280" height="280"></div>'; 
+							echo '			<ul class="list-group list-group-flush">';
+							echo '				<li class="list-group-item" style="padding: 0px;">';
+							echo '					<div class="row">';
+							echo '					<div style="background-color: #DFDFDF; width: 15%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">País</div>';
+							echo '					<div style="width: 35%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;"><img src="'.site_url().'assets/img/bandeiras/'.$pais.'.png" width="30" height="20"> Brasil</div>';
+							echo '					<div style="background-color: #DFDFDF; width: 15%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">Região</div>';
+							echo '					<div style="width: 35%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;"><img src="'.site_url().'assets/img/logo-ligas/CBLOL.png" width="30" height="20""> CBLOL</div>';
+							echo '					</div>';
+							echo '				</li>';
+							echo '				<li class="list-group-item" style="padding: 0px;">';
+							echo '					<div class="row">';
+							echo '					<div style="background-color: #DFDFDF; width: 15%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">Coach</div>';
+							echo '					<div style="width: 85%; height:30px;">Alvaro "juC" Souza</div>';
+							echo '					</div>';
+							echo '				</li>';
+							echo '				<li class="list-group-item" style="padding: 0px;">';
+							echo '					<div class="row">';
+							echo '					<div style="background-color: #DFDFDF; width: 15%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">Criação</div>';
+							echo '					<div style="width: 35%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">10/12/2009</div>';
+							echo '					<div style="background-color: #DFDFDF; width: 15%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">Status</div>';
+							echo '					<div style="width: 35%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">Ativo</div>';
+							echo '					</div>';
+							echo '				</li>';
+							echo '				<li class="list-group-item" style="padding: 0px;">';
+							echo '					<div style="background-color: #DFDFDF; width: 100%; height:40px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;"><img src="'.site_url().'assets/img/social/facebook.png" width="40" height="40"><img src="'.site_url().'assets/img/social/twitter.png" width="40" height="40"><img src="'.site_url().'assets/img/social/facebook.png" width="40" height="40"></div>';
+							echo '				</li>';
+							echo '  		</ul>'	;
+							echo '		</div>';
+							echo '	</div>';
+							echo '</div>';
+						?>
+					</div>
+
+				</div>
 
 				<style>
 					.player-profile-rows{
@@ -85,49 +114,51 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}
 
 					.profile-score {
-						font-size: 50px;
+						font-size: 35px;
+
 					}
 
 					.profile-nick{
-						font-size: 20px;
+						font-size: 16px;
+
 					}
 
 					.profile-nick-small{
-						font-size: 13px;
+						font-size: 11px;
+
 					}
 
 					p {
 						margin: 0;
 					}
-
-
-
 				</style>
 
 				<div class="col-md-4" style="height: 100%; "  align="center">
-				<h2>JG</h2>
 					<div class="col-md-12" style=" padding-right: 0px !important; padding-left: 0px !important;" >
+						<div class="card" style="width: 100%; padding-right: 0px; padding-left: 0px; margin-top: 10px;">
+							<?php echo '<h4 class="card-header">Jogadores</h4>';?>
+								<div class="card-body">
 						<?php 
 							$count = 0;
 							$break = $jogador_equipe->num_rows();
 							echo '<div class="row">';
 							foreach($jogador_equipe -> result() as $j_e){
-								if($count % 2 == 0){
+								if($count % 3 == 0){
 									echo '</div>';
 									echo '<div class="row">';
 								}
 								$count++;
-								echo '<div class="card" style="width: 152px; height: 240px; margin: 5px;"><img src="'.site_url().'/assets/img/profiles/'.$j_e->foto.'" width="150" height="150">';
-								echo '	<div class="card-body" align="center" style="padding: 0.5rem;">';
+								echo '<div class="card" style="width: 108px; height: 200px; margin: 3px;"><img src="'.site_url().'/assets/img/profiles/'.$j_e->foto.'" width="106" height="106">';
+								echo '	<div class="card-body" align="center" style="padding: 5px;">';
 								
-								if(strlen($j_e->nick) < 10){
-									echo '		<h4 class="card-title profile-nick" style="margin-bottom: 0.1rem; text-overflow: clip;">';
-									echo '			<span><img src="'.site_url().'/assets/img/bandeiras/'.$j_e->pais_id.'.png" width="25" height="15"></span> ';
-									echo '		<strong>'.strtoupper($j_e->nick).'</strong></h4>'; 
+								if(strlen($j_e->nick) < 9){
+									echo '		<h4 class="card-title profile-nick" style="margin-bottom: 0.1rem; text-overflow: clip; margin-left: -5px;">';
+									echo '			<span><img src="'.site_url().'/assets/img/bandeiras/'.$j_e->pais_id.'.png" width="20" height="12"></span> ';
+									echo strtoupper($j_e->nick).'</strong></h4>'; 
 								}else{
 									echo '		<h2 class="card-title profile-nick-small" style="margin-bottom: 0.1rem; text-overflow: clip; ">';
-									echo '			<span><img src="'.site_url().'/assets/img/bandeiras/'.$j_e->pais_id.'.png" width="25" height="15"></span> ';
-									echo '		<strong>'.strtoupper($j_e->nick).'</strong></h2>'; 
+									echo '			<span><img src="'.site_url().'/assets/img/bandeiras/'.$j_e->pais_id.'.png" width="20" height="12"></span> ';
+									echo strtoupper($j_e->nick).'</strong></h2>'; 
 								}
 
 									if($j_e->funcao == 'TOP'){
@@ -143,7 +174,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									}
 									echo '</div>';
 
-								echo '		<div><h1 class="profile-score">91<h1>';
+								echo '		<div style="margin-top: 10px;"><h1 class="profile-score">91<h1>';
 								echo '		</div>';
 								echo '	</div>';
 								echo '</div>';
@@ -153,16 +184,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								echo '</div>';
 							}
 						?>
-					
+						</div>
+						</div>
 					</div>
-
-
-
 				</div>
 
 				<?php echo '<div class="col-md-1" style="background-color: '.$cor_primaria.'; padding: 0px; min-height: 20px;">'; 
 				echo '<div style="float: left; width: 50%; height: 100%; background-color: '.$cor_secundaria.';     filter:alpha(opacity=50);	opacity: 0.5;	-moz-opacity:0.5; -webkit-opacity:0.5; "></div>';?>
 				</div>
+				<?php echo '<div style="margin-top:5px;margin-bottom:5px;"><a class="btn btn-secondary" href="'.site_url().'index.php/equipe">Voltar</a>'; ?>
+			</div>
 			</div>
 		</div>
 
