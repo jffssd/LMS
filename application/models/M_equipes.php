@@ -31,6 +31,18 @@ class M_equipes extends CI_Model {
 
 	}
 
+	public function get_tecnico_by_equipe($id = null){
+		
+		if ($id) {
+			$this->db->select('tecnico.nome, tecnico.nick, tecnico.sobrenome, tecnico.foto');
+			$this->db->join('equipe', 'equipe.tecnico_id = tecnico.id');
+			$this->db->where('equipe.id', $id);
+			$this->db->order_by("tecnico.nome", 'desc');
+			
+		}
+		return $this->db->get('tecnico');
+	}
+
 	public function store($dados = null, $id = null) {
 		
 		if ($dados) {

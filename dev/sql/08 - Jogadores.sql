@@ -122,4 +122,5 @@ INSERT INTO JOGADOR (NOME, NICK, SOBRENOME, GENERO, FUNCAO, PAIS_ID, PERSONALIDA
 ("Francisco", "Xico", "Antunes", "M", "MID", 193, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
 ("Daniel", "Blury", "Sarkovas", "M", "SUP", 33, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
 ("Flávio", "Jukes", "Fernandes", "M", "TOP", 33, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
-("Gabriel", "Pimpimenta", "Pimenta", "M", "JNG", 33, 1, 1, 2, 3, 4, 5, "foto.jpg", 1);
+("Gabriel", "Pimpimenta", "Pimenta", "M", "JNG", 33, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Park", "Jisu", "Jin-cheo", "M", "TOP", 55, 1, 1, 2, 3, 4, 5, "foto.jpg", 1);

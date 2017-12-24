@@ -167,10 +167,10 @@ class Equipe extends CI_Controller {
 				$variaveis['nome'] = $equipes->row()->nome;
 				$variaveis['sigla'] = $equipes->row()->sigla;
 				$variaveis['regiao'] = $equipes->row()->regiao_id;
+				$variaveis['valor'] = $equipes->row()->valor;
 				$variaveis['pais'] = $equipes->row()->pais_id;
 				$variaveis['status'] = $equipes->row()->status;
 				$variaveis['sede'] = $equipes->row()->sede_id;
-				$variaveis['tecnico'] = $equipes->row()->tecnico_id;
 				$variaveis['comissao'] = $equipes->row()->qtd_comissao;
 				$variaveis['logo'] = $equipes->row()->logo;
 				$variaveis['cor_primaria'] = $equipes->row()->cor_primaria;
@@ -179,7 +179,7 @@ class Equipe extends CI_Controller {
 				$variaveis['paises'] = $this->m_paises->get_paises();
 				$variaveis['regioes'] = $this->m_base->get_regioes();
 				$variaveis['sedes'] = $this->m_base->get_sedes();
-				$variaveis['tecnicos'] = $this->m_base->get_tecnicos();
+				$variaveis['tecnico'] = $this->m_equipes->get_tecnico_by_equipe($id);
 				$variaveis['status_equipe'] = $status_equipe;
 
 

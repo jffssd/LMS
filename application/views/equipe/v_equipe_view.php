@@ -1,143 +1,197 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
+<style>
+.active {
+	background-color: #ffffff !important;
+	color: #000000 !important;
+	z-index: 6 !important;
+}
+.gradient-menu{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a9e4f7+0,0fb4e7+100;Ble+3D+%235 */
+	background: #343a40; /* Old browsers */
+	background: -moz-linear-gradient(top, #343a40 0%, #4d565f 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #343a40 0%,#4d565f 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #343a40 0%,#4d565f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#343a40', endColorstr='#4d565f',GradientType=0 ); /* IE6-9 */
+	margin-top: -10px;
+	margin-bottom: 10px; 
+	padding: 10px; 
+	padding-bottom: 0px; 
+	height: 50px; 
+	width: 100%;
+}
 
+.profile-score {
+	font-size: 35px;
+}
 
-		<style>
+.profile-nick{
+	font-size: 16px;
+}
 
-		a:hover{
-			background-color red;
-		}
-		</style>
+.profile-nick-small{
+	font-size: 11px;
+}
 
+.nav-menu-adjusted{
+	margin-bottom:0px; 
+	width: 100%;
+}
 
-		<?php echo '<div class="menu-nav-team" style="margin-bottom: 10px; background-color: #DFDFDF; padding: 10px; padding-bottom: 0px; border-radius: 7px;">'; ?>
-			<ul class="nav nav-tabs">
-				<li class="nav-item">
-					<?php echo '<a class="nav-link active" style="color: '.$cor_terciaria.';" href="#">HOME</a>'; ?>
-				</li>
-				<li class="nav-item">
-					<?php echo '<a class="nav-link" style="color: '.$cor_terciaria.';" href="#">JOGADORES</a>'; ?>
-				</li>
-				<li class="nav-item">
-					<?php echo '<a class="nav-link" style="color: '.$cor_terciaria.';" href="#">CONQUISTAS</a>'; ?>
-				</li>
-			</ul>
+.nav-menu-item{
+	background-color: #eeeeee; 
+	color: #484848; 
+	z-index: 0;
+}
+
+.nav-menu-detail-color{
+	width: 100%; 
+	margin-top:-3px; 
+	height: 3px; 
+	z-index: 5;
+}
+
+.content-adjust-tab{
+	margin-right: -25px; 
+	margin-left: -10px;
+}
+
+.col_adjust{
+	padding: 0px;
+}
+
+.left-col-setup{
+	padding: 0px; 
+	min-height: 20px;
+}
+
+.left-col-setup-inner{
+	float: right; 
+	width: 50%; 
+	height: 100%; 
+	filter:alpha(opacity=50);	
+	opacity: 0.5;	
+	-moz-opacity:0.5; 
+	-webkit-opacity:0.5;
+}
+
+.principal-row{
+	margin-top: 10px; 
+	display: flex; 
+	align-items: center;  
+	justify-content: center;
+}
+
+.team-panel-title{
+	font-weight: bold;
+	background-color: #f7f7f7; 
+	width: 20%; 
+	height:30px; 
+	border-left: 1px solid #DFDFDF; 
+	border-right: 1px solid #DFDFDF;
+}
+</style>
+
+<div class="gradient-menu">
+	<ul class="nav nav-tabs justify-content-center nav-menu-adjusted" id="myTab" role="tablist">
+		<li class="nav-item">
+			<a class="nav-link nav-menu-item active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link nav-menu-item" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Jogadores</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link nav-menu-item" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Conquistas</a>
+		</li>
+	</ul>
+		<div class="nav-menu-detail-color" style="background-color: <?php echo $cor_primaria;?>;">
 		</div>
-
-		<div class="col-md-12" style="background-color: #DFDFDF; border-radius: 15px;">
+		<div class="tab-content content-adjust-tab" id="myTabContent">
+			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+		<div class="col-md-12 col_adjust">
 			<div class="row">
-
-			<?php 
-			echo '	<div class="col-md-1" style="background-color: '.$cor_primaria.'; padding: 0px; min-height: 20px;">'; 
-			echo '		<div style="float: right; width: 50%; height: 100%; background-color: '.$cor_secundaria.';     filter:alpha(opacity=50);	opacity: 0.5;	-moz-opacity:0.5; -webkit-opacity:0.5; ">';
-			echo '		</div>';
-			echo '	</div>';
-			?>
-				<div class="col-md-6">
-					<div class="row" align="center"  style="margin-top: 10px; display: flex; align-items: center;  justify-content: center;">
-						<?php 	
-							echo '<div class="col-md-12" align="center">';
-							echo '	<div class="card">';
-							echo '		<h4 class="card-header">'.strtoupper($nome).'  <span class="badge badge-dark">'.strtoupper($sigla).'</h4>';
-							echo '		<div class="card-body">';
-							echo '			<div><img src="'.site_url().'/assets/img/logo-equipes/'.$logo.'" width="280" height="280"></div>'; 
-							echo '			<ul class="list-group list-group-flush">';
-							echo '				<li class="list-group-item" style="padding: 0px;">';
-							echo '					<div class="row">';
-							echo '					<div style="background-color: #DFDFDF; width: 15%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">País</div>';
-							echo '					<div style="width: 35%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;"><img src="'.site_url().'assets/img/bandeiras/'.$pais.'.png" width="30" height="20"> Brasil</div>';
-							echo '					<div style="background-color: #DFDFDF; width: 15%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">Região</div>';
-							echo '					<div style="width: 35%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;"><img src="'.site_url().'assets/img/logo-ligas/CBLOL.png" width="30" height="20""> CBLOL</div>';
-							echo '					</div>';
-							echo '				</li>';
-							echo '				<li class="list-group-item" style="padding: 0px;">';
-							echo '					<div class="row">';
-							echo '					<div style="background-color: #DFDFDF; width: 15%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">Coach</div>';
-							echo '					<div style="width: 85%; height:30px;">Alvaro "juC" Souza</div>';
-							echo '					</div>';
-							echo '				</li>';
-							echo '				<li class="list-group-item" style="padding: 0px;">';
-							echo '					<div class="row">';
-							echo '					<div style="background-color: #DFDFDF; width: 15%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">Criação</div>';
-							echo '					<div style="width: 35%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">10/12/2009</div>';
-							echo '					<div style="background-color: #DFDFDF; width: 15%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">Status</div>';
-							echo '					<div style="width: 35%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">Ativo</div>';
-							echo '					</div>';
-							echo '				</li>';
-							echo '				<li class="list-group-item" style="padding: 0px;">';
-							echo '					<div style="background-color: #DFDFDF; width: 100%; height:40px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;"><img src="'.site_url().'assets/img/social/facebook.png" width="40" height="40"><img src="'.site_url().'assets/img/social/twitter.png" width="40" height="40"><img src="'.site_url().'assets/img/social/facebook.png" width="40" height="40"></div>';
-							echo '				</li>';
-							echo '  		</ul>'	;
-							echo '		</div>';
-							echo '	</div>';
-							echo '</div>';
-						?>
+				<div class="col-md-1 left-col-setup" style="background-color: <?php echo $cor_primaria;?>;">
+					<div class="left-col-setup-inner" style="background-color: <?php echo $cor_secundaria;?>;">
 					</div>
-
 				</div>
+				<div class="col-md-4">
+					<div class="row principal-row" align="center">
+						<div class="col-md-12" align="center">
+							<div class="card" style="margin-left: -10px;">
+							 	<h4 class="card-header"><?php echo strtoupper($nome);?> <span class="badge badge-dark"> <?php echo strtoupper($sigla);?></h4>
+								<div class="card-body" style="padding-top: 0px;">
+									<div style=""><img src="<?php echo site_url();?>assets/img/logo-equipes/<?php echo $logo;?>" width="250" height="250"></div> 
+											<ul class="list-group list-group-flush">
+												<li class="list-group-item" style="padding: 0px;">
+													<div class="row">
+													<div class="team-panel-title">País</div>
+													<div style="width: 80%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;"><img src="<?php echo site_url();?>assets/img/bandeiras/<?php echo $pais;?>.png" width="30" height="20"> Brasil</div>
+													</div>
+												</li>
+												<li class="list-group-item" style="padding: 0px;">
+													<div class="row">
+													<div style="font-weight: bold; background-color: #f7f7f7; width: 20%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">Região</div>
+													<div style="width: 80%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;"><img src="<?php echo site_url();?>assets/img/logo-ligas/<?php echo $regiao;?>.png" width="30" height="20"> CBLOL</div>
+													</div>
+												</li>
+												<li class="list-group-item" style="padding: 0px;">
+													<div class="row">
+													<div style="font-weight: bold; background-color: #f7f7f7; width: 20%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">Criação</div>
+													<div style="width: 80%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">10/12/2009</div>
+													</div>
+												</li>
+												<li class="list-group-item" style="padding: 0px;">
+													<div style="background-color: #f7f7f7; width: 100%; height:40px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF; border-bottom: 1px solid #DFDFDF;"><a href="#facebook"><img src="<?php echo site_url();?>assets/img/social/facebook.png" width="40" height="40"></a><a href="#twitter"><img src="<?php echo site_url();?>assets/img/social/twitter.png" width="40" height="40"></a><a href="#instagram"><img src="<?php echo site_url();?>assets/img/social/instagram.png" width="40" height="40"></a></div>
+												</li>
+									  		</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
-				<style>
-					.player-profile-rows{
-						margin: 5px;
-					}
+				<div class="col-md-2" style="padding: 0px;">
+					<div class="row">
+						<div class="card" style="margin-left: -12px; margin-top: 10px; width: 100%;" align="center">
+							<h4 class="card-header" style="height: 50px; font-size: 18px; margin: 0px;"><i class="fa fa-fw fa-star"></i> Nota</h4>
+							<div class="card-body" align="center">
+							<h1 style="font-size: 90px; margin-top:-30px; margin-bottom:-20px;"><?php echo substr($valor,0,3);?></h1>
+							</div>
+						</div>
 
-					.player-profile-cell {
-						border: 1px solid;
-						border-color: #e4e4e4;
-						height: 100px; 
-						width: 100%; 
-						border-radius: 10px; 
-						padding: 10px;
-					}
+						<div class="card" style="margin-left: -12px; margin-top: 10px; width: 100%;" align="center">
+							<h4 class="card-header" style="height: 40px; font-size: 18px; margin-top: -10px;"><i class="fa fa-fw fa-circle-o-notch"></i> Status</h4>
+							<div class="card-body" style="height:50px;">
+								
+								<?php
+								if($status == 'A'){
+									echo '<h5><i class="fa fa-fw fa-check-square" style="color: green;"></i> Ativa</h5>';
+								}elseif($status == 'I'){
+									echo '<h5><i class="fa fa-fw fa-window-close" style="color: grey;"></i> Ativa</h5>';
+								}
+								?>
+							</div>
+						</div>
 
-					.player-profile-pic {
-						height:120px; 
-						width: 35%; 
-						float: left;
-					}
-
-					.player-profile-info {
-						padding-left: 5px;
-						height:120px; 
-						width: 60%;
-					}
-
-					.player-profile-score {
-						float: right;
-						height:120px; 
-						width: 40%;
-						display: flex;
-  						align-items:center;
-  						justify-content:center;
-						margin-right: -20px;
-					}
-
-					.profile-score {
-						font-size: 35px;
-
-					}
-
-					.profile-nick{
-						font-size: 16px;
-
-					}
-
-					.profile-nick-small{
-						font-size: 11px;
-
-					}
-
-					p {
-						margin: 0;
-					}
-				</style>
-
-				<div class="col-md-4" style="height: 100%; "  align="center">
-					<div class="col-md-12" style=" padding-right: 0px !important; padding-left: 0px !important;" >
-						<div class="card" style="width: 100%; padding-right: 0px; padding-left: 0px; margin-top: 10px;">
-							<?php echo '<h4 class="card-header">Jogadores</h4>';?>
-								<div class="card-body">
+						<div class="card" style="margin-left: -12px; margin-top: 10px; width: 100%;" align="center">
+							<h5 class="card-header" style="height: 40px;">Coach</h5>
+							<?php 
+								foreach($tecnico -> result() as $t_e){
+								echo '<img style="margin-top:10px; margin-bottom:0px;" src="'.site_url().'assets/img/profiles/'.$t_e->foto.'" width="106" height="106">';
+								echo '<div class="card-body">';
+								echo '<h6 style="margin-top: -10px; margin-bottom: -5px; color: #4d565f">'.$t_e->nome.' "<span style="font-weight: bold; color: #343a40;">'.$t_e->nick.'</span>" '.$t_e->sobrenome.'</h6>';
+							}
+							?>
+							</div>
+						</div>
+					</div>	
+				</div>
+				<div class="col-md-4" style="height: 100%; margin-left: -10px;"  align="center">
+					<div class="col-md-12" style=" padding-right: 0px !important; padding-left: 0px !important;  " >
+						<div class="card" style="width: 100%; padding-right: 0px; padding-left: 0px; margin-top: 10px; min-width: 370px;">
+							<h4 class="card-header">Jogadores</h4>
+								<div class="card-body" style="padding: 0px; align: center; height: 430px; overflow-y: auto;" >
 						<?php 
 							$count = 0;
 							$break = $jogador_equipe->num_rows();
@@ -151,7 +205,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								echo '<div class="card" style="width: 108px; height: 200px; margin: 3px;"><img src="'.site_url().'/assets/img/profiles/'.$j_e->foto.'" width="106" height="106">';
 								echo '	<div class="card-body" align="center" style="padding: 5px;">';
 								
-								if(strlen($j_e->nick) < 9){
+								if(strlen($j_e->nick) < 8){
 									echo '		<h4 class="card-title profile-nick" style="margin-bottom: 0.1rem; text-overflow: clip; margin-left: -5px;">';
 									echo '			<span><img src="'.site_url().'/assets/img/bandeiras/'.$j_e->pais_id.'.png" width="20" height="12"></span> ';
 									echo strtoupper($j_e->nick).'</strong></h4>'; 
@@ -189,11 +243,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 				</div>
 
-				<?php echo '<div class="col-md-1" style="background-color: '.$cor_primaria.'; padding: 0px; min-height: 20px;">'; 
-				echo '<div style="float: left; width: 50%; height: 100%; background-color: '.$cor_secundaria.';     filter:alpha(opacity=50);	opacity: 0.5;	-moz-opacity:0.5; -webkit-opacity:0.5; "></div>';?>
+				<div class="col-md-1" style="background-color: <?php echo $cor_primaria;?>; padding: 0px; min-height: 20px;">
+					<div style="float: left; width: 50%; height: 100%; background-color: <?php echo $cor_secundaria;?>;     filter:alpha(opacity=50);	opacity: 0.5;	-moz-opacity:0.5; -webkit-opacity:0.5; "></div>
 				</div>
-				<?php echo '<div style="margin-top:5px;margin-bottom:5px;"><a class="btn btn-secondary" href="'.site_url().'index.php/equipe">Voltar</a>'; ?>
-			</div>
 			</div>
 		</div>
 
+</div>
+		<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+		
+		
+		
+		
+		</div>
+		<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">3</div>
+		</div>
+
+</div>

@@ -22,7 +22,7 @@
 						echo '<tr>';
 						echo '<td class="td_row"><img src="'.site_url().'assets/img/logo-equipes/'.$equipe->logo.'" class="logo-team"></td>';
 						echo '<td class="td_row">'.$equipe->nome.'</td>';
-						echo '<td class="td_row">'.$equipe->sigla.'</td>';
+						echo '<td class="td_row"><span class="badge badge-dark">'.$equipe->sigla.'</span></td>';
 						echo '<td class="td_row"><div class="team_color_box" style="background-color:'.$equipe->cor_primaria.'; "></div></td>';
 						echo '<td class="td_row"><div class="team_color_box" style="background-color:'.$equipe->cor_secundaria.';"></div></td>';
 						echo '<td class="td_row"><a href="'.site_url().'index.php/equipe/view/'.$equipe->id.'" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a></td>';	
