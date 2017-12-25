@@ -91,6 +91,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	border-left: 1px solid #DFDFDF; 
 	border-right: 1px solid #DFDFDF;
 }
+
+.team-panel-desc{
+	width: 80%; 
+	height:30px; 
+	border-left: 1px solid #DFDFDF; 
+	border-right: 1px solid #DFDFDF;
+}
 </style>
 
 <div class="gradient-menu">
@@ -126,13 +133,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<li class="list-group-item" style="padding: 0px;">
 													<div class="row">
 													<div class="team-panel-title">País</div>
-													<div style="width: 80%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;"><img src="<?php echo site_url();?>assets/img/bandeiras/<?php echo $pais;?>.png" width="30" height="20"> Brasil</div>
+													<div class="team-panel-desc"><img src="<?php echo site_url();?>assets/img/bandeiras/<?php echo $pais;?>.png" width="30" height="20"> Brasil</div>
 													</div>
 												</li>
 												<li class="list-group-item" style="padding: 0px;">
 													<div class="row">
-													<div style="font-weight: bold; background-color: #f7f7f7; width: 20%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;">Região</div>
-													<div style="width: 80%; height:30px; border-left: 1px solid #DFDFDF; border-right: 1px solid #DFDFDF;"><img src="<?php echo site_url();?>assets/img/logo-ligas/<?php echo $regiao;?>.png" width="30" height="20"> CBLOL</div>
+													<div class="team-panel-title">Região</div>
+													<div class="team-panel-desc"><img src="<?php echo site_url();?>assets/img/logo-ligas/<?php echo $regiao;?>.png" width="30" height="20"> CBLOL</div>
 													</div>
 												</li>
 												<li class="list-group-item" style="padding: 0px;">
@@ -191,7 +198,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="col-md-12" style=" padding-right: 0px !important; padding-left: 0px !important;  " >
 						<div class="card" style="width: 100%; padding-right: 0px; padding-left: 0px; margin-top: 10px; min-width: 370px;">
 							<h4 class="card-header">Jogadores</h4>
-								<div class="card-body" style="padding: 0px; align: center; height: 430px; overflow-y: auto;" >
+								<div class="card-body" style="padding: 0px; align: center; height: 410px; overflow-y: auto;" >
 						<?php 
 							$count = 0;
 							$break = $jogador_equipe->num_rows();
@@ -202,7 +209,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									echo '<div class="row">';
 								}
 								$count++;
-								echo '<div class="card" style="width: 108px; height: 200px; margin: 3px;"><img src="'.site_url().'/assets/img/profiles/'.$j_e->foto.'" width="106" height="106">';
+								echo '<div class="card" style="width: 108px; height: 190px; margin: 3px;"><img src="'.site_url().'/assets/img/profiles/'.$j_e->foto.'" width="106" height="106">';
 								echo '	<div class="card-body" align="center" style="padding: 5px;">';
 								
 								if(strlen($j_e->nick) < 8){

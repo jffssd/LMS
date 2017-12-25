@@ -82,8 +82,9 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `lmdb`.`pericia` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
-  `descricao` VARCHAR(45) NOT NULL,
-  `formula` VARCHAR(45) NOT NULL,
+  `icone` VARCHAR(45),
+  `descricao` VARCHAR(45),
+  `formula` DECIMAL(10,2) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -350,6 +351,23 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador_custom_historico_equipe` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `lmdb`.`jogador_historico_equipe`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `lmdb`.`jogador_historico_equipe` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `equipe_id` INT NOT NULL,
+  `temporada` INT NOT NULL,
+  `ano` INT NOT NULL,
+  `jogador_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `jogador_id`),
+  INDEX `fk_jogador_historico_equipe_jogador1_idx` (`jogador_id` ASC),
+  CONSTRAINT `fk_jogador_historico_equipe_jogador1`
+    FOREIGN KEY (`jogador_id`)
+    REFERENCES `lmdb`.`jogador` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `lmdb`.`jogador_custom_historico`
