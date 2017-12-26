@@ -1,45 +1,46 @@
+	<div class="tab-equipe" style="padding:10px;">
 		<div class="col-md-8">
 			<div class="row">
-			<?php
+			
 
-			if ($equipes->num_rows() > 0){
-
-				
-				
-				echo '<table class="table table-striped">';
-				echo '<thead class="thead-light" style="text-light">';
-				echo '<tr>';
-				echo '<th> </th>';
-				echo '<th>Nome</th>';
-				echo '<th>Sigla</th>';
-				echo '<th>CP</th>';
-				echo '<th>CS</th>';
-				echo '<th width="10%" colspan="3">Ações</th>';
-				echo '</tr>';
-				echo '</thead>';
-				echo '<tbody>';
-						foreach($equipes -> result() as $equipe){
-						echo '<tr>';
-						echo '<td class="td_row"><img src="'.site_url().'assets/img/logo-equipes/'.$equipe->logo.'" class="logo-team"></td>';
-						echo '<td class="td_row">'.$equipe->nome.'</td>';
-						echo '<td class="td_row"><span class="badge badge-dark">'.$equipe->sigla.'</span></td>';
-						echo '<td class="td_row"><div class="team_color_box" style="background-color:'.$equipe->cor_primaria.'; "></div></td>';
-						echo '<td class="td_row"><div class="team_color_box" style="background-color:'.$equipe->cor_secundaria.';"></div></td>';
-						echo '<td class="td_row"><a href="'.site_url().'index.php/equipe/view/'.$equipe->id.'" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a></td>';	
-						echo '<td class="td_row"><a href="'.site_url().'index.php/equipe/edit/'.$equipe->id.'" class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>';
-						echo '<td class="td_row"><a href="#" class="confirma_exclusao btn btn-danger btn-sm" data-id="'.$equipe->id.'" data-nome="'.$equipe->nome.'" /><i class="fa fa-times" aria-hidden="true"></i></a></td>';
-						echo '</tr>';
-						}
-					echo '</tbody>';
-				echo '</table>';
-
-				} else{
-					echo '<h4 class="text-light">Nenhum registro cadastrado.</h4>';
+			<?php	if ($equipes->num_rows() > 0){ ?>
+	
+						<table class="table table-striped">
+								<thead class="thead-light" style="text-light">
+								<tr>
+									<th> </th>
+									<th>Nome</th>
+									<th>Sigla</th>
+									<th>CP</th>
+									<th>CS</th>
+									<th width="10%" colspan="3">Ações</th>
+								</tr>
+							</thead>
+							<tbody>
+							<?php foreach($equipes -> result() as $equipe){?>
+									<tr>
+										<td class="td_row"><img src="<?php echo site_url();?>assets/img/logo-equipes/<?php echo $equipe->logo;?>" class="logo-team"></td>
+											<td class="td_row"><?php echo $equipe->nome;?></td>
+											<td class="td_row"><span class="badge badge-dark"><?php echo $equipe->sigla;?></span></td>
+											<td class="td_row"><div class="team_color_box" style="background-color: <?php echo $equipe->cor_primaria;?>; "></div></td>
+											<td class="td_row"><div class="team_color_box" style="background-color: <?php echo $equipe->cor_secundaria;?>;"></div></td>
+											<td class="td_row"><a href="<?php echo site_url();?>index.php/equipe/view/<?php echo $equipe->id;?>" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+											<td class="td_row"><a href="<?php echo site_url();?>index.php/equipe/edit/<?php echo $equipe->id;?>" class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+											<td class="td_row"><a href="#" class="confirma_exclusao btn btn-danger btn-sm" data-id="<?php echo $equipe->id;?>" data-nome="<?php echo $equipe->nome;?>" /><i class="fa fa-times" aria-hidden="true"></i></a></td>
+									</tr>
+							<?php
+							}
+							?>
+							</tbody>
+						</table>
+				<?php
+				} else{	?>
+					<h4 class="text-light">Nenhum registro cadastrado.</h4>
+				<?php 
 				} ?>
-
 			</div>
 		</div>	
-
+</div>
 
 
 

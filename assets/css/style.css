@@ -1,3 +1,4 @@
+
 .team-nav-menu {
     list-style-type: none;
     margin: 0;
@@ -195,6 +196,8 @@
   display: inline-block;
 }
 
+
+
 @media (max-width:767px) {
     #wrapper {
     padding-left: 70px;
@@ -211,4 +214,229 @@
     width: 180px;
     transition: all .4s ease 0s;
 }
+}
+
+.active {
+	background-color: #ffffff !important;
+	color: #000000 !important;
+	z-index: 6 !important;
+}
+.gradient-menu{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a9e4f7+0,0fb4e7+100;Ble+3D+%235 */
+	background: #343a40; /* Old browsers */
+	background: -moz-linear-gradient(top, #343a40 0%, #4d565f 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #343a40 0%,#4d565f 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #343a40 0%,#4d565f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#343a40', endColorstr='#4d565f',GradientType=0 ); /* IE6-9 */
+	margin-top: -10px;
+	margin-bottom: 10px; 
+	padding: 10px; 
+	padding-bottom: 0px; 
+	height: 50px; 
+	width: 100%;
+}
+
+.profile-score {
+	font-size: 35px;
+	font-weight: bold;
+}
+
+.profile-nick{
+	font-size: 16px;
+}
+
+.profile-nick-small{
+	font-size: 12px;
+	margin-left: -5px;
+	margin-bottom: 16px;
+	
+}
+
+.nav-menu-adjusted{
+	margin-bottom:0px; 
+	width: 100%;
+}
+
+.nav-menu-item{
+	background-color: #eeeeee; 
+	color: #484848; 
+	z-index: 0;
+}
+
+.nav-menu-detail-color{
+	width: 100%; 
+	margin-top:-3px; 
+	height: 3px; 
+	z-index: 5;
+}
+
+.content-adjust-tab{
+	margin-right: -25px; 
+	margin-left: -10px;
+}
+
+.col_adjust{
+	padding: 0px;
+}
+
+.left-col-setup{
+	padding: 0px; 
+	min-height: 20px;
+}
+
+.left-col-setup-inner{
+	float: right; 
+	width: 50%; 
+	height: 100%; 
+	filter:alpha(opacity=50);	
+	opacity: 0.5;	
+	-moz-opacity:0.5; 
+	-webkit-opacity:0.5;
+}
+
+.principal-row{
+	margin-top: 10px; 
+	display: flex; 
+	align-items: center;  
+	justify-content: center;
+}
+
+.team-panel-title{
+	font-weight: bold;
+	background-color: #f7f7f7; 
+	width: 20%; 
+	height:30px; 
+	border-left: 1px solid #DFDFDF; 
+	border-right: 1px solid #DFDFDF;
+}
+
+.team-panel-desc{
+	width: 80%; 
+	height:30px; 
+	border-left: 1px solid #DFDFDF; 
+	border-right: 1px solid #DFDFDF;
+}
+
+.team-panel-social{
+	background-color: #f7f7f7; 
+	width: 100%; 
+	height:40px; 
+	border-left: 1px solid #DFDFDF; 
+	border-right: 1px solid #DFDFDF; 
+	border-bottom: 1px solid #DFDFDF;
+}
+
+.card-team-score{
+	margin-left: -12px; 
+	margin-top: 10px; 
+	width: 100%;
+}
+
+.card-team-score-header{
+	height: 50px; 
+	font-size: 18px; 
+	margin: 0px;
+}
+
+.card-team-score-font{
+	font-size: 90px; 
+	margin-top:-30px; 
+	margin-bottom:-20px;
+}
+
+.card-team-status{
+	margin-left: -12px; 
+	margin-top: 10px; 
+	width: 100%;
+}
+
+.card-team-status-header{
+	height: 40px; 
+	font-size: 18px; 
+	margin-top: -10px;
+}
+
+.card-team-status-body{
+	height:50px;
+}
+
+.card-team-coach{
+	margin-left: -12px; 
+	margin-top: 10px; 
+	width: 100%;
+}
+
+.card-team-coach-header{
+	height: 40px;
+}
+
+.photo-team-coach{
+	margin-top:10px; 
+	margin-bottom:0px;
+}
+
+.card-team-coach-font{
+	margin-top: -10px; 
+	margin-bottom: -5px; 
+	color: #4d565f;
+}
+
+.card-coach-nick{
+	font-weight: bold; 
+	color: #343a40;
+}
+
+.team-players-panel-adjust{
+	height: 100%; 
+	margin-left: -10px;
+}
+
+.team-players-panel-identity{
+	padding-right: 0px !important; 
+	padding-left: 0px !important;  
+}
+
+.card-team-players{
+	width: 100%; 
+	padding-right: 0px; 
+	padding-left: 0px; 
+	margin-top: 10px; 
+	min-width: 370px;
+}
+
+.card-team-players-body{
+	padding: 0px; 
+	align: center; 
+	height: 410px; 
+	overflow-y: auto;
+}
+
+.card-team-player-profile-card{
+	width: 108px; 
+	height: 190px; 
+	margin: 3px;
+}
+
+.player-role-img{
+	margin-top:-15px;
+	padding-top: 5px;
+	float:left;   
+	display: flex;  
+	justify-content: center; 
+	align-items: center;
+}
+
+.right-col-setup{
+	padding: 0px; 
+	min-height: 20px;
+} 
+
+.right-col-setup-inner{
+	float: left; 
+	width: 50%; 
+	height: 100%;
+	filter:alpha(opacity=50);	
+	opacity: 0.5;	
+	-moz-opacity:0.5; 
+	-webkit-opacity:0.5; 
 }

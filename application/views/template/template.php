@@ -17,12 +17,11 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
-  <?php //echo '<link href="'.site_url().'assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">';
-        echo '<link href="'.site_url().'assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">';
-        echo '<link href="'.site_url().'assets/datatables/dataTables.bootstrap4.css" rel="stylesheet">';
-        echo '<link href="'.site_url().'assets/css/sb-admin.css" rel="stylesheet">';
-        echo '<link href="'.site_url().'assets/css/style.css" rel="stylesheet">';
-  ?>
+  <link href="<?php echo site_url();?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="<?php echo site_url();?>assets/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="<?php echo site_url();?>assets/css/sb-admin.css" rel="stylesheet">
+  <link href="<?php echo site_url();?>assets/css/style.css" rel="stylesheet">
+
 
 </head>
 
