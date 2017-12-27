@@ -1,9 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-<style>
-
-					</style>
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 
 <div class="gradient-menu">
 	<ul class="nav nav-tabs justify-content-center nav-menu-adjusted" id="myTab" role="tablist">
@@ -177,16 +179,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 <style>
 
-.card{box-shadow:2px 2px 10px rgba(0,0,0,0.3); border:none;}
-.card-01 .card-body{position:relative; padding-top:40px;}
-.card-01 .badge-box{position:absolute; top:-20px; left:50%; width:60px; height:60px;margin-left:-32px; margin-top:-10px;text-align:center; border-radius: 50%;}
-.profile-box{background-size:cover; float:left; width:100%; text-align:center; padding:30px 0; position:relative; overflow:hidden;}
-.profile-box:before{filter: blur(10px);background:url("https://images.pexels.com/photos/195825/pexels-photo-195825.jpeg?h=350&auto=compress&cs=tinysrgb") no-repeat; background-size:cover; width:120%; position:absolute; content:""; height:120%; left:-10%;top:0;z-index:0;}
-.profile-box img{width:170px; height:170px; position:relative; border:5px solid #fff;margin-top:-25px;}
-.social-box i {border:1px solid #DFC717; color:#DFC717; width:30px; height:30px; border-radius:50%;line-height:30px;}
-.social-box i:hover{background:#DFC717; color:#fff;}
-.social-box a{margin: 0 5px;}
-
 </style>
 	<!-- HOME BAR -->
 		<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -201,81 +193,144 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</div>
 						</div>
 
+
+						<style>
+						.card-body-player{
+							padding-left:10px; 
+							padding-right:5px;
+						}
+
+						.card-player-body{
+							margin-bottom: 10px; 
+							overflow: hidden;  
+							white-space: nowrap;
+						}
+
+						.inline-row-card{
+							margin-bottom:8px;
+						}
+
+						.card-player-attribute-icon{
+							width: 13%; 
+							float:left; 
+							height:24px; 
+							margin-right:5px; 
+						}
+
+						.progress-bar-adjust{
+							height: 24px; 
+							width:67%;
+						}
+
+						.attribute-value{
+							width: 13%; 
+							float:right; 
+							height:24px; 
+							background-color: #e5e5e5; 
+							margin-left:5px; 
+							border-radius:7px; 
+							font-weight: bold;
+						}
+
+						.card{box-shadow:2px 2px 10px rgba(0,0,0,0.3); border:none;}
+						.card-01 .card-body{position:relative; padding-top:40px; }
+						.card-01 .badge-box{background-color: white;padding-top:5px;position:absolute; top:-20px; left:20%; width:60px; height:60px;margin-left:-32px; margin-top:-10px;text-align:center; border-radius: 50%;}
+						.card-01 .badge-box-desc{background-color: white;padding-top:5px;position:absolute; top:-7px; left:30%; width:120px; height:40px;margin-left:-32px; margin-top:-10px;text-align:center; border-radius: 10px;}
+						.profile-box{background-size:cover; float:left; width:100%; text-align:center; padding:30px 0; position:relative; overflow:hidden;}
+						.profile-box:before{background:url("http://localhost:8080/lms/assets/img/layout/card-player-background.jpg") no-repeat; background-size:cover; width:120%; position:absolute; content:""; height:120%; left:-10%;top:0;z-index:0;}
+						.profile-box img{width:150px; height:150px; position:relative; border:5px solid #fff;margin-top:-25px;}
+						.social-box i {border:1px solid #DFC717; color:#DFC717; width:30px; height:30px; border-radius:50%;line-height:30px;}
+						.social-box i:hover{background:#DFC717; color:#fff;}
+						.social-box a{margin: 0 5px;}
+						</style>
 						<!-- TEAM PANEL -->
 						<div class="col-md-10">
 							<div class="row">
+								<div style="height:50px; width: 100%; background-color: white;">
+								
+								</div>
+							</div>
+							<div class="row">
+
+
+							
 								<div class="col-md-3">
-									<div class="card card-01">
-										<div class="profile-box" style="height: 180px;">
-											<img class="card-img-top rounded-circle" src="<?php echo site_url();?>assets/img/profiles/foto.jpg" alt="Card image cap">
+									<div class="card card-01" style="border-radius: 10px;">
+										<div class="profile-box" style="height: 150px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+											<img class="card-img-top rounded-circle" style="margin-top: -35px;"src="<?php echo site_url();?>assets/img/profiles/dudu.jpg" alt="Card image cap">
 										</div>
-										<div class="card-body text-center" style="padding-left:15px; padding-right:5px;">
-											<div class="badge-box" style="background-color: white;padding-top:5px;"><img src="<?php echo site_url();?>assets/img/roles/Top_icon.png" width="50" height="50">
+										<div class="card-body text-center card-body-player" style="padding-bottom:0px;background-size:cover;background:url("<?php echo site_url().'assets/img/layout/card-player-background.jpg';?>") no-repeat;  ">
+											<div class="badge-box" data-toggle="tooltip" data-placement="left" title="TOP LANE"><img src="<?php echo site_url();?>assets/img/roles/Top_icon.png" width="50" height="50">
 											</div>
-											<h4 class="card-title" style="margin-top: -5px;">TinOwns</h4>
-											<div style="margin-bottom: 10px; overflow: hidden;  white-space: nowrap;">
-												<div class="row" style="margin-bottom:5px;d-inline-block;">
-													<div style="width: 13%; float:left; height:24px; background-color: yellow; margin-right:5px; border: 1px solid black; border-radius:50%;"><i class="fa fa-leaf" aria-hidden="true"></i>
+											<div class="badge-box-desc" style="margin-left: 10px; font-weight:bold; font-size: 22px;">Dulcinara
+											</div>
+											<div class="card-player-body">
+												<!-- ATRIBUTO - CONSISTENCIA -->
+												<div class="row inline-row-card" name="atr_consistencia">
+													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Consistência"><img src="<?php echo site_url();?>assets/img/atributos/attr-consistencia.png" width="24" height="24">
 													</div>
-													<div class="progress" style="height: 24px; width:62%;">
-														<div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+													<div class="progress progress-bar-adjust">
+														<div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
 														</div>
 													</div>
-													<div style="width: 13%; float:right; height:24px; background-color: white; margin-left:5px; border-radius:7px; font-weight: bold;">7
+													<div class="attribute-value" align="center">9
 													</div>
 												</div>
 
-												<div class="row" style="margin-bottom:5px;d-inline-block;">
-													<div style="width: 13%; float:left; height:24px; background-color: yellow; margin-right:5px; border: 1px solid black; border-radius:50%;"><i class="fa fa-leaf" aria-hidden="true"></i>
+												<!-- ATRIBUTO - MECANICAS -->
+												<div class="row inline-row-card" name="atr_mecanicas">
+													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Mecânicas"><img src="<?php echo site_url();?>assets/img/atributos/attr-mecanicas.png" width="24" height="24">
 													</div>
-													<div class="progress" style="height: 24px; width:62%;">
-														<div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+													<div class="progress progress-bar-adjust">
+														<div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
 														</div>
 													</div>
-													<div style="width: 13%; float:right; height:24px; background-color: white; margin-left:5px; border-radius:7px; font-weight: bold;">7
+													<div class="attribute-value" align="center">8
 													</div>
 												</div>
 
-												<div class="row" style="margin-bottom:5px;d-inline-block;">
-													<div style="width: 13%; float:left; height:24px; background-color: yellow; margin-right:5px; border: 1px solid black; border-radius:50%;"><i class="fa fa-leaf" aria-hidden="true"></i>
+												<!-- ATRIBUTO - MENTALIDADE -->
+												<div class="row inline-row-card" name="atr_mentalidade">
+													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Mentalidade"><img src="<?php echo site_url();?>assets/img/atributos/attr-mentalidade.png" width="24" height="24">
 													</div>
-													<div class="progress" style="height: 24px; width:62%;">
-														<div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+													<div class="progress progress-bar-adjust">
+														<div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
 														</div>
 													</div>
-													<div style="width: 13%; float:right; height:24px; background-color: white; margin-left:5px; border-radius:7px; font-weight: bold;">7
-													</div>
-												</div>
-												
-												<div class="row" style="margin-bottom:5px;d-inline-block;">
-													<div style="width: 13%; float:left; height:24px; background-color: yellow; margin-right:5px; border: 1px solid black; border-radius:50%;"><i class="fa fa-leaf" aria-hidden="true"></i>
-													</div>
-													<div class="progress" style="height: 24px; width:62%;">
-														<div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-														</div>
-													</div>
-													<div style="width: 13%; float:right; height:24px; background-color: white; margin-left:5px; border-radius:7px; font-weight: bold;">7
+													<div class="attribute-value" align="center">7
 													</div>
 												</div>
 
-												<div class="row" style="margin-bottom:5px;d-inline-block;">
-													<div style="width: 13%; float:left; height:24px; background-color: yellow; margin-right:5px; border: 1px solid black; border-radius:50%;"><i class="fa fa-leaf" aria-hidden="true"></i>
+												<!-- ATRIBUTO - TRABALHO EM EQUIPE -->
+												<div class="row inline-row-card" name="atr_trabalho_em_equipe">
+													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Trabalho em Equipe"><img src="<?php echo site_url();?>assets/img/atributos/attr-trabalho-em-equipe.png" width="24" height="24">
 													</div>
-													<div class="progress" style="height: 24px; width:62%;">
-														<div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+													<div class="progress progress-bar-adjust">
+														<div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
 														</div>
 													</div>
-													<div style="width: 13%; float:right; height:24px; background-color: white; margin-left:5px; border-radius:7px; font-weight: bold;">7
+													<div class="attribute-value" align="center">6
 													</div>
 												</div>
 
-												<div>
-												<a href="#"><button type="button" class="btn btn-info">Perfil Completo</button></a>
+												<!-- ATRIBUTO - VISAO DE JOGO -->
+												<div class="row inline-row-card" name="atr_visao_de_jogo">
+													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Visão de Jogo"><img src="<?php echo site_url();?>assets/img/atributos/attr-visao-de-jogo.png" width="24" height="24">
+													</div>
+													<div class="progress progress-bar-adjust">
+														<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+														</div>
+													</div>
+													<div class="attribute-value" align="center">5
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>			
+								</div>		
+
+								
+									
 							</div>
 						</div>
 					
@@ -284,11 +339,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="right-col-setup-inner" style="background-color: <?php echo $cor_secundaria;?>;"></div>
 						</div>
 					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-		
-		</div>
+
 		<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">3</div>
 		</div>
 
