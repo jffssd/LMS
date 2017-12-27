@@ -144,19 +144,8 @@ $(function () {
 												<span><img src="<?php echo site_url();?>assets/img/bandeiras/<?php echo $j_e->pais_id;?>.png" width="20" height="12"></span>
 												<?php echo strtoupper($j_e->nick).'</strong></h2>';  
 										} ?>
-
-									<?php if($j_e->funcao == 'TOP'){ 
-											echo '<div class="player-role-img" align="center" ><img src="'.site_url().'assets/img/roles/Top_icon.png" width="45" height="45">';						
-										}elseif($j_e->funcao == 'MID'){ 
-											echo '<div class="player-role-img" align="center" ><img src="'.site_url().'assets/img/roles/Mid_icon.png" width="45" height="45">';						
-										}elseif($j_e->funcao =="JNG"){ 
-											echo '<div class="player-role-img" align="center" ><img src="'.site_url().'assets/img/roles/Jungle_icon.png" width="45" height="45">';						
-										}elseif($j_e->funcao == "SUP"){ 
-											echo '<div class="player-role-img" align="center" ><img src="'.site_url().'assets/img/roles/Support_icon.png" width="45" height="45">';						
-										}elseif($j_e->funcao == "ADC"){ 
-											echo '<div class="player-role-img" align="center" ><img src="'.site_url().'assets/img/roles/Bottom_icon.png" width="45" height="45">';						
-										} ?>
-									</div>
+											<div class="player-role-img" align="center" ><img src="<?php echo site_url();?>assets/img/roles/<?php echo $j_e->funcao_id;?>.png" width="45" height="45">					
+											</div>
 									<div style="margin-top: -15px;"><span class="profile-score">91</span>
 									</div>
 							</div>
@@ -198,6 +187,8 @@ $(function () {
 						.card-body-player{
 							padding-left:10px; 
 							padding-right:5px;
+							padding-bottom:0px;
+							background-size:cover;
 						}
 
 						.card-player-body{
@@ -235,18 +226,27 @@ $(function () {
 						.card{box-shadow:2px 2px 10px rgba(0,0,0,0.3); border:none;}
 						.card-01 .card-body{position:relative; padding-top:40px; }
 						.card-01 .badge-box{background-color: white;padding-top:5px;position:absolute; top:-20px; left:20%; width:60px; height:60px;margin-left:-32px; margin-top:-10px;text-align:center; border-radius: 50%;}
-						.card-01 .badge-box-desc{background-color: white;padding-top:5px;position:absolute; top:-7px; left:30%; width:120px; height:40px;margin-left:-32px; margin-top:-10px;text-align:center; border-radius: 10px;}
+						.card-01 .badge-box-desc{background-color: white;padding-top:5px;position:absolute; top:-7px; left:28%; width:60%; height:40px;margin-left:-32px; margin-top:-10px;text-align:center; border-radius: 10px;}
 						.profile-box{background-size:cover; float:left; width:100%; text-align:center; padding:30px 0; position:relative; overflow:hidden;}
 						.profile-box:before{background:url("http://localhost:8080/lms/assets/img/layout/card-player-background.jpg") no-repeat; background-size:cover; width:120%; position:absolute; content:""; height:120%; left:-10%;top:0;z-index:0;}
 						.profile-box img{width:150px; height:150px; position:relative; border:5px solid #fff;margin-top:-25px;}
 						.social-box i {border:1px solid #DFC717; color:#DFC717; width:30px; height:30px; border-radius:50%;line-height:30px;}
 						.social-box i:hover{background:#DFC717; color:#fff;}
 						.social-box a{margin: 0 5px;}
+						.profile-box-header{
+							padding-top:7px;
+							font-family: helvetica; 
+							color: #9a835e;
+							height: 35px; 
+							border-top-left-radius: 10px; 
+							border-top-right-radius: 10px; 
+							font-weight:bold;
+						}
 						</style>
 						<!-- TEAM PANEL -->
 						<div class="col-md-10">
 							<div class="row">
-								<div style="height:50px; width: 100%; background-color: white;">
+								<div style="height:20px; width: 100%; background-color: white;">
 								
 								</div>
 							</div>
@@ -255,14 +255,17 @@ $(function () {
 
 							
 								<div class="col-md-3">
-									<div class="card card-01" style="border-radius: 10px;">
-										<div class="profile-box" style="height: 150px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-											<img class="card-img-top rounded-circle" style="margin-top: -35px;"src="<?php echo site_url();?>assets/img/profiles/dudu.jpg" alt="Card image cap">
+									<div class="card card-01" style="border-radius: 10px; margin-bottom: 10px;">
+										<div class="profile-box-header" align="center">
+											<img src="<?php echo site_url();?>assets/img/roles/Top_icon.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;">TOPO
 										</div>
-										<div class="card-body text-center card-body-player" style="padding-bottom:0px;background-size:cover;background:url("<?php echo site_url().'assets/img/layout/card-player-background.jpg';?>") no-repeat;  ">
-											<div class="badge-box" data-toggle="tooltip" data-placement="left" title="TOP LANE"><img src="<?php echo site_url();?>assets/img/roles/Top_icon.png" width="50" height="50">
+										<div class="profile-box" style="height: 150px;">
+											<a href="#"><img class="card-img-top rounded-circle" style="margin-top: -35px;"src="<?php echo site_url();?>assets/img/profiles/dudu.jpg" alt="Card image cap"></a>
+										</div>
+										<div class="card-body text-center card-body-player" style="background:url("<?php echo site_url().'assets/img/layout/card-player-background.jpg';?>") no-repeat;">
+											<div class="badge-box" data-toggle="tooltip" data-html="true" data-placement="left" title="Atributo: <b>Fogo</b>"><img src="<?php echo site_url();?>assets/img/atributos/FIRE.png" width="50" height="50">
 											</div>
-											<div class="badge-box-desc" style="margin-left: 10px; font-weight:bold; font-size: 22px;">Dulcinara
+											<div class="badge-box-desc" style="margin-left: 10px; font-weight:bold; font-size: 22px;"><a href="#" style="color: #343a40; text-decoration: none;">Dulcinara</a>
 											</div>
 											<div class="card-player-body">
 												<!-- ATRIBUTO - CONSISTENCIA -->

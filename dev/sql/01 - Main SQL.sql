@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador` (
   `nick` VARCHAR(15) NOT NULL,
   `data_nasc` DATETIME,
   `genero` CHAR(1) NOT NULL,
-  `funcao` VARCHAR(20) NOT NULL,
+  `funcao_id` INT NOT NULL,
   `pais_id` INT NOT NULL,
   `personalidade_id` INT NOT NULL,
   `at_trab` INT NOT NULL, -- Trabalho em Equipe
@@ -63,11 +63,19 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador` (
   PRIMARY KEY (`id`),
   INDEX `fk_jogador_pais_idx` (`pais_id` ASC),
   INDEX `fk_jogador_personalidade1_idx` (`personalidade_id` ASC),
+  
   CONSTRAINT `fk_jogador_pais`
     FOREIGN KEY (`pais_id`)
     REFERENCES `lmdb`.`pais` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
+  -- Adicionada tabela de funcao  
+  CONSTRAINT `fk_jogador_funcao`
+    FOREIGN KEY (`funcao_id`)
+    REFERENCES `lmdb`.`funcao` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+
   CONSTRAINT `fk_jogador_personalidade1`
     FOREIGN KEY (`personalidade_id`)
     REFERENCES `lmdb`.`personalidade_jogador` (`id`)
@@ -232,12 +240,12 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador_custom` (
   `usuario_id` INT NOT NULL,
   `nome` VARCHAR(45) NOT NULL,
   `sobrenome` VARCHAR(45) NOT NULL,
-  `nick` VARCHAR(25) NOT NULL,
+  `nick` VARCHAR(15) NOT NULL,
   `idade` INT NOT NULL,
   `humor` INT NOT NULL,
   `caracteristica` INT NOT NULL,
   `curva` VARCHAR(200) NOT NULL,
-  `posicao` VARCHAR(45) NOT NULL,
+  `funcao_id` INT NOT NULL,
   `pais_id` INT NOT NULL,
   `personalidade_id` INT NOT NULL,
   `at_adap` INT NOT NULL,
@@ -260,6 +268,12 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador_custom` (
   CONSTRAINT `fk_jogador_custom_pais1`
     FOREIGN KEY (`pais_id`)
     REFERENCES `lmdb`.`pais` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+
+  CONSTRAINT `fk_jogador_custom_funcao`
+    FOREIGN KEY (`funcao_id`)
+    REFERENCES `lmdb`.`funcao` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_jogador_custom_personalidade1`
@@ -518,10 +532,20 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `lmdb`.`tecnico` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
-  `nick` VARCHAR(45) NOT NULL,
+  `nick` VARCHAR(15) NOT NULL,
   `sobrenome` VARCHAR(45) NOT NULL,
   `foto` VARCHAR(45) NOT NULL,
   `valor` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `lmdb`.`funcao`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `lmdb`.`funcao` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
+  `jogo` INT,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
