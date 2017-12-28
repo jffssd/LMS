@@ -37,7 +37,7 @@ $(function () {
 							<div class="row principal-row" align="center">
 								<div class="col-md-12" align="center">
 									<div class="card" style="margin-left: -10px;">
-									 	<h4 class="card-header"><?php echo strtoupper($nome);?> <span class="badge badge-dark"> <?php echo strtoupper($sigla);?></h4>
+									 	<h5 class="card-header"><?php echo strtoupper($nome);?> <span class="badge badge-dark"> <?php echo strtoupper($sigla);?></h5>
 										<div class="card-body" style="padding-top: 0px;">
 										<div><img src="<?php echo site_url();?>assets/img/logo-equipes/<?php echo $logo;?>" width="250" height="250">
 										</div> 
@@ -133,7 +133,7 @@ $(function () {
 										}
 									$count++;
 									?>
-										<div class="card card-team-player-profile-card" ><img src="<?php echo site_url();?>assets/img/profiles/<?php echo $j_e->foto;?>" width="106" height="106">
+										<div class="card card-team-player-profile-card" ><img src="<?php echo site_url();?>assets/img/profiles/thumb/<?php echo $j_e->foto;?>" width="106" height="106">
 											<div class="card-body" align="center" style="padding: 5px;">
 											<?php if(strlen($j_e->nick) < 8){ ?>
 												<h4 class="card-title profile-nick">
@@ -252,20 +252,20 @@ $(function () {
 							</div>
 							<div class="row">
 
-
+							<?php foreach($jogador_equipe -> result() as $j_e){ ?>
 							
 								<div class="col-md-3">
 									<div class="card card-01" style="border-radius: 10px; margin-bottom: 10px;">
 										<div class="profile-box-header" align="center">
-											<img src="<?php echo site_url();?>assets/img/roles/Top_icon.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;">TOPO
+											<img src="<?php echo site_url();?>assets/img/roles/<?php echo $j_e->funcao_id;?>.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"><?php echo strtoupper($j_e->f_nome);?>
 										</div>
 										<div class="profile-box" style="height: 150px;">
-											<a href="#"><img class="card-img-top rounded-circle" style="margin-top: -35px;"src="<?php echo site_url();?>assets/img/profiles/dudu.jpg" alt="Card image cap"></a>
+											<a href="<?php echo site_url().'index.php/jogador/view/'.$j_e->j_id;?> " target="_blank"><img class="card-img-top rounded-circle" style="margin-top: -35px;"src="<?php echo site_url();?>assets/img/profiles/thumb/<?php echo $j_e->foto;?>" alt="Card image cap"></a>
 										</div>
 										<div class="card-body text-center card-body-player" style="background:url("<?php echo site_url().'assets/img/layout/card-player-background.jpg';?>") no-repeat;">
 											<div class="badge-box" data-toggle="tooltip" data-html="true" data-placement="left" title="Atributo: <b>Fogo</b>"><img src="<?php echo site_url();?>assets/img/atributos/FIRE.png" width="50" height="50">
 											</div>
-											<div class="badge-box-desc" style="margin-left: 10px; font-weight:bold; font-size: 22px;"><a href="#" style="color: #343a40; text-decoration: none;">Dulcinara</a>
+											<div class="badge-box-desc" style="margin-left: 10px; font-weight:bold; font-size: <?php if (strlen($j_e->nick) < 10){ echo '22'; }else{echo '18';};?>px;"><a href="<?php echo site_url().'index.php/jogador/view/'.$j_e->j_id;?>" style="color: #343a40; text-decoration: none;" target="_blank"><?php echo $j_e->nick;?></a>
 											</div>
 											<div class="card-player-body">
 												<!-- ATRIBUTO - CONSISTENCIA -->
@@ -273,10 +273,10 @@ $(function () {
 													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Consistência"><img src="<?php echo site_url();?>assets/img/atributos/attr-consistencia.png" width="24" height="24">
 													</div>
 													<div class="progress progress-bar-adjust">
-														<div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+														<div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: <?php echo $j_e->at_consist;?>0%;" aria-valuenow="<?php echo $j_e->at_consist;?>0" aria-valuemin="0" aria-valuemax="100">
 														</div>
 													</div>
-													<div class="attribute-value" align="center">9
+													<div class="attribute-value" align="center"><?php echo $j_e->at_consist;?>
 													</div>
 												</div>
 
@@ -285,10 +285,10 @@ $(function () {
 													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Mecânicas"><img src="<?php echo site_url();?>assets/img/atributos/attr-mecanicas.png" width="24" height="24">
 													</div>
 													<div class="progress progress-bar-adjust">
-														<div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+														<div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: <?php echo $j_e->at_mec;?>0%;" aria-valuenow="<?php echo $j_e->at_mec;?>0" aria-valuemin="0" aria-valuemax="100">
 														</div>
 													</div>
-													<div class="attribute-value" align="center">8
+													<div class="attribute-value" align="center"><?php echo $j_e->at_mec;?>
 													</div>
 												</div>
 
@@ -297,10 +297,10 @@ $(function () {
 													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Mentalidade"><img src="<?php echo site_url();?>assets/img/atributos/attr-mentalidade.png" width="24" height="24">
 													</div>
 													<div class="progress progress-bar-adjust">
-														<div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+														<div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: <?php echo $j_e->at_ment;?>0%;" aria-valuenow="<?php echo $j_e->at_ment;?>0" aria-valuemin="0" aria-valuemax="100">
 														</div>
 													</div>
-													<div class="attribute-value" align="center">7
+													<div class="attribute-value" align="center"><?php echo $j_e->at_ment;?>
 													</div>
 												</div>
 
@@ -309,10 +309,10 @@ $(function () {
 													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Trabalho em Equipe"><img src="<?php echo site_url();?>assets/img/atributos/attr-trabalho-em-equipe.png" width="24" height="24">
 													</div>
 													<div class="progress progress-bar-adjust">
-														<div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+														<div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: <?php echo $j_e->at_trab;?>0%;" aria-valuenow="<?php echo $j_e->at_trab;?>0" aria-valuemin="0" aria-valuemax="100">
 														</div>
 													</div>
-													<div class="attribute-value" align="center">6
+													<div class="attribute-value" align="center"><?php echo $j_e->at_trab;?>
 													</div>
 												</div>
 
@@ -321,10 +321,10 @@ $(function () {
 													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Visão de Jogo"><img src="<?php echo site_url();?>assets/img/atributos/attr-visao-de-jogo.png" width="24" height="24">
 													</div>
 													<div class="progress progress-bar-adjust">
-														<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+														<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <?php echo $j_e->at_vis;?>0%;" aria-valuenow="<?php echo $j_e->at_vis;?>0" aria-valuemin="0" aria-valuemax="100">
 														</div>
 													</div>
-													<div class="attribute-value" align="center">5
+													<div class="attribute-value" align="center"><?php echo $j_e->at_vis;?>
 													</div>
 												</div>
 											</div>
@@ -332,7 +332,7 @@ $(function () {
 									</div>
 								</div>		
 
-								
+							<?php } ?>
 									
 							</div>
 						</div>
