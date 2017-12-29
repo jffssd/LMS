@@ -1,5 +1,5 @@
 	<div class="tab-equipe" style="padding:10px;">
-		<div class="col-md-8">
+		<div class="col-md-12">
 			<div class="row">
 			
 

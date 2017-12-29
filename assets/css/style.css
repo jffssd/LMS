@@ -282,6 +282,7 @@
 .left-col-setup{
 	padding: 0px; 
 	min-height: 20px;
+	margin-top:-3px;
 }
 
 .left-col-setup-inner{
@@ -292,6 +293,7 @@
 	opacity: 0.5;	
 	-moz-opacity:0.5; 
 	-webkit-opacity:0.5;
+	margin-top: 3px;
 }
 
 .principal-row{
@@ -357,7 +359,11 @@
 }
 
 .card-team-status-body{
-	height:50px;
+	height:40px;
+}
+
+.card-status-desc{
+	margin-top:-12px;
 }
 
 .card-team-coach{
@@ -370,6 +376,9 @@
 	height: 40px;
 }
 
+.card-team-coach-body{
+	height: 60px;
+}
 .photo-team-coach{
 	margin-top:10px; 
 	margin-bottom:0px;
@@ -407,7 +416,7 @@
 .card-team-players-body{
 	padding: 0px; 
 	align: center; 
-	height: 410px; 
+	height: 400px; 
 	overflow-y: auto;
 }
 
@@ -429,6 +438,7 @@
 .right-col-setup{
 	padding: 0px; 
 	min-height: 20px;
+	margin-top: -3px;
 } 
 
 .right-col-setup-inner{
@@ -439,4 +449,5 @@
 	opacity: 0.5;	
 	-moz-opacity:0.5; 
 	-webkit-opacity:0.5; 
+	margin-top: 3px;
 }

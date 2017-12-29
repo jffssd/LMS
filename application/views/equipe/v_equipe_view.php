@@ -95,9 +95,9 @@ $(function () {
 								<div class="card-body card-team-status-body">
 									<?php
 									if($status == 'A'){ ?>
-										<h5><i class="fa fa-fw fa-check-square" style="color: green;"></i> Ativa</h5>
+										<h5 class="card-status-desc"><i class="fa fa-fw fa-check-square" style="color: green;"></i> Ativa</h5>
 									<?php }elseif($status == 'I'){ ?>
-										<h5><i class="fa fa-fw fa-window-close" style="color: grey;"></i> Inativa</h5>
+										<h5 class="card-status-desc"><i class="fa fa-fw fa-window-close" style="color: grey;"></i> Inativa</h5>
 									<?php } ?>
 								</div>
 							</div>
@@ -106,7 +106,7 @@ $(function () {
 								<h5 class="card-header card-team-coach-header">Coach</h5>
 								<?php foreach($tecnico -> result() as $t_e){ ?>
 								<img class="photo-team-coach" src="<?php echo site_url();?>assets/img/profiles/<?php echo $t_e->foto;?>" width="106" height="106">
-								<div class="card-body">
+								<div class="card-body card-team-coach-body">
 									<h6 class="card-team-coach-font"><?php echo $t_e->nome;?> "<span class="card-coach-nick"><?php echo $t_e->nick;?></span>" <?php echo $t_e->sobrenome;?></h6>
 									<?php	}	?>
 								</div>
