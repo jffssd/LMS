@@ -25,7 +25,8 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`pais` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
+  `flag` VARCHAR(45) NOT NULL,
+   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------

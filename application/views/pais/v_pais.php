@@ -16,11 +16,10 @@
 						</tr>
 					</thead>
 					<tbody>
-					<?php foreach($paises -> result() as $pais){
-							$flag = str_replace(' ', '', $pais->name); ?>
+					<?php foreach($paises -> result() as $pais){  ?>
 							<tr>
 								<td class="td_row"><?php echo $pais->id;?></td>
-								<td class="td_row"><img src="<?php echo site_url().'assets/img/bandeiras/'.$flag.'.png';?>" width="30" height="15"><?php echo $flag;?></td>
+								<td class="td_row"><img src="<?php echo site_url().'assets/img/bandeiras/'.$pais->flag.'.png';?>" width="30" height="15"></td>
 								<td class="td_row"><?php echo $pais->nome;?></td>
 								<td class="td_row"><?php echo $pais->name;?></td>
 								<td class="td_row"><a href="#" class="confirma_exclusao btn btn-danger btn-sm" data-id="<?php echo $pais->id;?>" data-nome="<?php echo $pais->nome;?>" /><i class="fa fa-times" aria-hidden="true"></i></a></td>
