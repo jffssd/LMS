@@ -156,13 +156,12 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
-  `desc` VARCHAR(100) NULL,
-  `formato` VARCHAR(45) NOT NULL,
-  `max_equip` INT NOT NULL,
   `ano` INT NOT NULL,
   `temporada` CHAR(1) NOT NULL,
+  `playoffs_id` INT NULL,
+  `liga_tipos_id` INT NOT NULL,
   `status` CHAR(1) NOT NULL,
-  `equipe_vencedora` INT NULL,
+  `serie_tipo` VARCHAR(25) NOT NULL,
   `regiao_id` INT NOT NULL,
   PRIMARY KEY (`id`, `regiao_id`),
   INDEX `fk_campeonato_regiao1_idx` (`regiao_id` ASC),
@@ -170,9 +169,77 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato` (
     FOREIGN KEY (`regiao_id`)
     REFERENCES `lmdb`.`regiao` (`id`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_campeonato_tipo_playoffs_tipo1`
+    FOREIGN KEY (`playoffs_id`)
+    REFERENCES `lmdb`.`playoffs_tipos` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_campeonato_tipo_liga_tipos1`
+    FOREIGN KEY (`liga_tipos_id`)
+    REFERENCES `lmdb`.`liga_tipos` (`id`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `lmdb`.`playoffs`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `lmdb`.`playoffs` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `campeonato_id` INT NOT NULL,
+  `time1` INT NOT NULL,
+  `time2` INT NOT NULL,
+  `vencedor` INT,
+  `status` INT,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_playoffs_campeonato_id_campeonato_id1`
+    FOREIGN KEY (`campeonato_id`)
+    REFERENCES `lmdb`.`campeonato` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_playoffs_time1_equipe_id1`
+    FOREIGN KEY (`time1`)
+    REFERENCES `lmdb`.`equipe` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_playoffs_time2_equipe_id2`
+    FOREIGN KEY (`time2`)
+    REFERENCES `lmdb`.`equipe` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_playoffs_vencedor_equipe_idv`
+    FOREIGN KEY (`vencedor`)
+    REFERENCES `lmdb`.`equipe` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `lmdb`.`playoffs_tipos`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `lmdb`.`playoffs_tipos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `noDeTimes` INT NOT NULL,
+  `duplaEliminacao` CHAR(1) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `lmdb`.`liga_tipos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `lmdb`.`liga_tipos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `descricao` VARCHAR(45) NULL,
+  `numDeTimes` INT NOT NULL,
+  `numDeDivisoes` INT NOT NULL,
+  `jogarInterDiv` CHAR(1) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `lmdb`.`jogador_conquista_campeonato`
@@ -195,6 +262,27 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador_conquista_campeonato` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `lmdb`.`equipe_conquista_campeonato`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `lmdb`.`equipe_conquista_campeonato` (
+  `equipe_id` INT NOT NULL,
+  `campeonato_id` INT NOT NULL,
+  `posicao` INT NOT NULL,
+  PRIMARY KEY (`equipe_id`, `campeonato_id`),
+  INDEX `fk_equipe_has_campeonato_campeonato1_idx` (`campeonato_id` ASC),
+  INDEX `fk_equipe_has_campeonato_equipe1_idx` (`equipe_id` ASC),
+  CONSTRAINT `fk_equipe_has_campeonato_equipe1`
+    FOREIGN KEY (`equipe_id`)
+    REFERENCES `lmdb`.`equipe` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_equipe_has_campeonato_campeonato1`
+    FOREIGN KEY (`campeonato_id`)
+    REFERENCES `lmdb`.`campeonato` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `lmdb`.`permissao`
@@ -799,8 +887,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_serie_jogo` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `serie_code` VARCHAR(45) NOT NULL,
-  `campeonato_id` INT NOT NULL,
+  `campeonato_id` INT,
+  `playoffs_id` INT,
+  `num_serie` INT,
   `campeonato_jogo_id` INT NOT NULL,
   PRIMARY KEY (`id`, `campeonato_id`, `campeonato_jogo_id`),
   INDEX `fk_campeonato_has_campeonato_jogo_campeonato_jogo1_idx` (`campeonato_jogo_id` ASC),
@@ -808,6 +897,11 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_serie_jogo` (
   CONSTRAINT `fk_campeonato_has_campeonato_jogo_campeonato1`
     FOREIGN KEY (`campeonato_id`)
     REFERENCES `lmdb`.`campeonato` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_campeonato_has_serie_playoff_jogo_campeonato1`
+    FOREIGN KEY (`playoffs_id`)
+    REFERENCES `lmdb`.`playoffs` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_campeonato_has_campeonato_jogo_campeonato_jogo1`

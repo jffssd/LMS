@@ -31,5 +31,6 @@ class M_base extends CI_Model {
 		$this->db->order_by("id", 'desc');
 		return $this->db->get('tecnico');
 
-	}
+		}
+		
 }
