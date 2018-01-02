@@ -13,6 +13,7 @@ class Equipe extends CI_Controller {
 	{
 		$variaveis['equipes'] = $this->m_equipes->get_equipes();
 		$variaveis['conteudo'] = $this->load->view('equipe/v_equipe', $variaveis, true);
+		$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
 		$this->load->view('template/template', $variaveis);
 	}
 
@@ -28,6 +29,7 @@ class Equipe extends CI_Controller {
 		$variaveis['regioes'] = $this->m_base->get_regioes();
 		$variaveis['sedes'] = $this->m_base->get_sedes();
 		$variaveis['tecnicos'] = $this->m_base->get_tecnicos();
+		$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
 		$variaveis['conteudo'] = $this->load->view('equipe/v_cadastro_equipe', $variaveis, true);
 		$this->load->view('template/template', $variaveis);
 	}
@@ -182,7 +184,7 @@ class Equipe extends CI_Controller {
 				$variaveis['tecnico'] = $this->m_equipes->get_tecnico_by_equipe($id);
 				$variaveis['status_equipe'] = $status_equipe;
 
-
+				$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
 				$variaveis['conteudo'] = $this->load->view('equipe/v_equipe_view', $variaveis,true);
 				$this->load->view('template/template', $variaveis);
 			} else {

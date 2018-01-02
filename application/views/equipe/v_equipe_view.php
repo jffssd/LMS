@@ -19,8 +19,8 @@ $(function () {
 			<a class="nav-link nav-menu-item" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Conquistas</a>
 		</li>
 	</ul>
-		<div class="nav-menu-detail-color" style="background-color: <?php echo $cor_primaria;?>;">
-		</div>
+	<div class="nav-menu-detail-color" style="background-color: <?php echo $cor_primaria;?>;">
+	</div>
 		<div class="tab-content content-adjust-tab" id="myTabContent">
 			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 				<div class="col-md-12 col_adjust">
@@ -133,6 +133,7 @@ $(function () {
 										}
 									$count++;
 									?>
+									<div class="col-md-4">
 										<div class="card card-team-player-profile-card" ><img src="<?php echo site_url();?>assets/img/profiles/thumb/<?php echo $j_e->foto;?>" width="106" height="106">
 											<div class="card-body" align="center" style="padding: 5px;">
 											<?php if(strlen($j_e->nick) < 8){ ?>
@@ -147,6 +148,7 @@ $(function () {
 											<div class="player-role-img" align="center" ><img src="<?php echo site_url();?>assets/img/roles/<?php echo $j_e->funcao_id;?>.png" width="45" height="45">					
 											</div>
 									<div style="margin-top: -15px;"><span class="profile-score">91</span>
+									</div>
 									</div>
 							</div>
 						</div>
@@ -166,13 +168,10 @@ $(function () {
 			</div>
 		</div>
 	</div>
-<style>
 
-</style>
 	<!-- HOME BAR -->
 		<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-		
-		
+
 		<div class="col-md-12 col_adjust">
 					<div class="row">
 

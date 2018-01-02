@@ -149,6 +149,15 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`regiao` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `lmdb`.`serie_tipo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `lmdb`.`serie_tipo` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `descricao` VARCHAR(45) NOT NULL,
+  `qtd_jogos` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `lmdb`.`campeonato`
@@ -161,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato` (
   `playoffs_id` INT NULL,
   `liga_tipos_id` INT NOT NULL,
   `status` CHAR(1) NOT NULL,
-  `serie_tipo` VARCHAR(25) NOT NULL,
+  `serie_tipo` INT NOT NULL,
   `regiao_id` INT NOT NULL,
   PRIMARY KEY (`id`, `regiao_id`),
   INDEX `fk_campeonato_regiao1_idx` (`regiao_id` ASC),
@@ -173,6 +182,11 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato` (
   CONSTRAINT `fk_campeonato_tipo_playoffs_tipo1`
     FOREIGN KEY (`playoffs_id`)
     REFERENCES `lmdb`.`playoffs_tipos` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_campeonato_serie_tipo_tipo1`
+    FOREIGN KEY (`serie_tipo`)
+    REFERENCES `lmdb`.`serie_tipo` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_campeonato_tipo_liga_tipos1`
@@ -224,6 +238,7 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `lmdb`.`playoffs_tipos` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `descricao` VARCHAR(45) NOT NULL,
   `noDeTimes` INT NOT NULL,
   `duplaEliminacao` CHAR(1) NOT NULL,
   PRIMARY KEY (`id`))
@@ -263,9 +278,9 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador_conquista_campeonato` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `lmdb`.`equipe_conquista_campeonato`
+-- Table `lmdb`.`equipe_campeonato`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmdb`.`equipe_conquista_campeonato` (
+CREATE TABLE IF NOT EXISTS `lmdb`.`equipe_campeonato` (
   `equipe_id` INT NOT NULL,
   `campeonato_id` INT NOT NULL,
   `posicao` INT NOT NULL,

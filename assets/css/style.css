@@ -301,6 +301,7 @@
 	display: flex; 
 	align-items: center;  
 	justify-content: center;
+	height: 100%;
 }
 
 .team-panel-title{
@@ -335,7 +336,7 @@
 }
 
 .card-team-score-header{
-	height: 50px; 
+	height: 40px; 
 	font-size: 18px; 
 	margin: 0px;
 }
