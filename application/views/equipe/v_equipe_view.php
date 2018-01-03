@@ -338,13 +338,92 @@ $(function () {
 					
 					<!-- RIGHT SIDEBAR TEAM COLORS -->
 						<div class="col-md-1 left-col-setup" style="background-color: <?php echo $cor_primaria;?>;">
-						<div class="right-col-setup-inner" style="background-color: <?php echo $cor_secundaria;?>;"></div>
+						<div class="right-col-setup-inner" style="background-color: <?php echo $cor_secundaria;?>;">
+						</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
-		<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">3</div>
+		<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+
+
+
+
+
+
+		<div class="col-md-12 col_adjust">
+					<div class="row">
+						<!-- SIDE BARS - TEAM COLORS -->
+						<div class="col-md-1 left-col-setup" style="background-color: <?php echo $cor_primaria;?>;">
+							<div class="left-col-setup-inner" style="background-color: <?php echo $cor_secundaria;?>;">
+							</div>
+						</div>
+
+						<!-- TEAM PANEL -->
+						<div class="col-md-10">
+							<div class="col-md-12" style="float:none;">
+								<div class="row">
+									<div class="col-md-12">
+										<div align="center" style="background: red; background:url('https://br.leagueoflegends.com/sites/default/files/styles/scale_xlarge/public/upload/pacotepaincampea-banner.jpg'); background-size: cover;">
+											<div style="background-color:white; width:250px; height:250px; border-radius:50%; padding-top: 20px; border: 5px solid rgba(100, 100, 100, 0.5);">
+											<img src="<?php echo site_url();?>assets/img/logo-equipes/<?php echo $logo;?>" width="220" height="220">
+											</div>
+										</div>
+									</div>
+								</div>
+								<table class="table table-striped">
+									<thead class="thead-light" style="text-light">
+										<tr>
+											<th>Ano</th>
+											<th>Posição</th>
+											<th>Campeonato</th>
+										</tr>
+									</thead>
+									<tbody>
+									<?php 
+										foreach($equipe_titulos -> result() as $e_t){  ?>
+										<tr>
+											<td class="td_row"><?php echo $e_t->camp_ano;?></td>
+											<?php 
+											if($e_t->ec_posicao == 1){ 
+												echo	'<td class="td_row" align="center"><img src="'.site_url().'assets/img/awards/first.png" width="25" height="25"></td>';
+											}elseif($e_t->ec_posicao == 2){
+												echo	'<td class="td_row" align="center"><img src="'.site_url().'assets/img/awards/second.png" width="25" height="25"></td>';
+											}elseif($e_t->ec_posicao == 3){
+												echo	'<td class="td_row" align="center"><img src="'.site_url().'assets/img/awards/third.png" width="25" height="25"></td>';
+											}	?>
+											<td class="td_row"><?php echo $e_t->camp_nome;?></td>
+										</tr>
+									<?php	}
+									?>
+									</tbody>
+								</table>
+								
+							</div>
+						</div>
+					
+					<!-- RIGHT SIDEBAR TEAM COLORS -->
+						<div class="col-md-1 left-col-setup" style="background-color: <?php echo $cor_primaria;?>;">
+							<div class="right-col-setup-inner" style="background-color: <?php echo $cor_secundaria;?>;">
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+
+
 		</div>
+
+
+		
+	</div>
 
 </div>

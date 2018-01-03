@@ -33,6 +33,20 @@ class M_equipes extends CI_Model {
 
 	}
 
+	public function get_campeonato_titulos_by_equipe($id = null){
+		if ($id) {
+			$this->db->select('c.ano as camp_ano, c.nome as camp_nome, e.nome as equipe_nome, ec.posicao as ec_posicao');
+			$this->db->join('campeonato c', 'ec.campeonato_id = c.id');		
+			$this->db->join('equipe e', 'ec.equipe_id = e.id');
+			$this->db->where('ec.equipe_id', $id);
+			$this->db->order_by('c.ano', 'asc');
+			$this->db->order_by('ec.posicao', 'asc');
+			
+		}
+		return $this->db->get('equipe_campeonato ec');
+
+	}
+
 	public function get_tecnico_by_equipe($id = null){
 		
 		if ($id) {

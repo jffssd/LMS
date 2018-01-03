@@ -21,7 +21,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span class="nav-link-text">Caixa de Entrada</span>
           </a>
         </li>
-        <hr style="height: 1px; margin: 0px; overflow: hidden; background-color: #212529; width: 100%;">
+
+        <hr class="nav-menu-divider" style="height: 1px; margin: 0px; overflow: hidden; background-color: #737a81; width: 100%; opacity: 0.1;">
+
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
           <?php echo '<a class="nav-link" href="'.site_url().'equipe">'; ?>
             <i class="fa fa-fw fa-users "></i>
@@ -44,10 +46,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <a href="<?php echo site_url();?>pais"><i class="fa fa-fw fa-flag"></i> Países</a>
             </li>
             <li>
-              <a href="#">Cards</a>
+              <a href="#"><i class="fa fa-fw fa-flag"></i> Cards</a>
             </li>
           </ul>
         </li>
+
+        <hr class="nav-menu-divider" style="height: 1px; margin: 0px; overflow: hidden; background-color: #737a81; width: 100%; opacity: 0.1;">
+
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
           <a class="nav-link" href="#">
             <i class="fa fa-fw fa-link"></i>

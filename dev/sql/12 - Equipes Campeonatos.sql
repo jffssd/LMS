@@ -1,4 +1,7 @@
 INSERT INTO equipe_campeonato (equipe_id, campeonato_id, posicao) VALUES
+
+-- CBLOL
+
 (1, 2, 1),
 (4, 2, 2),
 (5, 3, 1),
@@ -20,14 +23,4 @@ INSERT INTO equipe_campeonato (equipe_id, campeonato_id, posicao) VALUES
 (8, 11, 1),
 (1, 11, 2);
 
-SELECT ec.*,c.ano, c.nome, e.nome, ec.posicao 
-FROM equipe_campeonato ec
-LEFT JOIN campeonato c on ec.campeonato_id = c.id
-LEFT JOIN equipe e on ec.equipe_id = e.id
-order by c.ano, ec.posicao;
-
-select e.nome,(select count(posicao)) as podios
-from equipe_campeonato ec
-join equipe e on ec.equipe_id = e.id
-where ec.equipe_id = 1
-group by e.nome
+-- 

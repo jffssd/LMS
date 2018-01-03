@@ -153,9 +153,11 @@ class Equipe extends CI_Controller {
 			
 			// Busca model para buscar jogadores vinculados a id da equipe
 			$variaveis['jogador_equipe'] = $this->m_equipes->get_jogador_by_equipe($id);
+
+			// Busca model para buscar jogadores vinculados a id da equipe
+			$variaveis['equipe_titulos'] = $this->m_equipes->get_campeonato_titulos_by_equipe($id);
 		
 			// Atribui status da equipe
-
 			$status_equipe = array( 
 				1 => 'Ativo',
 				2 => 'Inativo'
