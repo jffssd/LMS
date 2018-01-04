@@ -134,7 +134,7 @@ $(function () {
 									$count++;
 									?>
 									<div class="col-md-4">
-										<div class="card card-team-player-profile-card" ><img src="<?php echo site_url();?>assets/img/profiles/thumb/<?php echo $j_e->foto;?>" width="106" height="106">
+										<div class="card card-team-player-profile-card" ><img src="<?php echo site_url();?>assets/img/profiles/thumb/<?php echo $j_e->foto;?>" width="106" height="106" style="border-radius: 50%;">
 											<div class="card-body" align="center" style="padding: 5px;">
 											<?php if(strlen($j_e->nick) < 8){ ?>
 												<h4 class="card-title profile-nick">
@@ -257,6 +257,14 @@ $(function () {
 									<div class="card card-01" style="border-radius: 10px; margin-bottom: 10px;">
 										<div class="profile-box-header" align="center">
 											<img src="<?php echo site_url();?>assets/img/roles/<?php echo $j_e->funcao_id;?>.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"><?php echo strtoupper($j_e->f_nome);?>
+											<div style="float:right; width:25px; height:25px; margin-right: 7px;">
+												<?php
+													if($j_e->titular == 1){
+														echo '<span class="badge" style="border: 2px solid #c8aa6e; background-color: #9a835e; color: white;" data-toggle="tooltip" data-placement="top" title="Titular">T</span>';
+													}elseif($j_e->titular == 0){
+														echo '<span class="badge" data-toggle="tooltip" data-placement="top" title="Reserva">R</span>';
+													}?>
+											</div>
 										</div>
 										<div class="profile-box" style="height: 150px; background:url('<?php echo $bg;?>') repeat;">
 											<a href="<?php echo site_url().'index.php/jogador/view/'.$j_e->j_id;?> " target="_blank"><img class="card-img-top rounded-circle" style="margin-top: -35px;"src="<?php echo site_url();?>assets/img/profiles/thumb/<?php echo $j_e->foto;?>" alt="Card image cap"></a>
@@ -365,7 +373,7 @@ $(function () {
 							<div class="col-md-12" style="float:none;">
 								<div class="row">
 									<div class="col-md-12">
-										<div align="center" style="background: red; background:url('https://br.leagueoflegends.com/sites/default/files/styles/scale_xlarge/public/upload/pacotepaincampea-banner.jpg'); background-size: cover;">
+										<div align="center" style="background:url('https://br.leagueoflegends.com/sites/default/files/styles/scale_xlarge/public/upload/pacotepaincampea-banner.jpg'); background-size: cover;">
 											<div style="background-color:white; width:250px; height:250px; border-radius:50%; padding-top: 20px; border: 5px solid rgba(100, 100, 100, 0.5);">
 											<img src="<?php echo site_url();?>assets/img/logo-equipes/<?php echo $logo;?>" width="220" height="220">
 											</div>

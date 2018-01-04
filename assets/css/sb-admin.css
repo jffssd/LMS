@@ -31,7 +31,7 @@ body.fixed-nav {
   .scroll-to-top:focus, .scroll-to-top:hover {
     color: white; }
   .scroll-to-top:hover {
-    background: #343a40; }
+    background: #262b33; }
   .scroll-to-top i {
     font-weight: 800; }
 
@@ -255,7 +255,7 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
 
 @media (min-width: 992px) {
   #mainNav.navbar-dark .navbar-collapse .navbar-sidenav {
-    background: #343a40; }
+    background: #262b33; }
     #mainNav.navbar-dark .navbar-collapse .navbar-sidenav li.active a {
       color: white !important;
       background-color: #495057; }
@@ -263,7 +263,7 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
         color: white; }
     #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level,
     #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level {
-      background: #343a40; } }
+      background: #262b33; } }
 
 #mainNav.navbar-light .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
   color: rgba(0, 0, 0, 0.5); }
