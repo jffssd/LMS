@@ -205,11 +205,13 @@ $(function () {
 							float:left; 
 							height:24px; 
 							margin-right:5px; 
+							margin-top:-3px;
 						}
 
 						.progress-bar-adjust{
-							height: 24px; 
+							height: 14px; 
 							width:67%;
+							margin-top:5px;
 						}
 
 						.attribute-value{
@@ -221,7 +223,8 @@ $(function () {
 							border-radius:7px; 
 							font-weight: bold;
 						}
-
+						
+						.card-dark{background-color:#262b33;}
 						.card{box-shadow:2px 2px 10px rgba(0,0,0,0.3); border:none;}
 						.card-01 .card-body{position:relative; padding-top:40px; }
 						.card-01 .badge-box{background-color: white;padding-top:5px;position:absolute; top:-20px; left:20%; width:60px; height:60px;margin-left:-32px; margin-top:-10px;text-align:center; border-radius: 50%;}
@@ -245,8 +248,16 @@ $(function () {
 						<!-- TEAM PANEL -->
 						<div class="col-md-10">
 							<div class="row">
-								<div style="height:20px; width: 100%; background-color: white;">
-								
+								<div style="height:70px; width: 100%; margin-bottom:10px; margin-top:5px;">
+									<div style="float:left; width: 70px; ">
+										<img src="<?php echo site_url();?>assets/img/logo-equipes/<?php echo $logo;?>" width="70" height="70">
+									</div>
+									<div style="padding-left:82px; padding-top:12px; font-size:28px; font-weight: bold; color: #262b33;">CNB ESPORTS CLUB
+									</div>
+									<div style="margin-bottom: 20px;height: 32px; width: 100%; background-color: <?php echo $cor_primaria;?>; color: white; font-family: helvetica; font-weight:bold; font-size: 24px;" align="center">JOGADORES
+									</div>
+
+
 								</div>
 							</div>
 							<div class="row">
@@ -254,7 +265,7 @@ $(function () {
 							<?php foreach($jogador_equipe -> result() as $j_e){ 
 							$bg = 'http://localhost:8080/lms/assets/img/layout/card-player-background-'.$j_e->funcao_id.'.jpg'; ?>
 								<div class="col-md-3">
-									<div class="card card-01" style="border-radius: 10px; margin-bottom: 10px;">
+									<div class="card card-01 card-dark" style="border-radius: 10px; margin-bottom: 10px;">
 										<div class="profile-box-header" align="center">
 											<img src="<?php echo site_url();?>assets/img/roles/<?php echo $j_e->funcao_id;?>.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"><?php echo strtoupper($j_e->f_nome);?>
 											<div style="float:right; width:25px; height:25px; margin-right: 7px;">
@@ -262,11 +273,11 @@ $(function () {
 													if($j_e->titular == 1){
 														echo '<span class="badge" style="border: 2px solid #c8aa6e; background-color: #9a835e; color: white;" data-toggle="tooltip" data-placement="top" title="Titular">T</span>';
 													}elseif($j_e->titular == 0){
-														echo '<span class="badge" data-toggle="tooltip" data-placement="top" title="Reserva">R</span>';
+														echo '<span class="badge" style="border: 2px solid #c8aa6e; background-color: #9a835e; color: white;" data-toggle="tooltip" data-placement="top" title="Reserva">R</span>';
 													}?>
 											</div>
 										</div>
-										<div class="profile-box" style="height: 150px; background:url('<?php echo $bg;?>') repeat;">
+										<div class="profile-box" style="height: 150px; background:url('<?php echo $bg;?>') no-repeat;">
 											<a href="<?php echo site_url().'index.php/jogador/view/'.$j_e->j_id;?> " target="_blank"><img class="card-img-top rounded-circle" style="margin-top: -35px;"src="<?php echo site_url();?>assets/img/profiles/thumb/<?php echo $j_e->foto;?>" alt="Card image cap"></a>
 										</div>
 										<div class="card-body text-center card-body-player">
@@ -277,7 +288,7 @@ $(function () {
 											<div class="card-player-body">
 												<!-- ATRIBUTO - CONSISTENCIA -->
 												<div class="row inline-row-card" name="atr_consistencia">
-													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Consistência"><img src="<?php echo site_url();?>assets/img/atributos/attr-consistencia.png" width="24" height="24">
+													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Consistência"><img src="<?php echo site_url();?>assets/img/atributos/attr-consistencia.png" width="20" height="20" style="border-radius:50%; border: 2px solid #545f71;">
 													</div>
 													<div class="progress progress-bar-adjust">
 														<div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: <?php echo $j_e->at_consist;?>0%;" aria-valuenow="<?php echo $j_e->at_consist;?>0" aria-valuemin="0" aria-valuemax="100">
@@ -289,7 +300,7 @@ $(function () {
 
 												<!-- ATRIBUTO - MECANICAS -->
 												<div class="row inline-row-card" name="atr_mecanicas">
-													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Mecânicas"><img src="<?php echo site_url();?>assets/img/atributos/attr-mecanicas.png" width="24" height="24">
+													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Mecânicas"><img src="<?php echo site_url();?>assets/img/atributos/attr-mecanicas.png" width="20" height="20" style="border-radius:50%; border: 2px solid #545f71;">
 													</div>
 													<div class="progress progress-bar-adjust">
 														<div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: <?php echo $j_e->at_mec;?>0%;" aria-valuenow="<?php echo $j_e->at_mec;?>0" aria-valuemin="0" aria-valuemax="100">
@@ -301,39 +312,41 @@ $(function () {
 
 												<!-- ATRIBUTO - MENTALIDADE -->
 												<div class="row inline-row-card" name="atr_mentalidade">
-													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Mentalidade"><img src="<?php echo site_url();?>assets/img/atributos/attr-mentalidade.png" width="24" height="24">
+													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Mentalidade"><img src="<?php echo site_url();?>assets/img/atributos/attr-mentalidade.png" width="20" height="20" style="border-radius:50%; border: 2px solid #545f71;">
 													</div>
 													<div class="progress progress-bar-adjust">
-														<div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: <?php echo $j_e->at_ment;?>0%;" aria-valuenow="<?php echo $j_e->at_ment;?>0" aria-valuemin="0" aria-valuemax="100">
+														<div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: <?php echo $j_e->at_ment;?>0%;" aria-valuenow="<?php echo $j_e->at_ment;?>0" aria-valuemin="0" aria-valuemax="100">
 														</div>
 													</div>
 													<div class="attribute-value" align="center"><?php echo $j_e->at_ment;?>
 													</div>
 												</div>
 
-												<!-- ATRIBUTO - TRABALHO EM EQUIPE -->
-												<div class="row inline-row-card" name="atr_trabalho_em_equipe">
-													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Trabalho em Equipe"><img src="<?php echo site_url();?>assets/img/atributos/attr-trabalho-em-equipe.png" width="24" height="24">
+												<!-- ATRIBUTO - VISAO DE JOGO -->
+												<div class="row inline-row-card" name="atr_visao_de_jogo">
+													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Visão de Jogo"><img src="<?php echo site_url();?>assets/img/atributos/attr-visao-de-jogo.png" width="20" height="20" style="border-radius:50%; border: 2px solid #545f71;">
 													</div>
 													<div class="progress progress-bar-adjust">
-														<div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: <?php echo $j_e->at_trab;?>0%;" aria-valuenow="<?php echo $j_e->at_trab;?>0" aria-valuemin="0" aria-valuemax="100">
+														<div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: <?php echo $j_e->at_vis;?>0%;" aria-valuenow="<?php echo $j_e->at_vis;?>0" aria-valuemin="0" aria-valuemax="100">
+														</div>
+													</div>
+													<div class="attribute-value" align="center"><?php echo $j_e->at_vis;?>
+													</div>
+												</div>
+
+												<!-- ATRIBUTO - TRABALHO EM EQUIPE -->
+												<div class="row inline-row-card" name="atr_trabalho_em_equipe">
+													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Trabalho em Equipe"><img src="<?php echo site_url();?>assets/img/atributos/attr-trabalho-em-equipe.png" width="20" height="20" style="border-radius:50%; border: 2px solid #545f71;">
+													</div>
+													<div class="progress progress-bar-adjust">
+														<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <?php echo $j_e->at_trab;?>0%;" aria-valuenow="<?php echo $j_e->at_trab;?>0" aria-valuemin="0" aria-valuemax="100">
 														</div>
 													</div>
 													<div class="attribute-value" align="center"><?php echo $j_e->at_trab;?>
 													</div>
 												</div>
 
-												<!-- ATRIBUTO - VISAO DE JOGO -->
-												<div class="row inline-row-card" name="atr_visao_de_jogo">
-													<div class="card-player-attribute-icon" data-toggle="tooltip" data-placement="left" title="Visão de Jogo"><img src="<?php echo site_url();?>assets/img/atributos/attr-visao-de-jogo.png" width="24" height="24">
-													</div>
-													<div class="progress progress-bar-adjust">
-														<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <?php echo $j_e->at_vis;?>0%;" aria-valuenow="<?php echo $j_e->at_vis;?>0" aria-valuemin="0" aria-valuemax="100">
-														</div>
-													</div>
-													<div class="attribute-value" align="center"><?php echo $j_e->at_vis;?>
-													</div>
-												</div>
+
 											</div>
 										</div>
 									</div>
@@ -373,18 +386,20 @@ $(function () {
 							<div class="col-md-12" style="float:none;">
 								<div class="row">
 									<div class="col-md-12">
-										<div align="center" style="background:url('https://br.leagueoflegends.com/sites/default/files/styles/scale_xlarge/public/upload/pacotepaincampea-banner.jpg'); background-size: cover;">
-											<div style="background-color:white; width:250px; height:250px; border-radius:50%; padding-top: 20px; border: 5px solid rgba(100, 100, 100, 0.5);">
-											<img src="<?php echo site_url();?>assets/img/logo-equipes/<?php echo $logo;?>" width="220" height="220">
+										<div align="center" style="margin-left: -15px;padding-top:35px; padding-left:15px;position: absolute; height:270px; width: 100%;float: none;background:url('<?php echo site_url();?>assets/img/championships/champions/intz-1.jpg'); background-size: cover;">
+											<div style="float: left; background-color:<?php echo $cor_secundaria;?>; width:200px; height:200px; border-radius:50%; padding-top: 5px; border: 5px solid <?php echo $cor_primaria;?>;">
+											<img src="<?php echo site_url();?>assets/img/logo-equipes/<?php echo $logo;?>" width="180" height="180">
 											</div>
 										</div>
 									</div>
 								</div>
+								<div style="margin-top:280px;height: 32px; width: 100%; background-color: <?php echo $cor_primaria;?>; color: white; font-family: helvetica; font-weight:bold; font-size: 24px;" align="center">CONQUISTAS</div>
+								<div style="margin-top:10px;">
 								<table class="table table-striped">
 									<thead class="thead-light" style="text-light">
-										<tr>
-											<th>Ano</th>
-											<th>Posição</th>
+										<tr align="center">
+											<th align="center">Ano</th>
+											<th align="center">Posição</th>
 											<th>Campeonato</th>
 										</tr>
 									</thead>
@@ -392,22 +407,22 @@ $(function () {
 									<?php 
 										foreach($equipe_titulos -> result() as $e_t){  ?>
 										<tr>
-											<td class="td_row"><?php echo $e_t->camp_ano;?></td>
+											<td class="td_row" align="center"><?php echo $e_t->camp_ano;?></td>
 											<?php 
 											if($e_t->ec_posicao == 1){ 
-												echo	'<td class="td_row" align="center"><img src="'.site_url().'assets/img/awards/first.png" width="25" height="25"></td>';
+												echo	'<td class="td_row" align="center"><img src="'.site_url().'assets/img/awards/first.png" width="25" height="25"> 1° Lugar</td>';
 											}elseif($e_t->ec_posicao == 2){
-												echo	'<td class="td_row" align="center"><img src="'.site_url().'assets/img/awards/second.png" width="25" height="25"></td>';
+												echo	'<td class="td_row" align="center"><img src="'.site_url().'assets/img/awards/second.png" width="25" height="25"> 2° Lugar</td>';
 											}elseif($e_t->ec_posicao == 3){
-												echo	'<td class="td_row" align="center"><img src="'.site_url().'assets/img/awards/third.png" width="25" height="25"></td>';
+												echo	'<td class="td_row" align="center"><img src="'.site_url().'assets/img/awards/third.png" width="25" height="25"> 3° Lugar</td>';
 											}	?>
-											<td class="td_row"><?php echo $e_t->camp_nome;?></td>
+											<td class="td_row" ><?php echo $e_t->camp_nome;?></td>
 										</tr>
 									<?php	}
 									?>
 									</tbody>
 								</table>
-								
+								</div>
 							</div>
 						</div>
 					
