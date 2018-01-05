@@ -30,9 +30,22 @@ JOIN liga_tipos lt ON cp.liga_tipos_id = lt.id LIMIT 1;
 
 -- Soma atributos do jogador e busca top 1 de cada funcao
 
-SELECT jogador.funcao_id as fid, jogador.nick as jnick, calc_atributos.soma as calcsoma
-FROM jogador
-JOIN (select id, (at_trab+at_ment+at_consist+at_vis+at_mec) as soma FROM jogador) calc_atributos ON jogador.id = calc_atributos.id
-ORDER BY calc_atributos.soma DESC;
+SELECT nick, soma, fid,funcao.nome FROM
+(SELECT 
+    @row_number:=CASE
+        WHEN @customer_no = funcao_id THEN @row_number + 1
+        ELSE 1
+    END AS num,
+    @customer_no:=funcao_id as fid,
+    nick,
+    (at_trab+at_ment+at_consist+at_vis+at_mec) soma
+FROM
+    jogador,(SELECT @customer_no:=0,@row_number:=0) as t
+ORDER BY funcao_id, soma desc) S
+JOIN funcao ON funcao.id = S.fid
+where NUM = 1;
+
+-- Soma atributos do jogador e busca top 1 de cada funcao
+
 
 UPDATE jogador set at_trab = 10, at_vis  = 10, at_mec  = 10, at_consist = 10 where id in (95,82,24,18,13)

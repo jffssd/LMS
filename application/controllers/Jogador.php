@@ -12,6 +12,7 @@ class Jogador extends CI_Controller {
 	public function index()
 	{
 		$variaveis['jogadores'] = $this->m_jogadores->get_jogadores();
+		$variaveis['top_jogadores'] = $this->m_jogadores->get_top_jogadores();
 		$variaveis['conteudo'] = $this->load->view('jogador/v_jogador', $variaveis, true);
 		$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
 		$this->load->view('template/template', $variaveis);

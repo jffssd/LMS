@@ -15,6 +15,28 @@ class M_jogadores extends CI_Model {
 		return $this->db->get('jogador j');
 	}
 
+	public function get_top_jogadores(){
+
+		$sql = 'SELECT nick, soma, fid,funcao.nome FROM
+		(SELECT 
+			@row_number:=CASE
+				WHEN @customer_no = funcao_id THEN @row_number + 1
+				ELSE 1
+			END AS num,
+			@customer_no:=funcao_id as fid,
+			nick,
+			(at_trab+at_ment+at_consist+at_vis+at_mec) soma
+		FROM
+			jogador,(SELECT @customer_no:=0,@row_number:=0) as t
+		ORDER BY funcao_id, soma desc) S
+		JOIN funcao ON funcao.id = S.fid
+		where NUM = 1;';
+		$query = $this->db->query($sql);
+		return $query->result_array();
+	}
+
+
+
 	public function store($dados = null, $id = null) {
 		
 		if ($dados) {

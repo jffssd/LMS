@@ -6,33 +6,29 @@
 					<div class="row">
 
 							<!-- Melhores jogadores -->
-							<div style="width: 100%;">
+						<div style="width: 100%;">
 							<h5>Melhores por função</h5>
-							<?php	if ($jogadores->num_rows() > 0){ ?>
 							<table class="table table-striped">
 								<tbody>
 								<?php 
 										$count = 0;
-										foreach($jogadores -> result() as $jogador){
+										foreach($top_jogadores as $t_j){
 											$count++; ?>
 										<tr>
-												<td class="td_row"><?php echo $count;?></td>
-												<td class="td_row"><strong><?php echo $jogador->nick;?></strong></td>
-												<td class="td_row"><img src="<?php echo site_url();?>assets/img/roles/<?php echo $jogador->funcao_id;?>.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
-												<td class="td_row">0</td>
+										<td class="td_row"><img src="<?php echo site_url();?>assets/img/roles/<?php echo $t_j[fid];?>.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+										<td class="td_row"><?php echo $t_j[nome];?></td>
+
+											<td class="td_row"><strong><?php echo $t_j[nick];?></strong></td>
+											<td class="td_row"><?php echo $t_j[soma];?></td>
 										</tr>
 								<?php 	if ($count == 5){
 													break;
-												}
+										}
 								}
 								?>
 								</tbody>
 							</table>
-								<?php
-								} else{	?>
-									<h4 class="text-light">Nenhum registro cadastrado.</h4>
-								<?php 
-								} ?>
+
 						</div>
 						<!-- Melhores jogadores -->
 
@@ -140,9 +136,29 @@
 					</div>
 				</div>
 
+
 				<div class="col-md-6">
-						<?php	if ($jogadores->num_rows() > 0){ ?>
+
+
+
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+
+
+
 	
+					<?php	if ($jogadores->num_rows() > 0){ ?>
+					<input type="text" class="form-control" id="myInput" placeholder="Pesquisar jogador...">
 						<table class="table table-striped">
 								<thead class="thead-light" style="text-light">
 								<tr>
@@ -153,7 +169,7 @@
 									<th width="10%" colspan="3">Ações</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="myTable">
 							<?php 
 									$count = 0;
 									foreach($jogadores -> result() as $jogador){
@@ -167,10 +183,7 @@
 											<td class="td_row"><a href="<?php echo site_url();?>index.php/jogador/edit/<?php echo $jogador->id;?>" class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
 											<td class="td_row"><a href="#" class="confirma_exclusao btn btn-danger btn-sm" data-id="<?php echo $jogador->id;?>" data-nome="<?php echo $jogador->nome;?>" /><i class="fa fa-times" aria-hidden="true"></i></a></td>
 									</tr>
-							<?php 	if ($count == 10){
-												break;
-											}
-							}
+							<?php }
 							?>
 							</tbody>
 						</table>
