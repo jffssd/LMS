@@ -247,24 +247,19 @@ $(function () {
 						</style>
 						<!-- TEAM PANEL -->
 						<div class="col-md-10">
-							<div class="row">
-								<div style="height:70px; width: 100%; margin-bottom:10px; margin-top:5px;">
-									<div style="float:left; width: 70px; ">
-										<img src="<?php echo site_url();?>assets/img/logo-equipes/<?php echo $logo;?>" width="70" height="70">
+							<div class="row" >
+								<div style="width: 100%; padding-top:10px;">
+									<div style="float:left; width: 50px; padding-top: 4px; padding-left: 10px;">
+										<img src="<?php echo site_url();?>assets/img/logo-equipes/<?php echo $logo;?>" width="40" height="40">
 									</div>
-									<div style="padding-left:82px; padding-top:12px; font-size:28px; font-weight: bold; color: #262b33;">CNB ESPORTS CLUB
+									<div style="padding-top: 8px;margin-bottom: 20px;height: 50px; width: 100%; background-color: #262b33; color: white; font-family: helvetica; font-weight:bold; font-size: 24px; border-top-left-radius: 10px; border-top-right-radius: 10px; " align="center">JOGADORES
 									</div>
-									<div style="margin-bottom: 20px;height: 32px; width: 100%; background-color: <?php echo $cor_primaria;?>; color: white; font-family: helvetica; font-weight:bold; font-size: 24px;" align="center">JOGADORES
-									</div>
-
-
 								</div>
 							</div>
-							<div class="row">
-
+							<div class="row" style="background-color: #eeeeee; padding-top: 20px; margin-top:-20px;">
 							<?php foreach($jogador_equipe -> result() as $j_e){ 
 							$bg = 'http://localhost:8080/lms/assets/img/layout/card-player-background-'.$j_e->funcao_id.'.jpg'; ?>
-								<div class="col-md-3">
+								<div class="col-md-3" >
 									<div class="card card-01 card-dark" style="border-radius: 10px; margin-bottom: 10px;">
 										<div class="profile-box-header" align="center">
 											<img src="<?php echo site_url();?>assets/img/roles/<?php echo $j_e->funcao_id;?>.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"><?php echo strtoupper($j_e->f_nome);?>
@@ -393,7 +388,7 @@ $(function () {
 										</div>
 									</div>
 								</div>
-								<div style="margin-top:280px;height: 32px; width: 100%; background-color: <?php echo $cor_primaria;?>; color: white; font-family: helvetica; font-weight:bold; font-size: 24px;" align="center">CONQUISTAS</div>
+								<div style="margin-top:280px;height: 32px; width: 100%; background-color: #262b33; color: white; font-family: helvetica; font-weight:bold; font-size: 24px;" align="center">CONQUISTAS</div>
 								<div style="margin-top:10px;">
 								<table class="table table-striped">
 									<thead class="thead-light" style="text-light">

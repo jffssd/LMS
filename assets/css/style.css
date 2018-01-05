@@ -223,11 +223,11 @@
 }
 .gradient-menu{
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a9e4f7+0,0fb4e7+100;Ble+3D+%235 */
-	background: #343a40; /* Old browsers */
-	background: -moz-linear-gradient(top, #343a40 0%, #4d565f 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, #343a40 0%,#4d565f 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, #343a40 0%,#4d565f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#343a40', endColorstr='#4d565f',GradientType=0 ); /* IE6-9 */
+	background: #262b33; /* Old browsers */
+	background: -moz-linear-gradient(top, #262b33 0%, #4d565f 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #262b33 0%,#4d565f 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #262b33 0%,#4d565f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#262b33', endColorstr='#4d565f',GradientType=0 ); /* IE6-9 */
 	margin-top: -10px;
 	margin-bottom: 10px; 
 	padding: 10px; 
