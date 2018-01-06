@@ -4902,7 +4902,7 @@
 						plugin.fnUpdate( settings, redraw );
 					}
 				},
-				"sName": "pagination pagination-custom"
+				"sName": "pagination"
 			} );
 		}
 	
@@ -10266,7 +10266,7 @@
 		 *      } );
 		 *    } );
 		 */
-		"bDeferRender": true,
+		"bDeferRender": false,
 	
 	
 		/**
@@ -10357,7 +10357,7 @@
 		 *      } );
 		 *    } );
 		 */
-		"bLengthChange": false,
+		"bLengthChange": true,
 	
 	
 		/**
@@ -10396,7 +10396,7 @@
 		 *      } );
 		 *    } );
 		 */
-		"bProcessing": true,
+		"bProcessing": false,
 	
 	
 		/**
@@ -10499,7 +10499,7 @@
 		 *      } );
 		 *    } );
 		 */
-		"bSort": false,
+		"bSort": true,
 	
 	
 		/**
@@ -11238,7 +11238,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sSortAscending": ": ordenar coluna crescente",
+				"sSortAscending": ": activate to sort column ascending",
 	
 				/**
 				 * ARIA label that is added to the table headers when the column may be
@@ -11261,7 +11261,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sSortDescending": ": ordenar coluna decrescente"
+				"sSortDescending": ": activate to sort column descending"
 			},
 	
 			/**
@@ -11291,7 +11291,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sFirst": "Primeira",
+				"sFirst": "First",
 	
 	
 				/**
@@ -11314,7 +11314,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sLast": "Última",
+				"sLast": "Last",
 	
 	
 				/**
@@ -11337,7 +11337,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sNext": "Próxima",
+				"sNext": "Next",
 	
 	
 				/**
@@ -11360,7 +11360,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sPrevious": "Anterior"
+				"sPrevious": "Previous"
 			},
 	
 			/**
@@ -11383,7 +11383,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "Não há dados na tabela",
+			"sEmptyTable": "No data available in table",
 	
 	
 			/**
@@ -11415,7 +11415,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+			"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
 	
 	
 			/**
@@ -11436,7 +11436,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Não há registros para exibir",
+			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
 	
 	
 			/**
@@ -11458,7 +11458,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoFiltered": "(Filtrado de _MAX_ registros)",
+			"sInfoFiltered": "(filtered from _MAX_ total entries)",
 	
 	
 			/**
@@ -11576,7 +11576,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLengthMenu": "Mostrando _MENU_ registros",
+			"sLengthMenu": "Show _MENU_ entries",
 	
 	
 			/**
@@ -11656,7 +11656,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sSearch": "Pesquisa:",
+			"sSearch": "Search:",
 	
 	
 			/**
@@ -11714,7 +11714,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sZeroRecords": "Não encontramos nenhum registro"
+			"sZeroRecords": "No matching records found"
 		},
 	
 	
@@ -11881,7 +11881,7 @@
 		 *      } );
 		 *    } )
 		 */
-		"sPaginationType": "full_numbers",
+		"sPaginationType": "simple_numbers",
 	
 	
 		/**

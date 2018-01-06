@@ -19,9 +19,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <title>LMS</title>
   <!-- Bootstrap core CSS-->
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   <script type="text/javascript" src="<?php echo site_url();?>assets/js/jquery.js"></script>
-  <script type="text/javascript" src="<?php echo site_url();?>assets/js/jquery.quick.search.js"></script>
+  <!--<script type="text/javascript" src="<?php echo site_url();?>assets/js/jquery.quick.search.js"></script>-->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   <link href="<?php echo site_url();?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="<?php echo site_url();?>assets/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <link href="<?php echo site_url();?>assets/css/sb-admin.css" rel="stylesheet">

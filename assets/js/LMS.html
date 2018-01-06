@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://localhost:8080/lms/jogador -->
+<html lang="pt-br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="">
+  <meta name="author" content="João Felipe">
+  <link rel="icon" href="http://localhost:8080/lms//favicon.ico" type="image/x-icon">  <title>LMS</title>
+  <!-- Bootstrap core CSS-->
+  <!-- Latest compiled and minified CSS -->
+  <script type="text/javascript" src="./LMS_files/jquery.js.download"></script>
+  <!--<script type="text/javascript" src="http://localhost:8080/lms/assets/js/jquery.quick.search.js"></script>-->
+
+  <link rel="stylesheet" href="./LMS_files/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link href="./LMS_files/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="./LMS_files/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="./LMS_files/sb-admin.css" rel="stylesheet">
+  <link href="./LMS_files/style.css" rel="stylesheet">
+
+
+<style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
+
+<body class="fixed-nav sticky-footer" id="page-top" style="padding-bottom:0px;">
+  <!-- Navigation-->
+
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color: #262b33 !important;" id="mainNav">
+    <a class="navbar-brand" href="http://localhost:8080/lms/equipe">E-Sports Manager</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Dashboard">
+          <a class="nav-link" href="http://localhost:8080/lms/equipe">
+            <i class="fa fa-fw fa-dashboard"></i>
+            <span class="nav-link-text">Principal</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Dashboard">
+          <a class="nav-link" href="http://localhost:8080/lms/equipe">
+            <i class="fa fa-fw fa-inbox"></i>
+            <span class="nav-link-text">Caixa de Entrada</span>
+          </a>
+        </li>
+
+        <hr class="nav-menu-divider" style="height: 1px; margin: 0px; overflow: hidden; background-color: #737a81; width: 100%; opacity: 0.1;">
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Charts">
+          <a class="nav-link" href="http://localhost:8080/lms/equipe">            <i class="fa fa-fw fa-users "></i>
+            <span class="nav-link-text">Equipes</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tables">
+          <a class="nav-link" href="http://localhost:8080/lms/jogador">            <i class="fa fa-fw fa-user"></i>
+            <span class="nav-link-text">Jogadores</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Components">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="http://localhost:8080/lms/jogador#collapseComponents" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-wrench"></i>
+            <span class="nav-link-text">Geral</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseComponents">
+            <li>
+              <a href="http://localhost:8080/lms/pais"><i class="fa fa-fw fa-flag"></i> Países</a>
+            </li>
+            <li>
+              <a href="http://localhost:8080/lms/jogador#"><i class="fa fa-fw fa-flag"></i> Cards</a>
+            </li>
+          </ul>
+        </li>
+
+        <hr class="nav-menu-divider" style="height: 1px; margin: 0px; overflow: hidden; background-color: #737a81; width: 100%; opacity: 0.1;">
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Link">
+          <a class="nav-link" href="http://localhost:8080/lms/jogador#">
+            <i class="fa fa-fw fa-link"></i>
+            <span class="nav-link-text">Link</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- NAVBAR TOGGLER -->
+
+      <ul class="navbar-nav sidenav-toggler">
+        <li class="nav-item">
+          <a class="nav-link text-center" id="sidenavToggler">
+            <i class="fa fa-fw fa-angle-left"></i>
+          </a>
+        </li>
+      </ul>
+      
+      <!-- NAVBAR TOP -->
+      
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="http://localhost:8080/lms/jogador#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-fw fa-envelope"></i>
+            <span class="d-lg-none">Menesagens
+              <span class="badge badge-pill badge-primary">12 Novas</span>
+            </span>
+            <span class="indicator text-primary d-none d-lg-block">
+              <i class="fa fa-fw fa-circle"></i>
+            </span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="messagesDropdown">
+            <h6 class="dropdown-header">Novas Mensagens:</h6>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="http://localhost:8080/lms/jogador#">
+              <strong>David Miller</strong>
+              <span class="small float-right text-muted">11:21 AM</span>
+              <div class="dropdown-message small">MSG1</div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="http://localhost:8080/lms/jogador#">
+              <strong>Jane Smith</strong>
+              <span class="small float-right text-muted">11:21 AM</span>
+              <div class="dropdown-message small">MSG2</div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item small" href="http://localhost:8080/lms/jogador#">Ver todas Mensagens</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="http://localhost:8080/lms/jogador#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-fw fa-bell"></i>
+            <span class="d-lg-none">Alertas
+              <span class="badge badge-pill badge-warning">6 New</span>
+            </span>
+            <span class="indicator text-warning d-none d-lg-block">
+              <i class="fa fa-fw fa-circle"></i>
+            </span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+            <h6 class="dropdown-header">Novos Alertas:</h6>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="http://localhost:8080/lms/jogador#">
+              <span class="text-success">
+                <strong>
+                  <i class="fa fa-long-arrow-up fa-fw"></i>Mudança de Status</strong>
+              </span>
+              <span class="small float-right text-muted">11:21 AM</span>
+              <div class="dropdown-message small">MSG 1</div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="http://localhost:8080/lms/jogador#">
+              <span class="text-danger">
+                <strong>
+                  <i class="fa fa-long-arrow-down fa-fw"></i>Mudança de Status</strong>
+              </span>
+              <span class="small float-right text-muted">11:21 AM</span>
+              <div class="dropdown-message small">MSG 2</div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item small" href="http://localhost:8080/lms/jogador#">Ver todos os alertas</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <form class="form-inline my-2 my-lg-0 mr-lg-2">
+            <div class="input-group">
+              <input class="form-control" type="text" placeholder="Pesquisar por...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button">
+                  <i class="fa fa-search"></i>
+                </button>
+              </span>
+            </div>
+          </form>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+            <i class="fa fa-fw fa-sign-out"></i>Sair</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="content-wrapper" style="padding: 0px !important;">
+    <div class="container-fluid" style="padding: 0px !important;">
+      <!-- Breadcrumbs-->
+        <div class="tab-jogador" style="padding:10px;">
+		<div class="col-md-12">
+			<div class="row">
+
+				<div class="col-md-3">
+
+					<div class="row" style="background-color:#262b33; color: #eeeeee; height: 50px; border-top-left-radius: 10px; border-top-right-radius: 10px; ">
+						<div class="col-12" align="center" style="margin-bottom:5px; padding-top:14px;">
+							<h5 style="font-size:18px;">MELHORES POR FUNÇÃO</h5>
+						</div>
+					</div>
+					<div class="row">
+			
+							<!-- Melhores jogadores -->
+						<div style="width: 100%;">
+							
+							<table class="table table-striped">
+								<tbody>
+																		<tr>
+											<td class="td_row"><img src="./LMS_files/1.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+											<td class="td_row"><strong>Lynx</strong></td>
+											<td class="td_row">42</td>
+										</tr>
+																		<tr>
+											<td class="td_row"><img src="./LMS_files/2.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+											<td class="td_row"><strong>Caos</strong></td>
+											<td class="td_row">42</td>
+										</tr>
+																		<tr>
+											<td class="td_row"><img src="./LMS_files/3.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+											<td class="td_row"><strong>Marf</strong></td>
+											<td class="td_row">29</td>
+										</tr>
+																		<tr>
+											<td class="td_row"><img src="./LMS_files/4.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+											<td class="td_row"><strong>Vahvel</strong></td>
+											<td class="td_row">42</td>
+										</tr>
+																		<tr>
+											<td class="td_row"><img src="./LMS_files/5.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+											<td class="td_row"><strong>DudsTheBoy</strong></td>
+											<td class="td_row">42</td>
+										</tr>
+																</tbody>
+							</table>
+
+						</div>
+						<!-- Melhores jogadores -->
+
+
+						<!-- Fim Mais Escalados -->
+
+						<div style="width: 100%;">
+							<div class="row" style="background-color:#262b33; color: #eeeeee; height: 50px; border-top-left-radius: 10px; border-top-right-radius: 10px; ">
+								<div class="col-12" align="center" style="margin-bottom:5px; padding-top:14px;">
+									<h5 style="font-size:18px;">MAIORES ATRIBUTOS</h5>
+								</div>
+							</div>
+												<table class="table table-striped">
+							<tbody>
+																<tr>
+											<td class="td_row">1</td>
+											<td class="td_row"><strong>Jisu</strong></td>
+											<td class="td_row"><img src="./LMS_files/1.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+											<td class="td_row">0</td>
+									</tr>
+																<tr>
+											<td class="td_row">2</td>
+											<td class="td_row"><strong>Pimpimenta</strong></td>
+											<td class="td_row"><img src="./LMS_files/2.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+											<td class="td_row">0</td>
+									</tr>
+																<tr>
+											<td class="td_row">3</td>
+											<td class="td_row"><strong>Jukes</strong></td>
+											<td class="td_row"><img src="./LMS_files/1.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+											<td class="td_row">0</td>
+									</tr>
+																<tr>
+											<td class="td_row">4</td>
+											<td class="td_row"><strong>Blury</strong></td>
+											<td class="td_row"><img src="./LMS_files/4.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+											<td class="td_row">0</td>
+									</tr>
+																<tr>
+											<td class="td_row">5</td>
+											<td class="td_row"><strong>Xico</strong></td>
+											<td class="td_row"><img src="./LMS_files/3.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+											<td class="td_row">0</td>
+									</tr>
+														</tbody>
+						</table>
+													</div>
+						<!-- Fim Mais Escalados -->
+
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					<div class="row">
+
+							<!-- Melhores jogadores -->
+							<div style="width: 100%;">
+							<div class="row" style="background-color:#262b33; color: #eeeeee; height: 50px; border-top-left-radius: 10px; border-top-right-radius: 10px; ">
+								<div class="col-12" align="center" style="margin-bottom:5px; padding-top:14px;">
+									<h5 style="font-size:18px;">MAIS ESCALADOS</h5>
+								</div>
+							</div>
+														<table class="table table-striped">
+								<tbody>
+																		<tr>
+												<td class="td_row">1</td>
+												<td class="td_row"><strong>Jisu</strong></td>
+												<td class="td_row"><img src="./LMS_files/1.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+												<td class="td_row">0</td>
+										</tr>
+																		<tr>
+												<td class="td_row">2</td>
+												<td class="td_row"><strong>Pimpimenta</strong></td>
+												<td class="td_row"><img src="./LMS_files/2.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+												<td class="td_row">0</td>
+										</tr>
+																		<tr>
+												<td class="td_row">3</td>
+												<td class="td_row"><strong>Jukes</strong></td>
+												<td class="td_row"><img src="./LMS_files/1.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+												<td class="td_row">0</td>
+										</tr>
+																		<tr>
+												<td class="td_row">4</td>
+												<td class="td_row"><strong>Blury</strong></td>
+												<td class="td_row"><img src="./LMS_files/4.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+												<td class="td_row">0</td>
+										</tr>
+																		<tr>
+												<td class="td_row">5</td>
+												<td class="td_row"><strong>Xico</strong></td>
+												<td class="td_row"><img src="./LMS_files/3.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+												<td class="td_row">0</td>
+										</tr>
+																</tbody>
+							</table>
+														</div>
+						<!-- Melhores jogadores -->
+
+
+						<!-- Fim Mais Escalados -->
+						<div style="width: 100%;">
+						<div class="row" style="background-color:#262b33; color: #eeeeee; height: 50px; border-top-left-radius: 10px; border-top-right-radius: 10px; ">
+								<div class="col-12" align="center" style="margin-bottom:5px; padding-top:14px;">
+									<h5 style="font-size:18px;">MAIORES PERÍCIAS</h5>
+								</div>
+							</div>
+												<table class="table table-striped">
+							<tbody>
+																<tr>
+											<td class="td_row">1</td>
+											<td class="td_row"><strong>Jisu</strong></td>
+											<td class="td_row"><img src="./LMS_files/1.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+											<td class="td_row">0</td>
+									</tr>
+																<tr>
+											<td class="td_row">2</td>
+											<td class="td_row"><strong>Pimpimenta</strong></td>
+											<td class="td_row"><img src="./LMS_files/2.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+											<td class="td_row">0</td>
+									</tr>
+																<tr>
+											<td class="td_row">3</td>
+											<td class="td_row"><strong>Jukes</strong></td>
+											<td class="td_row"><img src="./LMS_files/1.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+											<td class="td_row">0</td>
+									</tr>
+																<tr>
+											<td class="td_row">4</td>
+											<td class="td_row"><strong>Blury</strong></td>
+											<td class="td_row"><img src="./LMS_files/4.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+											<td class="td_row">0</td>
+									</tr>
+																<tr>
+											<td class="td_row">5</td>
+											<td class="td_row"><strong>Xico</strong></td>
+											<td class="td_row"><img src="./LMS_files/3.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"></td>
+											<td class="td_row">0</td>
+									</tr>
+														</tbody>
+						</table>
+													</div>
+						<!-- Fim Mais Escalados -->
+
+					</div>
+				</div>
+
+
+				<div class="col-md-6">
+
+
+
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+	
+										<div class="table-responsive">
+					<div id="dataTable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer"><div class="row" style="background-color:red;"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-striped dataTable no-footer" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+					  <thead>
+						<tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label=": activate to sort column descending" style="width: 21px;"></th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Jogador: activate to sort column ascending" style="width: 84px;">Jogador</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Função: activate to sort column ascending" style="width: 56px;">Função</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="País: activate to sort column ascending" style="width: 30px;">País</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label=": activate to sort column ascending" style="width: 13px;"></th></tr>
+					  </thead>
+					  <tbody>
+					  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  
+			  					  <tr role="row" class="odd">
+							  <td class="td_row sorting_1"><img src="./LMS_files/foto.jpg" width="40" height="40"></td>
+							  <td class="td_row"><strong>Jisu</strong></td>
+							  <td class="td_row"><img src="./LMS_files/1.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;">TOPO</td>
+							  <td class="td_row"><img src="./LMS_files/KOREASOUTH.png" alt="COREIA DO SUL" width="30" height="20"></td>
+							  <td class="td_row"><a href="http://localhost:8080/lms/index.php/jogador/view/" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/index.php/jogador/edit/" class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/jogador#" class="confirma_exclusao btn btn-danger btn-sm" data-id="" data-nome="Park"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+					  </tr><tr role="row" class="even">
+							  <td class="td_row sorting_1"><img src="./LMS_files/foto.jpg" width="40" height="40"></td>
+							  <td class="td_row"><strong>Pimpimenta</strong></td>
+							  <td class="td_row"><img src="./LMS_files/2.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;">SELVA</td>
+							  <td class="td_row"><img src="./LMS_files/BRAZIL.png" alt="BRASIL" width="30" height="20"></td>
+							  <td class="td_row"><a href="http://localhost:8080/lms/index.php/jogador/view/" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/index.php/jogador/edit/" class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/jogador#" class="confirma_exclusao btn btn-danger btn-sm" data-id="" data-nome="Gabriel"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+					  </tr><tr role="row" class="odd">
+							  <td class="td_row sorting_1"><img src="./LMS_files/foto.jpg" width="40" height="40"></td>
+							  <td class="td_row"><strong>Jukes</strong></td>
+							  <td class="td_row"><img src="./LMS_files/1.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;">TOPO</td>
+							  <td class="td_row"><img src="./LMS_files/BRAZIL.png" alt="BRASIL" width="30" height="20"></td>
+							  <td class="td_row"><a href="http://localhost:8080/lms/index.php/jogador/view/" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/index.php/jogador/edit/" class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/jogador#" class="confirma_exclusao btn btn-danger btn-sm" data-id="" data-nome="Flávio"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+					  </tr><tr role="row" class="even">
+							  <td class="td_row sorting_1"><img src="./LMS_files/foto.jpg" width="40" height="40"></td>
+							  <td class="td_row"><strong>Blury</strong></td>
+							  <td class="td_row"><img src="./LMS_files/4.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;">SUPORTE</td>
+							  <td class="td_row"><img src="./LMS_files/BRAZIL.png" alt="BRASIL" width="30" height="20"></td>
+							  <td class="td_row"><a href="http://localhost:8080/lms/index.php/jogador/view/" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/index.php/jogador/edit/" class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/jogador#" class="confirma_exclusao btn btn-danger btn-sm" data-id="" data-nome="Daniel"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+					  </tr><tr role="row" class="odd">
+							  <td class="td_row sorting_1"><img src="./LMS_files/foto.jpg" width="40" height="40"></td>
+							  <td class="td_row"><strong>Xico</strong></td>
+							  <td class="td_row"><img src="./LMS_files/3.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;">MEIO</td>
+							  <td class="td_row"><img src="./LMS_files/PORTUGAL.png" alt="PORTUGAL" width="30" height="20"></td>
+							  <td class="td_row"><a href="http://localhost:8080/lms/index.php/jogador/view/" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/index.php/jogador/edit/" class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/jogador#" class="confirma_exclusao btn btn-danger btn-sm" data-id="" data-nome="Francisco"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+					  </tr><tr role="row" class="even">
+							  <td class="td_row sorting_1"><img src="./LMS_files/foto.jpg" width="40" height="40"></td>
+							  <td class="td_row"><strong>Sky</strong></td>
+							  <td class="td_row"><img src="./LMS_files/3.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;">MEIO</td>
+							  <td class="td_row"><img src="./LMS_files/KOREASOUTH.png" alt="COREIA DO SUL" width="30" height="20"></td>
+							  <td class="td_row"><a href="http://localhost:8080/lms/index.php/jogador/view/" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/index.php/jogador/edit/" class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/jogador#" class="confirma_exclusao btn btn-danger btn-sm" data-id="" data-nome="Kim"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+					  </tr><tr role="row" class="odd">
+							  <td class="td_row sorting_1"><img src="./LMS_files/foto.jpg" width="40" height="40"></td>
+							  <td class="td_row"><strong>Winged</strong></td>
+							  <td class="td_row"><img src="./LMS_files/2.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;">SELVA</td>
+							  <td class="td_row"><img src="./LMS_files/KOREASOUTH.png" alt="COREIA DO SUL" width="30" height="20"></td>
+							  <td class="td_row"><a href="http://localhost:8080/lms/index.php/jogador/view/" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/index.php/jogador/edit/" class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/jogador#" class="confirma_exclusao btn btn-danger btn-sm" data-id="" data-nome="Park"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+					  </tr><tr role="row" class="even">
+							  <td class="td_row sorting_1"><img src="./LMS_files/foto.jpg" width="40" height="40"></td>
+							  <td class="td_row"><strong>Yoda</strong></td>
+							  <td class="td_row"><img src="./LMS_files/3.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;">MEIO</td>
+							  <td class="td_row"><img src="./LMS_files/BRAZIL.png" alt="BRASIL" width="30" height="20"></td>
+							  <td class="td_row"><a href="http://localhost:8080/lms/index.php/jogador/view/" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/index.php/jogador/edit/" class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/jogador#" class="confirma_exclusao btn btn-danger btn-sm" data-id="" data-nome="Felipe"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+					  </tr><tr role="row" class="odd">
+							  <td class="td_row sorting_1"><img src="./LMS_files/foto.jpg" width="40" height="40"></td>
+							  <td class="td_row"><strong>Venon</strong></td>
+							  <td class="td_row"><img src="./LMS_files/4.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;">SUPORTE</td>
+							  <td class="td_row"><img src="./LMS_files/BRAZIL.png" alt="BRASIL" width="30" height="20"></td>
+							  <td class="td_row"><a href="http://localhost:8080/lms/index.php/jogador/view/" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/index.php/jogador/edit/" class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/jogador#" class="confirma_exclusao btn btn-danger btn-sm" data-id="" data-nome="Fábio"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+					  </tr><tr role="row" class="even">
+							  <td class="td_row sorting_1"><img src="./LMS_files/foto.jpg" width="40" height="40"></td>
+							  <td class="td_row"><strong>Theusma</strong></td>
+							  <td class="td_row"><img src="./LMS_files/5.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;">ATIRADOR</td>
+							  <td class="td_row"><img src="./LMS_files/BRAZIL.png" alt="BRASIL" width="30" height="20"></td>
+							  <td class="td_row"><a href="http://localhost:8080/lms/index.php/jogador/view/" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/index.php/jogador/edit/" class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a> <a href="http://localhost:8080/lms/jogador#" class="confirma_exclusao btn btn-danger btn-sm" data-id="" data-nome="Matheus"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+					  </tr></tbody>
+					</table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 125 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="http://localhost:8080/lms/jogador#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="http://localhost:8080/lms/jogador#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="http://localhost:8080/lms/jogador#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="http://localhost:8080/lms/jogador#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="http://localhost:8080/lms/jogador#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="http://localhost:8080/lms/jogador#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item disabled" id="dataTable_ellipsis"><a href="http://localhost:8080/lms/jogador#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">…</a></li><li class="paginate_button page-item "><a href="http://localhost:8080/lms/jogador#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">13</a></li><li class="paginate_button page-item next" id="dataTable_next"><a href="http://localhost:8080/lms/jogador#" aria-controls="dataTable" data-dt-idx="8" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
+				  
+								</div>
+				</div>
+			</div>
+		</div>	
+</div>
+
+
+			
+<div class="modal fade" id="modal_confirmation">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Confirmação de Exclusão</h4>
+      </div>
+      <div class="modal-body">
+        <p style="color:#afafaf;">Deseja realmente excluir o registro <strong><span id="nome_exclusao"></span></strong>?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Agora não</button>
+        <button type="button" class="btn btn-danger" id="btn_excluir">Sim. Acabe com ele</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script src="./LMS_files/jquery.js.download"></script>	
+<script src="./LMS_files/bootstrap.min.js.download"></script>
+
+	<script>
+	
+		var base_url = "http://localhost:8080/lms/";
+	
+		$(function(){
+			$('.confirma_exclusao').on('click', function(e) {
+			    e.preventDefault();
+			    
+			    var nome = $(this).data('nome');
+			    var id = $(this).data('id');
+			    
+			    $('#modal_confirmation').data('nome', nome);
+			    $('#modal_confirmation').data('id', id);
+			    $('#modal_confirmation').modal('show');
+			});
+			
+			$('#modal_confirmation').on('show.bs.modal', function () {
+			  var nome = $(this).data('nome');
+			  $('#nome_exclusao').text(nome);
+			});	
+			
+			$('#btn_excluir').click(function(){
+				var id = $('#modal_confirmation').data('id');
+				document.location.href = base_url + "index.php/jogador/delete/"+id;
+			});					
+		});
+	</script>
+	    </div>
+  </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="./LMS_files/jquery.js.download"></script><script src="./LMS_files/jquery.min.js.download"></script><script src="./LMS_files/bootstrap.bundle.min.js.download"></script><script src="./LMS_files/jquery.easing.min.js.download"></script><script src="./LMS_files/Chart.min.js.download"></script><script src="./LMS_files/jquery.dataTables.js.download"></script><script src="./LMS_files/dataTables.bootstrap4.js.download"></script><script src="./LMS_files/sb-admin.min.js.download"></script><script src="./LMS_files/sb-admin-datatables.min.js.download"></script><script src="./LMS_files/sb-admin-charts.min.js.download"></script>  
+
+
+
+</body></html>
