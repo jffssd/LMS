@@ -24,24 +24,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <hr class="nav-menu-divider" style="height: 1px; margin: 0px; overflow: hidden; background-color: #737a81; width: 100%; opacity: 0.1;">
 
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Equipes">
           <?php echo '<a class="nav-link" href="'.site_url().'equipe">'; ?>
             <i class="fa fa-fw fa-users "></i>
             <span class="nav-link-text">Equipes</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Jogadores">
           <?php echo '<a class="nav-link" href="'.site_url().'jogador">'; ?>
             <i class="fa fa-fw fa-user"></i>
             <span class="nav-link-text">Jogadores</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Transferências">
+          <?php echo '<a class="nav-link" href="'.site_url().'transferencias">'; ?>
+            <i class="fa fa-fw fa-exchange"></i>
+            <span class="nav-link-text">Transferências</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Geral">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseGeral" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-wrench"></i>
             <span class="nav-link-text">Geral</span>
           </a>
-          <ul class="sidenav-second-level collapse" id="collapseComponents">
+          <ul class="sidenav-second-level collapse" id="collapseGeral">
             <li>
               <a href="<?php echo site_url();?>pais"><i class="fa fa-fw fa-flag"></i> Países</a>
             </li>

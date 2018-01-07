@@ -654,6 +654,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`funcao` (
 ENGINE = InnoDB;
 
 
+
 -- -----------------------------------------------------
 -- Table `lmdb`.`equipe`
 -- -----------------------------------------------------
@@ -800,6 +801,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`equipe_jogador` (
   `titular` CHAR(1) NOT NULL,
   `equipe_id` INT NOT NULL,
   `jogador_id` INT NOT NULL,
+  `status` CHAR(1) NOT NULL,
   PRIMARY KEY (`id`, `equipe_id`, `jogador_id`),
   INDEX `fk_equipe_jogador_equipe1_idx` (`equipe_id` ASC),
   INDEX `fk_equipe_jogador_jogador1_idx` (`jogador_id` ASC),
@@ -971,35 +973,80 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `lmdb`.`transferencia`
+-- Table `lmdb`.`transferencia_jogador`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmdb`.`transferencia` (
+CREATE TABLE IF NOT EXISTS `lmdb`.`transferencia_jogador` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `jogador_custom_id` INT NOT NULL,
-  `equipe_id1` INT NOT NULL,
-  `equipe_id2` INT NOT NULL,
+  `jogador_custom_id` INT NULL,
+  `jogador_id` INT NULL,
+  `equipe_saida_id` INT NULL,
+  `equipe_ida_id` INT NOT NULL,
   `temporada` INT NOT NULL,
   `ano` INT NOT NULL,
-  PRIMARY KEY (`id`, `jogador_custom_id`, `equipe_id1`, `equipe_id2`),
-  INDEX `fk_transferencia_jogador_custom1_idx` (`jogador_custom_id` ASC),
-  INDEX `fk_transferencia_equipe1_idx` (`equipe_id1` ASC),
-  INDEX `fk_transferencia_equipe2_idx` (`equipe_id2` ASC),
-  CONSTRAINT `fk_transferencia_jogador_custom1`
+  `tipo` CHAR(1) NOT NULL,
+  `status` CHAR(1) NOT NULL,
+  `titular` CHAR(1) NOT NULL,
+  PRIMARY KEY (`id`, `jogador_custom_id`, `equipe_saida_id`, `equipe_ida_id`),
+  INDEX `fk_transferencia_jogador_equipe_ida_id_idx` (`equipe_ida_id` ASC),
+  CONSTRAINT `fk_transferencia_jogador_jogador`
+    FOREIGN KEY (`jogador_id`)
+    REFERENCES `lmdb`.`jogador` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_transferencia_jogador_jogador_custom1`
     FOREIGN KEY (`jogador_custom_id`)
     REFERENCES `lmdb`.`jogador_custom` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_transferencia_equipe1`
-    FOREIGN KEY (`equipe_id1`)
+  CONSTRAINT `fk_transferencia_jogador_equipe1`
+    FOREIGN KEY (`equipe_saida_id`)
     REFERENCES `lmdb`.`equipe` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_transferencia_equipe2`
-    FOREIGN KEY (`equipe_id2`)
+  CONSTRAINT `fk_transferencia_jogador_equipe2`
+    FOREIGN KEY (`equipe_ida_id`)
     REFERENCES `lmdb`.`equipe` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `lmdb`.`transferencia_tecnico`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `lmdb`.`transferencia_tecnico` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `jogador_custom_id` INT NULL,
+  `tecnico_id` INT NULL,
+  `equipe_saida_id` INT NULL,
+  `equipe_ida_id` INT NOT NULL,
+  `temporada` INT NOT NULL,
+  `ano` INT NOT NULL,
+  `tipo` CHAR(1) NOT NULL,
+  `status` CHAR(1) NOT NULL,
+  PRIMARY KEY (`id`, `jogador_custom_id`, `equipe_saida_id`, `equipe_ida_id`),
+  INDEX `fk_transferencia_tecnico_equipe_ida_id_idx` (`equipe_ida_id` ASC),
+  CONSTRAINT `fk_transferencia_tecnico_jogador`
+    FOREIGN KEY (`tecnico_id`)
+    REFERENCES `lmdb`.`tecnico` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_transferencia_tecnico_jogador_custom1`
+    FOREIGN KEY (`jogador_custom_id`)
+    REFERENCES `lmdb`.`jogador_custom` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_transferencia_tecnico_equipe1`
+    FOREIGN KEY (`equipe_saida_id`)
+    REFERENCES `lmdb`.`equipe` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_transferencia_tecnico_equipe2`
+    FOREIGN KEY (`equipe_ida_id`)
+    REFERENCES `lmdb`.`equipe` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
