@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador` (
   `at_mec` INT NOT NULL, -- Mecênica Fina
   `at_vis` INT NOT NULL, -- Visão de Jogo
   `foto` VARCHAR(120) NULL,
-  `status_transacao` CHAR(1) NOT NULL,
+  `status` CHAR(1) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_jogador_pais_idx` (`pais_id` ASC),
   INDEX `fk_jogador_personalidade1_idx` (`personalidade_id` ASC),
