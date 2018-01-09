@@ -123,4 +123,13 @@ INSERT INTO JOGADOR (NOME, NICK, SOBRENOME, GENERO, FUNCAO_ID, PAIS_ID, PERSONAL
 ("Daniel", "Blury", "Sarkovas", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
 ("Flávio", "Jukes", "Fernandes", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
 ("Gabriel", "Pimpimenta", "Pimenta", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
-("Park", "Jisu", "Jin-cheo", "M", 1, 46, 1, 1, 2, 3, 4, 5, "foto.jpg", 1);
+("Park", "Jisu", "Jin-cheo", "M", 1, 46, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Daniel", "Danagorn", "Drummond", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("João", "Skywaf", "Martins", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Gabriel", "bielz", "Dallaruvera", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Lucas", "K0ga", "Godoy", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Rúben", "rhuckz", "Barbosa", "M", 4, 142, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("", "Days4fun", "", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Bruno", "Sessh", "dos Santos", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("César", "NiT Cesar", "Barsocchi", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Bruno", "Kennedys", "Garcia", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1);
