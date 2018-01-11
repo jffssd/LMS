@@ -10,10 +10,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema lmdb
 -- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema lmdb
--- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `lmdb` DEFAULT CHARACTER SET utf8 ;
 USE `lmdb` ;
 
@@ -39,7 +35,6 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`personalidade_jogador` (
   `formula` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `lmdb`.`jogador`
@@ -637,10 +632,16 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`tecnico` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `nick` VARCHAR(15) NOT NULL,
+  `pais_id` INT NOT NULL,
   `sobrenome` VARCHAR(45) NOT NULL,
   `foto` VARCHAR(45) NOT NULL,
   `valor` INT NOT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`, `pais_id`),
+  CONSTRAINT `fk_tecnico_pais_id1`
+    FOREIGN KEY (`pais_id`)
+    REFERENCES `lmdb`.`pais` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -1016,7 +1017,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`transferencia_tecnico` (
   `jogador_custom_id` INT NULL,
   `tecnico_id` INT NULL,
   `equipe_saida_id` INT NULL,
-  `equipe_ida_id` INT NOT NULL,
+  `equipe_ida_id` INT NULL,
   `data` DATETIME NOT NULL,
   `tipo` CHAR(1) NOT NULL,
   `status` CHAR(1) NOT NULL,
