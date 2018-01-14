@@ -1051,3 +1051,668 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+-- ---------------------------------------------------------------
+-- INSERT DE PAÍSES
+-- ---------------------------------------------------------------
+
+INSERT INTO `pais` (`id`, `nome`, `name`, `flag`) VALUES
+(1,'AFEGANISTÃO','AFGHANISTAN','AFGHANISTAN'),
+(2,'ZIMBABUÉ','ZIMBABWE','ZIMBABWE'),
+(3,'ÁFRICA DO SUL','SOUTH AFRICA','SOUTHAFRICA'),
+(4,'ALBÂNIA','ALBANIA','ALBANIA'),
+(5,'ALEMANHA','GERMANY','GERMANY'),
+(6,'ANDORRA','ANDORRA','ANDORRA'),
+(7,'ANGOLA','ANGOLA','ANGOLA'),
+(8,'ARÁBIA SAUDITA','SAUDI ARABIA','SAUDIARABIA'),
+(9,'ARGÉLIA','ALGERIA','ALGERIA'),
+(10,'ARGENTINA','ARGENTINA','ARGENTINA'),
+(11,'ARMÉNIA','ARMENIA','ARMENIA'),
+(12,'ZÂMBIA','ZAMBIA','ZAMBIA'),
+(13,'AUSTRÁLIA','AUSTRALIA','AUSTRALIA'),
+(14,'ÁUSTRIA','AUSTRIA','AUSTRIA'),
+(15,'AZERBAIJÃO','AZERBAIJAN','AZERBAIJAN'),
+(16,'BAHAMAS','BAHAMAS THE','BAHAMASTHE'),
+(17,'BANGLADECHE','BANGLADESH','BANGLADESH'),
+(18,'BARBADOS','BARBADOS','BARBADOS'),
+(19,'BARÉM','BAHRAIN','BAHRAIN'),
+(20,'BÉLGICA','BELGIUM','BELGIUM'),
+(21,'BELIZE','BELIZE','BELIZE'),
+(22,'BENIM','BENIN','BENIN'),
+(23,'VIETNAME','VIETNAM','VIETNAM'),
+(24,'BIELORRÚSSIA','BELARUS','BELARUS'),
+(25,'BOLÍVIA','BOLIVIA','BOLIVIA'),
+(26,'BÓSNIA E HERZEGOVINA','BOSNIA AND HERZEGOVINA','BOSNIAANDHERZEGOVINA'),
+(27,'BOTSUANA','BOTSWANA','BOTSWANA'),
+(28,'BRASIL','BRAZIL','BRAZIL'),
+(29,'BULGÁRIA','BULGARIA','BULGARIA'),
+(30,'BURUNDI','BURUNDI','BURUNDI'),
+(31,'BUTÃO','BHUTAN','BHUTAN'),
+(32,'CABO VERDE','CAPE VERDE','CAPEVERDE'),
+(33,'CAMARÕES','CAMEROON','CAMEROON'),
+(34,'CAMBOJA','CAMBODIA','CAMBODIA'),
+(35,'CANADÁ','CANADA','CANADA'),
+(36,'CATAR','QATAR','QATAR'),
+(37,'CAZAQUISTÃO','KAZAKHSTAN','KAZAKHSTAN'),
+(38,'CHADE','CHAD','CHAD'),
+(39,'CHILE','CHILE','CHILE'),
+(40,'CHINA','CHINA','CHINA'),
+(41,'CHIPRE','CYPRUS','CYPRUS'),
+(42,'COLÔMBIA','COLOMBIA','COLOMBIA'),
+(43,'COMORES','COMOROS','COMOROS'),
+(44,'CONGO','CONGO','CONGO'),
+(45,'COREIA DO NORTE','KOREA NORTH','KOREANORTH'),
+(46,'COREIA DO SUL','KOREA SOUTH','KOREASOUTH'),
+(47,'COSTA DO MARFIM','IVORY COAST','IVORYCOAST'),
+(48,'COSTA RICA','COSTA RICA','COSTARICA'),
+(49,'CROÁCIA','CROATIA','CROATIA'),
+(50,'CUBA','CUBA','CUBA'),
+(51,'DINAMARCA','DENMARK','DENMARK'),
+(52,'DOMÍNICA','DOMINICA','DOMINICA'),
+(53,'EGIPTO','EGYPT','EGYPT'),
+(54,'EMIRADOS ÁRABES UNIDOS','UNITED ARAB EMIRATES','UNITEDARABEMIRATES'),
+(55,'EQUADOR','ECUADOR','ECUADOR'),
+(56,'ERITREIA','ERITREA','ERITREA'),
+(57,'ESLOVÁQUIA','SLOVAKIA','SLOVAKIA'),
+(58,'ESLOVÉNIA','SLOVENIA','SLOVENIA'),
+(59,'ESPANHA','SPAIN','SPAIN'),
+(60,'ESTADOS UNIDOS','UNITED STATES','UNITEDSTATES'),
+(61,'ESTÓNIA','ESTONIA','ESTONIA'),
+(62,'ETIÓPIA','ETHIOPIA','ETHIOPIA'),
+(63,'FIJI','FIJI','FIJI'),
+(64,'FILIPINAS','PHILIPPINES','PHILIPPINES'),
+(65,'FINLÂNDIA','FINLAND','FINLAND'),
+(66,'FRANÇA','FRANCE','FRANCE'),
+(67,'GABÃO','GABON','GABON'),
+(68,'GÂMBIA','GAMBIA','GAMBIA'),
+(69,'GANA','GHANA','GHANA'),
+(70,'GEÓRGIA','GEORGIA','GEORGIA'),
+(71,'GRANADA','GRENADA','GRENADA'),
+(72,'GRÉCIA','GREECE','GREECE'),
+(73,'GRONELÂNDIA','GREENLAND','GREENLAND'),
+(74,'GUATEMALA','GUATEMALA','GUATEMALA'),
+(75,'GUIANA','GUYANA','GUYANA'),
+(76,'GUIANA FRANCESA','FRENCH GUIANA','FRENCHGUIANA'),
+(77,'GUINÉ','GUINEA','GUINEA'),
+(78,'GUINÉ-BISSAU','GUINEA-BISSAU','GUINEA-BISSAU'),
+(79,'HAITI','HAITI','HAITI'),
+(80,'HONDURAS','HONDURAS','HONDURAS'),
+(81,'HONG KONG','HONG KONG','HONGKONG'),
+(82,'HUNGRIA','HUNGARY','HUNGARY'),
+(83,'IÉMEN','YEMEN','YEMEN'),
+(84,'ÍNDIA','INDIA','INDIA'),
+(85,'INDONÉSIA','INDONESIA','INDONESIA'),
+(86,'IRÃO','IRAN','IRAN'),
+(87,'IRAQUE','IRAQ','IRAQ'),
+(88,'IRLANDA','IRELAND','IRELAND'),
+(89,'ISLÂNDIA','ICELAND','ICELAND'),
+(90,'ISRAEL','ISRAEL','ISRAEL'),
+(91,'ITÁLIA','ITALY','ITALY'),
+(92,'JAMAICA','JAMAICA','JAMAICA'),
+(93,'JAPÃO','JAPAN','JAPAN'),
+(94,'JIBUTI','DJIBOUTI','DJIBOUTI'),
+(95,'JORDÂNIA','JORDAN','JORDAN'),
+(96,'KIRIBATI','KIRIBATI','KIRIBATI'),
+(97,'KOWEIT','KUWAIT','KUWAIT'),
+(98,'LAOS','LAOS','LAOS'),
+(99,'LESOTO','LESOTHO','LESOTHO'),
+(100,'LETÓNIA','LATVIA','LATVIA'),
+(101,'LÍBANO','LEBANON','LEBANON'),
+(102,'LIBÉRIA','LIBERIA','LIBERIA'),
+(103,'LÍBIA','LIBYAN ARAB JAMAHIRIYA','LIBYANARABJAMAHIRIYA'),
+(104,'LISTENSTAINE','LIECHTENSTEIN','LIECHTENSTEIN'),
+(105,'LITUÂNIA','LITHUANIA','LITHUANIA'),
+(106,'LUXEMBURGO','LUXEMBOURG','LUXEMBOURG'),
+(107,'MACEDÓNIA','MACEDONIA','MACEDONIA'),
+(108,'MADAGÁSCAR','MADAGASCAR','MADAGASCAR'),
+(109,'MALÁSIA','MALAYSIA','MALAYSIA'),
+(110,'MALAVI','MALAWI','MALAWI'),
+(111,'MALDIVAS','MALDIVES','MALDIVES'),
+(112,'MALI','MALI','MALI'),
+(113,'MALTA','MALTA','MALTA'),
+(114,'MARROCOS','MOROCCO','MOROCCO'),
+(115,'MAURÍCIA','MAURITIUS','MAURITIUS'),
+(116,'MAURITÂNIA','MAURITANIA','MAURITANIA'),
+(117,'MÉXICO','MEXICO','MEXICO'),
+(118,'MICRONÉSIA','MICRONESIA','MICRONESIA'),
+(119,'MOÇAMBIQUE','MOZAMBIQUE','MOZAMBIQUE'),
+(120,'MOLDÁVIA','MOLDOVA','MOLDOVA'),
+(121,'MÓNACO','MONACO','MONACO'),
+(122,'MONGÓLIA','MONGOLIA','MONGOLIA'),
+(123,'MONTENEGRO','MONTENEGRO','MONTENEGRO'),
+(124,'NAMÍBIA','NAMIBIA','NAMIBIA'),
+(125,'NAURU','NAURU','NAURU'),
+(126,'NEPAL','NEPAL','NEPAL'),
+(127,'NICARÁGUA','NICARAGUA','NICARAGUA'),
+(128,'NÍGER','NIGER','NIGER'),
+(129,'NIGÉRIA','NIGERIA','NIGERIA'),
+(130,'NORUEGA','NORWAY','NORWAY'),
+(131,'NOVA ZELÂNDIA','NEW ZEALAND','NEWZEALAND'),
+(132,'OMÃ','OMAN','OMAN'),
+(133,'PAÍSES BAIXOS','NETHERLANDS','NETHERLANDS'),
+(134,'PALAU','PALAU','PALAU'),
+(135,'PANAMÁ','PANAMA','PANAMA'),
+(136,'PAPUÁSIA-NOVA GUINÉ','PAPUA NEW GUINEA','PAPUANEWGUINEA'),
+(137,'PAQUISTÃO','PAKISTAN','PAKISTAN'),
+(138,'PARAGUAI','PARAGUAY','PARAGUAY'),
+(139,'PERU','PERU','PERU'),
+(140,'POLÓNIA','POLAND','POLAND'),
+(141,'PORTO RICO','PUERTO RICO','PUERTORICO'),
+(142,'PORTUGAL','PORTUGAL','PORTUGAL'),
+(143,'QUÉNIA','KENYA','KENYA'),
+(144,'QUIRGUIZISTÃO','KYRGYZSTAN','KYRGYZSTAN'),
+(145,'REINO UNIDO','UNITED KINGDOM','UNITEDKINGDOM'),
+(146,'REPÚBLICA CHECA','CZECH REPUBLIC','CZECHREPUBLIC'),
+(147,'REPÚBLICA DOMINICANA','DOMINICAN REPUBLIC','DOMINICANREPUBLIC'),
+(148,'ROMÉNIA','ROMANIA','ROMANIA'),
+(149,'RUANDA','RWANDA','RWANDA'),
+(150,'RÚSSIA','RUSSIAN FEDERATION','RUSSIANFEDERATION'),
+(151,'SALVADOR','EL SALVADOR','ELSALVADOR'),
+(152,'SAMOA','SAMOA','SAMOA'),
+(153,'SÃO MARINO','SAN MARINO','SANMARINO'),
+(154,'SÃO TOMÉ E PRÍNCIPE','SAO TOME AND PRINCIPE','SAOTOMEANDPRINCIPE'),
+(155,'SEICHELES','SEYCHELLES','SEYCHELLES'),
+(156,'SENEGAL','SENEGAL','SENEGAL'),
+(157,'SERRA LEOA','SIERRA LEONE','SIERRALEONE'),
+(158,'SÉRVIA','SERBIA','SERBIA'),
+(159,'SINGAPURA','SINGAPORE','SINGAPORE'),
+(160,'SÍRIA','SYRIA','SYRIA'),
+(161,'SOMÁLIA','SOMALIA','SOMALIA'),
+(162,'SUAZILÂNDIA','SWAZILAND','SWAZILAND'),
+(163,'SUDÃO','SUDAN','SUDAN'),
+(164,'SUÉCIA','SWEDEN','SWEDEN'),
+(165,'SUÍÇA','SWITZERLAND','SWITZERLAND'),
+(166,'SURINAME','SURINAME','SURINAME'),
+(167,'TAILÂNDIA','THAILAND','THAILAND'),
+(168,'TAIWAN','TAIWAN','TAIWAN'),
+(169,'TAJIQUISTÃO','TAJIKISTAN','TAJIKISTAN'),
+(170,'TANZÂNIA','TANZANIA','TANZANIA'),
+(171,'VENEZUELA','VENEZUELA','VENEZUELA'),
+(172,'TIMOR-LESTE','TIMOR-LESTE','TIMOR-LESTE'),
+(173,'TOGO','TOGO','TOGO'),
+(174,'TONGA','TONGA','TONGA'),
+(175,'TRINDADE E TOBAGO','TRINIDAD AND TOBAGO','TRINIDADANDTOBAGO'),
+(176,'TUNÍSIA','TUNISIA','TUNISIA'),
+(177,'TURQUEMENISTÃO','TURKMENISTAN','TURKMENISTAN'),
+(178,'TURQUIA','TURKEY','TURKEY'),
+(179,'TUVALU','TUVALU','TUVALU'),
+(180,'UCRÂNIA','UKRAINE','UKRAINE'),
+(181,'UGANDA','UGANDA','UGANDA'),
+(182,'URUGUAI','URUGUAY','URUGUAY'),
+(183,'USBEQUISTÃO','UZBEKISTAN','UZBEKISTAN'),
+(184,'VANUATU','VANUATU','VANUATU');
+
+-- ---------------------------------------------------------------
+-- INSERT DE REGIÕES
+-- ---------------------------------------------------------------
+
+INSERT INTO `regiao` (`nome`, `sigla`) VALUES
+('Campeonato Brasileiro de League of Legends', 'CBLOL');
+
+-- ---------------------------------------------------------------
+-- INSERT DE SEDES
+-- ---------------------------------------------------------------
+
+INSERT INTO SEDE (NOME, CAPACIDADE, AMBIENTE, ESTRUTURA, VALOR) VALUES 
+('Casa simples de aluguel', 7, 1, 1, 50000.00),
+('Apartamento de aluguel', 8, 2, 2, 650000.00),
+('Imóvel residencial', 7, 3, 2, 80000.00),
+('Gaming House pequena', 9, 3, 3, 100000.00),
+('Gaming House média', 10, 4, 3, 120000.00),
+('Gaming House grande', 12, 4, 4, 150000.00),
+('Centro de e-Sports', 15, 5, 5, 250000.00);
+
+-- ---------------------------------------------------------------
+-- INSERT DE TÉCNICOS
+-- ---------------------------------------------------------------
+
+INSERT INTO TECNICO (NOME, NICK, SOBRENOME, VALOR, PAIS_ID, FOTO) VALUES
+('Erick', 'Erickão', 'Cardoso', 6, 28, 'foto.jpg'),
+('Gabriel', 'MiT', 'Souza', 6, 28, 'foto.jpg'),
+('Lucas', 'Maestro', 'Pierre', 6, 28, 'foto.jpg'),
+('Gabriel', 'Hailer', 'Negreiros', 6, 28, 'foto.jpg'),
+('César', 'juc', 'Barbosa', 6, 28, 'foto.jpg'),
+('Vinícius', 'Neki', 'Ghilardi', 6, 28, 'foto.jpg'),
+('Otavio', 'Skullz', 'Macedo', 6, 28, 'foto.jpg'),
+('Renan', 'Dezenove', 'Crespo', 6, 28, 'foto.jpg'),
+('Alexander', 'Abaxial', 'Haibel', 6, 60, 'foto.jpg'),
+('Gabriel', 'Von', 'Barbosa', 6, 28, 'foto.jpg'),
+('Luis', 'Piroxz', 'Chavez', 6, 28, 'foto.jpg'),
+('Ram', 'Brokenshard', 'Djemal', 6, 90, 'foto.jpg'),
+('Hugo', 'Galfi', 'Garcia', 6, 28, 'foto.jpg'),
+('João P.', 'Dionrray', 'Barbosa', 6, 28, 'foto.jpg'),
+('', 'Leandro Martins', '', 6, 28, 'foto.jpg'),
+('John', 'Rnglol', 'Crichton', 6, 35, 'foto.jpg'),
+('Arthur', 'PAADA', 'Zarzur', 6, 28, 'foto.jpg'),
+('Sylvio', 'FeeFoo', 'Júnior', 6, 28, 'foto.jpg'),
+('', 'Cowelhy', '', 6, 28, 'foto.jpg'),
+('', 'Nuddle', '', 6, 28, 'foto.jpg'),
+('', 'CptJack', '', 6, 28, 'foto.jpg'),
+('', 'Peter Dun', '', 6, 145, 'foto.jpg'),
+('Thiago', 'Djokovic', 'Maia', 6, 28, 'foto.jpg'),
+('Alexandre', 'DrPuppet', 'Weber', 6, 28, 'foto.jpg'),
+('Luca', 'Gratis150ml', 'Baptistella', 6, 28, 'foto.jpg'),
+('Lee', 'Icarus', 'In-Cheol', 6, 46, 'foto.jpg'),
+('Daniel', 'Danagorn', 'Drummond', 6, 28, 'foto.jpg');
+
+-- ---------------------------------------------------------------
+-- INSERT DE EQUIPES
+-- ---------------------------------------------------------------
+
+INSERT INTO EQUIPE (ID, NOME, SIGLA, REGIAO_ID, STATUS, PAIS_ID, SEDE_ID, TECNICO_ID, QTD_COMISSAO, LOGO, COR_PRIMARIA, COR_SECUNDARIA, COR_TERCIARIA, VALOR) VALUES 
+(1, 'Pain Gaming', 'PNG', 1, 'A', 33, 1, 1, 15, 'pain-gaming-logo.png', '#b20101', '#000000', '#000000', 7.2),
+(2, 'Red Canids', 'RED', 1, 'A', 33, 1, 1, 15 , 'red-canids-logo.png', '#b20101', '#ffffff', '#000000', 7.2),
+(3, 'Brave e-Sports', 'BRAVE', 1, 'A', 33, 1, 1, 15 , 'brave-esports-logo.png', '#b20101', '#ffffff', '#000000', 7.2),
+(4, 'CNB e-Sports Club', 'CNB', 1, 'A', 33, 1, 1, 15 , 'cnb-esports-logo.png', '#0083db', '#ffffff', '#000000', 7.2),
+(5, 'Keyd Stars', 'VFK', 1, 'A', 33, 1, 1, 15 , 'keyd-stars-logo.png', '#828282', '#f4f142', '#000000', 7.2),
+(6, 'Operation Kino', 'OPK', 1, 'A', 33, 1, 1, 15 , 'operation-kino-logo.png', '#ffffff', '#000000', '#000000', 7.2),
+(7, 'ProGaming e-Sports', 'PRG', 1, 'A', 33, 1, 1, 15 , 'progaming-esports-logo.png', '#0083db', '#000000', '#000000', 7.2),
+(8, 'Team One', 'TONE', 1, 'A', 33, 1, 1, 15 , 'team-one-logo.png', '#828282', '#f4f142', '#000000', 7.2),
+(9, 'Iron Hawks', 'IHW', 1, 'A', 33, 1, 1, 15 , 'iron-hawks-logo.png', '#b20101', '#000000', '#000000', 7.2),
+(10, 'Merciless Gaming', 'MLG', 1, 'I', 33, 1, 1, 15 , 'merciless-gaming-logo.png', '#0083db','#ffffff', '#000000', 7.2),
+(11, 'Ilha da Macacada', 'IDM', 1, 'A', 33, 1, 1, 15, 'ilha-da-macacada-logo.png', '#f4f142', '#000000', '#000000', 7.2),
+(12, 'CNB Blue', 'CNB-B', 1, 'I', 33, 1, 1, 15 , 'cnb-esports-logo.png', '#0083db', '#ffffff', '#000000', 7.2),
+(13, 'CNB Trinity White', 'CNB-TW', 1, 'A', 33, 1, 1, 15 , 'cnb-esports-logo.png', '#0083db', '#ffffff', '#000000', 7.2),
+(14, 'Flamengo E-sports', 'FLA', 1, 'A', 33, 1, 1, 15, 'flamengo-esports-logo.png', '#b20101', '#000000', '#000000', 7.2),
+(15, 'INTZ E-sports', 'ITZ', 1, 'A', 33, 1, 1, 15, 'intz-logo.png', '#ffffff', '#000000', '#000000', 7.2),
+(16, 'Kabum E-sports', 'KBM', 1, 'A', 33, 1, 1, 15 , 'kabum-esports-logo.png', '#d1461a', '#000000', '#000000', 7.2),
+(17, 'T-SHOW', 'TSW', 1, 'A', 33, 1, 1, 15 , 't-show-esports-logo.png', '#828282', '#f4f142', '#000000', 7.2),
+(18, 'Submarino Stars', 'SMS', 1, 'A', 33, 1, 1, 15 , 'submarino-stars-logo.png', '#828282', '#f4f142', '#000000', 7.2);
+
+-- ---------------------------------------------------------------
+-- INSERT DE PERSONALIDADES
+-- ---------------------------------------------------------------
+
+INSERT INTO PERSONALIDADE_JOGADOR (NOME, DESCRICAO, FORMULA) VALUES 
+("SANGUINEO", "", ""),
+("COLÉRICO", "", ""),
+("MELANCÓLICO", "", ""),
+("FLEUMÁTICO", "", "");
+
+-- ---------------------------------------------------------------
+-- INSERT DE FUNÇÕES
+-- ---------------------------------------------------------------
+
+INSERT INTO FUNCAO (NOME, JOGO) VALUES 
+("Topo", 1),
+("Selva", 1),
+("Meio", 1),
+("Suporte", 1),
+("Atirador", 1);
+
+-- ---------------------------------------------------------------
+-- INSERT DE JOGADORES
+-- ---------------------------------------------------------------
+
+INSERT INTO JOGADOR (NOME, NICK, SOBRENOME, GENERO, FUNCAO_ID, PAIS_ID, PERSONALIDADE_ID, AT_TRAB, AT_MENT, AT_CONSIST, AT_MEC, AT_VIS, FOTO, STATUS) VALUES
+("", "Hawk", "", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Eduardo", "Aslan", "Nunes", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Gabriel", "Days", "Dias", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Guilherme", "Mills", "Conti", "M", 5, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Alexandre", "Codpiece", "de Carli", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Paulo V.", "Balto", "Braz", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Jefferson", "SoulDevourer", "de Aguiar", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Yan", "Yampi", "Petermann", "M", 4, 28, 1, 1, 2, 3, 4, 5, "6Q4G1-Yampi.jpg", 1),
+("Rafael", "Rakin", "Knittel", "M", 3, 28, 1, 1, 2, 3, 4, 5, "2A8T6-Rakin.jpg", 1),
+("Pablo", "pbO", "Yuri", "M", 5, 28, 1, 1, 2, 3, 4, 5, "9Y2G5-pbO.jpg", 1),
+("Benjamin", "Visdom", "Ruberg", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Leonardo", "Erasus", "Faria", "M", 2, 28, 1, 1, 2, 3, 4, 5, "8T4V6-Erasus.jpg", 1),
+("Pedro", "Lynx", "Quintavalle", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Jefferson", "Devo", "de Aguiar", "M", 5, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Pedro", "gafone", "Ramos", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Lucas", "Huanka", "Xavier", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Lucas", "Pkr", "Rabelo", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Victor", "Vahvel", "Vieira", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("André", "esA", "Pavezi", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Leonardo", "Robo", "Souza", "M", 1, 28, 1, 1, 2, 3, 4, 5, "0O0I9-Robo.jpg", 1),
+("Thúlio", "SirT", "Carlos", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Danniel", "Evrot", "Franco", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Felipe", "BrTT", "Gonçalves", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Jonas", "Caos", "Vriesman", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Gabriel", "Chavoso", "Rizzo", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Augusto", "Klaus", "Rizzo", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Gustavo", "Name", "Rodrigues", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Marcos", "Carioca", "Oliveira", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Ruan", "Anyone", "Silva", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Davi", "Joestar", "Rosalino", "M", 5, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Yan", "Damage", "Sales", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Luan", "LuanLeal", "Leal", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Bruno", "Envy", "Farias", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Diogo", "Shini", "Roge", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Marcelo", "Ayel", "Mello", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Pedro", "Ziriguidun", "Mello", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Gabriel", "Turtle", "Peixoto", "M", 2, 28, 1, 1, 2, 3, 4, 5, "1B1N3-Turtle.jpg", 1),
+("Luis", "Absolut", "Felipe", "M", 5, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Micael", "MicaO", "Rodrigues", "M", 5, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Luccas", "Zantins", "Zanqueta", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Henrique", "KZ", "Monteiro", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Filipe", "Ranger", "Brombilla", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Alexandre", "TitaN", "Lima", "M", 5, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Marcelo", "Riyev", "Carrara", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Guilherme", "Atlanta", "Matos", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Matheus", "Freire", "Souza", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Matheus", "dyNquedo", "Rossini", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Felipe", "Yang", "Zhao", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Gabriel", "Revolta", "Henud", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Gabriel", "Juzo", "Nishimura", "M", 5, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Victor", "Cabuloso", "Oliveira", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Gabriel", "tockers", "Claumann", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Henrique", "xanad0", "Schoenardie", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Luan", "Jockster", "Cardoso", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Eduardo", "Akrinus", "Chung", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Henrique", "Cheed", "Rossi", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Rodrigo", "Kalec", "Rodrigues", "M", 5, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Franklin", "Aoshi", "Coutinho", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Julio C.", "Nosferus", "Cruz", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Willyam", "Wos", "Bonpam", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Humberto", "Garotumb", "Peixoto", "M", 5, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Fernando", "Ferchu", "Aoki", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Murilo", "Takeshi", "Alves", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Thiago", "Tinowns", "Sartori", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Rodrigo", "Tay", "Panisa", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Gabriel", "Kami", "Santos", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Pedro", "Matsukaze", "Gama", "M", 5, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Caio", "Loop", "Almeida", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Mateus", "Skybart", "Neves", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Gustavo", "Minerva", "Alves", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Bruno", "Goku", "Miyaguchi", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Lucas F.", "Luskka", "Rentenchen", "M", 5, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Matheus", "Professor", "Leirião", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Emerson", "BocaJR", "Alencar", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("João", "Zuao", "Moraes", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Leonardo", "Lynkez", "Cassuci", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Natan", "fnb", "Braz", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Pedro L.", "LEP", "Marcari", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Carlos", "Nappon", "Rücker", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Gustavo", "Sacy", "Rossi", "M", 5, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Hugo", "Dioud", "Padioleau", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Kwon", "M1RAGE", "Noh-hoon", "M", 1, 46, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("João L.", "Marf", "Piola", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Alanderson", "4Lan", "Meireles", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Bruno", "Brucer", "Pereira", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Ygor", "RedBert", "Freitas", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Álvaro M.", "VVvert", "Martins", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Han", "Lactea", "Gi-Hyeon", "M", 5, 46, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Rafael", "Sparked", "Basi", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Lázaaro", "laz0", "Fontanez", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Álvaro", "LokiFc", "Ferrari", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Igor", "Yeoj", "Vieira", "M", 5, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Julia", "Cute", "Akemi", "F", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Denilson", "Ceos", "Oliveira", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Igor", "DudsTheBoy", "Lima", "M", 5, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Marcos", "Krastyel", "Ferraz", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Renan A.", "Nyu", "Silva", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Jorge", "Verfix", "Silveira", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Gustavo", "Baiano", "Gomes", "M", 4, 28, 1, 1, 2, 3, 4, 5, "9M8J2-Baiano.jpg", 1),
+("Mateus", "Fitz", "Cayres", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Matheus", "Picoca", "Tavares", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Renato", "TheFoxz", "de Souza", "M", 5, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Guilherme", "Vash", "del Buono", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Matheus", "Mylon", "Borges", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 0),
+("Guilherme", "Snowls", "Neves", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 0),
+("André", "manajj", "Rocha", "M", 5, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 0),
+("Arlindo", "element", "Leal", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 0),
+("Martin", "Espeon", "Gonçalves", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 0),
+("Vinícius", "Thulz", "Machado", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 0),
+("Matheus", "Sarkis", "Guimarães", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Whesley", "Leko", "Holler", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 0),
+("Felipe", "Skyer", "Gimenes", "M", 5, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 0),
+("Márcio", "Eryon", "Costa", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 0),
+("Vinícius", "b4dd", "Gomes", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 0),
+("Matheus", "Theusma", "Lima", "M", 5, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Fábio", "Venon", "Guimarães", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 0),
+("Felipe", "Yoda", "Noronha", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Park", "Winged", "Tae-jin", "M", 2, 46, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Kim", "Sky", "Ha-neul", "M", 3, 46, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Francisco", "Xico", "Antunes", "M", 3, 142, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Daniel", "Blury", "Sarkovas", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Flávio", "Jukes", "Fernandes", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Gabriel", "Pimpimenta", "Pimenta", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Park", "Jisu", "Jin-cheo", "M", 1, 46, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Daniel", "Danagorn", "Drummond", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("João", "Skywaf", "Martins", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Gabriel", "bielz", "Dallaruvera", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Lucas", "K0ga", "Godoy", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Rúben", "rhuckz", "Barbosa", "M", 4, 142, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("", "Days4fun", "", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Bruno", "Sessh", "dos Santos", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("César", "NiT Cesar", "Barsocchi", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Bruno", "Kennedys", "Garcia", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Leonardo", "Alocs", "Belo", "M", 4, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
+("Daniel", "danz0r", "Mussoi", "M", 5, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1);
+
+-- ---------------------------------------------------------------
+-- INSERT DE EQUIPE_JOGADOR
+-- ---------------------------------------------------------------
+
+INSERT INTO EQUIPE_JOGADOR (JOGADOR_ID, EQUIPE_ID, SALARIO, TEMPORADA, ANO, TITULAR, STATUS) VALUES 
+
+-- Pain Gaming --
+
+(63,1,0,1,2017,1,"A"),
+(64,1,0,1,2017,1,"A"),
+(65,1,0,1,2017,1,"A"),
+(66,1,0,1,2017,1,"A"),
+(67,1,0,1,2017,1,"A"),
+(68,1,0,1,2017,1,"A"),
+
+-- Red Canids --
+
+(7,2,0,1,2017,1,"A"),
+(51,2,0,1,2017,1,"A"),
+(78,2,0,1,2017,1,"A"),
+(79,2,0,1,2017,1,"A"),
+(80,2,0,1,2017,1,"A"),
+(81,2,0,1,2017,1,"A"),
+(82,2,0,1,2017,1,"A"),
+(119,2,0,1,2017,1,"A"),
+(120,2,0,1,2017,1,"A"),
+(121,2,0,1,2017,1,"A"),
+
+-- Brave --
+
+(1,3,0,1,2017,1,"A"),
+(2,3,0,1,2017,1,"A"),
+(3,3,0,1,2017,1,"A"),
+(4,3,0,1,2017,1,"A"),
+(5,3,0,1,2017,1,"A"),
+(6,3,0,1,2017,1,"A"),
+
+-- CNB Esports --
+
+(8,4,0,1,2017,0,"A"),
+(9,4,0,1,2017,1,"A"),
+(10,4,0,1,2017,1,"A"),
+(12,4,0,1,2017,0,"A"),
+(20,4,0,1,2017,1,"A"),
+(37,4,0,1,2017,1,"A"),
+(99,4,0,1,2017,1,"A"),
+
+-- Keyd Stars --
+
+(39,5,0,1,2017,1,"A"),
+(48,5,0,1,2017,1,"A"),
+(49,5,0,1,2017,1,"A"),
+(50,5,0,1,2017,1,"A"),
+(52,5,0,1,2017,1,"A"),
+(54,5,0,1,2017,1,"A"),
+
+-- Operation Kino --
+
+(55,6,0,1,2017,1,"A"),
+(56,6,0,1,2017,1,"A"),
+(57,6,0,1,2017,1,"A"),
+(58,6,0,1,2017,1,"A"),
+(59,6,0,1,2017,1,"A"),
+(60,6,0,1,2017,1,"A"),
+(61,6,0,1,2017,1,"A"),
+(62,6,0,1,2017,1,"A"),
+
+-- ProGaming --
+
+(69,7,0,1,2017,1,"A"),
+(70,7,0,1,2017,1,"A"),
+(71,7,0,1,2017,1,"A"),
+(72,7,0,1,2017,1,"A"),
+(73,7,0,1,2017,1,"A"),
+(74,7,0,1,2017,1,"A"),
+(76,7,0,1,2017,1,"A"),
+(77,7,0,1,2017,1,"A"),
+
+-- Team One --
+
+(83,8,0,1,2017,1,"A"),
+(84,8,0,1,2017,1,"A"),
+(85,8,0,1,2017,1,"A"),
+(86,8,0,1,2017,1,"A"),
+(87,8,0,1,2017,1,"A"),
+(88,8,0,1,2017,1,"A"),
+
+-- Iron Hawks --
+
+(24,9,0,1,2017,1,"A"),
+(25,9,0,1,2017,1,"A"),
+(26,9,0,1,2017,1,"A"),
+
+-- Ilha da Macacada --
+
+(27,11,0,1,2017,1,"A"),
+(28,11,0,1,2017,1,"A"),
+(29,11,0,1,2017,1,"A"),
+(30,11,0,1,2017,1,"A"),
+(31,11,0,1,2017,1,"A"),
+
+-- CNB Infinity --
+
+(13,12,0,1,2017,1,"A"),
+(14,12,0,1,2017,1,"A"),
+(15,12,0,1,2017,1,"A"),
+(16,12,0,1,2017,1,"A"),
+(17,12,0,1,2017,1,"A"),
+(18,12,0,1,2017,1,"A"),
+
+-- CNB Trinity White --
+
+(89,13,0,1,2017,1,"A"),
+(90,13,0,1,2017,1,"A"),
+(91,13,0,1,2017,1,"A"),
+(92,13,0,1,2017,1,"A"),
+(93,13,0,1,2017,1,"A"),
+
+-- Flamengo E-sports --
+
+(19,14,0,1,2017,1,"A"),
+(21,14,0,1,2017,1,"A"),
+(22,14,0,1,2017,1,"A"),
+(23,14,0,1,2017,1,"A"),
+(125,14,0,1,2017,1,"A"),
+
+-- INTZ E-sports --
+
+(33,15,0,1,2017,1,"A"),
+(34,15,0,1,2017,1,"A"),
+(35,15,0,1,2017,1,"A"),
+(36,15,0,1,2017,1,"A"),
+(38,15,0,1,2017,1,"A"),
+
+-- Kabum E-sports --
+
+(40,16,0,1,2017,1,"A"),
+(41,16,0,1,2017,1,"A"),
+(42,16,0,1,2017,1,"A"),
+(43,16,0,1,2017,1,"A"),
+(44,16,0,1,2017,1,"A"),
+(45,16,0,1,2017,1,"A"),
+(46,16,0,1,2017,1,"A"),
+(47,16,0,1,2017,1,"A"),
+
+-- TSHOW E-sports --
+
+(75,17,0,1,2017,1,"A"),
+(94,17,0,1,2017,1,"A"),
+(95,17,0,1,2017,1,"A"),
+(96,17,0,1,2017,1,"A"),
+(97,17,0,1,2017,1,"A");
+
+-- ---------------------------------------------------------------
+-- INSERT DE PLAYOFF_TIPOS
+-- ---------------------------------------------------------------
+
+INSERT INTO serie_tipo (descricao, qtd_jogos) VALUES
+("Bo1 - Melhor de 1",1),
+("Bo2 - Melhor de 1",2),
+("Bo3 - Melhor de 1",3),
+("Bo5 - Melhor de 1",5);
+
+INSERT INTO playoffs_tipos (descricao, nodetimes, duplaeliminacao) VALUES
+("2 Times, Unica Eliminação",2,0),
+("4 Times, Unica Eliminação",4,0),
+("8 Times, Unica Eliminação",8,0),
+("16 Times, Unica Eliminação",16,0),
+("32 Times, Unica Eliminação",32,0);
+
+INSERT INTO liga_tipos (descricao, numdetimes, numdedivisoes, jogarinterdiv) VALUES
+("6 times e 1 divisão", 6,1,"N"),
+("8 times e 1 divisão", 8,1,"N"),
+("8 times e 2 divisões", 8,2,"N"),
+("8 times e 2 divisões e jogos interdivisões", 8,2,"S"),
+("12 times e 1 divisão", 12,1,"N"),
+("12 times e 2 divisões", 12,2,"N"),
+("12 times e 2 divisões e jogos interdivisões", 12,2,"S"),
+("16 times e 1 divisão", 16,1,"N"),
+("16 times e 2 divisões", 16,2,"N"),
+("16 times e 2 divisões e jogos interdivisões", 16,2,"S"),
+("18 times e 1 divisão", 18,1,"N"),
+("18 times e 2 divisões", 18,2,"N"),
+("18 times e 2 divisões e jogos interdivisões", 18,2,"S"),
+("24 times e 1 divisão", 24,1,"N"),
+("24 times e 2 divisões", 24,2,"N"),
+("24 times e 2 divisões e jogos interdivisões", 24,2,"S"),
+("32 times e 1 divisão", 32,1,"N"),
+("32 times e 2 divisões", 32,2,"N"),
+("32 times e 2 divisões e jogos interdivisões", 32,2,"S");
+
+INSERT INTO campeonato (nome, ano, temporada, playoffs_id, liga_tipos_id, status, serie_tipo, regiao_id) VALUES
+("Campeonato Brasileiro de League of Legends - 2012", 2012, 1, 3, 2, "C", 1, 1),
+("Campeonato Brasileiro de League of Legends - 2013", 2013, 1, 3, 2, "C", 1, 1),
+("Liga Brasileira - Série dos Campeões League of Legends 2014", 2014, 1, 3, 3, "C", 1, 1),
+("Campeonato Brasileiro de League of Legends - 2014", 2014, 2, 3, 3, "C", 1, 1),
+("CBLoL - 1a Etapa - Campeonato Brasileiro de League of Legends - 2015", 2015, 1, 3, 3, "C", 1, 1),
+("CBLoL - 2a Etapa - Campeonato Brasileiro de League of Legends - 2015", 2015, 2, 3, 3, "C", 1, 1),
+("CBLoL - Pós-Temporada - Campeonato Brasileiro de League of Legends - 2015", 2015, 2, 3, 3, "C", 1, 1),
+("CBLoL - 1a Etapa - Campeonato Brasileiro de League of Legends - 2016", 2016, 1, 3, 3, "C", 1, 1),
+("CBLoL - 2a Etapa - Campeonato Brasileiro de League of Legends - 2016", 2016, 2, 3, 3, "C", 1, 1),
+("CBLoL - 1a Etapa - Campeonato Brasileiro de League of Legends - 2017", 2017, 1, 3, 3, "C", 1, 1),
+("CBLoL - 2a Etapa - Campeonato Brasileiro de League of Legends - 2017", 2017, 2, 3, 3, "C", 1, 1);
+
+-- ---------------------------------------------------------------
+-- INSERT DE EQUIPES_CAMPEONATOS
+-- ---------------------------------------------------------------
+
+INSERT INTO equipe_campeonato (equipe_id, campeonato_id, posicao) VALUES
+
+-- CBLOL
+
+(1, 2, 1),
+(4, 2, 2),
+(5, 3, 1),
+(4, 3, 2),
+(16, 4, 1),
+(4, 4, 2),
+(15, 5, 1),
+(5, 5, 2),
+(1, 6, 1),
+(15, 6, 2),
+(15, 7, 1), -- Pós temporada 2015
+(16, 7, 2), -- Pós temporada 2015
+(15, 8, 1),
+(5, 8, 2),
+(15, 9, 1),
+(4, 9, 2),
+(2, 10, 1),
+(5, 10, 2),
+(8, 11, 1),
+(1, 11, 2);
+
+-- ---------------------------------------------------------------
+-- INSERT DE TRANSFERENCIAS_TECNICOS
+-- ---------------------------------------------------------------

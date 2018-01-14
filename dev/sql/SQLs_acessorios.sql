@@ -49,3 +49,9 @@ where NUM = 1;
 
 
 UPDATE jogador set at_trab = 10, at_vis  = 10, at_mec  = 10, at_consist = 10 where id in (95,82,24,18,13)
+
+
+-- SELECT J.NICK, E.NOME, J.FUNCAO FROM EQUIPE_JOGADOR EJ
+-- INNER JOIN JOGADOR J ON EJ.JOGADOR_ID = J.ID
+-- INNER JOIN EQUIPE E ON EJ.EQUIPE_ID = E.ID
+-- WHERE EJ.EQUIPE_ID = 1
