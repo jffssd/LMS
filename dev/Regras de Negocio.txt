@@ -7,6 +7,11 @@ Reflexos
 Trabalho em Grupo
 Visão de Jogo
 
+  `at_trab` INT NOT NULL, -- Trabalho em Equipe
+  `at_ment` INT NOT NULL, -- Mentalidade
+  `at_consist` INT NOT NULL, -- Consistência
+  `at_mec` INT NOT NULL, -- Mecênica Fina
+  `at_vis` INT NOT NULL, -- Visão de Jogo
 
 Perspicaz
 Sagaz
@@ -16,4 +21,6 @@ Agressivo
 Defensivo
 Ofensivo
 Dominante
+
+
 
