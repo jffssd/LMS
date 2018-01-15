@@ -980,13 +980,12 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`transferencia_jogador` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `jogador_custom_id` INT NULL,
   `jogador_id` INT NULL,
-  `equipe_saida_id` INT NULL,
-  `equipe_ida_id` INT NOT NULL,
+  `equipe_base_id` INT NULL,
   `tipo` CHAR(1) NOT NULL,
   `status` CHAR(1) NOT NULL,
-  `data` DATETIME NOT NULL,
-  PRIMARY KEY (`id`, `jogador_custom_id`, `equipe_saida_id`, `equipe_ida_id`),
-  INDEX `fk_transferencia_jogador_equipe_ida_id_idx` (`equipe_ida_id` ASC),
+  `data_transacao` DATETIME NOT NULL,
+  PRIMARY KEY (`id`, `jogador_custom_id`, `equipe_base_id`),
+  INDEX `fk_transferencia_jogador_equipe_base_id_idx` (`equipe_base_id` ASC),
   CONSTRAINT `fk_transferencia_jogador_jogador`
     FOREIGN KEY (`jogador_id`)
     REFERENCES `lmdb`.`jogador` (`id`)
@@ -997,16 +996,12 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`transferencia_jogador` (
     REFERENCES `lmdb`.`jogador_custom` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_transferencia_jogador_equipe1`
-    FOREIGN KEY (`equipe_saida_id`)
-    REFERENCES `lmdb`.`equipe` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_transferencia_jogador_equipe2`
-    FOREIGN KEY (`equipe_ida_id`)
+  CONSTRAINT `fk_transferencia_jogador_equipe_base_fk`
+    FOREIGN KEY (`equipe_base_id`)
     REFERENCES `lmdb`.`equipe` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+	
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -1016,14 +1011,13 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`transferencia_tecnico` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `jogador_custom_id` INT NULL,
   `tecnico_id` INT NULL,
-  `equipe_saida_id` INT NULL,
-  `equipe_ida_id` INT NULL,
-  `data` DATETIME NOT NULL,
+  `equipe_base_id` INT NULL,
   `tipo` CHAR(1) NOT NULL,
   `status` CHAR(1) NOT NULL,
-  PRIMARY KEY (`id`, `jogador_custom_id`, `equipe_saida_id`, `equipe_ida_id`),
-  INDEX `fk_transferencia_tecnico_equipe_ida_id_idx` (`equipe_ida_id` ASC),
-  CONSTRAINT `fk_transferencia_tecnico_jogador`
+  `data_transacao` DATETIME NOT NULL,
+  PRIMARY KEY (`id`, `jogador_custom_id`, `equipe_base_id`),
+  INDEX `fk_transferencia_tecnico_equipe_base_id_idx` (`equipe_base_id` ASC),
+  CONSTRAINT `fk_transferencia_tecnico_jogador_equipe_fk`
     FOREIGN KEY (`tecnico_id`)
     REFERENCES `lmdb`.`tecnico` (`id`)
     ON DELETE NO ACTION
@@ -1033,16 +1027,12 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`transferencia_tecnico` (
     REFERENCES `lmdb`.`jogador_custom` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_transferencia_tecnico_equipe1`
-    FOREIGN KEY (`equipe_saida_id`)
-    REFERENCES `lmdb`.`equipe` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_transferencia_tecnico_equipe2`
-    FOREIGN KEY (`equipe_ida_id`)
+  CONSTRAINT `fk_transferencia_tecnico_equipe_base_fk_`
+    FOREIGN KEY (`equipe_base_id`)
     REFERENCES `lmdb`.`equipe` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+	
 ENGINE = InnoDB;
 
 
