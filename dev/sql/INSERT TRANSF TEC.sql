@@ -1,4 +1,4 @@
-INSERT INTO transferencia_tecnico (data_transacao, tecnico_id, equipe_base_id, tipo, status) VALUES
+INSERT INTO transferencia_tecnico (data_transacao, tecnico_id, equipe_base_id, tipo, status, jogador_custom_id) VALUES
 ('06/01/2017', 6, 16, 'C', 'F'),
 ('31/01/2017', 8, 17, 'C', 'F'),
 ('01/03/2017', 6, 16, 'S', 'F'),

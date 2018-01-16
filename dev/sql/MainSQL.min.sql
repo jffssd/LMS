@@ -298,9 +298,9 @@ ENGINE = InnoDB;
 -- Table `lmdb`.`permissao`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `lmdb`.`permissao` (
-  `id` INT NOT NULL,
-  `desc` VARCHAR(45) NOT NULL,
-  `obs` VARCHAR(45) NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `descricao` VARCHAR(45) NOT NULL,
+  `obs` VARCHAR(45),
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -340,14 +340,11 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador_custom` (
   `nome` VARCHAR(45) NOT NULL,
   `sobrenome` VARCHAR(45) NOT NULL,
   `nick` VARCHAR(15) NOT NULL,
-  `idade` INT NOT NULL,
-  `humor` INT NOT NULL,
-  `caracteristica` INT NOT NULL,
-  `curva` VARCHAR(200) NOT NULL,
+  `data_nasc` DATE NOT NULL,
   `funcao_id` INT NOT NULL,
   `pais_id` INT NOT NULL,
   `personalidade_id` INT NOT NULL,
-  `at_adap` INT NOT NULL,
+  `at_trab` INT NOT NULL,
   `at_ment` INT NOT NULL,
   `at_consist` INT NOT NULL,
   `at_mec` INT NOT NULL,
@@ -355,7 +352,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador_custom` (
   `foto` VARCHAR(200) NULL,
   `nivel` INT NOT NULL,
   `exp` INT NOT NULL,
-  `status_transacao` CHAR(1) NOT NULL,
+  `status_transacao` INT NOT NULL,
   PRIMARY KEY (`id`, `usuario_id`, `pais_id`, `personalidade_id`),
   INDEX `fk_jogador_custom_pais1_idx` (`pais_id` ASC),
   INDEX `fk_jogador_custom_personalidade1_idx` (`personalidade_id` ASC),
@@ -978,12 +975,12 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `lmdb`.`transferencia_jogador` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `jogador_custom_id` INT NULL,
-  `jogador_id` INT NULL,
-  `equipe_base_id` INT NULL,
+  `jogador_custom_id` INT,
+  `jogador_id` INT,
+  `equipe_base_id` INT,
   `tipo` CHAR(1) NOT NULL,
   `status` CHAR(1) NOT NULL,
-  `data_transacao` DATETIME NOT NULL,
+  `data_transacao` DATE NOT NULL,
   PRIMARY KEY (`id`, `jogador_custom_id`, `equipe_base_id`),
   INDEX `fk_transferencia_jogador_equipe_base_id_idx` (`equipe_base_id` ASC),
   CONSTRAINT `fk_transferencia_jogador_jogador`
@@ -1014,7 +1011,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`transferencia_tecnico` (
   `equipe_base_id` INT NULL,
   `tipo` CHAR(1) NOT NULL,
   `status` CHAR(1) NOT NULL,
-  `data_transacao` DATETIME NOT NULL,
+  `data_transacao` DATE NOT NULL,
   PRIMARY KEY (`id`, `jogador_custom_id`, `equipe_base_id`),
   INDEX `fk_transferencia_tecnico_equipe_base_id_idx` (`equipe_base_id` ASC),
   CONSTRAINT `fk_transferencia_tecnico_jogador_equipe_fk`
