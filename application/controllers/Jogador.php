@@ -140,12 +140,12 @@ class Jogador extends CI_Controller {
 			
 		}
 		
-	}
+	}*/
 
 	public function view($id = null){
 		
 		if ($id) {
-
+			
 			// Busca model para buscar equipe por id		
 			$equipes = $this->m_equipes->get_equipes($id);
 			
@@ -205,5 +205,5 @@ class Jogador extends CI_Controller {
 			$variaveis['mensagem'] = "Registro excluído com sucesso!";
 			$this->load->view('v_sucesso', $variaveis);
 		}
-	}*/
+	}
 }

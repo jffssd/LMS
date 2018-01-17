@@ -3,17 +3,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_transferencias extends CI_Model {
 
-	public function get_jogadores($id = null){
+	public function get_transferencias_jogadores($id = null){
 		
 		if ($id) {
-			$this->db->where('j.id', $id);
+
+			$this->db->where('tj.id', $id);
 		}else{
-			$this->db->select('j.nome,j.nick,j.sobrenome,j.foto, f.nome as funcao_nome, j.funcao_id, p.flag as pais_flag, p.nome as pais_nome');
+
+			$this->db->select("j.nick, j.foto, j.funcao_id, f.nome as funcao_nome, p.flag as pais_flag, p.nome as pais_nome, e.nome as equipe_nome, e.logo as equipe_logo, tj.data_transacao, tj.tipo");
+			$this->db->join('jogador j','tj.jogador_id = j.id');
+			$this->db->join('equipe e','tj.equipe_base_id = e.id');
 			$this->db->join('funcao f','j.funcao_id = f.id');
 			$this->db->join('pais p','j.pais_id = p.id');
-			$this->db->order_by("j.id", 'desc');
+			$this->db->order_by("tj.data_transacao", 'desc');
+			$this->db->order_by("tj.tipo", 'asc');
 		}
-		return $this->db->get('jogador j');
+
+		return $this->db->get('transferencia_jogador tj');
 	}
 
 	public function store($dados = null, $id = null) {
