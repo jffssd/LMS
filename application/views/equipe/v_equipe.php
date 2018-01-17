@@ -1,3 +1,17 @@
+<?php 
+session_start();
+
+	if(isset($_SESSION['msg'])){ ?>
+		<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin:10px;">
+			<?php echo $_SESSION['msg']; 
+			unset($_SESSION['msg']);?>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+<?php } ?>
+
+
 	<div class="tab-equipe" style="padding:10px;">
 		<div class="col-md-12">
 			<div class="row">
@@ -67,31 +81,38 @@
 <script src="<?= base_url('assets/js/jquery.js') ?>"></script>	
 <script src="<?= base_url('assets/bootstrap/js/bootstrap.min.js') ?>"></script>
 
-	<script>
+<script>
 	
-		var base_url = "<?= base_url(); ?>";
+	var base_url = "<?= base_url(); ?>";
 	
-		$(function(){
-			$('.confirma_exclusao').on('click', function(e) {
-			    e.preventDefault();
+	$(function(){
+		$('.confirma_exclusao').on('click', function(e) {
+		    e.preventDefault();
 			    
-			    var nome = $(this).data('nome');
-			    var id = $(this).data('id');
+		    var nome = $(this).data('nome');
+		    var id = $(this).data('id');
 			    
-			    $('#modal_confirmation').data('nome', nome);
-			    $('#modal_confirmation').data('id', id);
-			    $('#modal_confirmation').modal('show');
-			});
-			
-			$('#modal_confirmation').on('show.bs.modal', function () {
-			  var nome = $(this).data('nome');
-			  $('#nome_exclusao').text(nome);
-			});	
-			
-			$('#btn_excluir').click(function(){
-				var id = $('#modal_confirmation').data('id');
-				document.location.href = base_url + "index.php/equipe/delete/"+id;
-			});					
+		    $('#modal_confirmation').data('nome', nome);
+		    $('#modal_confirmation').data('id', id);
+		    $('#modal_confirmation').modal('show');
 		});
+			
+		$('#modal_confirmation').on('show.bs.modal', function () {
+		  var nome = $(this).data('nome');
+		  $('#nome_exclusao').text(nome);
+		});	
+			
+		$('#btn_excluir').click(function(){
+			var id = $('#modal_confirmation').data('id');
+			document.location.href = base_url + "equipe/delete/"+id;
+		});					
+	});
 	</script>
-	
+
+<script>
+	window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+	}, 4000);
+</script>

@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <a href="<?php echo site_url();?>pais"><i class="fa fa-fw fa-flag"></i> Países</a>
             </li>
             <li>
-              <a href="#"><i class="fa fa-fw fa-flag"></i> Cards</a>
+              <a href="#"><i class="fa fa-fw fa-flag"></i> Países</a>
             </li>
           </ul>
         </li>

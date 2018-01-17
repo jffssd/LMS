@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				
 			</div>
 			<div class="row">
-				<?= form_open('index.php/equipe/store')  ?>
+				<?= form_open('equipe/store')  ?>
 					<div class="form-row">
 						<div class="col" style="margin-top:10px; margin-bottom:10px">
 							<label for="nome">Nome</label><span class="erro"><?php echo form_error('nome') ?  : ''; ?></span>

@@ -10357,7 +10357,7 @@
 		 *      } );
 		 *    } );
 		 */
-		"bLengthChange": false,
+		"bLengthChange": true,
 	
 	
 		/**
@@ -11761,7 +11761,7 @@
 		 *  @deprecated 1.10. Please use `ajax` for this functionality now.
 		 */
 		"sAjaxDataProp": "data",
-	
+		
 	
 		/**
 		 * __Deprecated__ The functionality provided by this parameter has now been

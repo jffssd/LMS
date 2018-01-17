@@ -87,10 +87,11 @@ class Equipe extends CI_Controller {
 			
 			);
 			if ($this->m_equipes->store($dados, $id)) {
-				$variaveis['mensagem'] = "Dados gravados com sucesso!";
-				$this->load->view('v_sucesso', $variaveis);
+				$variaveis['mensagem'] = 1;
+				$this->load->view('equipe/store', $variaveis);
+				
 			} else {
-				$variaveis['mensagem'] = "Ocorreu um erro. Por favor, tente novamente.";
+				$variaveis['mensagem'] = 0;
 				$this->load->view('errors/html/v_erro', $variaveis);
 			}
 				
@@ -129,9 +130,6 @@ class Equipe extends CI_Controller {
 				$variaveis['tecnicos'] = $this->m_base->get_tecnicos();
 				
 				$variaveis['status_equipe'] = $status_equipe;
-
-
-
 
 				$variaveis['conteudo'] = $this->load->view('equipe/v_cadastro_equipe', $variaveis, true);
 				$this->load->view('template/template', $variaveis);

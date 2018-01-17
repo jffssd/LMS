@@ -234,7 +234,7 @@
 								<td class="td_row"><img src="<?php echo site_url();?>assets/img/bandeiras/<?php echo $jogador->pais_flag;?>.png" alt="<?php echo $jogador->pais_nome;?>" width="30" height="20"> <?php echo $jogador->pais_nome;?></td>
 								<td class="td_row"><a href="<?php echo site_url();?>jogador/view/<?php echo $jogador->id;?>" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
 								<td class="td_row"><a href="<?php echo site_url();?>jogador/edit/<?php echo $jogador->id;?>" class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
-								<td class="td_row"><a href="#" class="confirma_exclusao btn btn-danger btn-sm" data-id="<?php echo $jogador->id;?>" data-nome="<?php echo $jogador->nome;?>" /><i class="fa fa-times" aria-hidden="true"></i></a></td>
+								<td class="td_row"><a href="#" class="confirma_exclusao btn btn-danger btn-sm" data-id="<?php echo $jogador->id;?>" data-nome="<?php echo $jogador->nick;?>" /><i class="fa fa-times" aria-hidden="true"></i></a></td>
 							</tr>
 			  			<?php }
 			  			?>
@@ -256,15 +256,17 @@
 <div class="modal fade" id="modal_confirmation">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Confirmação de Exclusão</h4>
-      </div>
+		<div class="modal-header">
+			<h5 class="modal-title">Confirma Exclusão</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
       <div class="modal-body">
         <p style="color:#afafaf;">Deseja realmente excluir o registro <strong><span id="nome_exclusao"></span></strong>?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Agora não</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Agora não</button>
         <button type="button" class="btn btn-danger" id="btn_excluir">Sim. Acabe com ele</button>
       </div>
     </div><!-- /.modal-content -->
@@ -300,5 +302,13 @@
 				document.location.href = base_url + "index.php/jogador/delete/"+id;
 			});					
 		});
+	</script>
+
+	<script>
+		$(document).ready( function () {
+			$('#dataTable').dataTable( {
+			"lengthChange": false
+			} );
+		} );
 	</script>
 	

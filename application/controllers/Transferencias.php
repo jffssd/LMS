@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Transferencia extends CI_Controller {
+class Transferencias extends CI_Controller {
 
 	/**
 	 * Método principal do mini-crud
