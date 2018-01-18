@@ -1,23 +1,19 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-
-		<div class="col-sm-12">
-			<div class="row">
-				<div class="page_title">
-				<?php 
-				if(isset($id)){
-					echo '<img src="'.site_url().'assets/img/logo-equipes/'.$logo.'" style="width:20%;float:left;"><h2 style="float:right;">'.$titulo.'</h2>';
-				} 
-				?>
-				</div>
+<div class="input-equipes">
+	<div class="col-sm-12">
+		<div class="row">
+			<div class="page_title">
+			<?php 
+			if(isset($id)){ ?>
+				<img src="<?php echo site_url();?>assets/img/logo-equipes/<?php $logo;?>" style="width:20%;float:left;"><h2 style="float:right;"><?php echo $titulo;?></h2>
+			<?php } ?>
 			</div>
-			<div class="row">
-				
-			</div>
-			<div class="row">
-				<?= form_open('equipe/store')  ?>
-					<div class="form-row">
+		</div>
+		<div class="row">
+			<?= form_open('equipe/store')  ?>
+				<div class="form-row">
 						<div class="col" style="margin-top:10px; margin-bottom:10px">
 							<label for="nome">Nome</label><span class="erro"><?php echo form_error('nome') ?  : ''; ?></span>
 							<?php echo '<input type="text" name="nome" id="nome" class="form-control" value="'.$nome.'" autofocus="true" />'; ?>
@@ -136,5 +132,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<input type='hidden' name="id" value="<?= set_value('id') ? : (isset($id) ? $id : ''); ?>">
 				<?= form_close(); ?>
 			</div>
-			
 		</div>	
+</div>
