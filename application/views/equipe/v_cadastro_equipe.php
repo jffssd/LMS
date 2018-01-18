@@ -5,7 +5,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-sm-12">
 			<div class="row">
 				<div class="page_title">
-				<?php echo '<img src="'.site_url().'assets/img/logo-equipes/'.$logo.'" style="width:20%;float:left;"><h2 style="float:right;">'.$titulo.'</h2>';?>
+				<?php 
+				if(isset($id)){
+					echo '<img src="'.site_url().'assets/img/logo-equipes/'.$logo.'" style="width:20%;float:left;"><h2 style="float:right;">'.$titulo.'</h2>';
+				} 
+				?>
 				</div>
 			</div>
 			<div class="row">

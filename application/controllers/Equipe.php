@@ -88,7 +88,7 @@ class Equipe extends CI_Controller {
 			);
 			if ($this->m_equipes->store($dados, $id)) {
 				$variaveis['mensagem'] = 1;
-				$this->load->view('equipe/store', $variaveis);
+				$this->load->view('equipe/v_equipe_store', $variaveis);
 				
 			} else {
 				$variaveis['mensagem'] = 0;

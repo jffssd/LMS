@@ -1,7 +1,7 @@
 <?php
 session_start();
 if($mensagem == 1){
-	$msg = 'O Registro "'.$dados.'" foi inserido com sucesso!';
+	$msg = 'O Registro foi inserido/alterado com sucesso!';
 }else{
 	$msg = 'Um erro aconteceu, tente novamente mais tarde.';
 }	

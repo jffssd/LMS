@@ -66,7 +66,7 @@
 					<tbody>
 						<?php foreach($transf_jogadores -> result() as $t_j){ ?>
 						<tr>
-							<td align="center"><h3><span class="badge badge-secondary"><?php echo date("Y", strtotime($t_j->data_transacao));?></span></h3></td>
+							<td align="center"><h5><span class="badge badge-secondary"><?php echo date("Y", strtotime($t_j->data_transacao));?></span></h5></td>
 							<td align="center"><img src="<?php echo site_url().'assets/img/logo-equipes/'.$t_j->equipe_logo;?>" alt="<?php echo $t_j->equipe_logo;?>" width="40" height="40"> </td>
 							
 							<?php	
@@ -82,7 +82,7 @@
 		
 							?>
 							</span></td>
-							<td><img src="<?php echo site_url().'assets/img/profiles/thumb/'.$t_j->foto;?>" width="40" height="40" style="border-radius:7px;"> <span style="font-weight:bold; font-size: 20px;"><?php echo $t_j->nick;?></span></td>
+							<td><img src="<?php echo site_url().'assets/img/profiles/thumb/'.$t_j->foto;?>" width="40" height="40" style="border-radius:7px;"> <span style="font-size: 16px;"><?php echo $t_j->nick;?></span></td>
 							<td align="center"><img src="<?php echo site_url().'assets/img/roles/'.$t_j->funcao_id;?>.png" alt="<?php echo $t_j->funcao_nome;?>" width="40" height="40"></td>	
 							<td><img src="<?php echo site_url().'assets/img/bandeiras/'.$t_j->pais_flag;?>.png" width="40" height="25"></td>
 						</tr>
