@@ -2,13 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <div class="input-equipes">
-	<div class="col-sm-12">
+	<div class="col-md-8 offset-md-2">
 		<div class="row">
-			<div class="page_title">
-			<?php 
-			if(isset($id)){ ?>
-				<img src="<?php echo site_url();?>assets/img/logo-equipes/<?php $logo;?>" style="width:20%;float:left;"><h2 style="float:right;"><?php echo $titulo;?></h2>
-			<?php } ?>
+			<div class="page_title" style="height: 120px; padding:10px;margin-top:10px; background-color: grey; width:100%;">
+				<div class="" style="float:left; height:100px; width:100px; background-color:red; border-radius:10px;">
+				</div>
+				<!-- <img src="<?php echo site_url();?>assets/img/logo-equipes/<?php $logo;?>" style="width:20%;float:left;"><h2 style="float:right;"><?php echo $titulo;?></h2>-->
+				<div class="" style="padding-left: 110px; height: 100px; vertical-align: middle;background-color: blue;"><h2 style="color: #222; text-weight: bold;"><?php echo 'EDIÇÃO DE EQUIPE';?></h2><h4>Equipe Nome</h4>
+				</div>
 			</div>
 		</div>
 		<div class="row">
