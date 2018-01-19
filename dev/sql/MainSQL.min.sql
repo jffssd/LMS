@@ -17,6 +17,42 @@ USE `lmdb` ;
 -- Table `lmdb`.`pais`
 -- -----------------------------------------------------
 
+CREATE TABLE IF NOT EXISTS `lmdb`.`config_geral` (
+  `id` INT NOT NULL,
+  `categoria` INT NOT NULL,
+  `atributo` VARCHAR(45) NOT NULL,
+  `valor` VARCHAR(45) NOT NULL,
+   PRIMARY KEY (`id`),
+ CONSTRAINT `fk_categoria_geral_fk`
+    FOREIGN KEY (`categoria`)
+    REFERENCES `lmdb`.`config_categoria` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `lmdb`.`config_categoria` (
+  `id` INT NOT NULL,
+  `nome` VARCHAR(45) NOT NULL,
+   PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `lmdb`.`config_campanha_jogador_custom` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_jogador_custom` INT NOT NULL,
+  `jogadores_legado` TINYINT NOT NULL DEFAULT 0,
+  `dificuldade` TINYINT NOT NULL,
+  `moeda` VARCHAR(3) NOT NULL,
+  `agressividade_mercado` TINYINT NOT NULL,
+  `limite_janela_transf` TINYINT NOT NULL,
+  `velocidade_partida` TINYINT NOT NULL,
+   PRIMARY KEY (`id`),
+CONSTRAINT `fk_config_campanha_jogador_custom_fk`
+    FOREIGN KEY (`id_jogador_custom`)
+    REFERENCES `lmdb`.`jogador_custom` (`id`)
+    ON DELETE NO ACTION
+ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+   
 CREATE TABLE IF NOT EXISTS `lmdb`.`pais` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
