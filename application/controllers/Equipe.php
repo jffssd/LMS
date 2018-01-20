@@ -34,10 +34,14 @@ class Equipe extends CI_Controller {
 		$this->load->view('template/template', $variaveis);
 	}
 	
+
+	/*---
+	FAVOR REVER O CODIGO
+	---*/
+	
 	public function store(){
-		
 		$this->load->library('form_validation');
-		
+
 		$regras = array(
 		        array(
 		                'field' => 'nome',
@@ -48,25 +52,45 @@ class Equipe extends CI_Controller {
 		                'field' => 'sigla',
 		                'label' => 'Sigla',
 		                'rules' => 'required'		                
+		        ),
+		        array(
+		                'field' => 'pais',
+		                'label' => 'Pais',
+		                'rules' => 'required'		                
+		        ),
+		        array(
+		                'field' => 'regiao',
+		                'label' => 'Região',
+		                'rules' => 'required'		                
+		        ),
+		        array(
+		                'field' => 'sede',
+		                'label' => 'Sede',
+		                'rules' => 'required'		                
+		        ),
+		        array(
+		                'field' => 'logo',
+		                'label' => 'Logo',
+		                'rules' => 'required'		                
 				),
-				array(
-						'field' => 'regiao',
-						'label' => 'Sigla',
-						'rules' => 'required'	
+		        array(
+		                'field' => 'cor_primaria',
+		                'label' => 'Cor Primária',
+		                'rules' => 'required'		                
 				),
-        
-				array(
-						'field' => 'sede',
-						'label' => 'Sede',
-						'rules' => 'required'	
-				)
+		        array(
+		                'field' => 'cor_secundaria',
+		                'label' => 'Cor Secundária',
+		                'rules' => 'required'		                
+		        )
 		);
 		
 		$this->form_validation->set_rules($regras);
 
 		if ($this->form_validation->run() == FALSE) {
-			$variaveis['titulo'] = 'Novo Registro de Equipe';
-			$this->load->view('equipe/v_cadastro_equipe', $variaveis);
+			$variaveis['titulo'] = 'Novo Registro de País';
+			$variaveis['conteudo'] = $this->load->view('pais/v_cadastro_pais', $variaveis,true);
+			$this->load->view('template/template', $variaveis);
 		} else {
 			
 			$id = $this->input->post('id');
@@ -74,30 +98,26 @@ class Equipe extends CI_Controller {
 			$dados = array(
 			
 				"nome" => $this->input->post('nome'),
-				"sigla" => $this->input->post('sigla'),
-				"regiao_id" => $this->input->post('regiao'),
-				"pais_id" => $this->input->post('pais'),
-				"status" => $this->input->post('status'),
-				"sede_id" => $this->input->post('sede'),
-				"tecnico_id" => $this->input->post('tecnico'),
-				"qtd_comissao" => $this->input->post('comissao'),
-				"logo" => $this->input->post('logo'),
-				"cor_primaria" => $this->input->post('cor_primaria'),
-				"cor_secundaria" => $this->input->post('cor_secundaria'),
+				"name" => $this->input->post('name'),
+				"name" => $this->input->post('flag'),
 			
 			);
-			if ($this->m_equipes->store($dados, $id)) {
-				$variaveis['mensagem'] = 1;
-				$this->load->view('equipe/v_equipe_store', $variaveis);
-				
+			if ($this->m_paises->store($dados, $id)) {
+				$variaveis['mensagem'] = "Dados gravados com sucesso!";
+				$this->load->view('v_sucesso', $variaveis);
 			} else {
-				$variaveis['mensagem'] = 0;
+				$variaveis['mensagem'] = "Ocorreu um erro. Por favor, tente novamente.";
 				$this->load->view('errors/html/v_erro', $variaveis);
 			}
 				
 		}
 
 	}
+
+
+	/*---
+		FAVOR REVER O CODIGO
+	---*/
 
 	public function edit($id = null){
 		

@@ -37,6 +37,11 @@ class Pais extends CI_Controller {
 		                'field' => 'name',
 		                'label' => 'Name',
 		                'rules' => 'required'		                
+		        ),
+		        array(
+		                'field' => 'flag',
+		                'label' => 'Flag',
+		                'rules' => 'required'		                
 		        )
 		);
 		
@@ -54,6 +59,7 @@ class Pais extends CI_Controller {
 			
 				"nome" => $this->input->post('nome'),
 				"name" => $this->input->post('name'),
+				"name" => $this->input->post('flag'),
 			
 			);
 			if ($this->m_paises->store($dados, $id)) {

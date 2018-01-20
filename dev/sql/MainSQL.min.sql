@@ -700,22 +700,18 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`equipe` (
   `status` CHAR(1) NOT NULL,
   `pais_id` INT NOT NULL,
   `sede_id` INT NOT NULL,
-  `tecnico_id` INT NOT NULL,
-  `qtd_comissao` INT NOT NULL,
   `logo` VARCHAR(45) NOT NULL,
   `site` VARCHAR(100) DEFAULT '#',
   `social_fb` VARCHAR(100) DEFAULT '#',
   `social_tw` VARCHAR(100) DEFAULT '#',
   `social_in` VARCHAR(100) DEFAULT '#',
-  `valor` DECIMAL(10,2) NOT NULL,
+  `valor` DECIMAL(10,2),
   `cor_primaria` VARCHAR(45) NOT NULL,
   `cor_secundaria` VARCHAR(45) NOT NULL,
-  `cor_terciaria` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`, `regiao_id`, `pais_id`, `sede_id`, `tecnico_id`),
+  PRIMARY KEY (`id`, `regiao_id`, `pais_id`, `sede_id`),
   INDEX `fk_equipe_regiao1_idx` (`regiao_id` ASC),
   INDEX `fk_equipe_pais1_idx` (`pais_id` ASC),
   INDEX `fk_equipe_sede1_idx` (`sede_id` ASC),
-  INDEX `fk_equipe_tecnico1_idx` (`tecnico_id` ASC),
   CONSTRAINT `fk_equipe_regiao1`
     FOREIGN KEY (`regiao_id`)
     REFERENCES `lmdb`.`regiao` (`id`)
@@ -729,11 +725,6 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`equipe` (
   CONSTRAINT `fk_equipe_sede1`
     FOREIGN KEY (`sede_id`)
     REFERENCES `lmdb`.`sede` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_equipe_tecnico1`
-    FOREIGN KEY (`tecnico_id`)
-    REFERENCES `lmdb`.`tecnico` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -1321,25 +1312,25 @@ INSERT INTO TECNICO (NOME, NICK, SOBRENOME, VALOR, PAIS_ID, FOTO) VALUES
 -- INSERT DE EQUIPES
 -- ---------------------------------------------------------------
 
-INSERT INTO EQUIPE (ID, NOME, SIGLA, REGIAO_ID, STATUS, PAIS_ID, SEDE_ID, TECNICO_ID, QTD_COMISSAO, LOGO, COR_PRIMARIA, COR_SECUNDARIA, COR_TERCIARIA, VALOR) VALUES 
-(1, 'Pain Gaming', 'PNG', 1, 'A', 33, 1, 1, 15, 'pain-gaming-logo.png', '#b20101', '#000000', '#000000', 7.2),
-(2, 'Red Canids', 'RED', 1, 'A', 33, 1, 1, 15 , 'red-canids-logo.png', '#b20101', '#ffffff', '#000000', 7.2),
-(3, 'Brave e-Sports', 'BRAVE', 1, 'A', 33, 1, 1, 15 , 'brave-esports-logo.png', '#b20101', '#ffffff', '#000000', 7.2),
-(4, 'CNB e-Sports Club', 'CNB', 1, 'A', 33, 1, 1, 15 , 'cnb-esports-logo.png', '#0083db', '#ffffff', '#000000', 7.2),
-(5, 'Keyd Stars', 'VFK', 1, 'A', 33, 1, 1, 15 , 'keyd-stars-logo.png', '#828282', '#f4f142', '#000000', 7.2),
-(6, 'Operation Kino', 'OPK', 1, 'A', 33, 1, 1, 15 , 'operation-kino-logo.png', '#ffffff', '#000000', '#000000', 7.2),
-(7, 'ProGaming e-Sports', 'PRG', 1, 'A', 33, 1, 1, 15 , 'progaming-esports-logo.png', '#0083db', '#000000', '#000000', 7.2),
-(8, 'Team One', 'TONE', 1, 'A', 33, 1, 1, 15 , 'team-one-logo.png', '#828282', '#f4f142', '#000000', 7.2),
-(9, 'Iron Hawks', 'IHW', 1, 'A', 33, 1, 1, 15 , 'iron-hawks-logo.png', '#b20101', '#000000', '#000000', 7.2),
-(10, 'Merciless Gaming', 'MLG', 1, 'I', 33, 1, 1, 15 , 'merciless-gaming-logo.png', '#0083db','#ffffff', '#000000', 7.2),
-(11, 'Ilha da Macacada', 'IDM', 1, 'A', 33, 1, 1, 15, 'ilha-da-macacada-logo.png', '#f4f142', '#000000', '#000000', 7.2),
-(12, 'CNB Blue', 'CNB-B', 1, 'I', 33, 1, 1, 15 , 'cnb-esports-logo.png', '#0083db', '#ffffff', '#000000', 7.2),
-(13, 'CNB Trinity White', 'CNB-TW', 1, 'A', 33, 1, 1, 15 , 'cnb-esports-logo.png', '#0083db', '#ffffff', '#000000', 7.2),
-(14, 'Flamengo E-sports', 'FLA', 1, 'A', 33, 1, 1, 15, 'flamengo-esports-logo.png', '#b20101', '#000000', '#000000', 7.2),
-(15, 'INTZ E-sports', 'ITZ', 1, 'A', 33, 1, 1, 15, 'intz-logo.png', '#ffffff', '#000000', '#000000', 7.2),
-(16, 'Kabum E-sports', 'KBM', 1, 'A', 33, 1, 1, 15 , 'kabum-esports-logo.png', '#d1461a', '#000000', '#000000', 7.2),
-(17, 'T-SHOW', 'TSW', 1, 'A', 33, 1, 1, 15 , 't-show-esports-logo.png', '#828282', '#f4f142', '#000000', 7.2),
-(18, 'Submarino Stars', 'SMS', 1, 'A', 33, 1, 1, 15 , 'submarino-stars-logo.png', '#828282', '#f4f142', '#000000', 7.2);
+INSERT INTO EQUIPE (ID, NOME, SIGLA, REGIAO_ID, STATUS, PAIS_ID, SEDE_ID, LOGO, COR_PRIMARIA, COR_SECUNDARIA, VALOR) VALUES 
+(1, 'Pain Gaming', 'PNG', 1, 'A', 33, 1, 'pain-gaming-logo.png', '#b20101', '#000000', 7.2),
+(2, 'Red Canids', 'RED', 1, 'A', 33, 1, 'red-canids-logo.png', '#b20101', '#ffffff', 7.2),
+(3, 'Brave e-Sports', 'BRAVE', 1, 'A', 33, 1, 'brave-esports-logo.png', '#b20101', '#ffffff', 7.2),
+(4, 'CNB e-Sports Club', 'CNB', 1, 'A', 33, 1, 'cnb-esports-logo.png', '#0083db', '#ffffff', 7.2),
+(5, 'Keyd Stars', 'VFK', 1, 'A', 33, 1, 'keyd-stars-logo.png', '#828282', '#f4f142', 7.2),
+(6, 'Operation Kino', 'OPK', 1, 'A', 33, 1, 'operation-kino-logo.png', '#ffffff', '#000000', 7.2),
+(7, 'ProGaming e-Sports', 'PRG', 1, 'A', 33, 1, 'progaming-esports-logo.png', '#0083db', '#000000', 7.2),
+(8, 'Team One', 'TONE', 1, 'A', 33, 1, 'team-one-logo.png', '#828282', '#f4f142', 7.2),
+(9, 'Iron Hawks', 'IHW', 1, 'A', 33, 1, 'iron-hawks-logo.png', '#b20101', '#000000', 7.2),
+(10, 'Merciless Gaming', 'MLG', 1, 'I', 33, 1, 'merciless-gaming-logo.png', '#0083db','#ffffff', 7.2),
+(11, 'Ilha da Macacada', 'IDM', 1, 'A', 33, 1, 'ilha-da-macacada-logo.png', '#f4f142', '#000000', 7.2),
+(12, 'CNB Blue', 'CNB-B', 1, 'I', 33, 1, 'cnb-esports-logo.png', '#0083db', '#ffffff', 7.2),
+(13, 'CNB Trinity White', 'CNB-TW', 1, 'A', 33, 1, 'cnb-esports-logo.png', '#0083db', '#ffffff', 7.2),
+(14, 'Flamengo E-sports', 'FLA', 1, 'A', 33, 1, 'flamengo-esports-logo.png', '#b20101', '#000000', 7.2),
+(15, 'INTZ E-sports', 'ITZ', 1, 'A', 33, 1, 'intz-logo.png', '#ffffff', '#000000', 7.2),
+(16, 'Kabum E-sports', 'KBM', 1, 'A', 33, 1, 'kabum-esports-logo.png', '#d1461a', '#000000', 7.2),
+(17, 'T-SHOW', 'TSW', 1, 'A', 33, 1, 't-show-esports-logo.png', '#828282', '#f4f142', 7.2),
+(18, 'Submarino Stars', 'SMS', 1, 'A', 33, 1, 'submarino-stars-logo.png', '#828282', '#f4f142', 7.2);
 
 -- ---------------------------------------------------------------
 -- INSERT DE PERSONALIDADES

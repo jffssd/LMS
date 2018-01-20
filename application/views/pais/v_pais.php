@@ -12,6 +12,7 @@
 							<th>Bandeira/Flag</th>
 							<th>Nome</th>
 							<th>Name</th>
+							<th>Flag</th>
 							<th width="10%" colspan="3">Ações</th>
 						</tr>
 					</thead>
@@ -22,6 +23,7 @@
 								<td class="td_row"><img src="<?php echo site_url().'assets/img/bandeiras/'.$pais->flag.'.png';?>" width="30" height="15"></td>
 								<td class="td_row"><?php echo $pais->nome;?></td>
 								<td class="td_row"><?php echo $pais->name;?></td>
+								<td class="td_row"><?php echo $pais->flag;?></td>
 								<td class="td_row"><a href="#" class="confirma_exclusao btn btn-danger btn-sm" data-id="<?php echo $pais->id;?>" data-nome="<?php echo $pais->nome;?>" /><i class="fa fa-times" aria-hidden="true"></i></a></td>
 							</tr>
 					<?php
