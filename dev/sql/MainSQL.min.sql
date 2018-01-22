@@ -693,7 +693,7 @@ ENGINE = InnoDB;
 -- Table `lmdb`.`equipe`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `lmdb`.`equipe` (
-  `id` INT NOT NULL UNIQUE,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `sigla` VARCHAR(10) NOT NULL,
   `regiao_id` INT NOT NULL,
@@ -1312,25 +1312,25 @@ INSERT INTO TECNICO (NOME, NICK, SOBRENOME, VALOR, PAIS_ID, FOTO) VALUES
 -- INSERT DE EQUIPES
 -- ---------------------------------------------------------------
 
-INSERT INTO EQUIPE (ID, NOME, SIGLA, REGIAO_ID, STATUS, PAIS_ID, SEDE_ID, LOGO, COR_PRIMARIA, COR_SECUNDARIA, VALOR) VALUES 
-(1, 'Pain Gaming', 'PNG', 1, 'A', 33, 1, 'pain-gaming-logo.png', '#b20101', '#000000', 7.2),
-(2, 'Red Canids', 'RED', 1, 'A', 33, 1, 'red-canids-logo.png', '#b20101', '#ffffff', 7.2),
-(3, 'Brave e-Sports', 'BRAVE', 1, 'A', 33, 1, 'brave-esports-logo.png', '#b20101', '#ffffff', 7.2),
-(4, 'CNB e-Sports Club', 'CNB', 1, 'A', 33, 1, 'cnb-esports-logo.png', '#0083db', '#ffffff', 7.2),
-(5, 'Keyd Stars', 'VFK', 1, 'A', 33, 1, 'keyd-stars-logo.png', '#828282', '#f4f142', 7.2),
-(6, 'Operation Kino', 'OPK', 1, 'A', 33, 1, 'operation-kino-logo.png', '#ffffff', '#000000', 7.2),
-(7, 'ProGaming e-Sports', 'PRG', 1, 'A', 33, 1, 'progaming-esports-logo.png', '#0083db', '#000000', 7.2),
-(8, 'Team One', 'TONE', 1, 'A', 33, 1, 'team-one-logo.png', '#828282', '#f4f142', 7.2),
-(9, 'Iron Hawks', 'IHW', 1, 'A', 33, 1, 'iron-hawks-logo.png', '#b20101', '#000000', 7.2),
-(10, 'Merciless Gaming', 'MLG', 1, 'I', 33, 1, 'merciless-gaming-logo.png', '#0083db','#ffffff', 7.2),
-(11, 'Ilha da Macacada', 'IDM', 1, 'A', 33, 1, 'ilha-da-macacada-logo.png', '#f4f142', '#000000', 7.2),
-(12, 'CNB Blue', 'CNB-B', 1, 'I', 33, 1, 'cnb-esports-logo.png', '#0083db', '#ffffff', 7.2),
-(13, 'CNB Trinity White', 'CNB-TW', 1, 'A', 33, 1, 'cnb-esports-logo.png', '#0083db', '#ffffff', 7.2),
-(14, 'Flamengo E-sports', 'FLA', 1, 'A', 33, 1, 'flamengo-esports-logo.png', '#b20101', '#000000', 7.2),
-(15, 'INTZ E-sports', 'ITZ', 1, 'A', 33, 1, 'intz-logo.png', '#ffffff', '#000000', 7.2),
-(16, 'Kabum E-sports', 'KBM', 1, 'A', 33, 1, 'kabum-esports-logo.png', '#d1461a', '#000000', 7.2),
-(17, 'T-SHOW', 'TSW', 1, 'A', 33, 1, 't-show-esports-logo.png', '#828282', '#f4f142', 7.2),
-(18, 'Submarino Stars', 'SMS', 1, 'A', 33, 1, 'submarino-stars-logo.png', '#828282', '#f4f142', 7.2);
+INSERT INTO EQUIPE (NOME, SIGLA, REGIAO_ID, STATUS, PAIS_ID, SEDE_ID, LOGO, COR_PRIMARIA, COR_SECUNDARIA, VALOR) VALUES 
+('Pain Gaming', 'PNG', 1, 'A', 33, 1, 'pain-gaming-logo.png', '#b20101', '#000000', 7.2),
+('Red Canids', 'RED', 1, 'A', 33, 1, 'red-canids-logo.png', '#b20101', '#ffffff', 7.2),
+('Brave e-Sports', 'BRAVE', 1, 'A', 33, 1, 'brave-esports-logo.png', '#b20101', '#ffffff', 7.2),
+('CNB e-Sports Club', 'CNB', 1, 'A', 33, 1, 'cnb-esports-logo.png', '#0083db', '#ffffff', 7.2),
+('Keyd Stars', 'VFK', 1, 'A', 33, 1, 'keyd-stars-logo.png', '#828282', '#f4f142', 7.2),
+('Operation Kino', 'OPK', 1, 'A', 33, 1, 'operation-kino-logo.png', '#ffffff', '#000000', 7.2),
+('ProGaming e-Sports', 'PRG', 1, 'A', 33, 1, 'progaming-esports-logo.png', '#0083db', '#000000', 7.2),
+('Team One', 'TONE', 1, 'A', 33, 1, 'team-one-logo.png', '#828282', '#f4f142', 7.2),
+('Iron Hawks', 'IHW', 1, 'A', 33, 1, 'iron-hawks-logo.png', '#b20101', '#000000', 7.2),
+('Merciless Gaming', 'MLG', 1, 'I', 33, 1, 'merciless-gaming-logo.png', '#0083db','#ffffff', 7.2),
+('Ilha da Macacada', 'IDM', 1, 'A', 33, 1, 'ilha-da-macacada-logo.png', '#f4f142', '#000000', 7.2),
+('CNB Blue', 'CNB-B', 1, 'I', 33, 1, 'cnb-esports-logo.png', '#0083db', '#ffffff', 7.2),
+('CNB Trinity White', 'CNB-TW', 1, 'A', 33, 1, 'cnb-esports-logo.png', '#0083db', '#ffffff', 7.2),
+('Flamengo E-sports', 'FLA', 1, 'A', 33, 1, 'flamengo-esports-logo.png', '#b20101', '#000000', 7.2),
+('INTZ E-sports', 'ITZ', 1, 'A', 33, 1, 'intz-logo.png', '#ffffff', '#000000', 7.2),
+('Kabum E-sports', 'KBM', 1, 'A', 33, 1, 'kabum-esports-logo.png', '#d1461a', '#000000', 7.2),
+('T-SHOW', 'TSW', 1, 'A', 33, 1, 't-show-esports-logo.png', '#828282', '#f4f142', 7.2),
+('Submarino Stars', 'SMS', 1, 'A', 33, 1, 'submarino-stars-logo.png', '#828282', '#f4f142', 7.2);
 
 -- ---------------------------------------------------------------
 -- INSERT DE PERSONALIDADES

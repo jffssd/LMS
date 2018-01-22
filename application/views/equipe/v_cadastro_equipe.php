@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	height: 120px; 
 	padding:10px;
 	margin-top:10px; 
-	background-color: grey; 
+
 	width:100%;
 }
 
@@ -17,16 +17,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	margin-top:10px; 
 	margin-bottom:10px;
 }
+
+.logo-team-store{
+	float:left; 
+	height:100px; 
+	width:100px; 
+	border-radius:10px; 
+}
+
+.name-team-store{
+	padding-left: 110px; height: 100px; vertical-align: middle;
+}
 </style>
 
 <div class="input-equipes">
 	<div class="col-md-8 offset-md-2">
 		<div class="row">
 			<div class="page_title team-create-edit">
-				<div class="" style="float:left; height:100px; width:100px; background-color:red; border-radius:10px;">
-				</div>
-				<div class="" style="padding-left: 110px; height: 100px; vertical-align: middle;background-color: blue;"><h2 style="color: #222; text-weight: bold;"><?php echo 'EDIÇÃO DE EQUIPE';?></h2><h4>Equipe Nome</h4>
-				</div>
+				<div class="logo-team-store"><img src="<?php echo site_url();?>assets/img/logo-equipes/<?php echo isset($id) ? $logo : 'default-create.png';?>" width="100" height="100"></div>
+				<div class="" style=""><h2 style="color: #222; text-weight: bold;"><?php echo $titulo;?></h2><h4><?php echo isset($id) ? $nome : ''; ?> <?php echo isset($id) ? '<span class="badge badge-dark">'.$sigla.'</span>' : ''; ?></h4></div>
 			</div>
 		</div>
 
@@ -39,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       				<label for="nome">Nome da Equipe</label>
 					<span class="erro"><?php echo form_error('nome') ?  : ''; ?></span>
 					<div class="input-group mb-2">
-						<div class="input-group-addon">@
+						<div class="input-group-addon"><i class="fa fa-pencil" aria-hidden="true"></i>
 						</div>
 						<input type="text" class="form-control" name="nome" id="nome" placeholder="Nome" value="<?php echo $nome;?>" autofocus="true" required>
 					</div>
@@ -50,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     			<div class="form-group col-md-3">
       				<label for="sigla">Sigla</label><?php echo form_error('sigla') ?  : ''; ?></span>
 					<div class="input-group mb-2">
-						<div class="input-group-addon">@
+						<div class="input-group-addon"><i class="fa fa-quote-left" aria-hidden="true"></i>
 						</div>
 						<input type="text" class="form-control" name="sigla" id="sigla" placeholder="Sigla" value="<?php echo $sigla;?>" autofocus="true" required>
 					</div>
@@ -61,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="form-group col-md-6">
 					<label for="pais">País</label><span class="pais"><?php echo form_error('pais') ?  : ''; ?></span>
 					<div class="input-group mb-2">
-						<div class="input-group-addon">@
+						<div class="input-group-addon"><i class="fa fa-flag" aria-hidden="true"></i>
 						</div>
 						<select name="pais" id="pais" class="form-control">
 							<?php
@@ -78,7 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="form-group col-md-6">
 					<label for="regiao">Regiao</label><span class="regiao"><?php echo form_error('regiao') ?  : ''; ?></span>
 					<div class="input-group mb-2">
-						<div class="input-group-addon">@
+						<div class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i>
 						</div>
 						<select name="regiao" id="regiao" class="form-control">
 							<?php
@@ -97,29 +106,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="sede">Sede</label><span class="sede"><?php echo form_error('sede') ?  : ''; ?></span>
-					<select name="sede" id="sede" class="form-control">
-							<?php
-							foreach($sedes -> result() as $s_s){
-									if ($s_s->id == $sede){
-										echo '<option value="'.$s_s->id.'" selected>'.$s_s->nome.'</option>';
-									}else{
-										echo '<option value="'.$s_s->id.'">'.$s_s->nome.'</option>';
-									}
-							}  ?>
-					</select>
+					<div class="input-group mb-2">
+						<div class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i>
+						</div>
+						<select name="sede" id="sede" class="form-control">
+								<?php
+								foreach($sedes -> result() as $s_s){
+										if ($s_s->id == $sede){
+											echo '<option value="'.$s_s->id.'" selected>'.$s_s->nome.'</option>';
+										}else{
+											echo '<option value="'.$s_s->id.'">'.$s_s->nome.'</option>';
+										}
+								}  ?>
+						</select>
+					</div>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="tecnico">Técnico</label><span class="tecnico"><?php echo form_error('tecnico') ?  : ''; ?></span>
-					<select name="tecnico" id="tecnico" class="form-control">
-							<?php
-							foreach($tecnicos -> result() as $t_s){
-									if ($t_s->id == $tecnico){
-										echo '<option value="'.$t_s->id.'" selected>'.$t_s->nome.' "'.$t_s->nick.'" '.$t_s->sobrenome.'</option>';
-									}else{
-										echo '<option value="'.$t_s->id.'">'.$t_s->nome.' "'.$t_s->nick.'" '.$t_s->sobrenome.'</option>';
-									}
-							} ?>
-					</select>
+					<div class="input-group mb-2">
+						<div class="input-group-addon"><i class="fa fa-user-circle" aria-hidden="true"></i>
+						</div>
+						<select name="tecnico" id="tecnico" class="form-control">
+								<?php
+								foreach($tecnicos -> result() as $t_s){
+										if ($t_s->id == $tecnico){
+											echo '<option value="'.$t_s->id.'" selected>'.$t_s->nome.' "'.$t_s->nick.'" '.$t_s->sobrenome.'</option>';
+										}else{
+											echo '<option value="'.$t_s->id.'">'.$t_s->nome.' "'.$t_s->nick.'" '.$t_s->sobrenome.'</option>';
+										}
+								} ?>
+						</select>
+					</div>
 				</div>
 			</div>
 				
@@ -127,7 +144,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="form-group col-md-12">
 					<label for="logo">Logotipo</label><span class="logo"><?php echo form_error('logo') ?  : ''; ?></span>
 					<div class="input-group mb-2">
-						<div class="input-group-addon">@
+						<div class="input-group-addon"><i class="fa fa-picture-o" aria-hidden="true"></i>
 						</div>
 						<input type="text" name="logo" id="logo" class="form-control" value="<?php echo $logo;?>" placeholder="<?php echo $logo;?>" autofocus="true" />
 						<div class="input-group-addon">-logo.png
@@ -135,6 +152,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 				</div>
 			</div>
+
+
 
 			<div class="form-row">
 				<div class="form-inline" >

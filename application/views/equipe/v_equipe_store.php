@@ -1,11 +1,7 @@
 <?php
 session_start();
-if($mensagem == 1){
-	$msg = 'O Registro foi inserido/alterado com sucesso!';
-}else{
-	$msg = 'Um erro aconteceu, tente novamente mais tarde.';
-}	
-$_SESSION['msg'] = $msg;
 
+$_SESSION['msg'] = $mensagem;
+$_SESSION['msgid'] = $msgid;
 
 header('Location: '.site_url().'equipe');

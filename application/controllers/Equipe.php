@@ -19,7 +19,7 @@ class Equipe extends CI_Controller {
 
 	public function create()
 	{
-		$variaveis['titulo'] = 'Cadastrar Equipe';
+		$variaveis['titulo'] = 'CADASTRAR EQUIPE';
 		$status_equipe = array( 
 			1 => 'Ativo',
 			2 => 'Inativo'
@@ -29,17 +29,14 @@ class Equipe extends CI_Controller {
 		$variaveis['regioes'] = $this->m_base->get_regioes();
 		$variaveis['sedes'] = $this->m_base->get_sedes();
 		$variaveis['tecnicos'] = $this->m_base->get_tecnicos();
-		$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
 		$variaveis['conteudo'] = $this->load->view('equipe/v_cadastro_equipe', $variaveis, true);
+		$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
 		$this->load->view('template/template', $variaveis);
 	}
-	
 
-	/*---
-	FAVOR REVER O CODIGO
-	---*/
 	
 	public function store(){
+
 		$this->load->library('form_validation');
 
 		$regras = array(
@@ -88,8 +85,9 @@ class Equipe extends CI_Controller {
 		$this->form_validation->set_rules($regras);
 
 		if ($this->form_validation->run() == FALSE) {
-			$variaveis['titulo'] = 'Novo Registro de País';
-			$variaveis['conteudo'] = $this->load->view('pais/v_cadastro_pais', $variaveis,true);
+			$variaveis['titulo'] = 'NOVO REGISTRO DE EQUIPE';
+			$variaveis['conteudo'] = $this->load->view('equipe/v_cadastro_equipe', $variaveis,true);
+			$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
 			$this->load->view('template/template', $variaveis);
 		} else {
 			
@@ -98,16 +96,25 @@ class Equipe extends CI_Controller {
 			$dados = array(
 			
 				"nome" => $this->input->post('nome'),
-				"name" => $this->input->post('name'),
-				"name" => $this->input->post('flag'),
-			
+				"sigla" => $this->input->post('sigla'),
+				"pais_id" => $this->input->post('pais'),
+				"regiao_id" => $this->input->post('regiao'),
+				"sede_id" => $this->input->post('sede'),
+				"logo" => $this->input->post('logo'),
+				"pais_id" => $this->input->post('pais'),
+				"cor_primaria" => $this->input->post('cor_primaria'),
+				"cor_secundaria" => $this->input->post('cor_secundaria'),
+				"valor" => 10,
+				"status" => 'A'
 			);
-			if ($this->m_paises->store($dados, $id)) {
+			if ($this->m_equipes->store($dados, $id)) {
 				$variaveis['mensagem'] = "Dados gravados com sucesso!";
-				$this->load->view('v_sucesso', $variaveis);
+				$variaveis['msgid'] = 1;
+				$this->load->view('equipe/v_equipe_store', $variaveis);
 			} else {
 				$variaveis['mensagem'] = "Ocorreu um erro. Por favor, tente novamente.";
-				$this->load->view('errors/html/v_erro', $variaveis);
+				$variaveis['msgid'] = 0;
+				$this->load->view('equipe/v_equipe_store', $variaveis);
 			}
 				
 		}
@@ -115,9 +122,6 @@ class Equipe extends CI_Controller {
 	}
 
 
-	/*---
-		FAVOR REVER O CODIGO
-	---*/
 
 	public function edit($id = null){
 		
@@ -131,16 +135,13 @@ class Equipe extends CI_Controller {
 			);
 
 			if ($equipes->num_rows() > 0 ) {
-				$variaveis['titulo'] = 'Edição de Registro';
+				$variaveis['titulo'] = 'EDIÇÃO DE EQUIPE';
 				$variaveis['id'] = $equipes->row()->id;
 				$variaveis['nome'] = $equipes->row()->nome;
 				$variaveis['sigla'] = $equipes->row()->sigla;
 				$variaveis['regiao'] = $equipes->row()->regiao_id;
 				$variaveis['pais'] = $equipes->row()->pais_id;
 				$variaveis['status'] = $equipes->row()->status;
-				$variaveis['sede'] = $equipes->row()->sede_id;
-				$variaveis['tecnico'] = $equipes->row()->tecnico_id;
-				$variaveis['comissao'] = $equipes->row()->qtd_comissao;
 				$variaveis['logo'] = $equipes->row()->logo;
 				$variaveis['cor_primaria'] = $equipes->row()->cor_primaria;
 				$variaveis['cor_secundaria'] = $equipes->row()->cor_secundaria;
@@ -152,6 +153,7 @@ class Equipe extends CI_Controller {
 				$variaveis['status_equipe'] = $status_equipe;
 
 				$variaveis['conteudo'] = $this->load->view('equipe/v_cadastro_equipe', $variaveis, true);
+				$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
 				$this->load->view('template/template', $variaveis);
 			} else {
 				$variaveis['mensagem'] = "Registro não encontrado." ;
