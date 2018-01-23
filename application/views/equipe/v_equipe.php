@@ -16,9 +16,14 @@ if(isset($_SESSION['msg'])){ ?>
 
 	<div class="tab-equipe" style="padding:10px;">
 		<div class="col-md-12">
-			<div class="row">
-			
 
+			<div class="row">
+				<div style="float:right;">
+				<a href="<?php echo site_url();?>equipe/create" class="btn btn-success btn-sm"><i class="fa fa-plus" aria-hidden="true"></i>  Cadastrar Equipe</a>
+				</div>
+			</div>
+
+			<div class="row">
 			<?php	if ($equipes->num_rows() > 0){ ?>
 	
 						<table class="table table-striped">

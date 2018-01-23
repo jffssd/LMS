@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 }
 
 .name-team-store{
-	padding-left: 110px; height: 100px; vertical-align: middle;
+	padding-left: 130px; height: 100px; vertical-align: middle;
 }
 </style>
 
@@ -34,8 +34,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="col-md-8 offset-md-2">
 		<div class="row">
 			<div class="page_title team-create-edit">
-				<div class="logo-team-store"><img src="<?php echo site_url();?>assets/img/logo-equipes/<?php echo isset($id) ? $logo : 'default-create.png';?>" width="100" height="100"></div>
-				<div class="" style=""><h2 style="color: #222; text-weight: bold;"><?php echo $titulo;?></h2><h4><?php echo isset($id) ? $nome : ''; ?> <?php echo isset($id) ? '<span class="badge badge-dark">'.$sigla.'</span>' : ''; ?></h4></div>
+				<div class="logo-team-store"><img src="<?php echo site_url();?>assets/img/logo-equipes/<?php echo isset($id) ? $logo : 'default-team-logo.png';?>" width="100" height="100"></div>
+				<div class="" style="color: #868e89;"><h2 style="font-weight: bold; margin-left:110px; font-size:40px;"><?php echo $titulo;?></h2><h4><?php echo isset($id) ? $nome : ''; ?> <?php echo isset($id) ? '<span class="badge badge-dark">'.$sigla.'</span>' : ''; ?></h4></div>
 			</div>
 		</div>
 
@@ -179,7 +179,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 				<div class="col">
 					<div class="form-group text-left" style="margin-top:30px; float:right;">
-						<?= anchor('index.php/equipe', 'Voltar', 'class="btn btn-secondary "') ?>
+						<?= anchor('equipe', 'Voltar', 'class="btn btn-secondary"') ?>
 					</div>
 				</div>
 			</div>
