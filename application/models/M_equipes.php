@@ -4,21 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_equipes extends CI_Model {
 
 	public function get_equipes($id = null){
-		
 		if ($id) {
-
 			$this->db->where('id', $id);
 		}
-
-
-
 		$this->db->order_by("id", 'desc');
 		return $this->db->get('equipe');
-
 	}
 
 	public function get_jogador_by_equipe($id = null){
-		
 		if ($id) {
 			$this->db->select('jogador_id as j_id,jogador.nick, jogador.at_trab, jogador.at_ment, jogador.at_consist, jogador.at_mec, jogador.at_vis, jogador.foto, jogador.funcao_id, jogador.pais_id, funcao.nome as f_nome, pais.flag as pflag, equipe_jogador.titular as titular');
 			$this->db->join('equipe', 'equipe_jogador.equipe_id = equipe.id');
@@ -48,20 +41,7 @@ class M_equipes extends CI_Model {
 
 	}
 
-	public function get_tecnico_by_equipe($id = null){
-		
-		if ($id) {
-			$this->db->select('tecnico.nome, tecnico.nick, tecnico.sobrenome, tecnico.foto');
-			$this->db->join('equipe', 'equipe.tecnico_id = tecnico.id');
-			$this->db->where('equipe.id', $id);
-			$this->db->order_by("tecnico.nome", 'desc');
-			
-		}
-		return $this->db->get('tecnico');
-	}
-
 	public function store($dados = null, $id = null) {
-		
 		if ($dados) {
 			if ($id) {
 				$this->db->where('id', $id);
@@ -78,7 +58,6 @@ class M_equipes extends CI_Model {
 				}
 			}
 		}
-		
 	}
 
 	public function delete($id = null){

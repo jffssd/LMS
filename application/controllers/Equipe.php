@@ -168,43 +168,43 @@ class Equipe extends CI_Controller {
 		
 		if ($id) {
 
-			// Busca model para buscar equipe por id		
-			$equipes = $this->m_equipes->get_equipes($id);
+			// Busca equipe por id		
+			$equipe = $this->m_equipes->get_equipes($id);
 			
-			// Busca model para buscar jogadores vinculados a id da equipe
+			// Busca jogadores vinculados à equipe
 			$variaveis['jogador_equipe'] = $this->m_equipes->get_jogador_by_equipe($id);
 
-			// Busca model para buscar jogadores vinculados a id da equipe
+			// Busca títulos de campeonatos vinculados à equipe
 			$variaveis['equipe_titulos'] = $this->m_equipes->get_campeonato_titulos_by_equipe($id);
+
+			// Busca comissão técnica vinculada à equipe
 		
-			// Atribui status da equipe
-			$status_equipe = array( 
-				1 => 'Ativo',
-				2 => 'Inativo'
-			);
 
 			//Verifica se há registros de equipe com este id	
 
-			if ($equipes->num_rows() > 0 ) {
+			if ($equipe->num_rows() > 0 ) {
 				$variaveis['titulo'] = 'Edição de Registro';
-				$variaveis['id'] = $equipes->row()->id;
-				$variaveis['nome'] = $equipes->row()->nome;
-				$variaveis['sigla'] = $equipes->row()->sigla;
-				$variaveis['regiao'] = $equipes->row()->regiao_id;
-				$variaveis['valor'] = $equipes->row()->valor;
-				$variaveis['pais'] = $equipes->row()->pais_id;
-				$variaveis['status'] = $equipes->row()->status;
-				$variaveis['sede'] = $equipes->row()->sede_id;
-				$variaveis['comissao'] = $equipes->row()->qtd_comissao;
-				$variaveis['logo'] = $equipes->row()->logo;
-				$variaveis['cor_primaria'] = $equipes->row()->cor_primaria;
-				$variaveis['cor_secundaria'] = $equipes->row()->cor_secundaria;
-				$variaveis['cor_terciaria'] = $equipes->row()->cor_terciaria;
+
+				$variaveis['id'] = $equipe->row()->id;
+				$variaveis['nome'] = $equipe->row()->nome;
+				$variaveis['sigla'] = $equipe->row()->sigla;
+				$variaveis['regiao'] = $equipe->row()->regiao_id;
+				$variaveis['pais'] = $equipe->row()->pais_id;
+				$variaveis['status'] = $equipe->row()->status;
+				$variaveis['sede'] = $equipe->row()->sede_id;
+				$variaveis['logo'] = $equipe->row()->logo;
+				$variaveis['cor_primaria'] = $equipe->row()->cor_primaria;
+				$variaveis['cor_secundaria'] = $equipe->row()->cor_secundaria;
+				$variaveis['valor'] = $equipe->row()->valor;
+
+				$variaveis['site'] = $equipe->row()->site;
+				$variaveis['social_fb'] = $equipe->row()->social_fb;
+				$variaveis['social_tw'] = $equipe->row()->social_tw;
+				$variaveis['social_in'] = $equipe->row()->social_in;
+
 				$variaveis['paises'] = $this->m_paises->get_paises();
 				$variaveis['regioes'] = $this->m_base->get_regioes();
 				$variaveis['sedes'] = $this->m_base->get_sedes();
-				$variaveis['tecnico'] = $this->m_equipes->get_tecnico_by_equipe($id);
-				$variaveis['status_equipe'] = $status_equipe;
 
 				$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
 				$variaveis['conteudo'] = $this->load->view('equipe/v_equipe_view', $variaveis,true);

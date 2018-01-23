@@ -74,13 +74,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 						<select name="pais" id="pais" class="form-control">
 							<?php
-								foreach($paises -> result() as $paises_s){
+								if(isset($id)){
+									foreach($paises -> result() as $paises_s){
 										if ($paises_s->id == $pais){ 
 											echo '<option value="'.$paises_s->id.'" selected>'.$paises_s->nome.'</option>';
 										}else{ 
 											echo '<option value="'.$paises_s->id.'">'.$paises_s->nome.'</option>';
 										}
-								} ?>
+									}
+								}else{
+									foreach($paises -> result() as $paises_s){
+										if ($paises_s->id == 28){ 
+											echo '<option value="'.$paises_s->id.'" selected>'.$paises_s->nome.'</option>';
+										}else{ 
+											echo '<option value="'.$paises_s->id.'">'.$paises_s->nome.'</option>';
+										}
+									}
+								}
+								
+								 ?>
 						</select>
 					</div>
 				</div>

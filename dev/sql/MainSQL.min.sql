@@ -659,9 +659,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `lmdb`.`tecnico`
+-- Table `lmdb`.`profissional`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmdb`.`tecnico` (
+CREATE TABLE IF NOT EXISTS `lmdb`.`profissional` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `nick` VARCHAR(15) NOT NULL,
@@ -670,7 +670,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`tecnico` (
   `foto` VARCHAR(45) NOT NULL,
   `valor` INT NOT NULL,
   PRIMARY KEY (`id`, `pais_id`),
-  CONSTRAINT `fk_tecnico_pais_id1`
+  CONSTRAINT `fk_profissional_pais_id1`
     FOREIGN KEY (`pais_id`)
     REFERENCES `lmdb`.`pais` (`id`)
     ON DELETE NO ACTION
@@ -729,6 +729,28 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`equipe` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `lmdb`.`comissao_tecnica`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `lmdb`.`comissao_tecnica` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `descricao` VARCHAR(32) NOT NULL,
+  `valor` DECIMAL(10,2) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `lmdb`.`equipe_comissao`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `lmdb`.`comissao_tecnica` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_` VARCHAR(32) NOT NULL,
+  `valor` DECIMAL(10,2) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
 -- Table `lmdb`.`equipe_banco`
@@ -742,41 +764,6 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`equipe_banco` (
   CONSTRAINT `fk_equipe_banco_equipe1`
     FOREIGN KEY (`equipe_id`)
     REFERENCES `lmdb`.`equipe` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `lmdb`.`profissional`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmdb`.`profissional` (
-  `id` INT NOT NULL,
-  `nome` VARCHAR(100) NOT NULL,
-  `ocupacao` VARCHAR(45) NOT NULL,
-  `valor` INT NOT NULL,
-  `salario` DECIMAL(10,2) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `lmdb`.`equipe_profissional`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmdb`.`equipe_profissional` (
-  `equipe_id` INT NOT NULL,
-  `profissional_id` INT NOT NULL,
-  PRIMARY KEY (`equipe_id`, `profissional_id`),
-  INDEX `fk_equipe_has_profissional_profissional1_idx` (`profissional_id` ASC),
-  INDEX `fk_equipe_has_profissional_equipe1_idx` (`equipe_id` ASC),
-  CONSTRAINT `fk_equipe_has_profissional_equipe1`
-    FOREIGN KEY (`equipe_id`)
-    REFERENCES `lmdb`.`equipe` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_equipe_has_profissional_profissional1`
-    FOREIGN KEY (`profissional_id`)
-    REFERENCES `lmdb`.`profissional` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -1029,29 +1016,29 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`transferencia_jogador` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `lmdb`.`transferencia_tecnico`
+-- Table `lmdb`.`transferencia_profissional`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmdb`.`transferencia_tecnico` (
+CREATE TABLE IF NOT EXISTS `lmdb`.`transferencia_profissional` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `jogador_custom_id` INT NULL,
-  `tecnico_id` INT NULL,
+  `profissional_id` INT NULL,
   `equipe_base_id` INT NULL,
   `tipo` VARCHAR(2) NOT NULL,
   `status` CHAR(1) NOT NULL,
   `data_transacao` DATE NOT NULL,
   PRIMARY KEY (`id`, `jogador_custom_id`, `equipe_base_id`),
-  INDEX `fk_transferencia_tecnico_equipe_base_id_idx` (`equipe_base_id` ASC),
-  CONSTRAINT `fk_transferencia_tecnico_jogador_equipe_fk`
-    FOREIGN KEY (`tecnico_id`)
-    REFERENCES `lmdb`.`tecnico` (`id`)
+  INDEX `fk_transferencia_profissional_equipe_base_id_idx` (`equipe_base_id` ASC),
+  CONSTRAINT `fk_transferencia_profissional_jogador_equipe_fk`
+    FOREIGN KEY (`profissional_id`)
+    REFERENCES `lmdb`.`profissional` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_transferencia_tecnico_jogador_custom1`
+  CONSTRAINT `fk_transferencia_profissional_jogador_custom1`
     FOREIGN KEY (`jogador_custom_id`)
     REFERENCES `lmdb`.`jogador_custom` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_transferencia_tecnico_equipe_base_fk_`
+  CONSTRAINT `fk_transferencia_profissional_equipe_base_fk_`
     FOREIGN KEY (`equipe_base_id`)
     REFERENCES `lmdb`.`equipe` (`id`)
     ON DELETE NO ACTION
@@ -1276,10 +1263,10 @@ INSERT INTO SEDE (NOME, CAPACIDADE, AMBIENTE, ESTRUTURA, VALOR) VALUES
 ('Centro de e-Sports', 15, 5, 5, 250000.00);
 
 -- ---------------------------------------------------------------
--- INSERT DE TÉCNICOS
+-- INSERT DE PROFISSIONAL
 -- ---------------------------------------------------------------
 
-INSERT INTO TECNICO (NOME, NICK, SOBRENOME, VALOR, PAIS_ID, FOTO) VALUES
+INSERT INTO PROFISSIONAL (NOME, NICK, SOBRENOME, VALOR, PAIS_ID, FOTO) VALUES
 ('Erick', 'Erickão', 'Cardoso', 6, 28, 'foto.jpg'),
 ('Gabriel', 'MiT', 'Souza', 6, 28, 'foto.jpg'),
 ('Lucas', 'Maestro', 'Pierre', 6, 28, 'foto.jpg'),

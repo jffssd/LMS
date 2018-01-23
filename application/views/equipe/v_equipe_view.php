@@ -1,11 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-<script>
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-</script>
+
 
 <div class="gradient-menu">
 	<ul class="nav nav-tabs justify-content-center nav-menu-adjusted" id="myTab" role="tablist">
@@ -25,13 +21,11 @@ $(function () {
 			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 				<div class="col-md-12 col_adjust">
 					<div class="row">
-
-						<!-- SIDE BARS - TEAM COLORS -->
+					<!-- SIDE BARS - TEAM COLORS -->
 						<div class="col-md-1 left-col-setup" style="background-color: <?php echo $cor_primaria;?>;">
 							<div class="left-col-setup-inner" style="background-color: <?php echo $cor_secundaria;?>;">
 							</div>
 						</div>
-
 						<!-- TEAM PANEL -->
 						<div class="col-md-4">
 							<div class="row principal-row" align="center">
@@ -79,7 +73,6 @@ $(function () {
 							</div>
 						</div>
 					</div>
-
 					<!-- TEAM DATA PANEL -->
 					<div class="col-md-2" style="padding: 0px;">
 						<div class="row">
@@ -104,11 +97,9 @@ $(function () {
 
 							<div class="card card-team-coach" align="center">
 								<h5 class="card-header card-team-coach-header">Coach</h5>
-								<?php foreach($tecnico -> result() as $t_e){ ?>
-								<img class="photo-team-coach" src="<?php echo site_url();?>assets/img/profiles/<?php echo $t_e->foto;?>" width="106" height="106">
+								<img class="photo-team-coach" src="<?php echo site_url();?>assets/img/profiles/<?php echo $foto;?>" width="106" height="106">
 								<div class="card-body card-team-coach-body">
-									<h6 class="card-team-coach-font"><?php echo $t_e->nome;?> "<span class="card-coach-nick"><?php echo $t_e->nick;?></span>" <?php echo $t_e->sobrenome;?></h6>
-									<?php	}	?>
+									<h6 class="card-team-coach-font">Nome "<span class="card-coach-nick">Nick</span>" Sobrenome</h6>
 								</div>
 							</div>
 						</div>	
@@ -445,3 +436,8 @@ $(function () {
 	</div>
 
 </div>
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
