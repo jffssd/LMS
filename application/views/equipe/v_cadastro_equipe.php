@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="row">
 			<div class="page_title team-create-edit">
 				<div class="logo-team-store"><img src="<?php echo site_url();?>assets/img/logo-equipes/<?php echo isset($id) ? $logo : 'default-team-logo.png';?>" width="100" height="100"></div>
-				<div class="" style="color: #868e89;"><h2 style="font-weight: bold; margin-left:110px; font-size:40px;"><?php echo $titulo;?></h2><h4><?php echo isset($id) ? $nome : ''; ?> <?php echo isset($id) ? '<span class="badge badge-dark">'.$sigla.'</span>' : ''; ?></h4></div>
+				<div class="" style="color: #868e89;"><h2 style="font-weight: bold; margin-left:110px; font-size:32px;"><?php echo $titulo;?></h2><h4><?php echo isset($id) ? $nome : ''; ?> <?php echo isset($id) ? '<span class="badge badge-dark">'.$sigla.'</span>' : ''; ?></h4></div>
 			</div>
 		</div>
 
@@ -165,7 +165,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</div>
 
+			<div class="form-row">
+				<div class="form-group col-md-12">
+					<label for="site">Site</label><span class="site"></span>
+					<div class="input-group mb-2">
+						<div class="input-group-addon"><i class="fa fa-globe" aria-hidden="true"></i>
+						</div>
+						<input type="text" name="site" id="site" class="form-control" value="<?php echo $site;?>" placeholder="<?php echo $site;?>" autofocus="true" />
+					</div>
+				</div>
+			</div>
 
+			<div class="form-row">
+				<div class="form-group col-md-12">
+					<label for="social_fb">Facebook</label><span class="social_fb"></span>
+					<div class="input-group mb-2">
+						<div class="input-group-addon"><i class="fa fa-facebook" aria-hidden="true"></i>
+						</div>
+						<input type="text" name="social_fb" id="social_fb" class="form-control" value="<?php echo $social_fb;?>" placeholder="<?php echo $social_fb;?>" autofocus="true" />
+					</div>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="form-group col-md-12">
+					<label for="social_tw">Twitter</label><span class="social_tw"></span>
+					<div class="input-group mb-2">
+						<div class="input-group-addon"><i class="fa fa-twitter" aria-hidden="true"></i>
+						</div>
+						<input type="text" name="social_tw" id="social_tw" class="form-control" value="<?php echo $social_tw;?>" placeholder="<?php echo $social_tw;?>" autofocus="true" />
+					</div>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="form-group col-md-12">
+					<label for="social_in">Instagram</label><span class="social_in"></span>
+					<div class="input-group mb-2">
+						<div class="input-group-addon"><i class="fa fa-instagram" aria-hidden="true"></i>
+						</div>
+						<input type="text" name="social_in" id="social_in" class="form-control" value="<?php echo $social_in;?>" placeholder="<?php echo $social_in;?>" autofocus="true" />
+					</div>
+				</div>
+			</div>
 
 			<div class="form-row">
 				<div class="form-inline" >

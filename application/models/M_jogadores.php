@@ -6,9 +6,12 @@ class M_jogadores extends CI_Model {
 	public function get_jogadores($id = null){
 		
 		if ($id) {
+			$this->db->select('j.nome, j.nick, j.sobrenome, j.foto, j.data_nasc, j.genero, j.funcao_id, j.pais_id, j.personalidade_id, j.at_trab, j.at_ment, j.at_consist, j.at_mec, j.at_vis, j.status');
+			//$this->db->join('funcao f','j.funcao_id = f.id');
+			//$this->db->join('pais p','j.pais_id = p.id');
 			$this->db->where('j.id', $id);
 		}else{
-			$this->db->select('j.nome,j.nick,j.sobrenome,j.foto, f.nome as funcao_nome, j.funcao_id, p.flag as pais_flag, p.nome as pais_nome');
+			$this->db->select('j.id, j.nome, j.nick, j.sobrenome,j.foto, f.nome as funcao_nome, j.funcao_id, p.flag as pais_flag, p.nome as pais_nome');
 			$this->db->join('funcao f','j.funcao_id = f.id');
 			$this->db->join('pais p','j.pais_id = p.id');
 			$this->db->order_by("j.id", 'desc');

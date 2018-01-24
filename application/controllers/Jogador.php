@@ -147,48 +147,31 @@ class Jogador extends CI_Controller {
 		if ($id) {
 			
 			// Busca model para buscar equipe por id		
-			$equipes = $this->m_equipes->get_equipes($id);
+			$jogador = $this->m_jogadores->get_jogadores($id);
 			
-			// Busca model para buscar jogadores vinculados a id da equipe
-			$variaveis['jogador_equipe'] = $this->m_equipes->get_jogador_by_equipe($id);
-
-			// Busca model para buscar jogadores vinculados a id da equipe
-			$variaveis['equipe_titulos'] = $this->m_equipes->get_campeonato_titulos_by_equipe($id);
-		
-			// Atribui status da equipe
-			$status_equipe = array( 
-				1 => 'Ativo',
-				2 => 'Inativo'
-			);
-
-			//Verifica se há registros de equipe com este id	
-
-			if ($equipes->num_rows() > 0 ) {
+			if ($jogador->num_rows() > 0 ) {
 				$variaveis['titulo'] = 'Visualizar Informações de Jogador';
 
 				//Informações tabela jogador
-				$variaveis['id'] = $jogadores->row()->id;
-				$variaveis['nome'] = $jogadores->row()->nome;
-				$variaveis['sobrenome'] = $jogadores->row()->sobrenome;
-				$variaveis['nick'] = $jogadores->row()->nick;
-				$variaveis['data_nasc'] = $jogadores->row()->data_nasc;
-				$variaveis['genero'] = $jogadores->row()->genero;
-				$variaveis['funcao_id'] = $jogadores->row()->funcao_id;
-				$variaveis['funcao_nome'] = $jogadores->row()->funcao_nome;
-				$variaveis['pais_id'] = $jogadores->row()->pais_id;
-				$variaveis['pais_nome'] = $jogadores->row()->pais_nome;
-				$variaveis['personalidade_id'] = $jogadores->row()->personalidade_id;
-				$variaveis['personalidade_nome'] = $jogadores->row()->personalidade_nome;
-				$variaveis['at_trab'] = $jogadores->row()->at_trab;
-				$variaveis['at_ment'] = $jogadores->row()->at_ment;
-				$variaveis['at_consist'] = $jogadores->row()->at_consist;
-				$variaveis['at_mec'] = $jogadores->row()->at_mec;
-				$variaveis['at_vis'] = $jogadores->row()->at_vis;
-				$variaveis['foto'] = $jogadores->row()->foto;
-				$variaveis['status_transacao'] = $jogadores->row()->status_transacao;
+				$variaveis['id'] = $jogador->row()->id;
+				$variaveis['nome'] = $jogador->row()->nome;
+				$variaveis['sobrenome'] = $jogador->row()->sobrenome;
+				$variaveis['nick'] = $jogador->row()->nick;
+				$variaveis['data_nasc'] = $jogador->row()->data_nasc;
+				$variaveis['genero'] = $jogador->row()->genero;
+				$variaveis['funcao_id'] = $jogador->row()->funcao_id;
+				$variaveis['pais_id'] = $jogador->row()->pais_id;
+				$variaveis['personalidade_id'] = $jogador->row()->personalidade_id;
+				$variaveis['at_trab'] = $jogador->row()->at_trab;
+				$variaveis['at_ment'] = $jogador->row()->at_ment;
+				$variaveis['at_consist'] = $jogador->row()->at_consist;
+				$variaveis['at_mec'] = $jogador->row()->at_mec;
+				$variaveis['at_vis'] = $jogador->row()->at_vis;
+				$variaveis['foto'] = $jogador->row()->foto;
+				$variaveis['status'] = $jogador->row()->status;
 
 				$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
-				$variaveis['conteudo'] = $this->load->view('equipe/v_equipe_view', $variaveis,true);
+				$variaveis['conteudo'] = $this->load->view('jogador/v_jogador_view', $variaveis,true);
 				$this->load->view('template/template', $variaveis);
 			} else {
 				$variaveis['mensagem'] = "Não encontramos registros." ;
