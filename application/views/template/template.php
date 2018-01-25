@@ -49,5 +49,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Custom scripts for this page-->
         <script src="<?php echo site_url();?>assets/js/sb-admin-datatables.min.js"></script>
         <script src="<?php echo site_url();?>assets/js/sb-admin-charts.min.js"></script>
-
+        <script src="<?php echo site_url();?>assets/js/popper.min.js"></script>
 </html>

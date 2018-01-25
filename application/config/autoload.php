@@ -60,7 +60,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
 
-$autoload['libraries'] = array('database');
+$autoload['libraries'] = array('database','session');
 
 
 /*
@@ -142,4 +142,5 @@ $autoload['model'] = array('m_cadastros',
                            'm_equipes', 
                            'm_base', 
                            'm_jogadores', 
-                           'm_transferencias');
+                           'm_transferencias'
+                           );

@@ -1,6 +1,5 @@
 <?php 
 session_start();
-
 if(isset($_SESSION['msg'])){ ?>
 	<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin:10px;">
 		<?php 
