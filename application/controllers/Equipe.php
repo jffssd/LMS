@@ -11,6 +11,8 @@ class Equipe extends CI_Controller {
 	
 	public function index()
 	{
+		session_start();
+		$_SESSION['dados'] = 'Até aqui tudo bem';
 		$variaveis['equipes'] = $this->m_equipes->get_equipes();
 		$variaveis['conteudo'] = $this->load->view('equipe/v_equipe', $variaveis, true);
 		$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
@@ -19,6 +21,8 @@ class Equipe extends CI_Controller {
 
 	public function create()
 	{
+		session_start();
+		$variaveis['dados'] = $_SESSION['dados'];
 		$variaveis['titulo'] = 'CADASTRAR EQUIPE';
 		$status_equipe = array( 
 			1 => 'Ativo',
@@ -124,6 +128,7 @@ class Equipe extends CI_Controller {
 
 
 	public function edit($id = null){
+		session_start();
 		
 		if ($id) {
 			

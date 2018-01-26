@@ -29,7 +29,7 @@ class M_base extends CI_Model {
 			$this->db->where('id', $id);
 		}
 		$this->db->order_by("id", 'desc');
-		return $this->db->get('tecnico');
+		return $this->db->get('profissional');
 
 		}
 		

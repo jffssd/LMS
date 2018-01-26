@@ -1,7 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-
 <style>
 .team-create-edit{
 	font-family: helvetica, tahoma;
@@ -29,7 +28,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	padding-left: 130px; height: 100px; vertical-align: middle;
 }
 </style>
-
 <div class="input-equipes">
 	<div class="col-md-8 offset-md-2">
 		<div class="row">
