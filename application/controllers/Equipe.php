@@ -9,21 +9,16 @@ class Equipe extends CI_Controller {
 	 * @return view
 	 */
 	
-	public function index()
-	{
-		session_start();
-		$_SESSION['dados'] = 'Até aqui tudo bem';
+	public function index(){
+
 		$variaveis['equipes'] = $this->m_equipes->get_equipes();
 		$variaveis['conteudo'] = $this->load->view('equipe/v_equipe', $variaveis, true);
 		$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
 		$this->load->view('template/template', $variaveis);
 	}
 
-	public function create()
-	{
-		session_start();
-		$variaveis['dados'] = $_SESSION['dados'];
-		$variaveis['titulo'] = 'CADASTRAR EQUIPE';
+	public function create(){
+
 		$status_equipe = array( 
 			1 => 'Ativo',
 			2 => 'Inativo'
@@ -231,3 +226,4 @@ class Equipe extends CI_Controller {
 		}
 	}
 }
+?>

@@ -1,7 +1,4 @@
 <?php 
-session_start();
-
-echo $_SESSION['dados'];
 
 if(isset($_SESSION['msg'])){ ?>
 	<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin:10px;">
@@ -13,7 +10,10 @@ if(isset($_SESSION['msg'])){ ?>
 			<span aria-hidden="true">&times;</span>
 		</button>
 	</div>
-<?php } ?>
+<?php } 
+
+
+echo sys_get_temp_dir()?>
 
 
 	<div class="tab-equipe" style="padding:10px;">
