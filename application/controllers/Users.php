@@ -8,9 +8,11 @@
 			}
 			$data['title'] = 'Dashboard';
 
-			$this->load->view('templates/header');
-			$this->load->view('users/dashboard', $data);
-			$this->load->view('templates/footer');
+				$this->load->view('templates/header');
+				$this->load->view('templates/navbar');
+				$this->load->view('templates/sidemenu');
+				$this->load->view('users/dashboard', $data);
+				$this->load->view('templates/footer');
 		}
 
 		public function profile(){
