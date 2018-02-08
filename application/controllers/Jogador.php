@@ -1,192 +1,187 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+class Jogador extends CI_Controller{
 
-class Jogador extends CI_Controller {
-
-	/**
-	 * Método principal do mini-crud
-	 * @param nenhum
-	 * @return view
-	 */
-	
-	public function index()
-	{
-		$variaveis['jogadores'] = $this->m_jogadores->get_jogadores();
-		$variaveis['top_jogadores'] = $this->m_jogadores->get_top_jogadores();
-		$variaveis['conteudo'] = $this->load->view('jogador/v_jogador', $variaveis, true);
-		$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
-		$this->load->view('template/template', $variaveis);
-	}/*
-
-	public function create()
-	{
-		$variaveis['titulo'] = 'Cadastrar Jogador';
-		$status_jogador = array( 
-			1 => 'Ativo',
-			2 => 'Inativo'
-		);
-		$variaveis['status_jogador'] = $status_jogador;
-		$variaveis['paises'] = $this->m_paises->get_paises();
-		$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
-		$variaveis['conteudo'] = $this->load->view('jogador/v_cadastro_jogador', $variaveis, true);
-		$this->load->view('template/template', $variaveis);
-	}
-	
-	public function store(){
+	public function __construct(){
 		
-		$this->load->library('form_validation');
-		
-		$regras = array(
-		        array(
-		                'field' => 'nome',
-		                'label' => 'Nome',
-		                'rules' => 'required'
-		        ),
-		        array(
-		                'field' => 'sobrenome',
-		                'label' => 'Sobrenome',
-		                'rules' => 'required'		                
-				),
-				array(
-						'field' => 'nick',
-						'label' => 'Nick',
-						'rules' => 'required'	
-				),
-        
-				array(
-						'field' => 'sede',
-						'label' => 'Sede',
-						'rules' => 'required'	
-				)
-		);
-		
-		$this->form_validation->set_rules($regras);
-
-		if ($this->form_validation->run() == FALSE) {
-			$variaveis['titulo'] = 'Novo Registro de Jogador';
-			$this->load->view('equipe/v_cadastro_jogador', $variaveis);
-		} else {
-			
-			$id = $this->input->post('id');
-			
-			$dados = array(
-			
-				"nome" => $this->input->post('nome'),
-				"sigla" => $this->input->post('sigla'),
-				"regiao_id" => $this->input->post('regiao'),
-				"pais_id" => $this->input->post('pais'),
-				"status" => $this->input->post('status'),
-				"sede_id" => $this->input->post('sede'),
-				"tecnico_id" => $this->input->post('tecnico'),
-				"qtd_comissao" => $this->input->post('comissao'),
-				"logo" => $this->input->post('logo'),
-				"cor_primaria" => $this->input->post('cor_primaria'),
-				"cor_secundaria" => $this->input->post('cor_secundaria'),
-			
-			);
-			if ($this->m_jogador->store($dados, $id)) {
-				$variaveis['mensagem'] = "Dados gravados com sucesso!";
-				$this->load->view('v_sucesso', $variaveis);
-			} else {
-				$variaveis['mensagem'] = "Ocorreu um erro. Por favor, tente novamente.";
-				$this->load->view('errors/html/v_erro', $variaveis);
-			}
-				
+		parent::__construct();
+		if($this->session->userdata('permissao') != 1) {
+			redirect('users/profile');
 		}
+    }
+    
+    public function index(){
+		
+		$data['title'] = 'Índice';
+			
+		$data['jogadores'] = $this->Jogadores_Model->get_jogadores();
+		$this->load->view('templates/header');
+		$this->load->view('jogador/v_jogador', $data);
+		$this->load->view('templates/footer');
+    }
+    
+	public function create(){
+        
+        $data['title'] = 'Cadastrar Jogador';
+        $data['paises'] = $this->Paises_Model->get_paises();
+        $data['funcoes'] = $this->Jogadores_Model->get_funcoes();
+        $data['personalidades'] = $this->Jogadores_Model->get_personalidades();
+       
+        $this->load->view('templates/header');
+        $this->load->view('jogador/v_jogador_cadastro', $data);
+        $this->load->view('templates/footer');
+    }
 
-	}
-
-	public function edit($id = null){
+    public function edit($id = null){
 		
 		if ($id) {
-			
-			$equipes = $this->m_equipes->get_equipes($id);
-			
-			$status_equipe = array( 
-				1 => 'Ativo',
-				2 => 'Inativo'
-			);
+			$jogador = $this->Jogadores_Model->get_jogadores($id);
 
-			if ($equipes->num_rows() > 0 ) {
-				$variaveis['titulo'] = 'Edição de Registro';
-				$variaveis['id'] = $equipes->row()->id;
-				$variaveis['nome'] = $equipes->row()->nome;
-				$variaveis['sigla'] = $equipes->row()->sigla;
-				$variaveis['regiao'] = $equipes->row()->regiao_id;
-				$variaveis['pais'] = $equipes->row()->pais_id;
-				$variaveis['status'] = $equipes->row()->status;
-				$variaveis['sede'] = $equipes->row()->sede_id;
-				$variaveis['tecnico'] = $equipes->row()->tecnico_id;
-				$variaveis['comissao'] = $equipes->row()->qtd_comissao;
-				$variaveis['logo'] = $equipes->row()->logo;
-				$variaveis['cor_primaria'] = $equipes->row()->cor_primaria;
-				$variaveis['cor_secundaria'] = $equipes->row()->cor_secundaria;
-				$variaveis['paises'] = $this->m_paises->get_paises();
-				$variaveis['regioes'] = $this->m_base->get_regioes();
-				$variaveis['sedes'] = $this->m_base->get_sedes();
-				$variaveis['tecnicos'] = $this->m_base->get_tecnicos();
-				
-				$variaveis['status_equipe'] = $status_equipe;
+			if ($jogador->num_rows() > 0 ) {
 
+                $data['title'] = 'Edição de Jogador';
 
+				$data['id'] = $jogador->row()->id;
+				$data['nome'] = $jogador->row()->nome;
+				$data['nick'] = $jogador->row()->nick;
+				$data['sobrenome'] = $jogador->row()->sobrenome;
+                $data['pais'] = $jogador->row()->pais_id;
+                $data['genero'] = $jogador->row()->genero;
+				$data['status'] = $jogador->row()->status;
+				$data['funcao'] = $jogador->row()->funcao_id;
+				$data['personalidade'] = $jogador->row()->personalidade_id;
+	
+                $data['paises'] = $this->Paises_Model->get_paises();
+                $data['funcoes'] = $this->Jogadores_Model->get_funcoes();
+                $data['personalidades'] = $this->Jogadores_Model->get_personalidades();
 
-
-				$variaveis['conteudo'] = $this->load->view('equipe/v_cadastro_equipe', $variaveis, true);
-				$this->load->view('template/template', $variaveis);
+				$this->load->view('templates/header');
+				$this->load->view('jogador/v_jogador_edicao', $data);
+				$this->load->view('templates/footer');
 			} else {
-				$variaveis['mensagem'] = "Registro não encontrado." ;
-				$this->load->view('errors/html/v_erro', $variaveis);
+				$data['mensagem'] = "Registro não encontrado." ;
+				$this->load->view('errors/html/v_erro', $data);
 			}
-			
 		}
-		
-	}*/
+	}
 
-	public function view($id = null){
+    public function store(){
+        
+        $data['title'] = 'NOVO REGISTRO DE EQUIPE';
+
+        $this->load->library('form_validation');
+
+        $regras = array(
+                        array(
+                                'field' => 'nick',
+                                'label' => 'Nick',
+                                'rules' => 'required'		                
+                        ),
+                        array(
+                                'field' => 'pais',
+                                'label' => 'Pais',
+                                'rules' => 'required'		                
+                        ),
+                        array(
+                                'field' => 'funcao',
+                                'label' => 'Função',
+                                'rules' => 'required'		                
+                        ),
+                        array(
+                                'field' => 'personalidade',
+                                'label' => 'Personalidade',
+                                'rules' => 'required'		                
+                        )
+                );
+
+        $this->form_validation->set_rules($regras);
+        
+        if ($this->form_validation->run() == FALSE) {
+        
+        $data['title'] = 'Cadastrar Jogador';
+        $data['paises'] = $this->Paises_Model->get_paises();
+        $data['funcoes'] = $this->Jogadores_Model->get_funcoes();
+        $data['personalidades'] = $this->Jogadores_Model->get_personalidades();
+                   
+        $this->load->view('templates/header');
+        $this->load->view('jogador/v_jogador_cadastro', $data);
+        $this->load->view('templates/footer');
+        
+        } else {
+                    
+            $id = $this->input->post('id');
+
+            $dados = array(
+                        
+                        'nome' => $this->input->post('nome'),
+                        'nick' => $this->input->post('nick'),
+                        'sobrenome' => $this->input->post('sobrenome'),
+                        'pais_id' => $this->input->post('pais'),
+                        'funcao_id' => $this->input->post('funcao'),
+                        'personalidade_id' => $this->input->post('personalidade'),
+                        'genero' => $this->input->post('genero'),
+                        'at_trab' => 0,
+                        'at_ment' => 0,
+                        'at_consist' => 0,
+                        'at_mec' => 0,
+                        'at_vis' => 0,
+                        'foto' => 'default.jpg',
+                        'status' => 1
+            );
+
+
+            if ($this->Jogadores_Model->store($dados, $id)) {
+                $this->session->set_flashdata('success', 'Equipe cadastrada com sucesso!');
+                redirect('jogador');
+            } else {
+                $this->session->set_flashdata('error', 'Erro ao cadastrar equipe.');
+                redirect('jogador');
+            }
+        }
+    }
+
+
+    public function view($id = null){
 		
 		if ($id) {
 			
 			// Busca model para buscar equipe por id		
-			$jogador = $this->m_jogadores->get_jogadores($id);
+			$jogador = $this->Jogadores_Model->get_jogadores($id);
 			
 			if ($jogador->num_rows() > 0 ) {
-				$variaveis['titulo'] = 'Visualizar Informações de Jogador';
+				$data['title'] = 'Visualizar Informações de Jogador';
 
 				//Informações tabela jogador
-				$variaveis['id'] = $jogador->row()->id;
-				$variaveis['nome'] = $jogador->row()->nome;
-				$variaveis['sobrenome'] = $jogador->row()->sobrenome;
-				$variaveis['nick'] = $jogador->row()->nick;
-				$variaveis['data_nasc'] = $jogador->row()->data_nasc;
-				$variaveis['genero'] = $jogador->row()->genero;
-				$variaveis['funcao_id'] = $jogador->row()->funcao_id;
-				$variaveis['pais_id'] = $jogador->row()->pais_id;
-				$variaveis['personalidade_id'] = $jogador->row()->personalidade_id;
-				$variaveis['at_trab'] = $jogador->row()->at_trab;
-				$variaveis['at_ment'] = $jogador->row()->at_ment;
-				$variaveis['at_consist'] = $jogador->row()->at_consist;
-				$variaveis['at_mec'] = $jogador->row()->at_mec;
-				$variaveis['at_vis'] = $jogador->row()->at_vis;
-				$variaveis['foto'] = $jogador->row()->foto;
-				$variaveis['status'] = $jogador->row()->status;
+				$data['id'] = $jogador->row()->id;
+				$data['nome'] = $jogador->row()->nome;
+				$data['sobrenome'] = $jogador->row()->sobrenome;
+				$data['nick'] = $jogador->row()->nick;
+				$data['data_nasc'] = $jogador->row()->data_nasc;
+				$data['genero'] = $jogador->row()->genero;
+				$data['funcao_id'] = $jogador->row()->funcao_id;
+				$data['pais_id'] = $jogador->row()->pais_id;
+				$data['personalidade_id'] = $jogador->row()->personalidade_id;
+				$data['at_trab'] = $jogador->row()->at_trab;
+				$data['at_ment'] = $jogador->row()->at_ment;
+				$data['at_consist'] = $jogador->row()->at_consist;
+				$data['at_mec'] = $jogador->row()->at_mec;
+				$data['at_vis'] = $jogador->row()->at_vis;
+				$data['foto'] = $jogador->row()->foto;
+				$data['status'] = $jogador->row()->status;
 
-				$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
-				$variaveis['conteudo'] = $this->load->view('jogador/v_jogador_view', $variaveis,true);
-				$this->load->view('template/template', $variaveis);
+                $this->load->view('templates/header');
+                $this->load->view('jogador/v_jogador_visualizar', $data);
+                $this->load->view('templates/footer');
 			} else {
-				$variaveis['mensagem'] = "Não encontramos registros." ;
-				$this->load->view('errors/html/v_erro', $variaveis);
+				$data['mensagem'] = "Não encontramos registros." ;
+				$this->load->view('errors/html/v_erro', $data);
 			}
-			
 		}
-		
-	}
-
-
-	public function delete($id = null) {
-		if ($this->m_jogador->delete($id)) {
-			$variaveis['mensagem'] = "Registro excluído com sucesso!";
-			$this->load->view('v_sucesso', $variaveis);
+    }
+    
+    public function delete($id = null) {
+		if ($this->Jogadores_Model->delete($id)) {
+                $this->session->set_flashdata('success', 'Equipe cadastrada com sucesso!');
+                redirect('jogador');
 		}
 	}
 }

@@ -1,40 +1,45 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+class Equipe extends CI_Controller{
 
-class Equipe extends CI_Controller {
+	public function __construct(){
+		
+		parent::__construct();
+		if($this->session->userdata('permissao') != 1) {
+			redirect('users/profile');
+		}
+	}
 
-	/**
-	 * Método principal do mini-crud
-	 * @param nenhum
-	 * @return view
-	 */
-	
 	public function index(){
-
-		$variaveis['equipes'] = $this->m_equipes->get_equipes();
-		$variaveis['conteudo'] = $this->load->view('equipe/v_equipe', $variaveis, true);
-		$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
-		$this->load->view('template/template', $variaveis);
+		
+		$data['title'] = 'Índice';
+			
+		$data['equipes'] = $this->Equipes_Model->get_equipes();
+		$this->load->view('templates/header');
+		$this->load->view('equipe/v_equipe', $data);
+		$this->load->view('templates/footer');
 	}
 
 	public function create(){
 
+		$data['title'] = 'Cadastrar Equipe';
 		$status_equipe = array( 
-			1 => 'Ativo',
-			2 => 'Inativo'
+								1 => 'Ativo',
+								2 => 'Inativo'
 		);
-		$variaveis['status_equipe'] = $status_equipe;
-		$variaveis['paises'] = $this->m_paises->get_paises();
-		$variaveis['regioes'] = $this->m_base->get_regioes();
-		$variaveis['sedes'] = $this->m_base->get_sedes();
-		$variaveis['tecnicos'] = $this->m_base->get_tecnicos();
-		$variaveis['conteudo'] = $this->load->view('equipe/v_cadastro_equipe', $variaveis, true);
-		$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
-		$this->load->view('template/template', $variaveis);
+		$data['status_equipe'] = $status_equipe;
+		$data['paises'] = $this->Paises_Model->get_paises();
+		$data['regioes'] = $this->General_Model->get_regioes();
+		$data['sedes'] = $this->General_Model->get_sedes();
+		$data['tecnicos'] = $this->General_Model->get_tecnicos();
+
+		$this->load->view('templates/header');
+		$this->load->view('equipe/v_equipe_cadastro', $data);
+		$this->load->view('templates/footer');
 	}
 
-	
-	public function store(){
+	public function store_create(){
+
+		$data['title'] = 'NOVO REGISTRO DE EQUIPE';
 
 		$this->load->library('form_validation');
 
@@ -42,12 +47,12 @@ class Equipe extends CI_Controller {
 		        array(
 		                'field' => 'nome',
 		                'label' => 'Nome',
-		                'rules' => 'required'
+		                'rules' => 'required|callback_check_nome_equipe_exists'
 		        ),
 		        array(
 		                'field' => 'sigla',
 		                'label' => 'Sigla',
-		                'rules' => 'required'		                
+		                'rules' => 'required|callback_check_sigla_equipe_exists'		                
 		        ),
 		        array(
 		                'field' => 'pais',
@@ -84,13 +89,22 @@ class Equipe extends CI_Controller {
 		$this->form_validation->set_rules($regras);
 
 		if ($this->form_validation->run() == FALSE) {
-			$variaveis['titulo'] = 'NOVO REGISTRO DE EQUIPE';
-			$variaveis['conteudo'] = $this->load->view('equipe/v_cadastro_equipe', $variaveis,true);
-			$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
-			$this->load->view('template/template', $variaveis);
+
+			$status_equipe =  array( 
+						1 => 'Ativo',
+						2 => 'Inativo'
+						);
+			$data['status_equipe'] = $status_equipe;
+			$data['paises'] = $this->Paises_Model->get_paises();
+			$data['regioes'] = $this->General_Model->get_regioes();
+			$data['sedes'] = $this->General_Model->get_sedes();
+			$data['tecnicos'] = $this->General_Model->get_tecnicos();
+
+			$this->load->view('templates/header');
+			$this->load->view('equipe/v_equipe_cadastro', $data);
+			$this->load->view('templates/footer');
+
 		} else {
-			
-			$id = $this->input->post('id');
 			
 			$dados = array(
 			
@@ -103,127 +117,226 @@ class Equipe extends CI_Controller {
 				"pais_id" => $this->input->post('pais'),
 				"cor_primaria" => $this->input->post('cor_primaria'),
 				"cor_secundaria" => $this->input->post('cor_secundaria'),
+				"site" => $this->input->post('site'),
+				"social_fb" => $this->input->post('social_fb'),
+				"social_tw" => $this->input->post('social_tw'),
+				"social_in" => $this->input->post('social_in'),
 				"valor" => 10,
 				"status" => 'A'
 			);
-			if ($this->m_equipes->store($dados, $id)) {
-				$variaveis['mensagem'] = "Dados gravados com sucesso!";
-				$variaveis['msgid'] = 1;
-				$this->load->view('equipe/v_equipe_store', $variaveis);
+			if ($this->Equipes_Model->store($dados, $id)) {
+				$this->session->set_flashdata('success', 'Equipe cadastrada com sucesso!');
+				redirect('equipe');
 			} else {
-				$variaveis['mensagem'] = "Ocorreu um erro. Por favor, tente novamente.";
-				$variaveis['msgid'] = 0;
-				$this->load->view('equipe/v_equipe_store', $variaveis);
+				$this->session->set_flashdata('error', 'Erro ao cadastrar equipe.');
+				redirect('equipe');
 			}
-				
 		}
-
 	}
 
+	public function store_edit(){
 
+		$data['title'] = 'NOVO REGISTRO DE EQUIPE';
+
+		$this->load->library('form_validation');
+
+		$regras = array(
+				array(
+					'field' => 'pais',
+					'label' => 'Pais',
+					'rules' => 'required'		                
+				),
+				array(
+					'field' => 'regiao',
+					'label' => 'Região',
+					'rules' => 'required'		                
+				),
+				array(
+					'field' => 'sede',
+					'label' => 'Sede',
+					'rules' => 'required'		                
+				),
+				array(
+					'field' => 'logo',
+					'label' => 'Logo',
+					'rules' => 'required'		                
+					),
+				array(
+					'field' => 'cor_primaria',
+					'label' => 'Cor Primária',
+					'rules' => 'required'		                
+					),
+				array(
+					'field' => 'cor_secundaria',
+					'label' => 'Cor Secundária',
+					'rules' => 'required'		                
+				)
+		);
+		
+		$this->form_validation->set_rules($regras);
+
+		if ($this->form_validation->run() == FALSE) {
+
+			$status_equipe =  array( 
+						1 => 'Ativo',
+						2 => 'Inativo'
+						);
+			$data['status_equipe'] = $status_equipe;
+			$data['paises'] = $this->Paises_Model->get_paises();
+			$data['regioes'] = $this->General_Model->get_regioes();
+			$data['sedes'] = $this->General_Model->get_sedes();
+			$data['tecnicos'] = $this->General_Model->get_tecnicos();
+
+			$this->load->view('templates/header');
+			$this->load->view('equipe/v_equipe_cadastro', $data);
+			$this->load->view('templates/footer');
+
+		} else {
+			
+			$id = $this->input->post('id');
+			
+			$dados = array(
+			
+				"pais_id" => $this->input->post('pais'),
+				"regiao_id" => $this->input->post('regiao'),
+				"sede_id" => $this->input->post('sede'),
+				"logo" => $this->input->post('logo'),
+				"pais_id" => $this->input->post('pais'),
+				"cor_primaria" => $this->input->post('cor_primaria'),
+				"cor_secundaria" => $this->input->post('cor_secundaria'),
+				"site" => $this->input->post('site'),
+				"social_fb" => $this->input->post('social_fb'),
+				"social_tw" => $this->input->post('social_tw'),
+				"social_in" => $this->input->post('social_in'),
+				"valor" => 10,
+				"status" => 'A'
+			);
+			if ($this->Equipes_Model->store($dados, $id)) {
+				$this->session->set_flashdata('success', 'Equipe cadastrada com sucesso!');
+				redirect('equipe');
+			} else {
+				$this->session->set_flashdata('error', 'Erro ao cadastrar equipe.');
+				redirect('equipe');
+			}
+		}
+	}
 
 	public function edit($id = null){
-		session_start();
 		
 		if ($id) {
-			
-			$equipes = $this->m_equipes->get_equipes($id);
-			
+			$equipes = $this->Equipes_Model->get_equipes($id);
 			$status_equipe = array( 
 				1 => 'Ativo',
 				2 => 'Inativo'
 			);
 
 			if ($equipes->num_rows() > 0 ) {
-				$variaveis['titulo'] = 'EDIÇÃO DE EQUIPE';
-				$variaveis['id'] = $equipes->row()->id;
-				$variaveis['nome'] = $equipes->row()->nome;
-				$variaveis['sigla'] = $equipes->row()->sigla;
-				$variaveis['regiao'] = $equipes->row()->regiao_id;
-				$variaveis['pais'] = $equipes->row()->pais_id;
-				$variaveis['status'] = $equipes->row()->status;
-				$variaveis['logo'] = $equipes->row()->logo;
-				$variaveis['cor_primaria'] = $equipes->row()->cor_primaria;
-				$variaveis['cor_secundaria'] = $equipes->row()->cor_secundaria;
-				$variaveis['paises'] = $this->m_paises->get_paises();
-				$variaveis['regioes'] = $this->m_base->get_regioes();
-				$variaveis['sedes'] = $this->m_base->get_sedes();
-				$variaveis['tecnicos'] = $this->m_base->get_tecnicos();
-				
-				$variaveis['status_equipe'] = $status_equipe;
 
-				$variaveis['conteudo'] = $this->load->view('equipe/v_cadastro_equipe', $variaveis, true);
-				$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
-				$this->load->view('template/template', $variaveis);
+				$data['title'] = 'EDIÇÃO DE EQUIPE';
+				$data['id'] = $equipes->row()->id;
+				$data['nome'] = $equipes->row()->nome;
+				$data['sigla'] = $equipes->row()->sigla;
+				$data['regiao'] = $equipes->row()->regiao_id;
+				$data['pais'] = $equipes->row()->pais_id;
+				$data['status'] = $equipes->row()->status;
+				$data['logo'] = $equipes->row()->logo;
+				$data['cor_primaria'] = $equipes->row()->cor_primaria;
+				$data['cor_secundaria'] = $equipes->row()->cor_secundaria;
+
+				$data['site'] = $equipes->row()->site;
+				$data['social_fb'] = $equipes->row()->social_fb;
+				$data['social_tw'] = $equipes->row()->social_tw;
+				$data['social_in'] = $equipes->row()->social_in;
+
+				$data['paises'] = $this->Paises_Model->get_paises();
+				$data['regioes'] = $this->General_Model->get_regioes();
+				$data['sedes'] = $this->General_Model->get_sedes();
+				$data['tecnicos'] = $this->General_Model->get_tecnicos();
+				
+				$data['status_equipe'] = $status_equipe;
+
+				$this->load->view('templates/header');
+				$this->load->view('equipe/v_equipe_edicao', $data);
+				$this->load->view('templates/footer');
 			} else {
-				$variaveis['mensagem'] = "Registro não encontrado." ;
-				$this->load->view('errors/html/v_erro', $variaveis);
+				$data['mensagem'] = "Registro não encontrado." ;
+				$this->load->view('errors/html/v_erro', $data);
 			}
-			
 		}
-		
+	}
+
+	public function delete($id = null) {
+
+		if ($this->Equipes_Model->delete($id)) {
+			$this->session->set_flashdata('success', 'Equipe excluída sucesso!');
+			redirect('equipe');
+		} else {
+			$this->session->set_flashdata('error', 'Erro ao excluir equipe.');
+			redirect('equipe');
+		}
 	}
 
 	public function view($id = null){
 		
 		if ($id) {
-
-			// Busca equipe por id		
-			$equipe = $this->m_equipes->get_equipes($id);
-			
-			// Busca jogadores vinculados à equipe
-			$variaveis['jogador_equipe'] = $this->m_equipes->get_jogador_by_equipe($id);
-
-			// Busca títulos de campeonatos vinculados à equipe
-			$variaveis['equipe_titulos'] = $this->m_equipes->get_campeonato_titulos_by_equipe($id);
-
-			// Busca comissão técnica vinculada à equipe
-		
-
-			//Verifica se há registros de equipe com este id	
+			$equipe = $this->Equipes_Model->get_equipes($id);
+			$data['jogador_equipe'] = $this->Equipes_Model->get_jogador_by_equipe($id);
+			$data['equipe_titulos'] = $this->Equipes_Model->get_campeonato_titulos_by_equipe($id);
 
 			if ($equipe->num_rows() > 0 ) {
-				$variaveis['titulo'] = 'Edição de Registro';
+				$data['titulo'] = 'Edição de Registro';
 
-				$variaveis['id'] = $equipe->row()->id;
-				$variaveis['nome'] = $equipe->row()->nome;
-				$variaveis['sigla'] = $equipe->row()->sigla;
-				$variaveis['regiao'] = $equipe->row()->regiao_id;
-				$variaveis['pais'] = $equipe->row()->pais_id;
-				$variaveis['status'] = $equipe->row()->status;
-				$variaveis['sede'] = $equipe->row()->sede_id;
-				$variaveis['logo'] = $equipe->row()->logo;
-				$variaveis['cor_primaria'] = $equipe->row()->cor_primaria;
-				$variaveis['cor_secundaria'] = $equipe->row()->cor_secundaria;
-				$variaveis['valor'] = $equipe->row()->valor;
+				$data['id'] = $equipe->row()->id;
+				$data['nome'] = $equipe->row()->nome;
+				$data['sigla'] = $equipe->row()->sigla;
+				$data['regiao'] = $equipe->row()->regiao_id;
+				$data['pais'] = $equipe->row()->pais_id;
+				$data['status'] = $equipe->row()->status;
+				$data['sede'] = $equipe->row()->sede_id;
+				$data['logo'] = $equipe->row()->logo;
+				$data['cor_primaria'] = $equipe->row()->cor_primaria;
+				$data['cor_secundaria'] = $equipe->row()->cor_secundaria;
+				$data['valor'] = $equipe->row()->valor;
 
-				$variaveis['site'] = $equipe->row()->site;
-				$variaveis['social_fb'] = $equipe->row()->social_fb;
-				$variaveis['social_tw'] = $equipe->row()->social_tw;
-				$variaveis['social_in'] = $equipe->row()->social_in;
+				$data['site'] = $equipe->row()->site;
+				$data['social_fb'] = $equipe->row()->social_fb;
+				$data['social_tw'] = $equipe->row()->social_tw;
+				$data['social_in'] = $equipe->row()->social_in;
 
-				$variaveis['paises'] = $this->m_paises->get_paises();
-				$variaveis['regioes'] = $this->m_base->get_regioes();
-				$variaveis['sedes'] = $this->m_base->get_sedes();
+				$data['paises'] = $this->Paises_Model->get_paises();
+				$data['regioes'] = $this->General_Model->get_regioes();
+				$data['sedes'] = $this->General_Model->get_sedes();
 
-				$variaveis['sidebar'] = $this->load->view('template/sidebar', $variaveis, true);
-				$variaveis['conteudo'] = $this->load->view('equipe/v_equipe_view', $variaveis,true);
-				$this->load->view('template/template', $variaveis);
+				$this->load->view('templates/header');
+				$this->load->view('equipe/v_equipe_visualizar', $data);
+				$this->load->view('templates/footer');
 			} else {
 				$variaveis['mensagem'] = "Registro não encontrado." ;
-				$this->load->view('errors/html/v_erro', $variaveis);
+				$this->load->view('errors/html/v_erro', $data);
 			}
-			
-		}
-		
-	}
-
-
-	public function delete($id = null) {
-		if ($this->m_equipes->delete($id)) {
-			$variaveis['mensagem'] = "Registro excluído com sucesso!";
-			$this->load->view('v_sucesso', $variaveis);
 		}
 	}
+
+	public function check_nome_equipe_exists($nome){
+
+		$this->form_validation->set_message('check_nome_equipe_exists', 'Este nome de equipe já existe.');
+
+		if ($this->Equipes_Model->check_nome_equipe_exists($nome)) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function check_sigla_equipe_exists($sigla){
+
+		$this->form_validation->set_message('check_sigla_equipe_exists', 'Esta sigla já existe.');
+
+		if ($this->Equipes_Model->check_sigla_equipe_exists($sigla)) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 }
-?>
