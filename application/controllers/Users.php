@@ -74,9 +74,11 @@
 
 			if($this->form_validation->run() === FALSE){
 
-				$this->load->view('templates/header');
+				//$this->load->view('templates/header');
+				//$this->load->view('templates/navbar');
+				//$this->load->view('templates/sidemenu');
 				$this->load->view('users/login', $data);
-				$this->load->view('templates/footer');
+				//$this->load->view('templates/footer');
 
 			}else{
 
@@ -123,6 +125,10 @@
 
 		// log user out
 		public function logout(){
+
+			if(!$this->session->userdata('login')) {
+				redirect('users/home');
+			}
 			// unset user data
 			$ip = $this->input->ip_address();
 			$id = $this->session->userdata('usuario_id');

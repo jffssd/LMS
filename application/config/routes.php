@@ -1,6 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
+// Main routes
+$route['login'] = 'users/login';
+$route['logout'] = 'users/logout';
+
 //user routes
 $route['users/register'] = 'users/register';
 $route['users/dashboard'] = 'users/dashboard';
