@@ -8,7 +8,7 @@
 <body>
 <div class="login">
     <div class="text-center" style="margin-bottom:10px;">
-		<img src="<?php echo base_url(); ?>assets/images/yadi-ci-logo.png" alt="logo.png">
+		<img src="<?php echo base_url(); ?>assets/images/ces_logo.png" alt="logo.png">
 		<p style="color: #ee4445;">Carreira E-sports</p>
     </div>
     <?php echo form_open('users/login'); ?>
