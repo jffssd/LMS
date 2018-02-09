@@ -23,7 +23,7 @@
     <?php if($this->session->userdata('login')): ?>
     <li><a href="<?php echo base_url(); ?>users/dashboard"><?php echo $this->session->userdata('usuario'); ?></a></li>
     <li><a href="<?php echo base_url(); ?>users/logout">Logout</a></li>
-         <?php endif; ?>
+    <?php endif; ?>
   </ul>  
 
   <div class="container">

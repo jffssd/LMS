@@ -4,26 +4,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // Main routes
 $route['login'] = 'users/login';
+$route['entrar'] = 'users/login';
+$route['registrar'] = 'users/register';
 $route['logout'] = 'users/logout';
+$route['sair'] = 'users/logout';
 
 //user routes
 $route['users/register'] = 'users/register';
 $route['users/dashboard'] = 'users/dashboard';
 
 // País - Routes
-
 $route['pais'] = 'pais/index';
 
 // Equipe - Routes
-
 $route['equipe'] = 'equipe/index';
 
 // Jogador - Routes
-
 $route['jogador'] = 'jogador/index';
 
 // Transferencias - Routes
-
 $route['transferencia'] = 'transferencia/index';
 
 //admin routs

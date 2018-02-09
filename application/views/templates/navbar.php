@@ -14,7 +14,8 @@
         <nav class="navbar-custom">
 
                     <ul class="list-inline float-right mb-0">
-						
+
+                        <?php if($this->session->userdata('login')): ?>
 						<li class="list-inline-item dropdown notif">
                             <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <i class="fa fa-fw fa-question-circle"></i>
@@ -149,21 +150,21 @@
 
                         <li class="list-inline-item dropdown notif">
                             <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <span>Olá, Administrador</span> <img src="<?php echo base_url('assets/images/avatars/avatar6.png');?>" alt="Profile image" class="avatar-rounded">
+                            <small><?php echo $this->session->userdata('usuario');?></small> <img src="<?php echo base_url('assets/images/').$this->session->userdata('imagem_perfil');?>" alt="Profile image" class="avatar-rounded">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                 <!-- item-->
                                 <div class="dropdown-item noti-title">
-                                    <h5 class="text-overflow"><small>Olá, Administrador</small> </h5>
+                                    <h5 class="text-overflow"><small>Opções</small> </h5>
                                 </div>
 
                                 <!-- item-->
-                                <a href="#" class="dropdown-item notify-item">
+                                <a href="<?php echo base_url('perfil');?>" class="dropdown-item notify-item">
                                     <i class="fa fa-user"></i> <span>Perfil</span>
                                 </a>
 
                                 <!-- item-->
-                                <a href="#" class="dropdown-item notify-item">
+                                <a href="<?php echo base_url('sair');?>" class="dropdown-item notify-item">
                                     <i class="fa fa-power-off"></i> <span>Sair</span>
                                 </a>
 							
@@ -171,7 +172,23 @@
                         </li>
 
                     </ul>
+                    <?php endif; ?>
 
+                    <?php if(!$this->session->userdata('login')): ?>
+
+                        <li class="list-inline-item dropdown notif">
+                            <a class="nav-link dropdown-toggle nav-user" href="<?php echo base_url('entrar');?>">
+                                <span style="font-size: 0.90rem;"><i class="fa fa-fw fa-angle-right"></i> Entrar</span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item dropdown notif">
+                            <a class="nav-link dropdown-toggle nav-user" href="<?php echo base_url('registrar');?>">
+                                <span style="font-size: 0.90rem;"><i class="fa fa-fw fa-angle-right"></i> Registrar</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <?php endif; ?>
+                    
                     <ul class="list-inline menu-left mb-0">
                         <li class="float-left">
                             <button class="button-menu-mobile open-left">

@@ -18,7 +18,7 @@ body {
 	width: 100%;
 	height:100%;
 	font-family: 'Open Sans', sans-serif;
-	background-image: url("http://localhost:8080/ces/assets/images/bg.jpg");
+	background-image: url("http://localhost/ces/assets/images/bg.jpg");
 
     /* Center and scale the image nicely */
     background-position: center;

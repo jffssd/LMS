@@ -1,6 +1,15 @@
 <?php
 	class Users extends CI_Controller{
 
+
+		public function __construct(){
+			
+			parent::__construct();
+			
+			$data['usuario_nome'] = $this->session->userdata('usuario');
+			$data['usuario_email'] = $this->session->userdata('email');
+		}
+
 		public function dashboard(){
 
 			if(!$this->session->userdata('login')) {
@@ -8,11 +17,11 @@
 			}
 			$data['title'] = 'Dashboard';
 
-				$this->load->view('templates/header');
-				$this->load->view('templates/navbar');
-				$this->load->view('templates/sidemenu');
-				$this->load->view('users/dashboard', $data);
-				$this->load->view('templates/footer');
+			$this->load->view('templates/header');
+			$this->load->view('templates/navbar');
+			$this->load->view('templates/sidemenu');
+			$this->load->view('users/dashboard', $data);
+			$this->load->view('templates/footer');
 		}
 
 		public function profile(){
