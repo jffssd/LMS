@@ -1130,6 +1130,12 @@ a.btn:focus {
 	bottom: 0;
 }	
 
+#sidebar-menu > ul > li > a.carreira-link {    
+	background-color: #ee4445;
+	color: #fff;
+	bottom: 0;
+}	
+
 .avatar-circle {
     border-radius: 50%;
 }
