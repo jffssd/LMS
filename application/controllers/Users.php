@@ -5,9 +5,7 @@
 		public function __construct(){
 			
 			parent::__construct();
-			
-			$data['usuario_nome'] = $this->session->userdata('usuario');
-			$data['usuario_email'] = $this->session->userdata('email');
+
 		}
 
 		public function dashboard(){
@@ -33,6 +31,8 @@
 
 			$data['mensagens'] = $this->User_Model->get_mensagens_usuario($this->session->userdata('usuario_id'));
 			$this->load->view('templates/header');
+			$this->load->view('templates/navbar');
+			$this->load->view('templates/sidemenu');
 			$this->load->view('users/profile', $data);
 			$this->load->view('templates/footer');
 		}

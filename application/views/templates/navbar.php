@@ -150,7 +150,7 @@
 
                         <li class="list-inline-item dropdown notif">
                             <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <small><?php echo $this->session->userdata('usuario');?></small> <img src="<?php echo base_url('assets/images/').$this->session->userdata('imagem_perfil');?>" alt="Profile image" class="avatar-rounded">
+                            <small><?php echo $this->session->userdata('usuario');?></small> <img src="<?php echo base_url('assets/images/users/').$this->session->userdata('imagem_perfil');?>" alt="Profile image" class="avatar-rounded">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                 <!-- item-->

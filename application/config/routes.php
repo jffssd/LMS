@@ -8,10 +8,9 @@ $route['entrar'] = 'users/login';
 $route['registrar'] = 'users/register';
 $route['logout'] = 'users/logout';
 $route['sair'] = 'users/logout';
+$route['inicio'] = 'users/dashboard';
+$route['perfil'] = 'users/profile';
 
-//user routes
-$route['users/register'] = 'users/register';
-$route['users/dashboard'] = 'users/dashboard';
 
 // País - Routes
 $route['pais'] = 'pais/index';
