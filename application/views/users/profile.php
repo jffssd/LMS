@@ -24,7 +24,7 @@
 </div>
 
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">						
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">						
         <div class="card mb-3">
             <div class="card-header">
                 <h3><i class="fa fa-picture-o"></i> Imagem de Perfil</h3>
@@ -35,7 +35,7 @@
         </div>				
     </div>	
 
-    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">						
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">						
         <div class="card mb-3">
             <div class="card-header">
                 <h3 class="float-left"><i class="fa fa-envelope-o"></i> Mensagens</h3>
@@ -50,9 +50,9 @@
                         $count++;
                         echo '<tr>';
                         if($count < 3){
-                            echo '<td class="short-email-data"><span class="badge badge-primary">Nova!</span></td>';
+                            echo '<td class="short-email-data"><span class="badge badge-primary"><i class="fa fa-envelope-o"></i> Nova!</span></td>';
                         }else{
-                            echo '<td class="short-email-data"><span class="badge badge-secondary">Lida</span></td>';
+                            echo '<td class="short-email-data"><span class="badge badge-secondary"><i class="fa fa-envelope-open-o"></i> Lida</span></td>';
                         }
                         echo '<td class="short-email-data"><a href="#">'.$msg->autor.'</a></td>';
                         echo '<td class="short-email-data">'.$msg->mensagem.'</td>';
@@ -67,27 +67,39 @@
 </div>
 
 <style>
-    .profile-info-title{
-        font-weight: bold;
-        color: #6b6b6b;
-    }
+.profile-info-title{
+    font-weight: bold;
+    color: #6b6b6b;
+}
 
-    .profile-info-data{
-        color: #6b6b6b;
-    }
+.profile-info-data{
+    color: #6b6b6b;
+}
 
-    .profile-info-row{
-        margin: 10px;
-    }
+.profile-info-row{
+    margin: 10px;
+}
 
-    .profile-info-card-body{
-        padding-left: 5px;
-    }
-    
+.profile-info-card-body{
+    padding-left: 5px;
+}
+
+.card-modules-node{
+    margin-left:15px;
+    margin-bottom: 10px;
+}
+
+.bg-pink-ces{
+    background-color: #ee4445;
+}
+
+.card-record-data{
+    font-size: 14px;
+}
 </style>
 
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">						
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">						
         <div class="card mb-3">
             <div class="card-header">
             <h3><i class="fa fa-info"></i> Informações</h3>
@@ -111,14 +123,49 @@
             </div>
         </div>				
     </div>	
+
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">						
+        <div class="card text-white bg-dark mb-3">
+            <div class="card-header">
+            <h3 class="text-white"><i class="fa fa-star text-warning"></i> Realizações</h3>
+            </div>
+            <div class="card-body profile-info-card-body ">
+                <div class="card-modules-node">
+                    <p class="card-record-data" style="margin:5px;"><b>Carreira Jogador</b><span class="text-white pull-right">45/100</span></p>
+                    <div class="progress" style="height:10px;">
+                        <div class="progress-bar progress-xs bg-pink-ces" role="progressbar" style="width: 45%;" aria-valuenow="45" aria-valuemin="0" aria-valuemax="45">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-modules-node">
+                    <p class="card-record-data" style="margin:5px;"><b>Carreira Técnico</b><span class="text-white pull-right">73/100</span></p>
+                    <div class="progress" style="height:10px;">
+                        <div class="progress-bar progress-xs bg-pink-ces" role="progressbar" style="width: 73%;" aria-valuenow="73" aria-valuemin="0" aria-valuemax="73">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-modules-node">
+                    <p class="card-record-data" style="margin:5px;"><b>Bolão</b><span class="text-white pull-right">82/100</span></p>
+                    <div class="progress" style="height:10px;">
+                        <div class="progress-bar progress-xs bg-pink-ces" role="progressbar" style="width: 82%;" aria-valuenow="82" aria-valuemin="0" aria-valuemax="82">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer"><a href="#" class="text-white">Ver todas as realizações...</a>
+            </div>
+        </div>				
+    </div>	
+
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">						
+        <div class="card mb-3">
+            <div class="card-header">
+            <h3><i class="fa fa-star"></i> Realizações</h3>
+            </div>
+            <div class="card-body profile-info-card-body ">
+            </div>
+            <div class="card-footer"><a href="#">Ver todas as realizações...</a>
+            </div>
+        </div>				
+    </div>	
 </div>	
-
-<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Tooltip on right">
-  Tooltip on right
-</button>
-
-<script>
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-</script>

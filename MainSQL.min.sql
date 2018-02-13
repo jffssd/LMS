@@ -350,7 +350,7 @@ PRIMARY KEY (`id`),
 ENGINE=InnoDB;
 
 -- -----------------------------------------------------
--- Table `lmdb`.`jogador_custom`
+-- Table `lmdb`.`mensagem_usuario`
 -- -----------------------------------------------------
 
 CREATE TABLE `mensagem_usuario` (

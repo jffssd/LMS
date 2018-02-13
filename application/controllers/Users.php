@@ -11,28 +11,47 @@
 		public function dashboard(){
 
 			if(!$this->session->userdata('login')) {
-				redirect('users/login');
+				redirect('entrar');
 			}
-			$data['title'] = 'Dashboard';
+			$data['title'] = 'Painel Principal';
+			$referencia['item'] = 'inicio';
 
 			$this->load->view('templates/header');
 			$this->load->view('templates/navbar');
-			$this->load->view('templates/sidemenu');
+			$this->load->view('templates/sidemenu', $referencia);
 			$this->load->view('users/dashboard', $data);
+			$this->load->view('templates/footer');
+		}
+
+		public function mensagens(){
+
+			if(!$this->session->userdata('login')) {
+				redirect('entrar');
+			}
+			$data['title'] = 'Mensagens';
+			$referencia['item'] = 'mensagens';
+
+			$this->load->view('templates/header');
+			$this->load->view('templates/navbar');
+			$this->load->view('templates/sidemenu', $referencia);
+			$this->load->view('templates/page_start');
+			$this->load->view('users/mensagens', $data);
 			$this->load->view('templates/footer');
 		}
 
 		public function profile(){
 
 			if(!$this->session->userdata('login')) {
-				redirect('users/login');
+				redirect('entrar');
 			}
-			$data['title'] = 'Profile';
+			$data['title'] = 'Perfil';
+			$referencia['item'] = 'perfil';
 
 			$data['mensagens'] = $this->User_Model->get_mensagens_usuario($this->session->userdata('usuario_id'));
 			$this->load->view('templates/header');
 			$this->load->view('templates/navbar');
-			$this->load->view('templates/sidemenu');
+			$this->load->view('templates/sidemenu', $referencia);
+			$this->load->view('templates/page_start');
 			$this->load->view('users/profile', $data);
 			$this->load->view('templates/footer');
 		}
@@ -75,7 +94,7 @@
 		public function login(){
 
 			if($this->session->userdata('login')) {
-				redirect('users/dashboard');
+				redirect('inicio');
 			}
 
 			$data['title'] = 'Conectar-se';
@@ -138,7 +157,7 @@
 		public function logout(){
 
 			if(!$this->session->userdata('login')) {
-				redirect('users/home');
+				redirect('home');
 			}
 			// unset user data
 			$ip = $this->input->ip_address();
