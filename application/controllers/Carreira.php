@@ -35,9 +35,12 @@ class Carreira extends CI_Controller{
         $data['funcoes'] = $this->Jogadores_Model->get_funcoes();
         $data['personalidades'] = $this->Jogadores_Model->get_personalidades();
         
+		$referencia['item'] = 'inicio';
+		
         $this->load->view('templates/header');
         $this->load->view('templates/navbar');
-        $this->load->view('templates/sidemenu');
+        $this->load->view('templates/sidemenu', $referencia);
+		$this->load->view('templates/page_start');
         $this->load->view('carreira/criar', $data);
         $this->load->view('templates/footer');
     }

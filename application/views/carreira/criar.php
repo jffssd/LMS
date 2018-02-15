@@ -33,7 +33,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-md-8 offset-2">
             <div class="row">
                 <div class="page_title team-create-edit">
-                    <div class="logo-team-store"><img src="<?php echo site_url();?>assets/img/logo-equipes/<?php echo isset($id) ? $logo : 'default-team-logo.png';?>" width="100" height="100"></div>
                     <div class="" style="color: #868e89;"><h2 style="font-weight: bold; margin-left:110px; font-size:32px;"><?php echo $title;?></h2><h4><?php echo isset($id) ? $nome : ''; ?> <?php echo isset($id) ? '<span class="badge badge-dark">'.$sigla.'</span>' : ''; ?></h4></div>
                 </div>
             </div>

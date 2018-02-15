@@ -1024,7 +1024,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`transferencia_profissional` (
   `cargo_id`INT NOT NULL,
   `status` CHAR(1) NOT NULL,
   `data_transacao` DATE NOT NULL,
-  PRIMARY KEY (`id`, `jogador_custom_id`, `equipe_base_id`),
+  PRIMARY KEY (`id`),
   INDEX `fk_transferencia_profissional_equipe_base_id_idx` (`equipe_base_id` ASC),
   CONSTRAINT `fk_transferencia_profissional_jogador_equipe_fk`
     FOREIGN KEY (`profissional_id`)
@@ -1265,7 +1265,7 @@ INSERT INTO `regiao` (`nome`, `sigla`) VALUES
 -- INSERT DE SEDES
 -- ---------------------------------------------------------------
 
-INSERT INTO SEDE (NOME, CAPACIDADE, AMBIENTE, ESTRUTURA, VALOR) VALUES 
+INSERT INTO sede (nome, capacidade, ambiente, estrutura, valor) VALUES 
 ('Casa simples de aluguel', 7, 1, 1, 50000.00),
 ('Apartamento de aluguel', 8, 2, 2, 650000.00),
 ('Imóvel residencial', 7, 3, 2, 80000.00),
@@ -1278,7 +1278,7 @@ INSERT INTO SEDE (NOME, CAPACIDADE, AMBIENTE, ESTRUTURA, VALOR) VALUES
 -- INSERT DE PROFISSIONAL
 -- ---------------------------------------------------------------
 
-INSERT INTO PROFISSIONAL (NOME, NICK, SOBRENOME, VALOR, PAIS_ID, FOTO) VALUES
+INSERT INTO profissional (nome, nick, sobrenome, valor, pais_id, foto) VALUES
 ('Erick', 'Erickão', 'Cardoso', 6, 28, 'foto.jpg'),
 ('Gabriel', 'MiT', 'Souza', 6, 28, 'foto.jpg'),
 ('Lucas', 'Maestro', 'Pierre', 6, 28, 'foto.jpg'),
@@ -1311,7 +1311,7 @@ INSERT INTO PROFISSIONAL (NOME, NICK, SOBRENOME, VALOR, PAIS_ID, FOTO) VALUES
 -- INSERT DE EQUIPES
 -- ---------------------------------------------------------------
 
-INSERT INTO EQUIPE (NOME, SIGLA, REGIAO_ID, STATUS, PAIS_ID, SEDE_ID, LOGO, COR_PRIMARIA, COR_SECUNDARIA, VALOR) VALUES 
+INSERT INTO equipe (nome, sigla, regiao_id, status, pais_id, sede_id, logo, cor_primaria, cor_secundaria, valor) VALUES 
 ('Pain Gaming', 'PNG', 1, 'A', 28, 1, 'pain-gaming-logo.png', '#b20101', '#000000', 7.2),
 ('Red Canids', 'RED', 1, 'A', 28, 1, 'red-canids-logo.png', '#b20101', '#ffffff', 7.2),
 ('Brave e-Sports', 'BRAVE', 1, 'A', 28, 1, 'brave-esports-logo.png', '#b20101', '#ffffff', 7.2),
@@ -1335,7 +1335,7 @@ INSERT INTO EQUIPE (NOME, SIGLA, REGIAO_ID, STATUS, PAIS_ID, SEDE_ID, LOGO, COR_
 -- INSERT DE PERSONALIDADES
 -- ---------------------------------------------------------------
 
-INSERT INTO PERSONALIDADE_JOGADOR (NOME, DESCRICAO, FORMULA) VALUES 
+INSERT INTO personalidade_jogador (nome, descricao, formula) VALUES 
 ("SANGUINEO", "", ""),
 ("COLÉRICO", "", ""),
 ("MELANCÓLICO", "", ""),
@@ -1345,7 +1345,7 @@ INSERT INTO PERSONALIDADE_JOGADOR (NOME, DESCRICAO, FORMULA) VALUES
 -- INSERT DE FUNÇÕES
 -- ---------------------------------------------------------------
 
-INSERT INTO FUNCAO (NOME, JOGO) VALUES 
+INSERT INTO funcao (nome, jogo) VALUES 
 ("Topo", 1),
 ("Selva", 1),
 ("Meio", 1),
@@ -1356,7 +1356,7 @@ INSERT INTO FUNCAO (NOME, JOGO) VALUES
 -- INSERT DE JOGADORES
 -- ---------------------------------------------------------------
 
-INSERT INTO JOGADOR (NOME, NICK, SOBRENOME, GENERO, FUNCAO_ID, PAIS_ID, PERSONALIDADE_ID, AT_TRAB, AT_MENT, AT_CONSIST, AT_MEC, AT_VIS, FOTO, STATUS) VALUES
+INSERT INTO jogador (nome, nick, sobrenome, genero, funcao_id, pais_id, personalidade_id, at_trab, at_ment, at_consist, at_mec, at_vis, foto, status) VALUES
 ("", "Hawk", "", "M", 1, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
 ("Eduardo", "Aslan", "Nunes", "M", 3, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
 ("Gabriel", "Days", "Dias", "M", 2, 28, 1, 1, 2, 3, 4, 5, "foto.jpg", 1),
@@ -1497,7 +1497,7 @@ INSERT INTO JOGADOR (NOME, NICK, SOBRENOME, GENERO, FUNCAO_ID, PAIS_ID, PERSONAL
 -- INSERT DE EQUIPE_JOGADOR
 -- ---------------------------------------------------------------
 
-INSERT INTO EQUIPE_JOGADOR (JOGADOR_ID, EQUIPE_ID, SALARIO, TEMPORADA, ANO, TITULAR, STATUS) VALUES 
+INSERT INTO equipe_jogador (jogador_id, equipe_id, salario, temporada, ano, titular, status) VALUES 
 
 -- Pain Gaming --
 
@@ -1730,18 +1730,18 @@ INSERT INTO equipe_campeonato (equipe_id, campeonato_id, posicao) VALUES
 -- INSERT DE PERMISSÕES / USUÁRIOS / JOGADOR-CUSTOM DE TESTE    --
 -- ---------------------------------------------------------------
 
-INSERT INTO PERMISSAO (descricao, obs) VALUES
+INSERT INTO permissao (descricao, obs) VALUES
 ('admin', 'Administrador do Sistema'),
 ('mod', 'Moderador do Sistema'),
 ('user', 'Usuários do sistema'),
 ('guest', 'Visitantes');
 
 
-INSERT INTO JOGADOR_CUSTOM (usuario_id, nome, nick, sobrenome,  data_nasc, funcao_id, pais_id, personalidade_id, at_trab, at_ment, at_consist, at_mec, at_vis, foto, nivel, exp, status_transacao) VALUES
+INSERT INTO jogador_custom (usuario_id, nome, nick, sobrenome,  data_nasc, funcao_id, pais_id, personalidade_id, at_trab, at_ment, at_consist, at_mec, at_vis, foto, nivel, exp, status_transacao) VALUES
 (1, 'Custom', 'CstmPlayer', 'Player', '2018-01-15', 1, 28, 1, 1, 1, 1, 1, 1, 'foto.jpg', 0, 0, 1);
 
 
-INSERT INTO CARGOS_PROFISSIONAIS (descricao, valor) VALUES
+INSERT INTO cargos_profissionais (descricao, valor) VALUES
 ('Head Coach', 0),
 ('Coach', 0),
 ('Strategic Coach', 0),
