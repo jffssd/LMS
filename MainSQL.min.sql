@@ -171,16 +171,6 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`regiao` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `lmdb`.`serie_tipo`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmdb`.`serie_tipo` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `descricao` VARCHAR(45) NOT NULL,
-  `qtd_jogos` INT NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
--- -----------------------------------------------------
 -- Table `lmdb`.`campeonato`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato` (
@@ -189,9 +179,8 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato` (
   `ano` INT NOT NULL,
   `temporada` CHAR(1) NOT NULL,
   `playoffs_id` INT NULL,
-  `liga_tipos_id` INT NOT NULL,
+  `camp_formato_id` INT NOT NULL,
   `status` CHAR(1) NOT NULL,
-  `serie_tipo` INT NOT NULL,
   `regiao_id` INT NOT NULL,
   PRIMARY KEY (`id`, `regiao_id`),
   INDEX `fk_campeonato_regiao1_idx` (`regiao_id` ASC),
@@ -202,50 +191,46 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_campeonato_tipo_playoffs_tipo1`
     FOREIGN KEY (`playoffs_id`)
-    REFERENCES `lmdb`.`playoffs_tipos` (`id`)
+    REFERENCES `lmdb`.`campeonato_playoffs_tipos` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_campeonato_serie_tipo_tipo1`
-    FOREIGN KEY (`serie_tipo`)
-    REFERENCES `lmdb`.`serie_tipo` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_campeonato_tipo_liga_tipos1`
-    FOREIGN KEY (`liga_tipos_id`)
-    REFERENCES `lmdb`.`liga_tipos` (`id`)
+  CONSTRAINT `fk_campeonato_tipo_camp_formato_id1`
+    FOREIGN KEY (`camp_formato_id`)
+    REFERENCES `lmdb`.`campeonato_formato` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `lmdb`.`playoffs`
+-- Table `lmdb`.`campeonato_playoffs`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `lmdb`.`playoffs` (
+CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_playoffs` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `campeonato_id` INT NOT NULL,
   `time1` INT NOT NULL,
   `time2` INT NOT NULL,
+  `etapa` INT NOT NULL,
   `vencedor` INT,
   `status` INT,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_playoffs_campeonato_id_campeonato_id1`
+  CONSTRAINT `fk_campeonato_playoffs_campeonato_id_campeonato_id1`
     FOREIGN KEY (`campeonato_id`)
     REFERENCES `lmdb`.`campeonato` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_playoffs_time1_equipe_id1`
+  CONSTRAINT `fk_campeonato_playoffs_time1_equipe_id1`
     FOREIGN KEY (`time1`)
     REFERENCES `lmdb`.`equipe` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_playoffs_time2_equipe_id2`
+  CONSTRAINT `fk_campeonato_playoffs_time2_equipe_id2`
     FOREIGN KEY (`time2`)
     REFERENCES `lmdb`.`equipe` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_playoffs_vencedor_equipe_idv`
+  CONSTRAINT `fk_campeonato_playoffs_vencedor_equipe_idv`
     FOREIGN KEY (`vencedor`)
     REFERENCES `lmdb`.`equipe` (`id`)
     ON DELETE NO ACTION
@@ -254,25 +239,28 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `lmdb`.`playoffs_tipos`
+-- Table `lmdb`.`campeonato_playoffs_tipos`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `lmdb`.`playoffs_tipos` (
+CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_playoffs_tipos` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `descricao` VARCHAR(45) NOT NULL,
+  `descricao` VARCHAR(100) NOT NULL,
   `noDeTimes` INT NOT NULL,
+  `qtd_jogos_serie` INT NOT NULL,
+  `qtd_jogos_serie_final` INT NOT NULL,
   `duplaEliminacao` CHAR(1) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `lmdb`.`liga_tipos`
+-- Table `lmdb`.`campeonato_formato`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmdb`.`liga_tipos` (
+CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_formato` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `descricao` VARCHAR(45) NULL,
+  `descricao` VARCHAR(100) NULL,
   `numDeTimes` INT NOT NULL,
   `numDeDivisoes` INT NOT NULL,
+  `qtd_jogos_serie` INT NOT NULL,
   `jogarInterDiv` CHAR(1) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -851,17 +839,17 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `lmdb`.`campeonato_tabela`
+-- Table `lmdb`.`campeonato_equipes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_tabela` (
+
+CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_equipes` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `empates` INT NOT NULL DEFAULT 0,
   `campeonato_id` INT NOT NULL,
   `equipe_id` INT NOT NULL,
   `pontos` INT NOT NULL DEFAULT 0,
   `vitorias` INT NOT NULL DEFAULT 0,
   `derrotas` INT NOT NULL DEFAULT 0,
-  `tempo_partida` VARCHAR(45) NOT NULL,
+  `tempo_partida` VARCHAR(45),
   `abates` INT NOT NULL DEFAULT 0,
   `mortes` INT NOT NULL DEFAULT 0,
   `assists` INT NOT NULL DEFAULT 0,
@@ -880,96 +868,106 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_tabela` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
--- Table `lmdb`.`campeonato_jogo`
+-- Table `lmdb`.`campeonato_serie
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_jogo` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `ab_t1` INT NOT NULL DEFAULT 0,
-  `abt_t2` INT NOT NULL DEFAULT 0,
-  `as_t1` INT NOT NULL DEFAULT 0,
-  `as_t2` INT NOT NULL DEFAULT 0,
-  `mo_t1` INT NOT NULL DEFAULT 0,
-  `mo_t2` INT NOT NULL DEFAULT 0,
-  `tempo_partida` VARCHAR(45) NOT NULL,
-  `equipe_vencedora` INT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `lmdb`.`campeonato_serie_jogo`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_serie_jogo` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `campeonato_id` INT,
-  `playoffs_id` INT,
-  `num_serie` INT,
-  `campeonato_jogo_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `campeonato_id`, `campeonato_jogo_id`),
-  INDEX `fk_campeonato_has_campeonato_jogo_campeonato_jogo1_idx` (`campeonato_jogo_id` ASC),
-  INDEX `fk_campeonato_has_campeonato_jogo_campeonato1_idx` (`campeonato_id` ASC),
-  CONSTRAINT `fk_campeonato_has_campeonato_jogo_campeonato1`
-    FOREIGN KEY (`campeonato_id`)
-    REFERENCES `lmdb`.`campeonato` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_campeonato_has_serie_playoff_jogo_campeonato1`
-    FOREIGN KEY (`playoffs_id`)
-    REFERENCES `lmdb`.`playoffs` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_campeonato_has_campeonato_jogo_campeonato_jogo1`
-    FOREIGN KEY (`campeonato_jogo_id`)
-    REFERENCES `lmdb`.`campeonato_jogo` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `lmdb`.`campeonato_confronto`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_confronto` (
-  `id` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_serie` (
+  `id` INT NOT NULL AUTO INCREMENT,
   `campeonato_id` INT NOT NULL,
   `equipe_id1` INT NOT NULL,
   `equipe_id2` INT NOT NULL,
-  `placar1` INT NOT NULL,
-  `placar2` INT NOT NULL,
   `equipe_vit` INT NOT NULL,
+  `fase` INT NOT NULL DEFAULT 1,
   `semana` INT NOT NULL,
   `temporada` INT NOT NULL,
   `status` CHAR(1) NOT NULL,
-  `campeonato_serie_jogo_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `campeonato_id`, `equipe_id1`, `equipe_id2`, `campeonato_serie_jogo_id`),
-  INDEX `fk_campeonato_confronto_campeonato1_idx` (`campeonato_id` ASC),
-  INDEX `fk_campeonato_confronto_equipe1_idx` (`equipe_id1` ASC),
-  INDEX `fk_campeonato_confronto_equipe2_idx` (`equipe_id2` ASC),
-  INDEX `fk_campeonato_confronto_campeonato_serie_jogo1_idx` (`campeonato_serie_jogo_id` ASC),
-  CONSTRAINT `fk_campeonato_confronto_campeonato1`
+  PRIMARY KEY (`id`, `campeonato_id`),
+  INDEX `fk_campeonato_serie1_idx` (`campeonato_id` ASC),
+  INDEX `fk_campeonato_serie_equipe1_idx` (`equipe_id1` ASC),
+  INDEX `fk_campeonato_serie_equipe2_idx` (`equipe_id2` ASC),
+  CONSTRAINT `fk_campeonato_serie_campeonato1`
     FOREIGN KEY (`campeonato_id`)
     REFERENCES `lmdb`.`campeonato` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_campeonato_confronto_equipe1`
+  CONSTRAINT `fk_campeonato_serie_equipe1`
     FOREIGN KEY (`equipe_id1`)
     REFERENCES `lmdb`.`equipe` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_campeonato_confronto_equipe2`
+  CONSTRAINT `fk_campeonato_serie_equipe2`
     FOREIGN KEY (`equipe_id2`)
     REFERENCES `lmdb`.`equipe` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_campeonato_confronto_campeonato_serie_jogo1`
-    FOREIGN KEY (`campeonato_serie_jogo_id`)
-    REFERENCES `lmdb`.`campeonato_serie_jogo` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `lmdb`.`campeonato_serie_jogo
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_serie_jogo` (
+  `id` INT NOT NULL,
+  `equipe_id1` INT NOT NULL,
+  `equipe_id2` INT NOT NULL,
+  `status` CHAR(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_campeonato_serie_jogo_equipe1_idx` (`equipe_id1` ASC),
+  INDEX `fk_campeonato_serie_jogo_equipe2_idx` (`equipe_id2` ASC),
+  CONSTRAINT `fk_campeonato_serie_jogo_equipe1`
+    FOREIGN KEY (`equipe_id1`)
+    REFERENCES `lmdb`.`equipe` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_campeonato_serie_jogo_equipe2`
+    FOREIGN KEY (`equipe_id2`)
+    REFERENCES `lmdb`.`equipe` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `lmdb`.`campeonato_serie_jogo_jogador
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_serie_jogador`(
+
+  `id` INT NOT NULL,
+  `jogo_id` INT NOT NULL,
+  `equipe_id` INT NOT NULL,
+  `jogador_id` INT NOT NULL,
+  `abates` INT NOT NULL DEFAULT 0,
+  `mortes` INT NOT NULL DEFAULT 0,
+  `assists` INT NOT NULL DEFAULT 0,
+  `baroes` INT NOT NULL DEFAULT 0,
+  `arauto` INT NOT NULL DEFAULT 0,
+  `drag_nuvens` INT NOT NULL DEFAULT 0,
+  `drag_montanha` INT NOT NULL DEFAULT 0,
+  `drag_agua` INT NOT NULL DEFAULT 0,
+  `drag_fogo` INT NOT NULL DEFAULT 0,
+  `drag_anciao` INT NOT NULL DEFAULT 0,
+  `torres_destruidas` INT NOT NULL DEFAULT 0,
+  `inibidores_destruidos` INT NOT NULL DEFAULT 0,
+  `ouro` INT NOT NULL DEFAULT 0,
+  `nivel` INT NOT NULL DEFAULT 0,
+  `campeao` INT,
+  `status` CHAR(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_campeonato_serie_jogo_jogador_equipe_id`
+    FOREIGN KEY (`equipe_id`)
+    REFERENCES `lmdb`.`equipe` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_campeonato_campeonato_serie_jogo_id`
+    FOREIGN KEY (`jogo_id`)
+    REFERENCES `lmdb`.`campeonato_serie_jogo` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_campeonato_serie_jogo_jogador_jogador_id1`
+    FOREIGN KEY (`jogador_id`)
+    REFERENCES `lmdb`.`jogador` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `lmdb`.`transferencia_jogador`
@@ -1650,52 +1648,47 @@ INSERT INTO equipe_jogador (jogador_id, equipe_id, salario, temporada, ano, titu
 -- INSERT DE PLAYOFF_TIPOS
 -- ---------------------------------------------------------------
 
-INSERT INTO serie_tipo (descricao, qtd_jogos) VALUES
-("Bo1 - Melhor de 1",1),
-("Bo2 - Melhor de 1",2),
-("Bo3 - Melhor de 1",3),
-("Bo5 - Melhor de 1",5);
+INSERT INTO campeonato_playoffs_tipos (descricao, nodetimes, duplaeliminacao, qtd_jogos_serie, qtd_jogos_serie_final) VALUES
+("2 Times, Unica Eliminação, Bo3 qualificação, Bo5 final",2,0, 3, 5),
+("4 Times, Unica Eliminação, Bo3 qualificação, Bo5 final",4,0, 3, 5),
+("8 Times, Unica Eliminação, Bo3 qualificação, Bo5 final",8,0, 3, 5),
+("16 Times, Unica Eliminação, Bo3 qualificação, Bo5 final",16,0, 3, 5),
+("32 Times, Unica Eliminação, Bo3 qualificação, Bo5 final",32,0, 3, 5);
 
-INSERT INTO playoffs_tipos (descricao, nodetimes, duplaeliminacao) VALUES
-("2 Times, Unica Eliminação",2,0),
-("4 Times, Unica Eliminação",4,0),
-("8 Times, Unica Eliminação",8,0),
-("16 Times, Unica Eliminação",16,0),
-("32 Times, Unica Eliminação",32,0);
+INSERT INTO campeonato_formato (descricao, numdetimes, numdedivisoes, jogarinterdiv, qtd_jogos_serie) VALUES
+("6 times, 1 divisão, 3 jogos por série", 6,1,"N", 3),
+("8 times, 1 divisão, 3 jogos por série", 8,1,"N", 3),
+("8 times, 2 divisões, 3 jogos por série", 8,2,"N", 3),
+("8 times, 2 divisões e jogos interdivisões, 3 jogos por série", 8,2,"S", 3),
+("12 times, 1 divisão, 3 jogos por série", 12,1,"N", 3),
+("12 times, 2 divisões, 3 jogos por série", 12,2,"N", 3),
+("12 times, 2 divisões e jogos interdivisões, 3 jogos por série", 12,2,"S", 3),
+("16 times, 1 divisão, 3 jogos por série", 16,1,"N", 3),
+("16 times, 2 divisões, 3 jogos por série", 16,2,"N", 3),
+("16 times, 2 divisões e jogos interdivisões, 3 jogos por série", 16,2,"S", 3),
+("18 times, 1 divisão, 3 jogos por série", 18,1,"N", 3),
+("18 times, 2 divisões, 3 jogos por série", 18,2,"N", 3),
+("18 times, 2 divisões e jogos interdivisões, 3 jogos por série", 18,2,"S", 3),
+("24 times, 1 divisão, 3 jogos por série", 24,1,"N", 3),
+("24 times, 2 divisões, 3 jogos por série", 24,2,"N", 3),
+("24 times, 2 divisões e jogos interdivisões, 3 jogos por série", 24,2,"S", 3),
+("32 times, 1 divisão, 3 jogos por série", 32,1,"N", 3),
+("32 times, 2 divisões, 3 jogos por série", 32,2,"N", 3),
+("32 times, 2 divisões, jogos interdivisões, 3 jogos por série", 32,2,"S", 3);
 
-INSERT INTO liga_tipos (descricao, numdetimes, numdedivisoes, jogarinterdiv) VALUES
-("6 times e 1 divisão", 6,1,"N"),
-("8 times e 1 divisão", 8,1,"N"),
-("8 times e 2 divisões", 8,2,"N"),
-("8 times e 2 divisões e jogos interdivisões", 8,2,"S"),
-("12 times e 1 divisão", 12,1,"N"),
-("12 times e 2 divisões", 12,2,"N"),
-("12 times e 2 divisões e jogos interdivisões", 12,2,"S"),
-("16 times e 1 divisão", 16,1,"N"),
-("16 times e 2 divisões", 16,2,"N"),
-("16 times e 2 divisões e jogos interdivisões", 16,2,"S"),
-("18 times e 1 divisão", 18,1,"N"),
-("18 times e 2 divisões", 18,2,"N"),
-("18 times e 2 divisões e jogos interdivisões", 18,2,"S"),
-("24 times e 1 divisão", 24,1,"N"),
-("24 times e 2 divisões", 24,2,"N"),
-("24 times e 2 divisões e jogos interdivisões", 24,2,"S"),
-("32 times e 1 divisão", 32,1,"N"),
-("32 times e 2 divisões", 32,2,"N"),
-("32 times e 2 divisões e jogos interdivisões", 32,2,"S");
-
-INSERT INTO campeonato (nome, ano, temporada, playoffs_id, liga_tipos_id, status, serie_tipo, regiao_id) VALUES
-("Campeonato Brasileiro de League of Legends - 2012", 2012, 1, 3, 2, "C", 1, 1),
-("Campeonato Brasileiro de League of Legends - 2013", 2013, 1, 3, 2, "C", 1, 1),
-("Liga Brasileira - Série dos Campeões League of Legends 2014", 2014, 1, 3, 3, "C", 1, 1),
-("Campeonato Brasileiro de League of Legends - 2014", 2014, 2, 3, 3, "C", 1, 1),
-("CBLoL - 1a Etapa - Campeonato Brasileiro de League of Legends - 2015", 2015, 1, 3, 3, "C", 1, 1),
-("CBLoL - 2a Etapa - Campeonato Brasileiro de League of Legends - 2015", 2015, 2, 3, 3, "C", 1, 1),
-("CBLoL - Pós-Temporada - Campeonato Brasileiro de League of Legends - 2015", 2015, 2, 3, 3, "C", 1, 1),
-("CBLoL - 1a Etapa - Campeonato Brasileiro de League of Legends - 2016", 2016, 1, 3, 3, "C", 1, 1),
-("CBLoL - 2a Etapa - Campeonato Brasileiro de League of Legends - 2016", 2016, 2, 3, 3, "C", 1, 1),
-("CBLoL - 1a Etapa - Campeonato Brasileiro de League of Legends - 2017", 2017, 1, 3, 3, "C", 1, 1),
-("CBLoL - 2a Etapa - Campeonato Brasileiro de League of Legends - 2017", 2017, 2, 3, 3, "C", 1, 1);
+INSERT INTO campeonato (nome, ano, temporada, playoffs_id, camp_formato_id, status, regiao_id) VALUES
+("Campeonato Brasileiro de League of Legends - 2012", 2012, 1, 3, 2, "C", 1),
+("Campeonato Brasileiro de League of Legends - 2013", 2013, 1, 3, 2, "C", 1),
+("Liga Brasileira - Série dos Campeões League of Legends 2014", 2014, 1, 3, 3, "C", 1),
+("Campeonato Brasileiro de League of Legends - 2014", 2014, 2, 3, 3, "C", 1),
+("CBLoL - 1a Etapa - Campeonato Brasileiro de League of Legends - 2015", 2015, 1, 3, 3, "C", 1),
+("CBLoL - 2a Etapa - Campeonato Brasileiro de League of Legends - 2015", 2015, 2, 3, 3, "C", 1),
+("CBLoL - Pós-Temporada - Campeonato Brasileiro de League of Legends - 2015", 2015, 2, 3, 3, "C", 1),
+("CBLoL - 1a Etapa - Campeonato Brasileiro de League of Legends - 2016", 2016, 1, 3, 3, "C", 1),
+("CBLoL - 2a Etapa - Campeonato Brasileiro de League of Legends - 2016", 2016, 2, 3, 3, "C", 1),
+("CBLoL - 1a Etapa - Campeonato Brasileiro de League of Legends - 2017", 2017, 1, 3, 3, "C", 1),
+("CBLoL - 2a Etapa - Campeonato Brasileiro de League of Legends - 2017", 2017, 2, 3, 3, "C", 1),
+("CBLoL 2018 - 1a Etapa - Campeonato Brasileiro de League of Legends", 2018, 1, 3, 3, "A", 1);
 
 -- ---------------------------------------------------------------
 -- INSERT DE EQUIPES_CAMPEONATOS
@@ -1927,3 +1920,49 @@ INSERT INTO mensagem_usuario (usuario_id, mensagem, data_envio, autor) VALUES
 (1, 'Bom, a mensagem não se auto destruiu, mas você pode clicar <aqui> para destruí-la. :|', '2018/02/09', 'Administrador'),
 (2, 'Esta mensagem é direcionada apenas para o usuário "User". Outro usuário não poderá vê-la.', '2018/02/09', 'Administrador'),
 (1, 'Esta mensagem é um complemento da segunda!','2018/02/09', 'Administrador');
+
+INSERT INTO campeonato_equipes (campeonato_id, equipe_id) VALUES
+(12, 1),
+(12, 2),
+(12, 4),
+(12,5),
+(12, 7),
+(12, 8),
+(12, 15),
+(12, 16);
+
+INSERT INTO campeonato_serie (campeonato_id, equipe_id1, equipe_id2, equipe_vit, fase, semana, temporada, status) VALUES
+(12, 15, 5, 5, 1, 1, 1, 'C'),
+(12, 4, 16, 16, 1, 1, 1, 'C'),
+(12, 1, 8, 1, 1, 1, 1, 'C'),
+(12, 2, 7, 2, 1, 1, 1, 'C'),
+
+(12, 2, 4, 2, 1, 2, 1, 'C'),
+(12, 8, 15, 8, 1, 2, 1, 'C'),
+(12, 5, 7, 7, 1, 2, 1, 'C'),
+(12, 16, 1, 16, 1, 2, 1, 'C'),
+
+(12, 4, 1, 4, 1, 3, 1, 'C'),
+(12, 8, 5, 5, 1, 3, 1, 'C'),
+(12, 16, 2, 16, 1, 3, 1, 'C'),
+(12, 7, 15, 7, 1, 3, 1, 'C'),
+
+(12, 5, 1, 0, 1, 4, 1, 'C'),
+(12, 16, 7, 0, 1, 4, 1, 'C'),
+(12, 8, 2, 0, 1, 4, 1, 'C'),
+(12, 15, 4, 0, 1, 4, 1, 'C'),
+
+(12, 16, 8, 0, 1, 5, 1, 'C'),
+(12, 5, 2, 0, 1, 5, 1, 'C'),
+(12, 15, 1, 0, 1, 5, 1, 'C'),
+(12, 7, 4, 0, 1, 5, 1, 'C'),
+
+(12, 2, 15, 0, 1, 6, 1, 'C'),
+(12, 1, 7, 0, 1, 6, 1, 'C'),
+(12, 4, 8, 0, 1, 6, 1, 'C'),
+(12, 5, 16, 0, 1, 6, 1, 'C'),
+
+(12, 7, 8, 0, 1, 7, 1, 'C'),
+(12, 4, 5, 0, 1, 7, 1, 'C'),
+(12, 15, 16, 0, 1, 7, 1, 'C'),
+(12, 1, 2, 0, 1, 7, 1, 'C');
