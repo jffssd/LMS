@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador` (
   `nome` VARCHAR(50) NOT NULL,
   `sobrenome` VARCHAR(50) NOT NULL,
   `nick` VARCHAR(15) NOT NULL,
-  `data_nasc` DATETIME,
+  `idade` INT,
   `genero` CHAR(1) NOT NULL,
   `funcao_id` INT NOT NULL,
   `pais_id` INT NOT NULL,
@@ -364,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador_custom` (
   `nome` VARCHAR(45) NOT NULL,
   `sobrenome` VARCHAR(45) NOT NULL,
   `nick` VARCHAR(15) NOT NULL,
-  `data_nasc` DATE NOT NULL,
+  `idade` DATE NOT NULL,
   `funcao_id` INT NOT NULL,
   `pais_id` INT NOT NULL,
   `personalidade_id` INT NOT NULL,
@@ -376,7 +376,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador_custom` (
   `foto` VARCHAR(200) NULL,
   `nivel` INT NOT NULL,
   `exp` INT NOT NULL,
-  `status_transacao` INT NOT NULL,
+  `status` CHAR(1) NOT NULL,
   PRIMARY KEY (`id`, `usuario_id`, `pais_id`, `personalidade_id`),
   INDEX `fk_jogador_custom_pais1_idx` (`pais_id` ASC),
   INDEX `fk_jogador_custom_personalidade1_idx` (`personalidade_id` ASC),
@@ -475,6 +475,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador_custom_historico_equipe` (
   `temporada` INT NOT NULL,
   `ano` INT NOT NULL,
   `jogador_custom_id` INT NOT NULL,
+  `status` CHAR(1) NOT NULL,
   PRIMARY KEY (`id`, `jogador_custom_id`),
   INDEX `fk_jogador_custom_historico_equipe_jogador_custom1_idx` (`jogador_custom_id` ASC),
   CONSTRAINT `fk_jogador_custom_historico_equipe_jogador_custom1`
@@ -872,7 +873,7 @@ ENGINE = InnoDB;
 -- Table `lmdb`.`campeonato_serie
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_serie` (
-  `id` INT NOT NULL AUTO INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `campeonato_id` INT NOT NULL,
   `equipe_id1` INT NOT NULL,
   `equipe_id2` INT NOT NULL,
@@ -1730,8 +1731,8 @@ INSERT INTO permissao (descricao, obs) VALUES
 ('guest', 'Visitantes');
 
 
-INSERT INTO jogador_custom (usuario_id, nome, nick, sobrenome,  data_nasc, funcao_id, pais_id, personalidade_id, at_trab, at_ment, at_consist, at_mec, at_vis, foto, nivel, exp, status_transacao) VALUES
-(1, 'Custom', 'CstmPlayer', 'Player', '2018-01-15', 1, 28, 1, 1, 1, 1, 1, 1, 'foto.jpg', 0, 0, 1);
+INSERT INTO jogador_custom (usuario_id, nome, nick, sobrenome,  idade, funcao_id, pais_id, personalidade_id, at_trab, at_ment, at_consist, at_mec, at_vis, foto, nivel, exp, status) VALUES
+(1, 'Custom', 'CstmPlayer', 'Player', '2018-01-15', 1, 28, 1, 1, 1, 1, 1, 1, 'foto.jpg', 0, 0, 'A');
 
 
 INSERT INTO cargos_profissionais (descricao, valor) VALUES

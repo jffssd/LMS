@@ -10,38 +10,23 @@ class Carreira extends CI_Controller{
     }
 
     public function index(){
-		
-		$data['title'] = 'Carreira - Início';
-			
-		$data['equipes'] = $this->Equipes_Model->get_equipes();
-        
-        $this->load->view('templates/header');
-        $this->load->view('templates/carreira/navbar');
-        $this->load->view('templates/carreira/page_start');
-        $this->load->view('carreira/inicio', $data);
-        $this->load->view('templates/carreira/footer');
-    }
-    
-    public function criar(){
 
-        if(!$this->session->userdata('login')) {
-            redirect('home');
+        $id = $this->session->userdata('usuario_id');
+
+		if ($this->Carreira_Model->possui_carreira_jogador_ativa($id)) {
+     
+            $data['title'] = 'Carreira - Continuar';
+            $data['jogador_custom'] = $this->Carreira_Model->get_jogador_custom($id);
+                
+            $this->load->view('templates/header');
+            $this->load->view('templates/carreira/navbar');
+            $this->load->view('templates/carreira/page_start');
+            $this->load->view('carreira/inicio', $data);
+            $this->load->view('templates/carreira/footer');
+
+        }else{
+
         }
-        $data['title'] = 'Iniciar Carreira';
-        $data['tipo'] = array(  1 => 'Jogador',
-                                2 => 'Técnico'
-        );
-        $data['paises'] = $this->Paises_Model->get_paises();
-        $data['funcoes'] = $this->Jogadores_Model->get_funcoes();
-        $data['personalidades'] = $this->Jogadores_Model->get_personalidades();
-        
-		$referencia['item'] = 'inicio';
-		
-        $this->load->view('templates/header');
-        $this->load->view('templates/navbar');
-        $this->load->view('templates/sidemenu', $referencia);
-		$this->load->view('templates/page_start');
-        $this->load->view('carreira/criar', $data);
-        $this->load->view('templates/footer');
+
     }
 }
