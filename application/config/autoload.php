@@ -139,4 +139,5 @@ $autoload['model'] = array( 'User_Model',
                             'Jogadores_Model', 
                             'General_Model',
                             'Carreira_Model',
+                            'Campeonatos_Model',
                             'Transferencias_Model');

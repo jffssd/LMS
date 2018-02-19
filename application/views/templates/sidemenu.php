@@ -31,6 +31,7 @@
                 <li class="submenu">
                     <a <?php echo $item=='campeonatos' ? 'class="active"' : ''; ?> href="#"><i class="fa fa-fw fa-trophy"></i> <span> Campeonatos </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
+                            <li class="submenuitem"><a href="<?php echo base_url('campeonatos');?>">Todos</a></li>
                             <li class="submenuitem"><a href="#">Favoritos</a></li>
                             <li class="submenuitem"><a href="#">Por Região</a></li>
                             <li class="submenuitem"><a href="#">Internacional</a></li>

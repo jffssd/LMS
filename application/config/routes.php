@@ -21,6 +21,9 @@ $route['equipe'] = 'equipe/index';
 // Jogador - Routes
 $route['jogador'] = 'jogador/index';
 
+// Campeonatos - Routes
+$route['campeonatos'] = 'campeonatos/index';
+
 // Transferencias - Routes
 $route['transferencia'] = 'transferencia/index';
 

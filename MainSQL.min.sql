@@ -182,6 +182,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato` (
   `camp_formato_id` INT NOT NULL,
   `status` CHAR(1) NOT NULL,
   `regiao_id` INT NOT NULL,
+  `logo` VARCHAR(100),
   PRIMARY KEY (`id`, `regiao_id`),
   INDEX `fk_campeonato_regiao1_idx` (`regiao_id` ASC),
   CONSTRAINT `fk_campeonato_regiao1`
@@ -1250,8 +1251,8 @@ INSERT INTO `config_site` (`nome_site`, `logo`, `titulo_site`) VALUES
 ('CES', 'yadi-ci-logo.png', 'Carreira e-Sports!');
 
 INSERT INTO `usuario` (`usuario`, `email`, `senha`, `imagem_perfil`, `permissao`, `status`, `data_registro`) VALUES
-('admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'YADU_Logo.JPG', 1, 1, '2017-08-18 16:16:38'),
-('user', 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 'slide_05.jpg', 2, 1, '2017-08-09 18:49:15');
+('admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'default-profile.png', 1, 1, '2017-08-18 16:16:38'),
+('user', 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 'default-profile.png', 2, 1, '2017-08-09 18:49:15');
 
 -- ---------------------------------------------------------------
 -- INSERT DE REGIÕES
