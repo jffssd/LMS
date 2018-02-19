@@ -365,7 +365,8 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`jogador_custom` (
   `nome` VARCHAR(45) NOT NULL,
   `sobrenome` VARCHAR(45) NOT NULL,
   `nick` VARCHAR(15) NOT NULL,
-  `idade` DATE NOT NULL,
+  `idade` INT NOT NULL,
+  `data_criacao` DATETIME DEFAULT CURRENT_TIMESTAMP,
   `funcao_id` INT NOT NULL,
   `pais_id` INT NOT NULL,
   `personalidade_id` INT NOT NULL,
@@ -1733,7 +1734,7 @@ INSERT INTO permissao (descricao, obs) VALUES
 
 
 INSERT INTO jogador_custom (usuario_id, nome, nick, sobrenome,  idade, funcao_id, pais_id, personalidade_id, at_trab, at_ment, at_consist, at_mec, at_vis, foto, nivel, exp, status) VALUES
-(1, 'Custom', 'CstmPlayer', 'Player', '2018-01-15', 1, 28, 1, 1, 1, 1, 1, 1, 'foto.jpg', 0, 0, 'A');
+(1, 'Custom', 'CstmPlayer', 'Player', 16, 1, 28, 1, 1, 1, 1, 1, 1, 'foto.jpg', 0, 0, 'A');
 
 
 INSERT INTO cargos_profissionais (descricao, valor) VALUES
