@@ -23,12 +23,25 @@ class Campeonatos_Model extends CI_Model {
 		
 			return $this->db->get('campeonato');
 	}
+
+	public function get_tabela_campeonato($id){
+
+		$sql = 'CALL proc_get_tabela_campeonato('.$id.')';
+
+		$result = $this->db->query($sql);
+
+		$result->next_result(); 
+		$result->free_result(); 
+
+		return $result->result_array();
+	}
+
+	public function get_series_campeonato($id){
+
+		$sql = 'CALL proc_get_series_campeonato('.$id.')';
+
+		$result = $this->db->query($sql);
+
+		return $result->result_array();
+	}
 }
-
-
-/*
-SELECT  c.nome, c.ano, c.temporada, c.status, cf.numDeTimes, cf.numDeDivisoes, cf.qtd_jogos_serie, cpt.noDeTimes, cf.qtd_jogos_serie, cpt.qtd_jogos_serie_final
-FROM campeonato c
-JOIN campeonato_formato cf ON c.camp_formato_id = cf.id
-JOIN campeonato_playoffs_tipos cpt ON c.playoffs_id = cpt.id;
- */

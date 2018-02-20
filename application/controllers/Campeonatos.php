@@ -18,8 +18,8 @@ class Campeonatos extends CI_Controller{
 		
 		if ($id) {
 			$campeonato = $this->Campeonatos_Model->get_campeonato_info($id);
-			//$data['tabela_campeonato'] = $this->Campeonatos_Model->get_tabela_campeonato($id);
-			//$data['series_campeonato'] = $this->Campeonatos_Model->get_series_campeonato($id);
+			$data['tabela_campeonato'] = $this->Campeonatos_Model->get_tabela_campeonato($id);
+			$data['series_campeonato'] = $this->Campeonatos_Model->get_series_campeonato($id);
 
 			if ($campeonato->num_rows() > 0 ) {
 

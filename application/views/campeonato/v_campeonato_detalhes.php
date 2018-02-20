@@ -22,3 +22,57 @@ Qtd. jogos série: <?php echo $pl_qtd_jogos_serie;?><br>
 Qtd. jogos série final: <?php echo $pl_qtd_jogos_serie_final;?><br>
 
 <p><a href="<?php echo base_url('campeonatos');?>">Voltar</a></p>
+
+<style>
+	td, th{
+		text-align: center;
+	}
+
+</style>
+<?php
+foreach ($tabela_campeonato as $tc) {
+?>
+<table>
+	<thead>
+		<th>#</th>
+		<th>Equipe</th>
+		<th>Jogos</th>
+		<th>Pontos</th>
+		<th>Vitórias</th>
+		<th>Derrotas</th>
+	</thead>
+	<tbody>
+		<tr>
+		    <td><?= $tc['ranking']; ?></td>
+		    <td><?= $tc['sigla']; ?></td>
+		    <td><?= $tc['jogos']; ?></td>
+		    <td><?= $tc['pontos']; ?></td>
+		    <td><?= $tc['vitorias']; ?></td>
+		    <td><?= $tc['derrotas']; ?></td>
+		</tr>
+	</tbody>
+</table>
+<?php
+}
+?>
+
+<?php
+$count = 0;
+foreach ($series_campeonato as $sc) {
+
+	if($sc['semana'] != $count){
+		$count = $sc['semana'];
+		echo '<h3>Semana - '.$sc['semana'].'</h3>' ;
+	}
+?>
+	<tr>
+	    <td><?= $sc['e1sigla']; ?></td>
+	    <td><?= $count; ?></td>
+	    <td><?= $sc['e2sigla']; ?></td>
+	</tr>
+	
+<?php
+}
+?>
+
+<table>

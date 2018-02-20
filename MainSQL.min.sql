@@ -1969,3 +1969,43 @@ INSERT INTO campeonato_serie (campeonato_id, equipe_id1, equipe_id2, equipe_vit,
 (12, 4, 5, 0, 1, 7, 1, 'C'),
 (12, 15, 16, 0, 1, 7, 1, 'C'),
 (12, 1, 2, 0, 1, 7, 1, 'C');
+
+-- STORED PROCEDURES
+
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `proc_get_series_campeonato` $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `proc_get_series_campeonato`(
+  IN id_campeonato INT
+)
+BEGIN
+
+SELECT cs.fase, cs.semana, cs.status, e1.sigla as e1sigla, e2.sigla as e2sigla, e2.nome as e2nome, e1.nome as e1nome
+FROM campeonato_serie cs
+JOIN equipe e1 ON cs.equipe_id1 = e1.id
+JOIN equipe e2 ON cs.equipe_id2 = e2.id
+WHERE cs.campeonato_id = id_campeonato
+ORDER BY cs.id ASC;
+
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `proc_get_tabela_campeonato` $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `proc_get_tabela_campeonato`(
+  IN id_campeonato INT
+)
+BEGIN
+
+SET @rank=0;
+SELECT ce.jogos, ce.pontos, ce.vitorias, ce.derrotas, e.nome, e.sigla, e.logo, @rank:=@rank+1 AS ranking
+FROM campeonato_equipes ce
+JOIN equipe e ON ce.equipe_id = e.id
+WHERE ce.campeonato_id = id_campeonato
+ORDER BY ce.pontos, ce.vitorias;
+
+END $$
+
+DELIMITER ;
