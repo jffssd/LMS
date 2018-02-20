@@ -29,10 +29,7 @@ class Campeonatos_Model extends CI_Model {
 		$sql = 'CALL proc_get_tabela_campeonato('.$id.')';
 
 		$result = $this->db->query($sql);
-
-		$result->next_result(); 
-		$result->free_result(); 
-
+		$this->db->close();
 		return $result->result_array();
 	}
 
@@ -41,7 +38,7 @@ class Campeonatos_Model extends CI_Model {
 		$sql = 'CALL proc_get_series_campeonato('.$id.')';
 
 		$result = $this->db->query($sql);
-
+		$this->db->close();
 		return $result->result_array();
 	}
 }

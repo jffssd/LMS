@@ -1980,7 +1980,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `proc_get_series_campeonato`(
 )
 BEGIN
 
-SELECT cs.fase, cs.semana, cs.status, e1.sigla as e1sigla, e2.sigla as e2sigla, e2.nome as e2nome, e1.nome as e1nome
+SELECT cs.fase, cs.semana, cs.status, e1.sigla as e1sigla, e2.sigla as e2sigla, e2.nome as e2nome, e1.nome as e1nome, e1.logo as e1logo, e2.logo as e2logo
 FROM campeonato_serie cs
 JOIN equipe e1 ON cs.equipe_id1 = e1.id
 JOIN equipe e2 ON cs.equipe_id2 = e2.id

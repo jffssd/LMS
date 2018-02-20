@@ -9,9 +9,17 @@ class Campeonatos extends CI_Controller{
 	public function index(){
 		
 		$data['title'] = 'Índice';
-			
+		$referencia['item'] = 'campeonatos';
+		$referencia['sub-item'] = 'todos';
+
 		$data['campeonatos'] = $this->Campeonatos_Model->get_campeonatos();
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$this->load->view('templates/sidemenu', $referencia);
+		$this->load->view('templates/page_start');
 		$this->load->view('campeonato/v_campeonato', $data);
+		$this->load->view('templates/footer');
 	}
 
 	public function detalhes($id = null){
@@ -22,8 +30,6 @@ class Campeonatos extends CI_Controller{
 			$data['series_campeonato'] = $this->Campeonatos_Model->get_series_campeonato($id);
 
 			if ($campeonato->num_rows() > 0 ) {
-
-				$data['titulo'] = 'Visualizar Campeonato';
 
 				$data['id'] = $campeonato->row()->id;
 				$data['nome'] = $campeonato->row()->nome;
@@ -54,7 +60,15 @@ class Campeonatos extends CI_Controller{
 
 			//	$data['regioes'] = $this->General_Model->get_regioes();
 
+				$data['titulo'] = 'Visualizar Campeonato';
+				$referencia['item'] = 'campeonatos';
+
+				$this->load->view('templates/header');
+				$this->load->view('templates/navbar');
+				$this->load->view('templates/sidemenu', $referencia);
+				$this->load->view('templates/page_start');
 				$this->load->view('campeonato/v_campeonato_detalhes', $data);
+				$this->load->view('templates/footer');
 			
 			} else {
 				$variaveis['mensagem'] = "Registro não encontrado." ;
