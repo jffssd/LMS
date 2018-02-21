@@ -3,7 +3,7 @@ Nome: <?php echo $nome;?><br>
 Nick: <?php echo $nick;?><br>
 Sobrenome: <?php echo $sobrenome;?><br>
 Foto: <?php echo $foto;?><br>
-Data Nascimento: <?php echo $data_nasc;?><br>
+Idade: <?php echo $idade;?><br>
 Genero: <?php echo $genero;?><br>
 Função ID: <?php echo $funcao_id;?><br>
 Pais ID: <?php echo $pais_id;?><br>

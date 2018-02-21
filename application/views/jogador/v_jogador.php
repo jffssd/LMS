@@ -20,7 +20,7 @@
 	    <td class="td_row"><img src="<?php echo site_url();?>assets/img/roles/<?php echo $jogador->funcao_id;?>.png" width="24" height="24" style="margin-top:-3px; margin-right:5px;"> <?php echo $jogador->funcao_nome;?></td>
 			<td class="td_row"><img src="<?php echo site_url();?>assets/img/profiles/thumb/<?php echo $jogador->foto;?>" width="40" height="40">  <strong><?php echo $jogador->nick;?></strong></td>
 			<td class="td_row"><img src="<?php echo site_url();?>assets/img/bandeiras/<?php echo $jogador->pais_flag;?>.png" alt="<?php echo $jogador->pais_nome;?>" width="30" height="20"> <?php echo $jogador->pais_nome;?></td>
-			<td class="td_row"><a href="<?php echo site_url();?>jogador/view/<?php echo $jogador->id;?>" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+			<td class="td_row"><a href="<?php echo site_url();?>jogador/detalhes/<?php echo $jogador->id;?>" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
 			<td class="td_row"><a href="<?php echo site_url();?>jogador/edit/<?php echo $jogador->id;?>" class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
 			<td class="td_row"><a href="#" class="confirma_exclusao btn btn-danger btn-sm" data-id="<?php echo $jogador->id;?>" data-nome="<?php echo $jogador->nick;?>" /><i class="fa fa-times" aria-hidden="true"></i></a></td>
 		</tr>

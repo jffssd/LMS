@@ -11,24 +11,37 @@ class Jogador extends CI_Controller{
     
     public function index(){
 		
-		$data['title'] = 'Índice';
-			
-		$data['jogadores'] = $this->Jogadores_Model->get_jogadores();
-		$this->load->view('templates/header');
-		$this->load->view('jogador/v_jogador', $data);
-		$this->load->view('templates/footer');
+    	$data['jogadores'] = $this->Jogadores_Model->get_jogadores();
+
+        $data['title'] = 'Todos os Jogadores';
+        $referencia['item'] = 'jogadores';
+        $referencia['sub-item'] = 'todos';
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/navbar');
+        $this->load->view('templates/sidemenu', $referencia);
+        $this->load->view('templates/page_start');
+        $this->load->view('jogador/v_jogador', $data);
+        $this->load->view('templates/footer');
     }
     
 	public function create(){
         
-        $data['title'] = 'Cadastrar Jogador';
         $data['paises'] = $this->Paises_Model->get_paises();
         $data['funcoes'] = $this->Jogadores_Model->get_funcoes();
         $data['personalidades'] = $this->Jogadores_Model->get_personalidades();
        
+        $data['title'] = 'Cadastrar Jogador';
+        $referencia['item'] = 'jogadores';
+        $referencia['sub-item'] = 'cadastrar';
+
         $this->load->view('templates/header');
+        $this->load->view('templates/navbar');
+        $this->load->view('templates/sidemenu', $referencia);
+        $this->load->view('templates/page_start');
         $this->load->view('jogador/v_jogador_cadastro', $data);
         $this->load->view('templates/footer');
+
     }
 
     public function edit($id = null){
@@ -37,8 +50,6 @@ class Jogador extends CI_Controller{
 			$jogador = $this->Jogadores_Model->get_jogadores($id);
 
 			if ($jogador->num_rows() > 0 ) {
-
-                $data['title'] = 'Edição de Jogador';
 
 				$data['id'] = $jogador->row()->id;
 				$data['nome'] = $jogador->row()->nome;
@@ -54,9 +65,18 @@ class Jogador extends CI_Controller{
                 $data['funcoes'] = $this->Jogadores_Model->get_funcoes();
                 $data['personalidades'] = $this->Jogadores_Model->get_personalidades();
 
-				$this->load->view('templates/header');
-				$this->load->view('jogador/v_jogador_edicao', $data);
-				$this->load->view('templates/footer');
+
+                $data['title'] = 'Edição de Jogador';
+                $referencia['item'] = 'jogadores';
+                $referencia['sub-item'] = 'editar';
+
+                $this->load->view('templates/header');
+                $this->load->view('templates/navbar');
+                $this->load->view('templates/sidemenu', $referencia);
+                $this->load->view('templates/page_start');
+                $this->load->view('jogador/v_jogador_edicao', $data);
+                $this->load->view('templates/footer');
+
 			} else {
 				$data['mensagem'] = "Registro não encontrado." ;
 				$this->load->view('errors/html/v_erro', $data);
@@ -97,12 +117,18 @@ class Jogador extends CI_Controller{
         
         if ($this->form_validation->run() == FALSE) {
         
-        $data['title'] = 'Cadastrar Jogador';
         $data['paises'] = $this->Paises_Model->get_paises();
         $data['funcoes'] = $this->Jogadores_Model->get_funcoes();
         $data['personalidades'] = $this->Jogadores_Model->get_personalidades();
                    
+        $data['title'] = 'Cadastrar Jogador';
+        $referencia['item'] = 'jogadores';
+        $referencia['sub-item'] = 'cadastrar';
+
         $this->load->view('templates/header');
+        $this->load->view('templates/navbar');
+        $this->load->view('templates/sidemenu', $referencia);
+        $this->load->view('templates/page_start');
         $this->load->view('jogador/v_jogador_cadastro', $data);
         $this->load->view('templates/footer');
         
@@ -140,7 +166,7 @@ class Jogador extends CI_Controller{
     }
 
 
-    public function view($id = null){
+    public function detalhes($id = null){
 		
 		if ($id) {
 			
@@ -148,14 +174,13 @@ class Jogador extends CI_Controller{
 			$jogador = $this->Jogadores_Model->get_jogadores($id);
 			
 			if ($jogador->num_rows() > 0 ) {
-				$data['title'] = 'Visualizar Informações de Jogador';
 
 				//Informações tabela jogador
 				$data['id'] = $jogador->row()->id;
 				$data['nome'] = $jogador->row()->nome;
 				$data['sobrenome'] = $jogador->row()->sobrenome;
 				$data['nick'] = $jogador->row()->nick;
-				$data['data_nasc'] = $jogador->row()->data_nasc;
+				$data['idade'] = $jogador->row()->idade;
 				$data['genero'] = $jogador->row()->genero;
 				$data['funcao_id'] = $jogador->row()->funcao_id;
 				$data['pais_id'] = $jogador->row()->pais_id;
@@ -168,9 +193,16 @@ class Jogador extends CI_Controller{
 				$data['foto'] = $jogador->row()->foto;
 				$data['status'] = $jogador->row()->status;
 
+                $data['title'] = 'Detalhes do Jogador';
+                $referencia['item'] = 'jogadores';
+
                 $this->load->view('templates/header');
-                $this->load->view('jogador/v_jogador_visualizar', $data);
+                $this->load->view('templates/navbar');
+                $this->load->view('templates/sidemenu', $referencia);
+                $this->load->view('templates/page_start');
+                $this->load->view('jogador/v_jogador_detalhes', $data);
                 $this->load->view('templates/footer');
+
 			} else {
 				$data['mensagem'] = "Não encontramos registros." ;
 				$this->load->view('errors/html/v_erro', $data);

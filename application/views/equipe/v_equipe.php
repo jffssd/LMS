@@ -27,7 +27,7 @@
 			<td class="td_row"><span class="badge badge-dark"><?php echo $equipe->sigla;?></span></td>
 	    <td class="td_row"><div class="team_color_box" style="background-color: <?php echo $equipe->cor_primaria;?>; "></div></td>
 			<td class="td_row"><div class="team_color_box" style="background-color: <?php echo $equipe->cor_secundaria;?>;"></div></td>
-			<td class="td_row"><a href="<?php echo site_url();?>index.php/equipe/view/<?php echo $equipe->id;?>" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+			<td class="td_row"><a href="<?php echo site_url();?>index.php/equipe/detalhes/<?php echo $equipe->id;?>" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
 			<td class="td_row"><a href="<?php echo site_url();?>index.php/equipe/edit/<?php echo $equipe->id;?>" class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
 			<td class="td_row"><a href="#" class="confirma_exclusao btn btn-danger btn-sm" data-id="<?php echo $equipe->id;?>" data-nome="<?php echo $equipe->nome;?>" /><i class="fa fa-times" aria-hidden="true"></i></a></td>
 		</tr>

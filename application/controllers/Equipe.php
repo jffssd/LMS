@@ -11,17 +11,23 @@ class Equipe extends CI_Controller{
 
 	public function index(){
 		
-		$data['title'] = 'Índice';
-			
 		$data['equipes'] = $this->Equipes_Model->get_equipes();
-		$this->load->view('templates/header');
+
+        $data['title'] = 'Todos as Equipes';
+        $referencia['item'] = 'equipe';
+        $referencia['sub-item'] = 'todos';
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/navbar');
+        $this->load->view('templates/sidemenu', $referencia);
+        $this->load->view('templates/page_start');
 		$this->load->view('equipe/v_equipe', $data);
-		$this->load->view('templates/footer');
+        $this->load->view('templates/footer');
+
 	}
 
 	public function create(){
 
-		$data['title'] = 'Cadastrar Equipe';
 		$status_equipe = array( 
 								1 => 'Ativo',
 								2 => 'Inativo'
@@ -32,14 +38,21 @@ class Equipe extends CI_Controller{
 		$data['sedes'] = $this->General_Model->get_sedes();
 		$data['tecnicos'] = $this->General_Model->get_tecnicos();
 
-		$this->load->view('templates/header');
+
+		$data['title'] = 'Cadastrar Equipe';
+        $referencia['item'] = 'equipe';
+        $referencia['sub-item'] = 'cadastro';
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/navbar');
+        $this->load->view('templates/sidemenu', $referencia);
+        $this->load->view('templates/page_start');
 		$this->load->view('equipe/v_equipe_cadastro', $data);
-		$this->load->view('templates/footer');
+        $this->load->view('templates/footer');
+
 	}
 
 	public function store_create(){
-
-		$data['title'] = 'NOVO REGISTRO DE EQUIPE';
 
 		$this->load->library('form_validation');
 
@@ -100,9 +113,17 @@ class Equipe extends CI_Controller{
 			$data['sedes'] = $this->General_Model->get_sedes();
 			$data['tecnicos'] = $this->General_Model->get_tecnicos();
 
-			$this->load->view('templates/header');
+
+			$data['title'] = 'Cadastrar Equipe';
+	        $referencia['item'] = 'equipe';
+	        $referencia['sub-item'] = 'cadastro';
+
+	        $this->load->view('templates/header');
+	        $this->load->view('templates/navbar');
+	        $this->load->view('templates/sidemenu', $referencia);
+	        $this->load->view('templates/page_start');
 			$this->load->view('equipe/v_equipe_cadastro', $data);
-			$this->load->view('templates/footer');
+	        $this->load->view('templates/footer');
 
 		} else {
 			
@@ -187,9 +208,16 @@ class Equipe extends CI_Controller{
 			$data['sedes'] = $this->General_Model->get_sedes();
 			$data['tecnicos'] = $this->General_Model->get_tecnicos();
 
-			$this->load->view('templates/header');
+			$data['title'] = 'Cadastrar Equipe';
+	        $referencia['item'] = 'equipe';
+	        $referencia['sub-item'] = 'cadastro';
+
+	        $this->load->view('templates/header');
+	        $this->load->view('templates/navbar');
+	        $this->load->view('templates/sidemenu', $referencia);
+	        $this->load->view('templates/page_start');
 			$this->load->view('equipe/v_equipe_cadastro', $data);
-			$this->load->view('templates/footer');
+	        $this->load->view('templates/footer');
 
 		} else {
 			
@@ -232,7 +260,6 @@ class Equipe extends CI_Controller{
 
 			if ($equipes->num_rows() > 0 ) {
 
-				$data['title'] = 'EDIÇÃO DE EQUIPE';
 				$data['id'] = $equipes->row()->id;
 				$data['nome'] = $equipes->row()->nome;
 				$data['sigla'] = $equipes->row()->sigla;
@@ -255,9 +282,18 @@ class Equipe extends CI_Controller{
 				
 				$data['status_equipe'] = $status_equipe;
 
-				$this->load->view('templates/header');
+
+				$data['title'] = 'Editar Equipe';
+		        $referencia['item'] = 'equipe';
+		        $referencia['sub-item'] = 'editar';
+
+		        $this->load->view('templates/header');
+		        $this->load->view('templates/navbar');
+		        $this->load->view('templates/sidemenu', $referencia);
+		        $this->load->view('templates/page_start');
 				$this->load->view('equipe/v_equipe_edicao', $data);
-				$this->load->view('templates/footer');
+		        $this->load->view('templates/footer');
+
 			} else {
 				$data['mensagem'] = "Registro não encontrado." ;
 				$this->load->view('errors/html/v_erro', $data);
@@ -276,7 +312,7 @@ class Equipe extends CI_Controller{
 		}
 	}
 
-	public function view($id = null){
+	public function detalhes($id = null){
 		
 		if ($id) {
 			$equipe = $this->Equipes_Model->get_equipes($id);
@@ -284,7 +320,6 @@ class Equipe extends CI_Controller{
 			$data['equipe_titulos'] = $this->Equipes_Model->get_campeonato_titulos_by_equipe($id);
 
 			if ($equipe->num_rows() > 0 ) {
-				$data['titulo'] = 'Edição de Registro';
 
 				$data['id'] = $equipe->row()->id;
 				$data['nome'] = $equipe->row()->nome;
@@ -307,9 +342,16 @@ class Equipe extends CI_Controller{
 				$data['regioes'] = $this->General_Model->get_regioes();
 				$data['sedes'] = $this->General_Model->get_sedes();
 
-				$this->load->view('templates/header');
-				$this->load->view('equipe/v_equipe_visualizar', $data);
-				$this->load->view('templates/footer');
+				$data['title'] = 'Detalhes da Equipe';
+		        $referencia['item'] = 'equipe';
+		        $referencia['sub-item'] = 'todos';
+
+		        $this->load->view('templates/header');
+		        $this->load->view('templates/navbar');
+		        $this->load->view('templates/sidemenu', $referencia);
+		        $this->load->view('templates/page_start');
+				$this->load->view('equipe/v_equipe_detalhes', $data);
+		        $this->load->view('templates/footer');
 			} else {
 				$variaveis['mensagem'] = "Registro não encontrado." ;
 				$this->load->view('errors/html/v_erro', $data);

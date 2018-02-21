@@ -7,14 +7,23 @@ class Transferencia extends CI_Controller {
 
         $data['transf_profissional'] = $this->Transferencias_Model->get_transferencias_profissionais();
 		$data['transf_jogadores'] = $this->Transferencias_Model->get_transferencias_jogadores();
-        $this->load->view('templates/header');
+
+
+		$data['title'] = 'Detalhes das Transferências';
+		$referencia['item'] = 'transferencia';
+		$referencia['sub-item'] = 'todos';
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$this->load->view('templates/sidemenu', $referencia);
+		$this->load->view('templates/page_start');
         $this->load->view('transferencia/v_transferencia', $data);
-        $this->load->view('templates/footer');
+		$this->load->view('templates/footer');
+
 	}
 
 	public function create(){
 		
-		$data['title'] = 'Registro de Transferencias';
 		$data['tipos'] = array( 
 								1 => 'Entrada',
 								2 => 'Saída',
@@ -26,15 +35,23 @@ class Transferencia extends CI_Controller {
 		$data['tecnicos'] = $this->General_Model->get_tecnicos();
 		$data['jogadores'] = $this->Jogadores_Model->get_jogadores();
 
+
+		$data['title'] = 'Registrar nova Transferência';
+		$referencia['item'] = 'transferencia';
+		$referencia['sub-item'] = 'cadastro';
+
 		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$this->load->view('templates/sidemenu', $referencia);
+		$this->load->view('templates/page_start');
 		$this->load->view('transferencia/v_transferencia_cadastro', $data);
 		$this->load->view('templates/footer');
+
+
 	}
 
 	public function store(){
 		
-		$data['title'] = 'Registro de Transferencias';
-	
 		$this->load->library('form_validation');
 		
 		if($this->input->post('pessoa') == 1){
@@ -95,7 +112,14 @@ class Transferencia extends CI_Controller {
 			$data['tecnicos'] = $this->General_Model->get_tecnicos();
 			$data['jogadores'] = $this->Jogadores_Model->get_jogadores();
 
+			$data['title'] = 'Registrar nova Transferência';
+			$referencia['item'] = 'transferencia';
+			$referencia['sub-item'] = 'cadastro';
+
 			$this->load->view('templates/header');
+			$this->load->view('templates/navbar');
+			$this->load->view('templates/sidemenu', $referencia);
+			$this->load->view('templates/page_start');
 			$this->load->view('transferencia/v_transferencia_cadastro', $data);
 			$this->load->view('templates/footer');
 		
