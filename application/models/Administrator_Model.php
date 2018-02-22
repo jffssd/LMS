@@ -31,7 +31,7 @@
 	}
 
 	// Adicionar usuário comum
-	public function add_user($post_image,$password){
+	public function add_user($post_image,$senha){
 
 		$data = array(
 						'usuario' => $this->input->post('usuario'),
@@ -40,7 +40,7 @@
 						'permissao' => '2',
 						'status' => $this->input->post('status'),
 						'imagem_perfil' => $post_image,
-						'register_date' => date("Y-m-d H:i:s")
+						'data_registro' => date("Y-m-d H:i:s")
 					  );
 
 		return $this->db->insert('usuario', $data);

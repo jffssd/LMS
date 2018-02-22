@@ -18,7 +18,7 @@
 
 			$this->load->view('templates/header');
 			$this->load->view('templates/navbar');
-			$this->load->view('templates/sidemenu', $referencia);
+			$this->load->view('templates/administrador/sidemenu', $referencia);
 			$this->load->view('users/dashboard', $data);
 			$this->load->view('templates/footer');
 		}
@@ -33,7 +33,7 @@
 
 			$this->load->view('templates/header');
 			$this->load->view('templates/navbar');
-			$this->load->view('templates/sidemenu', $referencia);
+			$this->load->view('templates/administrador/sidemenu', $referencia);
 			$this->load->view('templates/page_start');
 			$this->load->view('users/mensagens', $data);
 			$this->load->view('templates/footer');

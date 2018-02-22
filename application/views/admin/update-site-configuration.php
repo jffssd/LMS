@@ -1,6 +1,6 @@
 <h3>Home / Site / Atualizar</h3>
 
-<?php echo form_open_multipart('administrator/update_siteconfiguration_data'); ?>
+<?php echo form_open_multipart('admin/update_siteconfiguration_data'); ?>
 <input class="form-control" value="<?php echo $siteconfiguration['id']; ?>" name="id" type="hidden">
 
 

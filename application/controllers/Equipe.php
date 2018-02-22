@@ -19,7 +19,7 @@ class Equipe extends CI_Controller{
 
         $this->load->view('templates/header');
         $this->load->view('templates/navbar');
-        $this->load->view('templates/sidemenu', $referencia);
+        $this->load->view('templates/administrador/sidemenu', $referencia);
         $this->load->view('templates/page_start');
 		$this->load->view('equipe/v_equipe', $data);
         $this->load->view('templates/footer');
@@ -45,7 +45,7 @@ class Equipe extends CI_Controller{
 
         $this->load->view('templates/header');
         $this->load->view('templates/navbar');
-        $this->load->view('templates/sidemenu', $referencia);
+        $this->load->view('templates/administrador/sidemenu', $referencia);
         $this->load->view('templates/page_start');
 		$this->load->view('equipe/v_equipe_cadastro', $data);
         $this->load->view('templates/footer');
@@ -120,7 +120,7 @@ class Equipe extends CI_Controller{
 
 	        $this->load->view('templates/header');
 	        $this->load->view('templates/navbar');
-	        $this->load->view('templates/sidemenu', $referencia);
+	        $this->load->view('templates/administrador/sidemenu', $referencia);
 	        $this->load->view('templates/page_start');
 			$this->load->view('equipe/v_equipe_cadastro', $data);
 	        $this->load->view('templates/footer');
@@ -214,7 +214,7 @@ class Equipe extends CI_Controller{
 
 	        $this->load->view('templates/header');
 	        $this->load->view('templates/navbar');
-	        $this->load->view('templates/sidemenu', $referencia);
+	        $this->load->view('templates/administrador/sidemenu', $referencia);
 	        $this->load->view('templates/page_start');
 			$this->load->view('equipe/v_equipe_cadastro', $data);
 	        $this->load->view('templates/footer');
@@ -289,7 +289,7 @@ class Equipe extends CI_Controller{
 
 		        $this->load->view('templates/header');
 		        $this->load->view('templates/navbar');
-		        $this->load->view('templates/sidemenu', $referencia);
+		        $this->load->view('templates/administrador/sidemenu', $referencia);
 		        $this->load->view('templates/page_start');
 				$this->load->view('equipe/v_equipe_edicao', $data);
 		        $this->load->view('templates/footer');
@@ -348,7 +348,7 @@ class Equipe extends CI_Controller{
 
 		        $this->load->view('templates/header');
 		        $this->load->view('templates/navbar');
-		        $this->load->view('templates/sidemenu', $referencia);
+		        $this->load->view('templates/administrador/sidemenu', $referencia);
 		        $this->load->view('templates/page_start');
 				$this->load->view('equipe/v_equipe_detalhes', $data);
 		        $this->load->view('templates/footer');

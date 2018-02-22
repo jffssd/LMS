@@ -1,6 +1,6 @@
 <h3>Home / Usuários / Atualizar</h3>
 
-<?php echo form_open_multipart('administrator/update_user_data'); ?>
+<?php echo form_open_multipart('admin/atualizar_dados_usuario'); ?>
 
 <input type="hidden" name="id" class="form-control" value="<?php echo $usuario['id']; ?>">
 <label class="col-sm-2 col-form-label">Usuário</label>

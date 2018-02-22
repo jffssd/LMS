@@ -1,5 +1,5 @@
 <?php 
-	class Administrator extends CI_Controller{
+	class Admin extends CI_Controller{
 
 	//Controller principal do administrador
 
@@ -13,49 +13,61 @@
 
 	public function view($page = 'index'){
 
-			//Se já estiver logado, envia para a página de dashboard
-			if($this->session->userdata('login')) {
-				redirect('administrator/dashboard');
-			}
-			//Se não encontrar a view referente ao controller envia
-			if (!file_exists(APPPATH.'views/administrator/'.$page.'.php')) {
-				show_404();
-			}
-			
-			//Define título da página
-			$data['title'] = ucfirst($page);
-			//Carrega página index
-			$this->load->view('administrator/'.$page, $data);
+		//Se já estiver logado, envia para a página de dashboard
+		if($this->session->userdata('login')) {
+			redirect('admin/dashboard');
 		}
+		//Se não encontrar a view referente ao controller envia
+		if (!file_exists(APPPATH.'views/admin/'.$page.'.php')) {
+			show_404();
+		}
+			
+		$data['title'] = ucfirst($page);
+		$referencia['item'] = '';
+		$referencia['sub-item'] = '';
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$this->load->view('templates/admin/sidemenu', $referencia);
+		$this->load->view('templates/page_start');
+		$this->load->view('admin/'.$page, $data);
+		$this->load->view('templates/footer');
+	}
 	
 
 	public function home($page = 'home'){
 	
-		if (!file_exists(APPPATH.'views/administrator/'.$page.'.php')) {
+		if (!file_exists(APPPATH.'views/admin/'.$page.'.php')) {
 			show_404();
 		}
+		
 		$data['title'] = ucfirst($page);
-		$this->load->view('administrator/header-script');
-		$this->load->view('administrator/header');
-		$this->load->view('administrator/header-bottom');
-		$this->load->view('administrator/'.$page, $data);
-		$this->load->view('administrator/footer');
+		$referencia['item'] = '';
+		$referencia['sub-item'] = '';
+		
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$this->load->view('templates/admin/sidemenu', $referencia);
+		$this->load->view('templates/page_start');
+		$this->load->view('admin/'.$page, $data);
+		$this->load->view('templates/footer');
 	}
+
 
 	public function dashboard($page = 'dashboard'){
 	
-		if (!file_exists(APPPATH.'views/administrator/'.$page.'.php')) {
+		if (!file_exists(APPPATH.'views/admin/'.$page.'.php')) {
 	 	    show_404();
 	   }
 	   $data['title'] = ucfirst($page);
-	   $this->load->view('administrator/header-script');
-	   $this->load->view('administrator/header');
-	   $this->load->view('administrator/header-bottom');
-	   $this->load->view('administrator/'.$page, $data);
-	   $this->load->view('administrator/footer');
+	   $this->load->view('admin/header-script');
+	   $this->load->view('admin/header');
+	   $this->load->view('admin/header-bottom');
+	   $this->load->view('admin/'.$page, $data);
+	   $this->load->view('admin/footer');
 	}
 
-	// Login do Administrador
+
 	public function adminLogin(){
 
 		$data['title'] = 'Login de Administrador';
@@ -64,12 +76,10 @@
 		$this->form_validation->set_rules('senha', 'Senha', 'required');
 
 		if($this->form_validation->run() === FALSE){
-			//$data['title'] = ucfirst($page);
-			$this->load->view('administrator/header-script');
-			//$this->load->view('administrator/header');
-			//$this->load->view('administrator/header-bottom');
-			$this->load->view('administrator/index', $data);
-			$this->load->view('administrator/footer');
+
+			$this->load->view('admin/header-script');
+			$this->load->view('admin/index', $data);
+			$this->load->view('admin/footer');
 		}else{
 			// Recebe e-mail e senha (md5)
 			$email = $this->input->post('email');
@@ -96,17 +106,16 @@
 
 				//Define mensagem de retorno
 				$this->session->set_flashdata('success', 'Bem vindo ao Painel Principal! :D');
-				redirect('administrator/dashboard');
+				redirect('admin/dashboard');
 			}else{
 				$this->session->set_flashdata('danger', 'Credenciais de login são inválidas!');
-				redirect('administrator/index');
+				redirect('admin/index');
 			}
 		}
 	}
 
-	// Logout de Administrador
 	public function logout(){
-		// Dá unset nos dados do usuário
+
 		$this->session->unset_userdata('login');
 		$this->session->unset_userdata('usuario_id');
 		$this->session->unset_userdata('usuario');
@@ -115,34 +124,138 @@
 		$this->session->unset_userdata('imagem_perfil');
 		$this->session->unset_userdata('logo_site');
 
-		//Define Mensagem
 		$this->session->set_flashdata('success', 'Você saiu da aplicação com sucesso!');
-		redirect(base_url().'administrator/index');
+		redirect(base_url().'admin/index');
 	}
 
 	public function forget_password($page = 'forget-password'){
-		if (!file_exists(APPPATH.'views/administrator/'.$page.'.php')) {
+		if (!file_exists(APPPATH.'views/admin/'.$page.'.php')) {
 			show_404();
 		}
 		$data['title'] = ucfirst($page);
-		$this->load->view('administrator/header-script');
-		//$this->load->view('administrator/header');
-		//$this->load->view('administrator/header-bottom');
-		$this->load->view('administrator/'.$page, $data);
-		$this->load->view('administrator/footer');
+		$this->load->view('admin/header-script');
+		$this->load->view('admin/'.$page, $data);
+		$this->load->view('admin/footer');
 	}
 
-	//Criação de usuário
-	public function add_user($page = 'add-user'){
+	
+	//=========================================================================
+	//								USUÁRIOS
+	//=========================================================================
+	
+	public function usuarios($offset = 0){
 
-		if (!file_exists(APPPATH.'views/administrator/'.$page.'.php')) {
+		// Configuração da Página
+		$config['base_url'] = base_url(). 'admin/usuarios/';
+		$config['total_rows'] = $this->db->count_all('usuario');
+		$config['per_page'] = 10;
+		$config['uri_segment'] = 3;
+		$config['attributes'] = array('class' => 'paginate-link');
+
+		// Inicia a Paginação
+		$this->pagination->initialize($config);
+	
+		$data['usuarios'] = $this->Administrator_Model->get_users(FALSE, $config['per_page'], $offset);
+
+		$data['title'] = 'Últimos usuários';
+		$referencia['item'] = '';
+		$referencia['sub-item'] = '';
+
+	    $this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$this->load->view('templates/admin/sidemenu', $referencia);
+		$this->load->view('templates/page_start');
+	   	$this->load->view('admin/users', $data);
+		$this->load->view('templates/footer');
+	}
+
+	// Atualizar usuário - VIEW
+	public function atualizar_usuario($id = NULL){
+
+		$data['usuario'] = $this->Administrator_Model->get_user($id);
+			
+		if (empty($data['usuario'])) {
+			show_404();
+		}
+		$data['title'] = 'Atualizar usuário';
+		$referencia['item'] = '';
+		$referencia['sub-item'] = '';
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$this->load->view('templates/admin/sidemenu', $referencia);
+		$this->load->view('templates/page_start');
+	   	$this->load->view('admin/atualizar_usuario', $data);
+		$this->load->view('templates/footer');
+	}
+
+	// Atualizar usuário
+	public function atualizar_dados_usuario($page = 'atualizar_usuario')
+		{
+		if (!file_exists(APPPATH.'views/admin/'.$page.'.php')) {
+		    show_404();
+		}
+		// Check login
+		if(!$this->session->userdata('login')) {
+			redirect('admin/index');
+		}
+
+		$data['title'] = 'Atualizar Usuário';
+		$referencia['item'] = '';
+		$referencia['sub-item'] = '';
+
+		$this->form_validation->set_rules('usuario', 'Usuario', 'required');
+
+		if($this->form_validation->run() === FALSE){
+
+	  		$this->load->view('templates/header');
+			$this->load->view('templates/navbar');
+			$this->load->view('templates/admin/sidemenu', $referencia);
+			$this->load->view('templates/page_start');
+	   		 $this->load->view('admin/'.$page, $data);
+			$this->load->view('templates/footer');
+
+		}else{
+			//Upload Image
+				
+			$config['upload_path'] = './assets/images/users';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$config['max_size'] = '2048';
+			$config['max_width'] = '2000';
+			$config['max_height'] = '2000';
+
+			$this->load->library('upload', $config);
+
+			if(!$this->upload->do_upload()){
+				$id = $this->input->post('id');
+				$data['img'] = $this->Administrator_Model->get_user($id);
+				$errors =  array('error' => $this->upload->display_errors());
+				$post_image = $data['img']['imagem_perfil'];
+			}else{
+				$data =  array('upload_data' => $this->upload->data());
+				$post_image = $_FILES['userfile']['name'];
+			}
+
+			$this->Administrator_Model->update_user_data($post_image);
+			//Set Message
+			$this->session->set_flashdata('success', 'Usuário foi atualizado com sucesso!');
+			redirect('admin/usuarios');
+		}
+	}
+
+	public function cadastrar_usuario($page = 'cadastrar_usuario'){
+
+		if (!file_exists(APPPATH.'views/admin/'.$page.'.php')) {
 			show_404();
 	    }
 		// Se não estiver logado, envia para a página de login.
 		if(!$this->session->userdata('login')) {
-			redirect('administrator/index');
+			redirect('admin/index');
 		}
+		
 		$data['title'] = 'Criar Usuário';
+		$referencia['item'] = '';
+		$referencia['sub-item'] = '';
 
 		// Define as regras de validação
 		$this->form_validation->set_rules('usuario', 'Usuario', 'required|callback_check_username_exists');
@@ -150,11 +263,13 @@
 
 		// Se não rodar, envia para a página de cadastro novamente.
 		if($this->form_validation->run() === FALSE){
-			 $this->load->view('administrator/header-script');
-	 	 	 $this->load->view('administrator/header');
-	  		 $this->load->view('administrator/header-bottom');
-	   		 $this->load->view('administrator/'.$page, $data);
-	  		 $this->load->view('administrator/footer');
+
+	  		$this->load->view('templates/header');
+			$this->load->view('templates/navbar');
+			$this->load->view('templates/admin/sidemenu', $referencia);
+			$this->load->view('templates/page_start');
+   			 $this->load->view('admin/'.$page, $data);
+			$this->load->view('templates/footer');
 		}else{
 			//Faz upload da imagem
 			$config['upload_path'] = './assets/images/users';
@@ -169,73 +284,24 @@
 			// Se conseguir, define dados do upload
 			if(!$this->upload->do_upload()){
 				$errors =  array('error' => $this->upload->display_errors());
-				$post_image = 'noimage.jpg';
+				$post_image = 'default-profile.png';
 			}else{
 				$data =  array('upload_data' => $this->upload->data());
 				$post_image = $_FILES['userfile']['name'];
 			}
 
 			//???
-			$password = md5('Test@123');
+			$senha = md5('Test@123');
 
-			$this->Administrator_Model->add_user($post_image,$password);
+			$this->Administrator_Model->add_user($post_image,$senha);
 
 			//Define Mensagem
 			$this->session->set_flashdata('success', 'User has been created Successfull.');
-			redirect('administrator/users');
+			redirect('admin/usuarios');
 		}
 	}
 
-	// Verifica se o usuário já está cadastrado
-	public function check_username_exists($usuario){
-
-		$this->form_validation->set_message('check_username_exists', 'Este nome de usuário já existe.');
-
-		if ($this->User_Model->check_username_exists($usuario)) {
-			return true;
-		}else{
-			return false;
-		}
-	}
-
-
-	// Verifica se o e-mail já está cadastrado
-	public function check_email_exists($email){
-
-		$this->form_validation->set_message('check_email_exists', 'Este e-mail já está cadastrado.');
-
-		if ($this->User_Model->check_email_exists($email)) {
-			return true;
-		}else{
-			return false;
-		}
-	}
-
-	//Lista usuários
-	public function users($offset = 0){
-
-		// Configuração da Página
-		$config['base_url'] = base_url(). 'administrator/users/';
-		$config['total_rows'] = $this->db->count_all('usuario');
-		$config['per_page'] = 10;
-		$config['uri_segment'] = 3;
-		$config['attributes'] = array('class' => 'paginate-link');
-
-		// Inicia a Paginação
-		$this->pagination->initialize($config);
-	
-		$data['title'] = 'Últimos usuários';
-
-		$data['usuarios'] = $this->Administrator_Model->get_users(FALSE, $config['per_page'], $offset);
-
-		$this->load->view('administrator/header-script');
-	 	$this->load->view('administrator/header');
-	  	$this->load->view('administrator/header-bottom');
-	   	$this->load->view('administrator/users', $data);
-	    $this->load->view('administrator/footer');
-	}
-
-	// Excluir usuário
+		// Excluir usuário
 	public function delete($id){
 
 		$table = base64_decode($this->input->get('table'));
@@ -263,77 +329,43 @@
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
 
-	// Atualizar usuário - VIEW
-	public function update_user($id = NULL){
 
-		$data['usuario'] = $this->Administrator_Model->get_user($id);
-			
-		if (empty($data['usuario'])) {
-			show_404();
-		}
-		$data['title'] = 'Atualizar usuário';
 
-		$this->load->view('administrator/header-script');
-	 	$this->load->view('administrator/header');
-	  	$this->load->view('administrator/header-bottom');
-	   	$this->load->view('administrator/update-user', $data);
-		$this->load->view('administrator/footer');
-	}
 
-	// Atualizar usuário
-	public function update_user_data($page = 'update-user')
-		{
-		if (!file_exists(APPPATH.'views/administrator/'.$page.'.php')) {
-		    show_404();
-		}
-		// Check login
-		if(!$this->session->userdata('login')) {
-			redirect('administrator/index');
-		}
 
-		$data['title'] = 'Atualizar Usuário';
 
-		$this->form_validation->set_rules('usuario', 'Usuario', 'required');
+	// Verifica se o usuário já está cadastrado
+	public function check_username_exists($usuario){
 
-		if($this->form_validation->run() === FALSE){
-			 $this->load->view('administrator/header-script');
-	 	 	 $this->load->view('administrator/header');
-	  		 $this->load->view('administrator/header-bottom');
-	   		 $this->load->view('administrator/'.$page, $data);
-	  		 $this->load->view('administrator/footer');
+		$this->form_validation->set_message('check_username_exists', 'Este nome de usuário já existe.');
+
+		if ($this->User_Model->check_username_exists($usuario)) {
+			return true;
 		}else{
-			//Upload Image
-				
-			$config['upload_path'] = './assets/images/users';
-			$config['allowed_types'] = 'gif|jpg|png|jpeg';
-			$config['max_size'] = '2048';
-			$config['max_width'] = '2000';
-			$config['max_height'] = '2000';
-
-			$this->load->library('upload', $config);
-
-			if(!$this->upload->do_upload()){
-				$id = $this->input->post('id');
-				$data['img'] = $this->Administrator_Model->get_user($id);
-				$errors =  array('error' => $this->upload->display_errors());
-				$post_image = $data['img']['imagem_perfil'];
-			}else{
-				$data =  array('upload_data' => $this->upload->data());
-				$post_image = $_FILES['userfile']['name'];
-			}
-
-			$this->Administrator_Model->update_user_data($post_image);
-			//Set Message
-			$this->session->set_flashdata('success', 'Usuário foi atualizado com sucesso!');
-			redirect('administrator/users');
+			return false;
 		}
 	}
+
+
+	// Verifica se o e-mail já está cadastrado
+	public function check_email_exists($email){
+
+		$this->form_validation->set_message('check_email_exists', 'Este e-mail já está cadastrado.');
+
+		if ($this->User_Model->check_email_exists($email)) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
 
 
 	//Site configuration
 	public function get_siteconfiguration($page = 'site-configuration'){
 
-		if (!file_exists(APPPATH.'views/administrator/'.$page.'.php')) {
+		if (!file_exists(APPPATH.'views/admin/'.$page.'.php')) {
 	    	show_404();
 	   	}
 
@@ -341,11 +373,11 @@
 
 		$data['title'] = 'Site Configuration';
 
-		$this->load->view('administrator/header-script');
-	 	$this->load->view('administrator/header');
-		$this->load->view('administrator/header-bottom');
-		$this->load->view('administrator/update-site-configuration', $data);
-		$this->load->view('administrator/footer');
+		$this->load->view('admin/header-script');
+	 	$this->load->view('admin/header');
+		$this->load->view('admin/header-bottom');
+		$this->load->view('admin/update-site-configuration', $data);
+		$this->load->view('admin/footer');
 	}
 
 	public function update_siteconfiguration($id = NULL){
@@ -353,22 +385,22 @@
 		$data['siteconfiguration'] = $this->Administrator_Model->update_siteconfiguration($id);
 		$data['title'] = 'Update Configuration';
 
-		$this->load->view('administrator/header-script');
-	 	$this->load->view('administrator/header');
-		$this->load->view('administrator/header-bottom');
-		$this->load->view('administrator/update-site-configuration', $data);
-		$this->load->view('administrator/footer');
+		$this->load->view('admin/header-script');
+	 	$this->load->view('admin/header');
+		$this->load->view('admin/header-bottom');
+		$this->load->view('admin/update-site-configuration', $data);
+		$this->load->view('admin/footer');
 	}
 
 
 	public function update_siteconfiguration_data($page = 'update-site-configuration'){
 
-		if (!file_exists(APPPATH.'views/administrator/'.$page.'.php')) {
+		if (!file_exists(APPPATH.'views/admin/'.$page.'.php')) {
 		    show_404();
 	    }
 		// Check login
 		if(!$this->session->userdata('login')) {
-			redirect('administrator/index');
+			redirect('admin/index');
 		}
 		$data['title'] = 'Update Configuration';
 
@@ -376,11 +408,11 @@
 		$this->form_validation->set_rules('site_name', 'Site Name', 'required');
 			
 		if($this->form_validation->run() === FALSE){
-			 $this->load->view('administrator/header-script');
-	 	 	 $this->load->view('administrator/header');
-	  		 $this->load->view('administrator/header-bottom');
-	   		 $this->load->view('administrator/'.$page, $data);
-	  		 $this->load->view('administrator/footer');
+			 $this->load->view('admin/header-script');
+	 	 	 $this->load->view('admin/header');
+	  		 $this->load->view('admin/header-bottom');
+	   		 $this->load->view('admin/'.$page, $data);
+	  		 $this->load->view('admin/footer');
 		}else{
 
 			//Upload Image
@@ -404,7 +436,7 @@
 			 $this->Administrator_Model->update_siteconfiguration_data($post_image);
 			//Set Message
 			$this->session->set_flashdata('success', 'site configuration Details has been Updated Successfull.');
-			redirect('administrator/site-configuration/update/1');
+			redirect('admin/site-configuration/update/1');
 		}
 	}
 
@@ -413,21 +445,21 @@
 		$data['changePassword'] = $this->Administrator_Model->get_admin_data();
 		$data['title'] = 'Change Password';
 
-		$this->load->view('administrator/header-script');
-	 	$this->load->view('administrator/header');
-	  	$this->load->view('administrator/header-bottom');
-	   	$this->load->view('administrator/change-password', $data);
-	  	$this->load->view('administrator/footer');
+		$this->load->view('admin/header-script');
+	 	$this->load->view('admin/header');
+	  	$this->load->view('admin/header-bottom');
+	   	$this->load->view('admin/change-password', $data);
+	  	$this->load->view('admin/footer');
 	}
 
 	public function change_password($page = 'change-password'){
 
-		if (!file_exists(APPPATH.'views/administrator/'.$page.'.php')) {
+		if (!file_exists(APPPATH.'views/admin/'.$page.'.php')) {
 		    show_404();
 		}
 		// Check login
 		if(!$this->session->userdata('login')) {
-			redirect('administrator/index');
+			redirect('admin/index');
 		}
 
 		$data['title'] = 'Change password';
@@ -439,11 +471,11 @@
 		$this->form_validation->set_rules('confirm_new_password', 'Confirm New Password', 'matches[new_password]');
 
 		if($this->form_validation->run() === FALSE){
-			$this->load->view('administrator/header-script');
-		 	$this->load->view('administrator/header');
-			$this->load->view('administrator/header-bottom');
-			$this->load->view('administrator/'.$page, $data);
-			$this->load->view('administrator/footer');
+			$this->load->view('admin/header-script');
+		 	$this->load->view('admin/header');
+			$this->load->view('admin/header-bottom');
+			$this->load->view('admin/'.$page, $data);
+			$this->load->view('admin/footer');
 		}else{
 			$this->Administrator_Model->change_password($this->input->post('new_password'));
 			//Set Message
@@ -482,7 +514,7 @@
             $this->email->subject("Reset your Password");
 
             $message = "<p>This email has been sent as a request to reset our password</p>";
-            $message .= "<p><a href='".base_url()."administrator/reset-password/$temp_pass'>Click here </a>if you want to reset your password,
+            $message .= "<p><a href='".base_url()."admin/reset-password/$temp_pass'>Click here </a>if you want to reset your password,
                         if not, then ignore</p>";
             $this->email->message($message);
 
@@ -520,5 +552,5 @@
        }else{
             echo "passwords do not match";  
         }
-	}	
+	}
 }

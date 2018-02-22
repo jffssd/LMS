@@ -16,7 +16,7 @@ class Campeonatos extends CI_Controller{
 
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');
-		$this->load->view('templates/sidemenu', $referencia);
+		$this->load->view('templates/administrador/sidemenu', $referencia);
 		$this->load->view('templates/page_start');
 		$this->load->view('campeonato/v_campeonato', $data);
 		$this->load->view('templates/footer');
@@ -65,7 +65,7 @@ class Campeonatos extends CI_Controller{
 
 				$this->load->view('templates/header');
 				$this->load->view('templates/navbar');
-				$this->load->view('templates/sidemenu', $referencia);
+				$this->load->view('templates/administrador/sidemenu', $referencia);
 				$this->load->view('templates/page_start');
 				$this->load->view('campeonato/v_campeonato_detalhes', $data);
 				$this->load->view('templates/footer');

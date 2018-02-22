@@ -62,12 +62,12 @@ $(document).ready(function(){
             <td><?php echo date("M d,Y", strtotime($usuario['data_registro'])); ?></td>
             <td>
                 <?php if($usuario['status'] == 1){ ?>
-                <a class="label label-inverse-primary enable" href='<?php echo base_url(); ?>administrator/enable/<?php echo $usuario['id']; ?>?table=<?php echo base64_encode('usuario'); ?>'>Habilitado</a>
+                <a class="btn btn-outline-success btn-sm enable" href='<?php echo base_url(); ?>admin/enable/<?php echo $usuario['id']; ?>?table=<?php echo base64_encode('usuario'); ?>'>Habilitado</a>
                 <?php }else{ ?> 
-                <a class="label label-inverse-warning desable" href='<?php echo base_url(); ?>administrator/disable/<?php echo $usuario['id']; ?>?table=<?php echo base64_encode('usuario'); ?>'>Desabilitado</a>
+                <a class="btn btn-outline-warning btn-sm disable" href='<?php echo base_url(); ?>admin/disable/<?php echo $usuario['id']; ?>?table=<?php echo base64_encode('usuario'); ?>'>Desabilitado</a>
                 <?php } ?>
-                <a class="label label-inverse-info" href='<?php echo base_url(); ?>administrator/users/update-user/<?php echo $usuario['id']; ?>'>Editar</a>
-                <a class="label label-inverse-danger delete" href='<?php echo base_url(); ?>administrator/delete/<?php echo $usuario['id']; ?>?table=<?php echo base64_encode('usuario'); ?>'>Excluir</a>
+                <a class="btn btn-outline-info btn-sm" href='<?php echo base_url(); ?>admin/atualizar_usuario/<?php echo $usuario['id']; ?>'>Editar</a>
+                <a class="btn btn-outline-danger btn-sm delete" href='<?php echo base_url(); ?>admin/delete/<?php echo $usuario['id']; ?>?table=<?php echo base64_encode('usuario'); ?>'>Excluir</a>
             </td>
         </tr>
         <?php endforeach; ?>

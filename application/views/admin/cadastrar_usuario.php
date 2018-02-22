@@ -1,6 +1,6 @@
 <h3>Home / Usuário / Cadastro</h3>
 
-<?php echo form_open_multipart('administrator/add_user'); ?>
+<?php echo form_open_multipart('admin/cadastrar_usuario'); ?>
 <label>Usuario</label>
 <input type="text" name="usuario" class="form-control" placeholder="Usuario">
 

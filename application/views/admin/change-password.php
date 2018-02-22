@@ -36,7 +36,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                             <div class="col-sm-8">
-                               <?php echo form_open_multipart('administrator/change_password'); ?>
+                               <?php echo form_open_multipart('admin/change_password'); ?>
                                     
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">Email</label>

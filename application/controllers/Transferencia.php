@@ -15,7 +15,7 @@ class Transferencia extends CI_Controller {
 
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');
-		$this->load->view('templates/sidemenu', $referencia);
+		$this->load->view('templates/administrador/sidemenu', $referencia);
 		$this->load->view('templates/page_start');
         $this->load->view('transferencia/v_transferencia', $data);
 		$this->load->view('templates/footer');
@@ -42,7 +42,7 @@ class Transferencia extends CI_Controller {
 
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');
-		$this->load->view('templates/sidemenu', $referencia);
+		$this->load->view('templates/administrador/sidemenu', $referencia);
 		$this->load->view('templates/page_start');
 		$this->load->view('transferencia/v_transferencia_cadastro', $data);
 		$this->load->view('templates/footer');
@@ -118,7 +118,7 @@ class Transferencia extends CI_Controller {
 
 			$this->load->view('templates/header');
 			$this->load->view('templates/navbar');
-			$this->load->view('templates/sidemenu', $referencia);
+			$this->load->view('templates/administrador/sidemenu', $referencia);
 			$this->load->view('templates/page_start');
 			$this->load->view('transferencia/v_transferencia_cadastro', $data);
 			$this->load->view('templates/footer');
