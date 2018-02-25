@@ -26,7 +26,7 @@ $(document).ready(function(){
     });
 
 $(document).ready(function(){
-        $(".desable").click(function(e){ alert('as');
+        $(".disable").click(function(e){ alert('as');
             $this  = $(this);
             e.preventDefault();
             var url = $(this).attr("href");
@@ -56,7 +56,7 @@ $(document).ready(function(){
         <?php foreach($usuarios as $usuario) : ?>
         <tr>
             <td><?php echo $usuario['id']; ?></td>
-            <td><img width="20px;" src="<?php echo site_url();?>assets/images/users/<?php echo $usuario['imagem_perfil']; ?> "></td>
+            <td><img width="20px;" src="<?php echo site_url();?>assets/img/usuarios/<?php echo $usuario['imagem_perfil']; ?> "></td>
             <td><?php echo $usuario['usuario']; ?></td>
             <td><?php echo $usuario['email']; ?></td>
             <td><?php echo date("M d,Y", strtotime($usuario['data_registro'])); ?></td>
@@ -67,6 +67,7 @@ $(document).ready(function(){
                 <a class="btn btn-outline-warning btn-sm disable" href='<?php echo base_url(); ?>admin/disable/<?php echo $usuario['id']; ?>?table=<?php echo base64_encode('usuario'); ?>'>Desabilitado</a>
                 <?php } ?>
                 <a class="btn btn-outline-info btn-sm" href='<?php echo base_url(); ?>admin/atualizar_usuario/<?php echo $usuario['id']; ?>'>Editar</a>
+                <a class="btn btn-outline-secondary btn-sm" href='<?php echo base_url(); ?>admin/logs_usuario/<?php echo $usuario['id']; ?>'>Logs</a>
                 <a class="btn btn-outline-danger btn-sm delete" href='<?php echo base_url(); ?>admin/delete/<?php echo $usuario['id']; ?>?table=<?php echo base64_encode('usuario'); ?>'>Excluir</a>
             </td>
         </tr>

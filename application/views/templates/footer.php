@@ -22,6 +22,7 @@
 <script src="<?php echo base_url('assets/js/fastclick.js');?>"></script>
 <script src="<?php echo base_url('assets/js/jquery.blockUI.js');?>"></script>
 <script src="<?php echo base_url('assets/js/jquery.nicescroll.js');?>"></script>
+<script src="<?php echo base_url('assets/js/jquery.filer.js');?>"></script>
 
 <!-- App js -->
 <script src="<?php echo base_url('assets/js/pikeadmin.js');?>"></script>
@@ -32,8 +33,8 @@
 <script src="<?php echo base_url('assets/js/dataTables.bootstrap4.min.js');?>"></script>
 
 <!-- Counter-Up-->
-<script src="<?php echo base_url('assets/plugins/waypoints/lib/jquery.waypoints.min.js');?>"></script>
-<script src="<?php echo base_url('assets/plugins/counterup/jquery.counterup.min.js');?>"></script>			
+<script src="<?php echo base_url('assets/js/jquery.waypoints.min.js');?>"></script>
+<script src="<?php echo base_url('assets/js/jquery.counterup.min.js');?>"></script>			
 
 <script>
   $(document).ready(function() {

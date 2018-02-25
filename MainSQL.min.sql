@@ -872,7 +872,7 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_equipes` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `lmdb`.`campeonato_serie
+-- Table `lmdb`.`campeonato_serie`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_serie` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -907,22 +907,31 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `lmdb`.`campeonato_serie_jogo
+-- Table `lmdb`.`campeonato_jogo`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_serie_jogo` (
-  `id` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_jogo` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `serie_id` INT NOT NULL,
+  `jogo_num` INT NOT NULL,
+  `placar_equipe1` INT DEFAULT 0,
   `equipe_id1` INT NOT NULL,
   `equipe_id2` INT NOT NULL,
+  `placar_equipe2` INT DEFAULT 0,
   `status` CHAR(1) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_campeonato_serie_jogo_equipe1_idx` (`equipe_id1` ASC),
-  INDEX `fk_campeonato_serie_jogo_equipe2_idx` (`equipe_id2` ASC),
-  CONSTRAINT `fk_campeonato_serie_jogo_equipe1`
+  INDEX `fk_campeonato_jogo_equipe1_idx` (`equipe_id1` ASC),
+  INDEX `fk_campeonato_jogo_equipe2_idx` (`equipe_id2` ASC),
+  CONSTRAINT `fk_campeonato_jogo_equipe1`
     FOREIGN KEY (`equipe_id1`)
     REFERENCES `lmdb`.`equipe` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_campeonato_serie_jogo_equipe2`
+  CONSTRAINT `fk_campeonato_jogo_serie_id1`
+    FOREIGN KEY (`serie_id`)
+    REFERENCES `lmdb`.`campeonato_serie` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_campeonato_jogo_equipe2`
     FOREIGN KEY (`equipe_id2`)
     REFERENCES `lmdb`.`equipe` (`id`)
     ON DELETE NO ACTION
@@ -930,9 +939,9 @@ CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_serie_jogo` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `lmdb`.`campeonato_serie_jogo_jogador
+-- Table `lmdb`.`campeonato_jogo_detalhes
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_serie_jogador`(
+CREATE TABLE IF NOT EXISTS `lmdb`.`campeonato_jogo_detalhes`(
 
   `id` INT NOT NULL,
   `jogo_id` INT NOT NULL,

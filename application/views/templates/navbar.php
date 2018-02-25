@@ -8,7 +8,7 @@
 
 		<!-- LOGO -->
         <div class="headerbar-left">
-			<a href="#" class="logo"><img alt="Logo" src="<?php echo base_url('assets/images/ces_logo.png');?>" /> <small style="color: #f3585a;">Carreira e-Sports!</small></a>
+			<a href="#" class="logo"><img alt="Logo" src="<?php echo base_url('assets/img/ces_logo.png');?>" /> <small style="color: #f3585a;">Carreira e-Sports!</small></a>
         </div>
 
         <nav class="navbar-custom">
@@ -108,7 +108,7 @@
                                 <!-- item-->
                                 <a href="#" class="dropdown-item notify-item">
                                     <div class="notify-icon bg-faded">
-                                        <img src="<?php echo base_url('assets/images/avatars/avatar2.png');?>" alt="img" class="rounded-circle img-fluid">
+                                        <img src="<?php echo base_url('assets/img/usuarios/default-profile.png');?>" alt="img" class="rounded-circle img-fluid">
                                     </div>
                                     <p class="notify-details">
                                         <b>John Doe</b>
@@ -120,7 +120,7 @@
                                 <!-- item-->
                                 <a href="#" class="dropdown-item notify-item">
                                     <div class="notify-icon bg-faded">
-                                        <img src="<?php echo base_url('assets/images/avatars/avatar3.png');?>" alt="img" class="rounded-circle img-fluid">
+                                        <img src="<?php echo base_url('assets/img/usuarios/default-profile.png');?>" alt="img" class="rounded-circle img-fluid">
                                     </div>
                                     <p class="notify-details">
                                         <b>Michael Fassbender</b>
@@ -132,7 +132,7 @@
                                 <!-- item-->
                                 <a href="#" class="dropdown-item notify-item">
                                     <div class="notify-icon bg-faded">
-                                        <img src="<?php echo base_url('assets/images/avatars/avatar4.png');?>" alt="img" class="rounded-circle img-fluid">
+                                        <img src="<?php echo base_url('assets/img/usuarios/default-profile.png');?>" alt="img" class="rounded-circle img-fluid">
                                     </div>
                                     <p class="notify-details">
                                         <b>Bruce Benner</b>
@@ -150,7 +150,7 @@
 
                         <li class="list-inline-item dropdown notif">
                             <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <small><?php echo $this->session->userdata('usuario');?></small> <img src="<?php echo base_url('assets/images/users/').$this->session->userdata('imagem_perfil');?>" alt="Profile image" class="avatar-rounded">
+                            <small><?php echo $this->session->userdata('usuario');?></small> <img src="<?php echo base_url('assets/img/usuarios/').$this->session->userdata('imagem_perfil');?>" alt="Profile image" class="avatar-rounded">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                 <!-- item-->

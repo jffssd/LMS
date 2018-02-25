@@ -30,7 +30,7 @@
                 <h3><i class="fa fa-picture-o"></i> Imagem de Perfil</h3>
             </div>
             <div class="card-body" align="center">
-                <img src="<?php echo base_url('assets/images/users/').$this->session->userdata('imagem_perfil');?>" alt="Imagem de Perfil" style="border-radius:50%; width: 150px; height: 150px;">
+                <img src="<?php echo base_url('assets/img/usuarios/').$this->session->userdata('imagem_perfil');?>" alt="Imagem de Perfil" style="border-radius:50%; width: 150px; height: 150px;">
             </div>
         </div>				
     </div>	

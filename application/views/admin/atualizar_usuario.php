@@ -16,7 +16,7 @@
 <br>
 
 <label class="col-sm-2 col-form-label">Imagem de perfil</label>
-<img src="<?php echo base_url().'assets/images/users/'.$usuario['imagem_perfil']; ?>" width="70px">
+<img src="<?php echo base_url().'assets/img/usuarios/'.$usuario['imagem_perfil']; ?>" width="70px">
 <br>
 
 <label class="col-sm-2 col-form-label">Atualizar imagem de perfil</label>

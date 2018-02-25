@@ -41,4 +41,16 @@ class Campeonatos_Model extends CI_Model {
 		$this->db->close();
 		return $result->result_array();
 	}
+
+	public function get_serie_jogos($id){
+			
+		$this->db->select('cj.serie_id, cj.jogo_num, cj.placar_equipe1, e1.logo as e1logo, e1.sigla as e1sigla, e1.nome as e1nome, e2.logo as e2logo, e2.sigla as e2sigla, e2.nome as e2nome, cj.placar_equipe2, cj.status');
+
+		$this->db->join('equipe e1', 'cj.equipe_id1 = e1.id');
+		$this->db->join('equipe e2', 'cj.equipe_id2 = e2.id');
+
+		$this->db->where('cj.serie_id', $id);
+		return $this->db->get('campeonato_jogo cj');
+	}
+
 }

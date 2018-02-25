@@ -62,6 +62,14 @@
 		return $query->row_array();
 	}
 
+	public function get_user_logs($id){
+
+		$this->db->where('usuario_id', $id);
+		$this->db->order_by("data_hora", 'desc');
+
+		return $this->db->get('usuario_log');
+	}
+
 	//Habilitar Usuário
 	public function enable($id,$table){
 	

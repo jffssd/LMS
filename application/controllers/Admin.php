@@ -6,9 +6,9 @@
 	public function __construct(){
 
 		parent::__construct();
-		if($this->session->userdata('permissao') != 1) {
-			redirect('users/profile');
-		}
+		//if($this->session->userdata('permissao') != 1) {
+		//	redirect('users/profile');
+		//}
 	}
 
 	public function view($page = 'index'){
@@ -59,14 +59,39 @@
 		if (!file_exists(APPPATH.'views/admin/'.$page.'.php')) {
 	 	    show_404();
 	   }
-	   $data['title'] = ucfirst($page);
+	/* 
 	   $this->load->view('admin/header-script');
 	   $this->load->view('admin/header');
 	   $this->load->view('admin/header-bottom');
-	   $this->load->view('admin/'.$page, $data);
-	   $this->load->view('admin/footer');
+	   $this->load->view('admin/footer');*/
+
+ 		$data['title'] = ucfirst($page);
+	  	$referencia['item'] = '';
+		$referencia['sub-item'] = '';
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$this->load->view('templates/admin/sidemenu', $referencia);
+		$this->load->view('templates/page_start');
+	    $this->load->view('admin/'.$page, $data);
+		$this->load->view('templates/footer');
 	}
 
+	public function equipe(){
+		
+		$data['equipes'] = $this->Equipes_Model->get_equipes();
+
+        $data['title'] = 'Todos as Equipes';
+        $referencia['item'] = 'equipe';
+        $referencia['sub-item'] = 'todos';
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/navbar');
+        $this->load->view('templates/admin/sidemenu', $referencia);
+        $this->load->view('templates/page_start');
+		$this->load->view('admin/equipe', $data);
+        $this->load->view('templates/footer');
+
+	}
 
 	public function adminLogin(){
 
@@ -189,6 +214,28 @@
 		$this->load->view('templates/footer');
 	}
 
+	// Atualizar usuário - VIEW
+	public function logs_usuario($id = NULL){
+
+		$data['usuario'] = $this->Administrator_Model->get_user($id);
+
+		$data['usuario_logs'] = $this->Administrator_Model->get_user_logs($id);
+
+		if (empty($data['usuario'])) {
+			show_404();
+		}
+		$data['title'] = 'Atualizar usuário';
+		$referencia['item'] = '';
+		$referencia['sub-item'] = '';
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$this->load->view('templates/admin/sidemenu', $referencia);
+		$this->load->view('templates/page_start');
+	   	$this->load->view('admin/logs_usuario', $data);
+		$this->load->view('templates/footer');
+	}
+
 	// Atualizar usuário
 	public function atualizar_dados_usuario($page = 'atualizar_usuario')
 		{
@@ -218,7 +265,7 @@
 		}else{
 			//Upload Image
 				
-			$config['upload_path'] = './assets/images/users';
+			$config['upload_path'] = './assets/img/usuarios';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['max_size'] = '2048';
 			$config['max_width'] = '2000';
@@ -272,7 +319,7 @@
 			$this->load->view('templates/footer');
 		}else{
 			//Faz upload da imagem
-			$config['upload_path'] = './assets/images/users';
+			$config['upload_path'] = './assets/img/usuarios';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['max_size'] = '2048';
 			$config['max_width'] = '2000';
@@ -328,10 +375,6 @@
 		$this->session->set_flashdata('success', 'Habilitado com sucesso!');
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
-
-
-
-
 
 
 	// Verifica se o usuário já está cadastrado
@@ -416,7 +459,7 @@
 		}else{
 
 			//Upload Image
-			$config['upload_path'] = './assets/images';
+			$config['upload_path'] = './assets/img';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['max_size'] = '2048';
 			$config['max_width'] = '2000';
@@ -443,13 +486,17 @@
 	public function get_admin_data(){
 
 		$data['changePassword'] = $this->Administrator_Model->get_admin_data();
-		$data['title'] = 'Change Password';
 
-		$this->load->view('admin/header-script');
-	 	$this->load->view('admin/header');
-	  	$this->load->view('admin/header-bottom');
+		$data['title'] = 'Change Password';
+		$referencia['item'] = '';
+		$referencia['sub-item'] = '';
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$this->load->view('templates/admin/sidemenu', $referencia);
+		$this->load->view('templates/page_start');
 	   	$this->load->view('admin/change-password', $data);
-	  	$this->load->view('admin/footer');
+		$this->load->view('templates/footer');
 	}
 
 	public function change_password($page = 'change-password'){
@@ -471,16 +518,23 @@
 		$this->form_validation->set_rules('confirm_new_password', 'Confirm New Password', 'matches[new_password]');
 
 		if($this->form_validation->run() === FALSE){
-			$this->load->view('admin/header-script');
-		 	$this->load->view('admin/header');
-			$this->load->view('admin/header-bottom');
+
+			$data['title'] = 'Change Password';
+			$referencia['item'] = '';
+			$referencia['sub-item'] = '';
+
+			$this->load->view('templates/header');
+			$this->load->view('templates/navbar');
+			$this->load->view('templates/admin/sidemenu', $referencia);
+			$this->load->view('templates/page_start');
 			$this->load->view('admin/'.$page, $data);
-			$this->load->view('admin/footer');
+			$this->load->view('templates/footer');
+
 		}else{
 			$this->Administrator_Model->change_password($this->input->post('new_password'));
 			//Set Message
-			$this->session->set_flashdata('success', 'Password Has Been Changed Successfull.');
-			redirect('administrator/change-password');
+			$this->session->set_flashdata('success', 'Sua senha foi alterada com sucesso!');
+			redirect('admin/home');
 		}
 	}
 
@@ -505,29 +559,32 @@
         //check if email is in the database
         $this->load->model('Administrator_Model');
         if($this->Administrator_Model->email_exists()){
+
             //$them_pass is the varible to be sent to the user's email
             $temp_pass = md5(uniqid());
             //send email with #temp_pass as a link
-            $this->load->library('email', array('mailtype'=>'html'));
-            $this->email->from('admin1234567@gmail.com', "Site");
+
+
+			$this->load->library('email');
+            $this->email->from('jffssd@gmail.com', "Site");
             $this->email->to($this->input->post('email'));
             $this->email->subject("Reset your Password");
 
             $message = "<p>This email has been sent as a request to reset our password</p>";
-            $message .= "<p><a href='".base_url()."admin/reset-password/$temp_pass'>Click here </a>if you want to reset your password,
-                        if not, then ignore</p>";
+            $message .= "<p><a href='".base_url()."admin/reset-password/$temp_pass'>Click here </a>if you want to reset your password, if not, then ignore</p>";
             $this->email->message($message);
 
             if($this->email->send()){
+
                 $this->load->model('Administrator_Model');
                 if($this->Administrator_Model->temp_reset_password($temp_pass)){
-                    echo "check your email for instructions, thank you";
+                    echo "Verifique seu e-mail com as instruções, obrigado";
                 }
             }else{
-                echo "email was not sent, please contact your administrator";
+                echo "O e-mail não foi enviado, entre em contato com o administrador";
             }
         }else{
-            echo "your email is not in our database";
+            echo "Seu e-mail não está cadastrado";
         }
 	}
 
