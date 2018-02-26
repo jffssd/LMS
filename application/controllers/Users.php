@@ -72,9 +72,7 @@
 
 			if($this->form_validation->run() === FALSE){
 
-				$this->load->view('templates/header');
-				$this->load->view('users/register', $data);
-				$this->load->view('templates/footer');
+				$this->load->view('templates/login/registrar', $data);
 
 			}else{
 
@@ -104,7 +102,7 @@
 
 			if($this->form_validation->run() === FALSE){
 
-				$this->load->view('users/login', $data);
+			$this->load->view('templates/login/login', $data);
 
 			}else{
 
@@ -180,7 +178,7 @@
 
 		// Check user name exists
 		public function check_username_exists($username){
-			$this->form_validation->set_message('check_username_exists', 'That username is already taken, Please choose a different one.');
+			$this->form_validation->set_message('check_username_exists', 'O nome de usuário <strong>'.$username.'</strong> já foi utilizado. Por favor, tente um diferente.');
 
 			if ($this->User_Model->check_username_exists($username)) {
 				return true;
@@ -192,7 +190,7 @@
 
 		// Check Email exists
 		public function check_email_exists($email){
-			$this->form_validation->set_message('check_email_exists', 'This email is already registered.');
+			$this->form_validation->set_message('check_email_exists', 'O e-mail <strong>'.$email.'</strong> já foi cadastrado anteriormente.');
 
 			if ($this->User_Model->check_email_exists($email)) {
 				return true;
@@ -201,4 +199,79 @@
 			}
 		}
 
+	public function reset_password($temp_pass, $email){
+		
+		$this->load->model('Administrator_Model');
+		
+		$this->session->set_userdata['temp_email'] = '';
+
+		if($this->Administrator_Model->is_temp_pass_valid($temp_pass. $email)){
+		
+		$this->session->set_userdata['temp_id'] = '';
+		$this->session->set_userdata['temp_pass'] = $temp_pass;
+
+		$this->load->view('templates/login/reset-password');
+		//once the user clicks submit $temp_pass is gone so therefore I can't catch the new password and   //associated with the user...
+
+		}else{
+			echo "the key is not valid";    
+		}
 	}
+
+	public function relembrar_senha($page = 'relembrar_senha'){
+
+		$data['title'] = ucfirst($page);
+		$this->load->view('templates/login/'.$page, $data);
+	}
+
+			//forget password functions start
+	public function forget_password_mail(){
+    	$this->load->library('form_validation');
+    	$this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|callback_validate_credentials');
+
+        //check if email is in the database
+        $this->load->model('Administrator_Model');
+        if($this->Administrator_Model->email_exists()){
+
+            //$them_pass is the varible to be sent to the user's email
+            $temp_pass = md5(uniqid());
+            //send email with #temp_pass as a link
+
+            $config = Array(
+            	'protocol' => 'smtp',
+            	'smtp_host' => 'ssl://smtp.googlemail.com',
+            	'validation' => TRUE,
+            	'smtp_port' => 465,
+            	'smtp_user' => '',
+            	'smtp_pass' => '',
+            	'mailtype' => 'html',
+            	'charset' => 'iso-8859-1',
+            	'wordwrap' => TRUE,
+            	'newline' => "\r\n"
+            );
+
+
+			$this->load->library('email', $config);
+            $this->email->from('', 'Centro e-Sports!');
+            $this->email->to('');//$this->input->post('email')
+            $this->email->subject('Centro e-Sports! - Redefinir sua senha');
+
+            $message = "<p>Este e-mail foi enviado devido a uma requisição de redefinição de senha no site Centro e-Sports!</p>";
+            $message .= "<p><a href='".base_url()."users/reset-password/$temp_pass'>Clique aqui </a> para redefinir sua senha, se não tiver conhecimento sobre esta ação, ignore-a.</p>";
+            $this->email->message($message);
+
+            if($this->email->send()){
+
+                $this->load->model('Administrator_Model');
+                if($this->Administrator_Model->temp_reset_password($temp_pass)){
+                    echo "Verifique seu e-mail com as instruções, obrigado";
+                }
+            }else{
+
+                echo "O e-mail não foi enviado, entre em contato com o administrador";
+            }
+        }else{
+            echo "Seu e-mail não está cadastrado";
+        }
+	}
+}

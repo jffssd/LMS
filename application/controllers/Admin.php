@@ -153,15 +153,7 @@
 		redirect(base_url().'admin/index');
 	}
 
-	public function forget_password($page = 'forget-password'){
-		if (!file_exists(APPPATH.'views/admin/'.$page.'.php')) {
-			show_404();
-		}
-		$data['title'] = ucfirst($page);
-		$this->load->view('admin/header-script');
-		$this->load->view('admin/'.$page, $data);
-		$this->load->view('admin/footer');
-	}
+
 
 	
 	//=========================================================================
@@ -548,55 +540,6 @@
 			return true; 
 		}else{
 			return false;
-		}
-	}
-
-	//forget password functions start
-	public function forget_password_mail(){
-    	$this->load->library('form_validation');
-    	$this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|callback_validate_credentials');
-
-        //check if email is in the database
-        $this->load->model('Administrator_Model');
-        if($this->Administrator_Model->email_exists()){
-
-            //$them_pass is the varible to be sent to the user's email
-            $temp_pass = md5(uniqid());
-            //send email with #temp_pass as a link
-
-
-			$this->load->library('email');
-            $this->email->from('jffssd@gmail.com', "Site");
-            $this->email->to($this->input->post('email'));
-            $this->email->subject("Reset your Password");
-
-            $message = "<p>This email has been sent as a request to reset our password</p>";
-            $message .= "<p><a href='".base_url()."admin/reset-password/$temp_pass'>Click here </a>if you want to reset your password, if not, then ignore</p>";
-            $this->email->message($message);
-
-            if($this->email->send()){
-
-                $this->load->model('Administrator_Model');
-                if($this->Administrator_Model->temp_reset_password($temp_pass)){
-                    echo "Verifique seu e-mail com as instruções, obrigado";
-                }
-            }else{
-                echo "O e-mail não foi enviado, entre em contato com o administrador";
-            }
-        }else{
-            echo "Seu e-mail não está cadastrado";
-        }
-	}
-
-	public function reset_password($temp_pass){
-		$this->load->model('Administrator_Model');
-		if($this->Administrator_Model->is_temp_pass_valid($temp_pass)){
-
-			$this->load->view('reset-password');
-		//once the user clicks submit $temp_pass is gone so therefore I can't catch the new password and   //associated with the user...
-
-		}else{
-			echo "the key is not valid";    
 		}
 	}
 

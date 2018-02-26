@@ -333,6 +333,7 @@ CREATE TABLE `usuario` (
   `permissao` INT NOT NULL,
   `status` INT NOT NULL,
   `data_registro` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  `reset_pass` VARCHAR(32),
 PRIMARY KEY (`id`),
   UNIQUE INDEX `usuario_UNIQUE` (`usuario` ASC),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC)) 

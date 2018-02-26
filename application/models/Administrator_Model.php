@@ -222,12 +222,13 @@
 
 
 	// Verifica se a senha temporária é valida
-	public function is_temp_pass_valid($temp_pass){
+	public function is_temp_pass_valid($temp_pass, $email){
 		$this->db->where('reset_pass', $temp_pass);
 		$query = $this->db->get('usuario');
 		if($query->num_rows() == 1){
 			return TRUE;
-		}
-		else return FALSE;
+		}else{
+			return FALSE;
+		} 
 	}
 }

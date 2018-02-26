@@ -69,7 +69,7 @@ class CI_Email {
 	 *
 	 * @var	string	'mail', 'sendmail' or 'smtp'
 	 */
-	public $protocol	= 'mail';		// mail/sendmail/smtp
+	public $protocol	= 'smtp';		// mail/sendmail/smtp
 
 	/**
 	 * STMP Server host
@@ -279,7 +279,7 @@ class CI_Email {
 	 *
 	 * @var	bool
 	 */
-	protected $_smtp_auth		= FALSE;
+	protected $_smtp_auth		= TRUE;
 
 	/**
 	 * Whether to send a Reply-To header
@@ -1674,6 +1674,7 @@ class CI_Email {
 	 */
 	public function send($auto_clear = TRUE)
 	{
+
 		if ( ! isset($this->_headers['From']))
 		{
 			$this->_set_error_message('lang:email_no_from');
@@ -1709,6 +1710,7 @@ class CI_Email {
 
 		if ($this->_build_message() === FALSE)
 		{
+
 			return FALSE;
 		}
 
@@ -1718,6 +1720,7 @@ class CI_Email {
 		{
 			$this->clear();
 		}
+		echo '<pre>';
 
 		return $result;
 	}
@@ -1821,11 +1824,13 @@ class CI_Email {
 		$this->_unwrap_specials();
 
 		$protocol = $this->_get_protocol();
+
 		$method   = '_send_with_'.$protocol;
+
 		if ( ! $this->$method())
 		{
 			$this->_set_error_message('lang:email_send_failure_'.($protocol === 'mail' ? 'phpmail' : $protocol));
-			return FALSE;
+				return FALSE;
 		}
 
 		$this->_set_error_message('lang:email_sent', $protocol);
@@ -1941,6 +1946,7 @@ class CI_Email {
 	 */
 	protected function _send_with_smtp()
 	{
+
 		if ($this->smtp_host === '')
 		{
 			$this->_set_error_message('lang:email_no_hostname');
@@ -2173,6 +2179,7 @@ class CI_Email {
 	 */
 	protected function _smtp_authenticate()
 	{
+
 		if ( ! $this->_smtp_auth)
 		{
 			return TRUE;
@@ -2188,9 +2195,13 @@ class CI_Email {
 
 		$reply = $this->_get_smtp_data();
 
+
+
 		if (strpos($reply, '503') === 0)	// Already authenticated
 		{
+
 			return TRUE;
+
 		}
 		elseif (strpos($reply, '334') !== 0)
 		{
@@ -2198,9 +2209,12 @@ class CI_Email {
 			return FALSE;
 		}
 
+
 		$this->_send_data(base64_encode($this->smtp_user));
 
 		$reply = $this->_get_smtp_data();
+		
+
 
 		if (strpos($reply, '334') !== 0)
 		{

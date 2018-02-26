@@ -4,9 +4,7 @@ class Equipe extends CI_Controller{
 	public function __construct(){
 		
 		parent::__construct();
-		if($this->session->userdata('permissao') != 1) {
-			redirect('users/profile');
-		}
+
 	}
 
 	public function index(){
@@ -27,6 +25,10 @@ class Equipe extends CI_Controller{
 	}
 
 	public function create(){
+
+		if($this->session->userdata('permissao') != 1) {
+			redirect('users/profile');
+		}
 
 		$status_equipe = array( 
 								1 => 'Ativo',
@@ -53,6 +55,10 @@ class Equipe extends CI_Controller{
 	}
 
 	public function store_create(){
+
+		if($this->session->userdata('permissao') != 1) {
+			redirect('users/profile');
+		}
 
 		$this->load->library('form_validation');
 
@@ -157,6 +163,10 @@ class Equipe extends CI_Controller{
 
 	public function store_edit(){
 
+		if($this->session->userdata('permissao') != 1) {
+			redirect('users/profile');
+		}
+
 		$data['title'] = 'NOVO REGISTRO DE EQUIPE';
 
 		$this->load->library('form_validation');
@@ -250,6 +260,10 @@ class Equipe extends CI_Controller{
 	}
 
 	public function edit($id = null){
+
+		if($this->session->userdata('permissao') != 1) {
+			redirect('users/profile');
+		}
 		
 		if ($id) {
 			$equipes = $this->Equipes_Model->get_equipes($id);
@@ -302,6 +316,10 @@ class Equipe extends CI_Controller{
 	}
 
 	public function delete($id = null) {
+
+		if($this->session->userdata('permissao') != 1) {
+			redirect('users/profile');
+		}
 
 		if ($this->Equipes_Model->delete($id)) {
 			$this->session->set_flashdata('success', 'Equipe excluída sucesso!');
@@ -361,6 +379,10 @@ class Equipe extends CI_Controller{
 
 	public function check_nome_equipe_exists($nome){
 
+		if($this->session->userdata('permissao') != 1) {
+			redirect('users/profile');
+		}
+
 		$this->form_validation->set_message('check_nome_equipe_exists', 'Este nome de equipe já existe.');
 
 		if ($this->Equipes_Model->check_nome_equipe_exists($nome)) {
@@ -371,6 +393,10 @@ class Equipe extends CI_Controller{
 	}
 
 	public function check_sigla_equipe_exists($sigla){
+
+		if($this->session->userdata('permissao') != 1) {
+			redirect('users/profile');
+		}
 
 		$this->form_validation->set_message('check_sigla_equipe_exists', 'Esta sigla já existe.');
 

@@ -87,12 +87,16 @@ if($status == 'A'){ ?>
 		?>
 	</tbody>
 </table>
-<div class="col-3">
+<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">						
 <div class="card text-white bg-dark">
-  <div class="card-header text-white">Header</div>
+  <div class="card-header text-white"><i class="fa fa-fw fa-star" style="color: yellow;"></i> Jogador 1</div>
   <div class="card-body">
-	<div class="col-9" style="background-color:red; height:150px; width:150px;"></div>
+  	<div class="row">
+		<div class="col-8" style="background-color:red; height:150px; min-width: 150px;">
+			<img class="img-logo-times" src="<?php echo site_url();?>assets/img/profiles/dudu.jpg">
+		</div>
+		<div class="col" style="background-color:blue; height:150px;"></div>
+	</div>
   </div>
-    <div class="card-footer bg-dark text-white">Footer</div>
 </div>
 </div>
