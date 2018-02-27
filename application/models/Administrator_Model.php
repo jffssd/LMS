@@ -204,12 +204,17 @@
 
 	// Verifica senha temporária
 	public function temp_reset_password($temp_pass){
-		$data =array(
-					'email' =>$this->input->post('email'),
-					'reset_pass'=>$temp_pass
+
+		date_default_timezone_set('America/Sao_Paulo');
+
+		$data = array(
+					'email' => $this->input->post('email'),
+					'chave_temporaria' => $temp_pass,
+					'data_solic_senha' => date("Y-m-d H:i:s"),
+					'req_troca_senha' => 'SISTEMA'
 					);
-					
-					$email = $data['email'];
+
+			$email = $data['email'];
 
 		if($data){
 			$this->db->where('email', $email);
@@ -223,12 +228,36 @@
 
 	// Verifica se a senha temporária é valida
 	public function is_temp_pass_valid($temp_pass, $email){
-		$this->db->where('reset_pass', $temp_pass);
+		$this->db->where('email', $email);
+		$this->db->where('chave_temporaria', $temp_pass);
 		$query = $this->db->get('usuario');
 		if($query->num_rows() == 1){
 			return TRUE;
 		}else{
 			return FALSE;
 		} 
+	}
+
+	public function cadastrar_nova_senha($chave_temporaria, $email, $nova_senha){
+
+		date_default_timezone_set('America/Sao_Paulo');
+
+		$data = array(
+					'chave_temporaria' => NULL,
+					'senha' => $nova_senha
+					);
+
+		$this->db->where('email', $email);
+		$this->db->where('chave_temporaria', $chave_temporaria);
+		
+		if($this->db->update('usuario', $data)){
+
+			return TRUE;
+
+		}else{
+
+			return FALSE;
+
+		}
 	}
 }

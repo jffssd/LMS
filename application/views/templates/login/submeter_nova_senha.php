@@ -46,8 +46,11 @@
 							<h4 class="form-login-title"><i class="fa fa-fw fa-chevron-right"></i> Lembrar minha senha</h4>
 						</div>
 						<div class="card-body">
-    						<?php echo form_open('users/forget_password_mail'); ?>
+    						<?php echo form_open('users/cadastrar_nova_senha'); ?>
 								<div class="form-group">
+									<label for="senha">Seu e-mail</label>
+									<input id="email" type="text" class="form-control" name="email" value="<?php echo $email;?>" readonly>
+									<input id="chave_temporaria" type="hidden" name="chave_temporaria" value="<?php echo $chave_temporaria;?>">						
 									<label for="senha">Digite sua nova senha</label>
 									<input id="senha" type="password" class="form-control" name="senha" value="" required autofocus>
 									<label for="senha2">Redigite a senha</label>
@@ -69,5 +72,8 @@
 			</div>
 		</div>
 	</section>
+	<script src="<?php echo base_url('assets/js/my-login.js');?>"></script>
+	<script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
+	<script src="<?php echo base_url('assets/js/bootstrap.min.js');?>"></script>
 </body>
 </html>

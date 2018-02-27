@@ -29,6 +29,9 @@
 .card{
 	border: none !important;
 }
+.card-title{
+	    margin-bottom: 0px;
+}
 </style>
 <body class="my-login-page">
 	<section class="h-100">
@@ -46,10 +49,43 @@
 							<h4 class="form-login-title"><i class="fa fa-fw fa-chevron-right"></i> Entrar</h4>
 						</div>
 						<div class="card-body card-body-login">
-    						<?php echo form_open('users/login'); ?>
+						<?php if($this->session->flashdata('sucesso')){ ?>
+						<div class="alert alert-success alert-dismissible fade show" role="alert">
+							<strong><i class="fa fa-check" aria-hidden="true"></i></strong> <?php echo $this->session->flashdata('sucesso');?>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							    <span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<?php
+						} ?>
+						<?php if($this->session->flashdata('erro')){ ?>
+						<div class="alert alert-success alert-dismissible fade show" role="alert">
+							<strong><i class="fa fa-close" aria-hidden="true"></i></strong> <?php echo $this->session->flashdata('erro');?>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							    <span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<?php
+						} ?>
+						<?php if($this->session->flashdata('falha_login')){ ?>
+						<div class="alert alert-warning alert-dismissible fade show" role="alert">
+							<strong><i class="fa fa-close" aria-hidden="true"></i></strong> <?php echo $this->session->flashdata('falha_login');?>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							    <span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<?php
+						} ?>
+						<?php if($this->session->flashdata('usuario_cadastrado')){ ?>
+						<div class="alert alert-secondary role="alert">
+							<strong><i class="fa fa-info" aria-hidden="true"></i></strong> <?php echo $this->session->flashdata('usuario_cadastrado');?>
+						</div>
+						<?php
+						} ?>
+    						<?php echo form_open('users/processa_login'); ?>
 							 
 								<div class="form-group">
-									<label for="email">Seu e-mail</label>
+									<label for="email">Nome de usuário</label>
 									<input id="usuario" type="text" class="form-control" name="usuario" value="" required autofocus>
 								</div>
 

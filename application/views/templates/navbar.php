@@ -8,7 +8,7 @@
 
 		<!-- LOGO -->
         <div class="headerbar-left">
-			<a href="#" class="logo"><img alt="Logo" src="<?php echo base_url('assets/img/ces_logo.png');?>" /> <small style="color: #f3585a;">Carreira e-Sports!</small></a>
+			<a href="#" class="logo"><img alt="Logo" src="<?php echo base_url('assets/img/ces_logo.png');?>" /></a>
         </div>
 
         <nav class="navbar-custom">

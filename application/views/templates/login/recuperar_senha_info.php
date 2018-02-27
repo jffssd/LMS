@@ -29,6 +29,14 @@
 .card{
 	border: none !important;
 }
+
+.card-body{
+	border: none !important;
+}
+
+.my-login-page .card-wrapper{
+	width: 600px;
+}
 </style>
 <body class="my-login-page">
 	<section class="h-100">
@@ -43,33 +51,17 @@
 					</div>
 					<div class="card fat">
 						<div class="card-title login-title-bg">
-							<h4 class="form-login-title"><i class="fa fa-fw fa-chevron-right"></i> Lembrar minha senha</h4>
+							<h4 class="form-login-title"><i class="fa fa-fw fa-chevron-right"></i> Informações</h4>
 						</div>
 						<div class="card-body">
-						<?php if($this->session->flashdata('erro')){ ?>
-						<div class="alert alert-success alert-dismissible fade show" role="alert">
-							<strong><i class="fa fa-close" aria-hidden="true"></i></strong> <?php echo $this->session->flashdata('erro');?>
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							    <span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<?php
-						} ?>
-    						<?php echo form_open('users/forget_password_mail'); ?>
-								<div class="form-group">
-									<label for="email">Seu e-mail</label>
-									<input id="email" type="email" class="form-control" name="email" value="" required autofocus>
-									<div class="form-text text-muted">
-										Ao clicar no botão "Lembrar senha", nós lhe enviaremos um e-mail com um link para cadastrar uma nova senha
-									</div>
-								</div>
-
-								<div class="form-group no-margin">
-									<button type="submit" class="btn ces-main-color-bg btn-block">
-										Lembrar senha
-									</button>
-								</div>
-							</form>
+							<p style="font-size: 14px;">
+								<?php echo '<strong>'.$msg_tipo.'</strong>: '.$mensagem;?>
+							</p>
+							<div class="form-group no-margin">
+								<a href="<?php echo base_url('login');?>" class="btn ces-main-color-bg btn-block">
+									Voltar para a tela de login
+								</a>
+							</div>
 						</div>
 					</div>
 					<div class="footer">

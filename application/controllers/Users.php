@@ -83,13 +83,23 @@
 				$this->User_Model->register($senha_encriptada, $permissao, $status);
 
 				//Set Message
-				$this->session->set_flashdata('user_registered', 'Você foi registrado e já pode conectar!');
+				$this->session->set_flashdata('usuario_cadastrado', 'Olá '.$this->input->post('usuario').'! Você foi registrado com sucesso e já pode se conectar!');
 				redirect('users/login');
 			}
 		}
 
-		// Login do usuário
 		public function login(){
+
+			if($this->session->userdata('login')) {
+				redirect('inicio');
+			}
+
+			$data['title'] = 'Conectar-se';
+			$this->load->view('templates/login/login', $data);
+		}
+
+		// Login do usuário
+		public function processa_login(){
 
 			if($this->session->userdata('login')) {
 				redirect('inicio');
@@ -101,8 +111,10 @@
 			$this->form_validation->set_rules('senha', 'Senha', 'required');
 
 			if($this->form_validation->run() === FALSE){
+			
+				$this->session->set_flashdata('falha_login', 'Login ou senha inválidos');
 
-			$this->load->view('templates/login/login', $data);
+				$this->load->view('templates/login/login', $data);
 
 			}else{
 
@@ -141,7 +153,8 @@
 					$this->session->set_flashdata('user_loggedin', 'Bem vindo!.');
 					redirect('users/dashboard');
 				}else{
-					$this->session->set_flashdata('login_failed', 'Login inválido!');
+
+					$this->session->set_flashdata('falha_login', 'E-mail ou senha inválidos!');
 					redirect('users/login');
 				}
 			}
@@ -203,18 +216,50 @@
 		
 		$this->load->model('Administrator_Model');
 		
-		$this->session->set_userdata['temp_email'] = '';
+		//$this->session->set_userdata['temp_email'] = '';
 
-		if($this->Administrator_Model->is_temp_pass_valid($temp_pass. $email)){
+		$plain_temp_email = base64_decode($email);
+
+		if($this->Administrator_Model->is_temp_pass_valid($temp_pass, $plain_temp_email)){
 		
-		$this->session->set_userdata['temp_id'] = '';
-		$this->session->set_userdata['temp_pass'] = $temp_pass;
-
-		$this->load->view('templates/login/reset-password');
-		//once the user clicks submit $temp_pass is gone so therefore I can't catch the new password and   //associated with the user...
+			$data['email'] = $plain_temp_email;
+			$data['chave_temporaria'] = $temp_pass;
+			$this->load->view('templates/login/submeter_nova_senha', $data);
 
 		}else{
 			echo "the key is not valid";    
+		}
+	}
+
+	public function cadastrar_nova_senha(){
+		
+		$this->load->model('Administrator_Model');
+
+		$data['title'] = 'Cadastrar nova Senha';
+
+		$this->form_validation->set_rules('senha', 'Senha', 'required');
+		$this->form_validation->set_rules('senha2', 'Confirme a Senha', 'matches[senha]');
+
+		if($this->form_validation->run() === FALSE){
+
+			$this->load->view('templates/login/submeter_nova_senha', $data);
+
+		}else{
+
+			$chave_temporaria = $this->input->post('chave_temporaria');
+			$email = $this->input->post('email');
+			$nova_senha_encriptada = md5($this->input->post('senha'));
+
+			if($this->Administrator_Model->cadastrar_nova_senha($chave_temporaria, $email, $nova_senha_encriptada)){
+
+				$this->session->set_flashdata('sucesso', 'Sua senha foi alterada com êxito!');
+				redirect('login');
+				
+			}else{
+				
+				$this->session->set_flashdata('erro', 'Houve um erro ao tentar processar sua solicitação');
+				redirect('login');
+			}
 		}
 	}
 
@@ -224,9 +269,9 @@
 		$this->load->view('templates/login/'.$page, $data);
 	}
 
-			//forget password functions start
 	public function forget_password_mail(){
     	$this->load->library('form_validation');
+    	
     	$this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|callback_validate_credentials');
 
         //check if email is in the database
@@ -235,8 +280,10 @@
 
             //$them_pass is the varible to be sent to the user's email
             $temp_pass = md5(uniqid());
-            //send email with #temp_pass as a link
 
+            $email_key = str_replace("=","", base64_encode($this->input->post('email')));
+ 
+             //send email with #temp_pass as a link
             $config = Array(
             	'protocol' => 'smtp',
             	'smtp_host' => 'ssl://smtp.googlemail.com',
@@ -245,33 +292,42 @@
             	'smtp_user' => '',
             	'smtp_pass' => '',
             	'mailtype' => 'html',
-            	'charset' => 'iso-8859-1',
+            	'charset' => 'utf-8',
             	'wordwrap' => TRUE,
             	'newline' => "\r\n"
             );
 
-
 			$this->load->library('email', $config);
-            $this->email->from('', 'Centro e-Sports!');
-            $this->email->to('');//$this->input->post('email')
+            $this->email->from('jffssd@gmail.com', 'Centro e-Sports!');
+            $this->email->to($this->input->post('email'));
             $this->email->subject('Centro e-Sports! - Redefinir sua senha');
 
             $message = "<p>Este e-mail foi enviado devido a uma requisição de redefinição de senha no site Centro e-Sports!</p>";
-            $message .= "<p><a href='".base_url()."users/reset-password/$temp_pass'>Clique aqui </a> para redefinir sua senha, se não tiver conhecimento sobre esta ação, ignore-a.</p>";
+            $message .= "<p><a href='".base_url()."users/reset_password/$temp_pass/$email_key'>Clique aqui </a> para redefinir sua senha, se não tiver conhecimento sobre esta ação, ignore-a.</p>";
             $this->email->message($message);
 
             if($this->email->send()){
 
                 $this->load->model('Administrator_Model');
                 if($this->Administrator_Model->temp_reset_password($temp_pass)){
-                    echo "Verifique seu e-mail com as instruções, obrigado";
+
+                echo '</pre>';
+                $data['msg_tipo'] = "Mensagem";
+            	$data['mensagem'] = "Enviamos um e-mail para <strong>".$this->input->post('email')."</strong> contendo as instruções para a alteração da sua senha, caso não receba, verifique sua caixa de spam.";
+				$this->load->view('templates/login/recuperar_senha_info', $data);
+
                 }
             }else{
 
-                echo "O e-mail não foi enviado, entre em contato com o administrador";
+                echo '</pre>';
+            	$data['msg_tipo'] = "Erro";
+            	$data['mensagem'] = "Houve um erro ao tentar enviar o e-mail, entre em contato com o administrador do sistema e reporte o ocorrido.";
+				$this->load->view('templates/login/recuperar_senha_info', $data);
             }
         }else{
-            echo "Seu e-mail não está cadastrado";
+
+            $this->session->set_flashdata('erro', 'O e-mail informado não está cadastrado');
+				redirect('users/relembrar_senha');
         }
 	}
 }

@@ -333,7 +333,9 @@ CREATE TABLE `usuario` (
   `permissao` INT NOT NULL,
   `status` INT NOT NULL,
   `data_registro` DATETIME DEFAULT CURRENT_TIMESTAMP,
-  `reset_pass` VARCHAR(32),
+  `chave_temporaria` VARCHAR(32),
+  `data_solic_senha` DATETIME,
+  `req_troca_senha` VARCHAR(26),
 PRIMARY KEY (`id`),
   UNIQUE INDEX `usuario_UNIQUE` (`usuario` ASC),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC)) 
