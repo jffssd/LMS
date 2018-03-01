@@ -37,6 +37,18 @@ class Jogadores_Model extends CI_Model {
 		return $this->db->get('personalidade_jogador');
     }
 
+    public function get_profile_pic_by_id($id){
+		$this->db->select('j.nick,j.foto, f.nome as fnome');
+		$this->db->join('funcao f','j.funcao_id = f.id');
+		$this->db->where('j.id', $id);
+		$result = $this->db->get('jogador j');
+		if ($result->num_rows() == 1) {
+			return $result->row(0);
+		}else{
+			return false;
+		}
+    }
+
 	public function get_top_jogadores(){
 
 		$sql = 'SELECT nick, soma, fid,funcao.nome FROM
