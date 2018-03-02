@@ -44,8 +44,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	color: #ffffff !important;
 }
 </style>
-
-<pre>
+<div class="row">
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
 <?php echo strtoupper($nome);?><br>
 <?php echo strtoupper($sigla);?><br>
 Logo: <img src="<?php echo site_url();?>assets/img/logo-equipes/<?php echo $logo;?>" width="32" height="32">
@@ -59,7 +59,6 @@ if($status == 'A'){ ?>
 <?php }elseif($status == 'I'){ ?>
 	<p class="card-status-desc"><i class="fa fa-fw fa-window-close" style="color: grey;"></i> Inativa</p>
 <?php } ?>
-</pre>
 <table class="table table-striped">
 	<thead class="thead-light" style="text-light">
 		<tr align="center">
@@ -87,16 +86,104 @@ if($status == 'A'){ ?>
 		?>
 	</tbody>
 </table>
-<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">						
-<div class="card text-white bg-dark">
-  <div class="card-header text-white"><i class="fa fa-fw fa-star" style="color: yellow;"></i> Jogador 1</div>
-  <div class="card-body">
-  	<div class="row">
-		<div class="col-8" style="background-color:red; height:150px; min-width: 150px;">
-			<img class="img-logo-times" src="<?php echo site_url();?>assets/img/profiles/dudu.jpg">
+
+</div>
+<style>
+.icon-yellow{
+	color: yellow;
+}
+
+.background-jogador-funcao{
+	background: url("<?php echo base_url().'assets/img/layout/card-player-background-tag-horizontal-3.png';?>");
+	background-repeat: no-repeat;
+	background-size:cover;
+
+}
+
+.card-jogador-tag-titulo{
+	font-size: 34px;
+	color: #eee;
+	font-weight: 400;
+	margin-top:5px;
+	font-family: 'Roboto', sans-serif;
+	margin-bottom: 0px;
+
+}
+
+.card-jogador-tag-subtitulo{
+	font-size: 14px;
+	color: #b0b0b0;
+	font-weight: 800;
+	text-transform: uppercase;
+	font-family: 'Roboto', sans-serif;
+	margin-bottom: 5px;
+}
+
+.card-jogador{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	border:none !important;
+}
+
+.desc-1st{
+	margin-left: 45px !important;
+}
+
+.icone-card-jogador-desc{
+	height: 24px;
+	width: 24px;
+	margin-bottom:7px;
+	margin-left: 8px;
+	border-radius: 50%;
+}
+</style>
+
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">						
+	<div class="card text-white bg-dark card-jogador" style="border-radius:10px;">
+		<div class="card-body background-jogador-funcao" style="padding-left:10px; padding-right:10px; padding-top: 20px; padding-bottom: 0px; border-radius:10px;">
+		  	<div class="row" style="padding:0px;">
+				<div class="col-5" style="height:80px; max-width: 220px;">
+					<img class="img-logo-times" src="<?php echo site_url();?>assets/img/profiles/tin.jpg" width="200" height="200" style="position: absolute; z-index: 2; border-radius: 10px; border: 3px solid #eee">
+				</div>
+				<div class="col-7" style="height:80px; "></div>
+			</div>
+			<div class="row" style="position: relative; padding:0px;">
+				<div class="col-5" style="background-color: #222; height:140px; max-width: 220px; border-bottom-left-radius: 10px;">
+					
+				</div>
+				<div class="col" style="background-color: #222; height:140px; width: 100%; border-bottom-right-radius: 10px;">
+					<div class="row">
+						<div class="col-8">
+							<h1 class="card-jogador-tag-titulo">TinOwns <img src="<?php echo base_url().'assets/img/bandeiras/BRAZIL.png';?>" width="29" height="19" style="margin-bottom:7px;"></h1> 
+							<h4 class="card-jogador-tag-subtitulo"><img src="<?php echo base_url().'assets/img/roles/3.png';?>" width="24" height="24"> 		Meio  
+								<img src="<?php echo base_url().'assets/img/layout/icone-abate.jpg';?>" class="icone-card-jogador-desc desc-1st">
+								<img src="<?php echo base_url().'assets/img/layout/icone-assist.jpg';?>" class="icone-card-jogador-desc">
+								<img src="<?php echo base_url().'assets/img/layout/icone-morte.jpg';?>" class="icone-card-jogador-desc">
+							</h4>
+							
+							<div class="progress" style="height:5px; margin-bottom:10px;">
+								<div class="progress-bar bg-danger" style="width:85%;height:5px">
+								</div>
+							</div>
+							
+							<div class="progress" style="height:5px;  margin-bottom:10px;">
+								<div class="progress-bar bg-warning" style="width:64%;height:5px">
+								</div>
+							</div>
+							
+							<div class="progress" style="height:5px; margin-bottom:10px;">
+								<div class="progress-bar bg-secondary" style="width:21%;height:5px">
+								</div>
+							</div>
+						</div>
+						<div class="col-4" style="text-align: center;">
+							<h5 style="font-size: 14px; margin-top: 10px;">Pontuação</h5>
+							<h1 style="font-size: 72px;">8.5</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</div>
-		<div class="col" style="background-color:blue; height:150px;"></div>
 	</div>
-  </div>
 </div>
 </div>
