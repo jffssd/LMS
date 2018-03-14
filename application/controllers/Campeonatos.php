@@ -2,12 +2,12 @@
 class Campeonatos extends CI_Controller{
 
 	public function __construct(){
-		
+
 		parent::__construct();
 	}
 
 	public function index(){
-		
+
 		$data['title'] = 'Índice';
 		$referencia['item'] = 'campeonatos';
 		$referencia['sub-item'] = 'todos';
@@ -23,7 +23,7 @@ class Campeonatos extends CI_Controller{
 	}
 
 	public function detalhes($id = null){
-		
+
 		if ($id) {
 			$campeonato = $this->Campeonatos_Model->get_campeonato_info($id);
 			$data['tabela_campeonato'] = $this->Campeonatos_Model->get_tabela_campeonato($id);
@@ -42,12 +42,12 @@ class Campeonatos extends CI_Controller{
 
 				 // Número de times na fase de grupos
 				$data['fg_numDeTimes'] = $campeonato->row()->fg_numDeTimes;
-				
+
 				// Número de divisões do campeonato
-				$data['numDeDivisoes'] = $campeonato->row()->numDeDivisoes; 
+				$data['numDeDivisoes'] = $campeonato->row()->numDeDivisoes;
 
 				// Quantidades de jogos numa série na fase de grupos
-				$data['fg_qtd_jogos_serie'] = $campeonato->row()->fg_qtd_jogos_serie; 
+				$data['fg_qtd_jogos_serie'] = $campeonato->row()->fg_qtd_jogos_serie;
 
 				// Quantidades de times na fase de playoff
 				$data['pl_numDeTimes'] = $campeonato->row()->pl_numDeTimes;
@@ -70,7 +70,7 @@ class Campeonatos extends CI_Controller{
 				$this->load->view('templates/page_start');
 				$this->load->view('campeonato/v_campeonato_detalhes', $data);
 				$this->load->view('templates/footer');
-			
+
 			} else {
 				$variaveis['mensagem'] = "Registro não encontrado." ;
 				$this->load->view('errors/html/v_erro', $data);
@@ -78,16 +78,16 @@ class Campeonatos extends CI_Controller{
 		}else{
 			redirect('campeonatos');
 		}
-	}	
+	}
 
-		public function detalhes_serie($id = null){
-		
+	public function detalhes_serie($id = null){
+
 		if ($id) {
 
 			$data['titulo'] = 'Visualizar Campeonato';
 			$referencia['item'] = 'campeonatos';
 			$referencia['sub-item'] = 'todos';
-			
+
 			$data['serie'] = $this->Campeonatos_Model->get_serie_jogos($id);
 
 			$this->load->view('templates/header');
@@ -96,10 +96,37 @@ class Campeonatos extends CI_Controller{
 			$this->load->view('templates/page_start');
 			$this->load->view('campeonato/v_campeonato_serie_detalhes', $data);
 			$this->load->view('templates/footer');
-			
+
 		} else {
 				$variaveis['mensagem'] = "Registro não encontrado." ;
 				$this->load->view('errors/html/v_erro', $data);
+		}
+	}
+
+	public function info(){
+
+		$dados = array(
+
+			"nome" => $this->input->post('nome'),
+			"ano" => $this->input->post('ano'),
+			"temporada" => $this->input->post('temporada'),
+			"playoffs_id" => $this->input->post('playoffs_id'),
+			"camp_formato_id" => $this->input->post('camp_formato_id'),
+			"regiao_id" => $this->input->post('regiao_id'),
+			"logo" => NULL,
+			"status" => 'A'
+		);
+
+		$camp_formato = $this->Campeonatos_Model->get_campeonato_formato($dados['camp_formato_id']);
+
+		$id_camp =  $this->Campeonatos_Model->inserir_campeonato_base($dados);
+
+		die(var_dump($camp_return));
+		//die(var_dump($camp_formato[0]['numDeTimes']));
+		if ($this->Campeonatos_Model->inserir_campeonato_base($dados)) {
+
+		} else {
+
 		}
 	}
 }

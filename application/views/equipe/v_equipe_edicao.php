@@ -5,23 +5,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 .team-create-edit{
 	font-family: helvetica, tahoma;
 	font-weight:bold;
-	height: 120px; 
+	height: 120px;
 	padding:10px;
-	margin-top:10px; 
+	margin-top:10px;
 
 	width:100%;
 }
 
 .form-adjust{
-	margin-top:10px; 
+	margin-top:10px;
 	margin-bottom:10px;
 }
 
 .logo-team-store{
-	float:left; 
-	height:100px; 
-	width:100px; 
-	border-radius:10px; 
+	float:left;
+	height:100px;
+	width:100px;
+	border-radius:10px;
 }
 
 .name-team-store{
@@ -39,9 +39,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 		<div class="row">
-		
+
 			<?= form_open('equipe/store_edit')  ?>
-	
+
 			<input type="hidden" name="id" class="form-control" value="<?php echo $id;?>">
 
 			<div class="form-row">
@@ -77,22 +77,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<?php
 								if(isset($id)){
 									foreach($paises -> result() as $paises_s){
-										if ($paises_s->id == $pais){ 
+										if ($paises_s->id == $pais){
 											echo '<option value="'.$paises_s->id.'" selected>'.$paises_s->nome.'</option>';
-										}else{ 
+										}else{
 											echo '<option value="'.$paises_s->id.'">'.$paises_s->nome.'</option>';
 										}
 									}
 								}else{
 									foreach($paises -> result() as $paises_s){
-										if ($paises_s->id == 28){ 
+										if ($paises_s->id == 28){
 											echo '<option value="'.$paises_s->id.'" selected>'.$paises_s->nome.'</option>';
-										}else{ 
+										}else{
 											echo '<option value="'.$paises_s->id.'">'.$paises_s->nome.'</option>';
 										}
 									}
 								}
-								
+
 								 ?>
 						</select>
 					</div>
@@ -114,27 +114,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</select>
 					</div>
 				</div>
-			</div>	
+			</div>
 
 			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="sede">Sede</label><span class="sede"><?php echo form_error('sede') ?  : ''; ?></span>
-					<div class="input-group mb-2">
-						<div class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i>
-						</div>
-						<select name="sede" id="sede" class="form-control">
-								<?php
-								foreach($sedes -> result() as $s_s){
-										if ($s_s->id == $sede){
-											echo '<option value="'.$s_s->id.'" selected>'.$s_s->nome.'</option>';
-										}else{
-											echo '<option value="'.$s_s->id.'">'.$s_s->nome.'</option>';
-										}
-								}  ?>
-						</select>
-					</div>
-				</div>
-				<div class="form-group col-md-6">
+				<div class="form-group col-md-12">
 					<label for="tecnico">Técnico</label><span class="tecnico"><?php echo form_error('tecnico') ?  : ''; ?></span>
 					<div class="input-group mb-2">
 						<div class="input-group-addon"><i class="fa fa-user-circle" aria-hidden="true"></i>
@@ -152,7 +135,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 				</div>
 			</div>
-				
+
 			<div class="form-row">
 				<div class="form-group col-md-12">
 					<label for="logo">Logotipo</label><span class="logo"><?php echo form_error('logo') ?  : ''; ?></span>
@@ -246,5 +229,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 				<?= form_close(); ?>
 		</div>
-	</div>	
+	</div>
 </div>

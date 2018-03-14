@@ -4,7 +4,7 @@
 	public function register($senha_encriptada, $permissao, $status){
 
 		$data = array(
-						'usuario' => $this->input->post('usuario'), 
+						'usuario' => $this->input->post('usuario'),
 						'email' => $this->input->post('email'),
 						'senha' => $senha_encriptada,
 						'permissao' => $permissao,
@@ -60,9 +60,9 @@
 	public function usuario_login_log($id, $ip){
 
 		$data = array(
-			'usuario_id' => $id, 
+			'usuario_id' => $id,
 			'ip' => $ip,
-			'tipo' => 'Ação',	
+			'tipo' => 'Ação',
 			'msg' => 'O usuário realizou login com sucesso',
 		);
 
@@ -70,14 +70,14 @@
 	}
 
 	public function usuario_logout_log($id, $ip){
-		
+
 		$data = array(
-			'usuario_id' => $id, 
+			'usuario_id' => $id,
 			'ip' => $ip,
-			'tipo' => 'Ação',	
+			'tipo' => 'Ação',
 			'msg' => 'O usuário realizou logout com sucesso',
 		);
-		
+
 		$this->db->insert('usuario_log', $data);
 	}
 }

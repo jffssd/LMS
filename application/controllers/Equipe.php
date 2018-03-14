@@ -2,13 +2,13 @@
 class Equipe extends CI_Controller{
 
 	public function __construct(){
-		
+
 		parent::__construct();
 
 	}
 
 	public function index(){
-		
+
 		$data['equipes'] = $this->Equipes_Model->get_equipes();
 
         $data['title'] = 'Todos as Equipes';
@@ -30,14 +30,13 @@ class Equipe extends CI_Controller{
 			redirect('users/profile');
 		}
 
-		$status_equipe = array( 
+		$status_equipe = array(
 								1 => 'Ativo',
 								2 => 'Inativo'
 		);
 		$data['status_equipe'] = $status_equipe;
 		$data['paises'] = $this->Paises_Model->get_paises();
 		$data['regioes'] = $this->General_Model->get_regioes();
-		$data['sedes'] = $this->General_Model->get_sedes();
 		$data['tecnicos'] = $this->General_Model->get_tecnicos();
 
 
@@ -71,52 +70,46 @@ class Equipe extends CI_Controller{
 		        array(
 		                'field' => 'sigla',
 		                'label' => 'Sigla',
-		                'rules' => 'required|callback_check_sigla_equipe_exists'		                
+		                'rules' => 'required|callback_check_sigla_equipe_exists'
 		        ),
 		        array(
 		                'field' => 'pais',
 		                'label' => 'Pais',
-		                'rules' => 'required'		                
+		                'rules' => 'required'
 		        ),
 		        array(
 		                'field' => 'regiao',
 		                'label' => 'Região',
-		                'rules' => 'required'		                
-		        ),
-		        array(
-		                'field' => 'sede',
-		                'label' => 'Sede',
-		                'rules' => 'required'		                
+		                'rules' => 'required'
 		        ),
 		        array(
 		                'field' => 'logo',
 		                'label' => 'Logo',
-		                'rules' => 'required'		                
+		                'rules' => 'required'
 				),
 		        array(
 		                'field' => 'cor_primaria',
 		                'label' => 'Cor Primária',
-		                'rules' => 'required'		                
+		                'rules' => 'required'
 				),
 		        array(
 		                'field' => 'cor_secundaria',
 		                'label' => 'Cor Secundária',
-		                'rules' => 'required'		                
+		                'rules' => 'required'
 		        )
 		);
-		
+
 		$this->form_validation->set_rules($regras);
 
 		if ($this->form_validation->run() == FALSE) {
 
-			$status_equipe =  array( 
+			$status_equipe =  array(
 						1 => 'Ativo',
 						2 => 'Inativo'
 						);
 			$data['status_equipe'] = $status_equipe;
 			$data['paises'] = $this->Paises_Model->get_paises();
 			$data['regioes'] = $this->General_Model->get_regioes();
-			$data['sedes'] = $this->General_Model->get_sedes();
 			$data['tecnicos'] = $this->General_Model->get_tecnicos();
 
 
@@ -132,14 +125,13 @@ class Equipe extends CI_Controller{
 	        $this->load->view('templates/footer');
 
 		} else {
-			
+
 			$dados = array(
-			
+
 				"nome" => $this->input->post('nome'),
 				"sigla" => $this->input->post('sigla'),
 				"pais_id" => $this->input->post('pais'),
 				"regiao_id" => $this->input->post('regiao'),
-				"sede_id" => $this->input->post('sede'),
 				"logo" => $this->input->post('logo'),
 				"pais_id" => $this->input->post('pais'),
 				"cor_primaria" => $this->input->post('cor_primaria'),
@@ -175,47 +167,41 @@ class Equipe extends CI_Controller{
 				array(
 					'field' => 'pais',
 					'label' => 'Pais',
-					'rules' => 'required'		                
+					'rules' => 'required'
 				),
 				array(
 					'field' => 'regiao',
 					'label' => 'Região',
-					'rules' => 'required'		                
-				),
-				array(
-					'field' => 'sede',
-					'label' => 'Sede',
-					'rules' => 'required'		                
+					'rules' => 'required'
 				),
 				array(
 					'field' => 'logo',
 					'label' => 'Logo',
-					'rules' => 'required'		                
+					'rules' => 'required'
 					),
 				array(
 					'field' => 'cor_primaria',
 					'label' => 'Cor Primária',
-					'rules' => 'required'		                
+					'rules' => 'required'
 					),
 				array(
 					'field' => 'cor_secundaria',
 					'label' => 'Cor Secundária',
-					'rules' => 'required'		                
+					'rules' => 'required'
 				)
 		);
-		
+
 		$this->form_validation->set_rules($regras);
 
 		if ($this->form_validation->run() == FALSE) {
 
-			$status_equipe =  array( 
+			$status_equipe =  array(
 						1 => 'Ativo',
 						2 => 'Inativo'
 						);
 			$data['status_equipe'] = $status_equipe;
 			$data['paises'] = $this->Paises_Model->get_paises();
 			$data['regioes'] = $this->General_Model->get_regioes();
-			$data['sedes'] = $this->General_Model->get_sedes();
 			$data['tecnicos'] = $this->General_Model->get_tecnicos();
 
 			$data['title'] = 'Cadastrar Equipe';
@@ -230,14 +216,13 @@ class Equipe extends CI_Controller{
 	        $this->load->view('templates/footer');
 
 		} else {
-			
+
 			$id = $this->input->post('id');
-			
+
 			$dados = array(
-			
+
 				"pais_id" => $this->input->post('pais'),
 				"regiao_id" => $this->input->post('regiao'),
-				"sede_id" => $this->input->post('sede'),
 				"logo" => $this->input->post('logo'),
 				"pais_id" => $this->input->post('pais'),
 				"cor_primaria" => $this->input->post('cor_primaria'),
@@ -264,10 +249,10 @@ class Equipe extends CI_Controller{
 		if($this->session->userdata('permissao') != 1) {
 			redirect('users/profile');
 		}
-		
+
 		if ($id) {
 			$equipes = $this->Equipes_Model->get_equipes($id);
-			$status_equipe = array( 
+			$status_equipe = array(
 				1 => 'Ativo',
 				2 => 'Inativo'
 			);
@@ -283,7 +268,6 @@ class Equipe extends CI_Controller{
 				$data['logo'] = $equipes->row()->logo;
 				$data['cor_primaria'] = $equipes->row()->cor_primaria;
 				$data['cor_secundaria'] = $equipes->row()->cor_secundaria;
-
 				$data['site'] = $equipes->row()->site;
 				$data['social_fb'] = $equipes->row()->social_fb;
 				$data['social_tw'] = $equipes->row()->social_tw;
@@ -291,9 +275,8 @@ class Equipe extends CI_Controller{
 
 				$data['paises'] = $this->Paises_Model->get_paises();
 				$data['regioes'] = $this->General_Model->get_regioes();
-				$data['sedes'] = $this->General_Model->get_sedes();
 				$data['tecnicos'] = $this->General_Model->get_tecnicos();
-				
+
 				$data['status_equipe'] = $status_equipe;
 
 
@@ -331,7 +314,7 @@ class Equipe extends CI_Controller{
 	}
 
 	public function detalhes($id = null){
-		
+
 		if ($id) {
 			$equipe = $this->Equipes_Model->get_equipes($id);
 			$data['jogador_equipe'] = $this->Equipes_Model->get_jogador_by_equipe($id);
@@ -345,21 +328,16 @@ class Equipe extends CI_Controller{
 				$data['regiao'] = $equipe->row()->regiao_id;
 				$data['pais'] = $equipe->row()->pais_id;
 				$data['status'] = $equipe->row()->status;
-				$data['sede'] = $equipe->row()->sede_id;
 				$data['logo'] = $equipe->row()->logo;
 				$data['cor_primaria'] = $equipe->row()->cor_primaria;
 				$data['cor_secundaria'] = $equipe->row()->cor_secundaria;
 				$data['valor'] = $equipe->row()->valor;
-
 				$data['site'] = $equipe->row()->site;
 				$data['social_fb'] = $equipe->row()->social_fb;
 				$data['social_tw'] = $equipe->row()->social_tw;
 				$data['social_in'] = $equipe->row()->social_in;
-
 				$data['paises'] = $this->Paises_Model->get_paises();
 				$data['regioes'] = $this->General_Model->get_regioes();
-				$data['sedes'] = $this->General_Model->get_sedes();
-
 				$data['title'] = 'Detalhes da Equipe';
 		        $referencia['item'] = 'equipe';
 		        $referencia['sub-item'] = 'todos';
