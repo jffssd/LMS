@@ -75,8 +75,28 @@ class Campeonatos_Model extends CI_Model {
 		}
 	}
 
+	public function gera_series_fase_grupos($id_camp, $semana, $time1, $time2, $equipe_vit, $fase, $temporada, $qtd_jogos_serie, $status) {
+
+		$dados = array(
+						'campeonato_id' => $id_camp,
+						'semana' => $semana,
+						'equipe_id1' => $time1,
+						'equipe_id2' => $time2,
+						'equipe_vit' => 1,
+						'fase' => $fase,
+						'temporada' => $temporada,
+						'qtd_jogos_serie' => $qtd_jogos_serie,
+						'status' => $status
+					);
+		if ($this->db->insert('campeonato_serie', $dados)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public function gerar_tabela_pontuacao($tabela) {
-	
+
 	$count = 0;
 	foreach($tabela as $key => $value){
 		$count++;

@@ -371,6 +371,7 @@ CREATE TABLE IF NOT EXISTS `cesdb`.`campeonato_serie` (
   `fase` INT NOT NULL DEFAULT 1,
   `semana` INT NOT NULL,
   `temporada` INT NOT NULL,
+  `qtd_jogos_serie` INT NOT NULL,
   `status` CHAR(1) NOT NULL,
   PRIMARY KEY (`id`, `campeonato_id`),
   INDEX `fk_campeonato_serie1_idx` (`campeonato_id` ASC),
@@ -1344,41 +1345,41 @@ INSERT INTO campeonato_equipes (campeonato_id, equipe_id) VALUES
 (12, 15),
 (12, 16);
 
-INSERT INTO campeonato_serie (campeonato_id, equipe_id1, equipe_id2, equipe_vit, fase, semana, temporada, status) VALUES
-(12, 15, 5, 5, 1, 1, 1, 'C'),
-(12, 4, 16, 16, 1, 1, 1, 'C'),
-(12, 1, 8, 1, 1, 1, 1, 'C'),
-(12, 2, 7, 2, 1, 1, 1, 'C'),
+INSERT INTO campeonato_serie (campeonato_id, equipe_id1, equipe_id2, equipe_vit, fase, semana, temporada, qtd_jogos_serie, status) VALUES
+(12, 15, 5, 5, 1, 1, 1, 3, 'C'),
+(12, 4, 16, 16, 1, 1, 1, 3, 'C'),
+(12, 1, 8, 1, 1, 1, 1, 3, 'C'),
+(12, 2, 7, 2, 1, 1, 1, 3, 'C'),
 
-(12, 2, 4, 2, 1, 2, 1, 'C'),
-(12, 8, 15, 8, 1, 2, 1, 'C'),
-(12, 5, 7, 7, 1, 2, 1, 'C'),
-(12, 16, 1, 16, 1, 2, 1, 'C'),
+(12, 2, 4, 2, 1, 2, 1, 3, 'C'),
+(12, 8, 15, 8, 1, 2, 1, 3, 'C'),
+(12, 5, 7, 7, 1, 2, 1, 3, 'C'),
+(12, 16, 1, 16, 1, 2, 1, 3, 'C'),
 
-(12, 4, 1, 4, 1, 3, 1, 'C'),
-(12, 8, 5, 5, 1, 3, 1, 'C'),
-(12, 16, 2, 16, 1, 3, 1, 'C'),
-(12, 7, 15, 7, 1, 3, 1, 'C'),
+(12, 4, 1, 4, 1, 3, 1, 3, 'C'),
+(12, 8, 5, 5, 1, 3, 1, 3, 'C'),
+(12, 16, 2, 16, 1, 3, 1, 3, 'C'),
+(12, 7, 15, 7, 1, 3, 1, 3, 'C'),
 
-(12, 5, 1, 0, 1, 4, 1, 'C'),
-(12, 16, 7, 0, 1, 4, 1, 'C'),
-(12, 8, 2, 0, 1, 4, 1, 'C'),
-(12, 15, 4, 0, 1, 4, 1, 'C'),
+(12, 5, 1, 0, 1, 4, 1, 3, 'C'),
+(12, 16, 7, 0, 1, 4, 1, 3, 'C'),
+(12, 8, 2, 0, 1, 4, 1, 3, 'C'),
+(12, 15, 4, 0, 1, 4, 1, 3, 'C'),
 
-(12, 16, 8, 0, 1, 5, 1, 'C'),
-(12, 5, 2, 0, 1, 5, 1, 'C'),
-(12, 15, 1, 0, 1, 5, 1, 'C'),
-(12, 7, 4, 0, 1, 5, 1, 'C'),
+(12, 16, 8, 0, 1, 5, 1, 3, 'C'),
+(12, 5, 2, 0, 1, 5, 1, 3, 'C'),
+(12, 15, 1, 0, 1, 5, 1, 3, 'C'),
+(12, 7, 4, 0, 1, 5, 1, 3, 'C'),
 
-(12, 2, 15, 0, 1, 6, 1, 'C'),
-(12, 1, 7, 0, 1, 6, 1, 'C'),
-(12, 4, 8, 0, 1, 6, 1, 'C'),
-(12, 5, 16, 0, 1, 6, 1, 'C'),
+(12, 2, 15, 0, 1, 6, 1, 3, 'C'),
+(12, 1, 7, 0, 1, 6, 1, 3, 'C'),
+(12, 4, 8, 0, 1, 6, 1, 3, 'C'),
+(12, 5, 16, 0, 1, 6, 1, 3, 'C'),
 
-(12, 7, 8, 0, 1, 7, 1, 'C'),
-(12, 4, 5, 0, 1, 7, 1, 'C'),
-(12, 15, 16, 0, 1, 7, 1, 'C'),
-(12, 1, 2, 0, 1, 7, 1, 'C');
+(12, 7, 8, 0, 1, 7, 1, 3, 'C'),
+(12, 4, 5, 0, 1, 7, 1, 3, 'C'),
+(12, 15, 16, 0, 1, 7, 1, 3, 'C'),
+(12, 1, 2, 0, 1, 7, 1, 3, 'C');
 
 DELIMITER $$
 
@@ -1418,5 +1419,20 @@ END $$
 
 DELIMITER ;
 
-CREATE USER 'admin'@'%' IDENTIFIED BY '';
-GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION;
+DELIMITER $$
+CREATE TRIGGER insert_jogos_serie
+    AFTER INSERT ON campeonato_serie
+    FOR EACH ROW 
+BEGIN
+	SET @count = 1;
+    SET @counter_max = new.qtd_jogos_serie + 1;
+    
+      WHILE @count < @counter_max DO
+		INSERT INTO campeonato_jogo (serie_id, jogo_num, equipe_id1, equipe_id2, status) values (new.id, @count, new.equipe_id1, new.equipe_id2, 'A');
+		SET @count = @count+1;
+	  END WHILE;
+END$$
+DELIMITER ;
+
+CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED BY '';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
