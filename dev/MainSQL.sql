@@ -125,6 +125,7 @@ CREATE TABLE IF NOT EXISTS `cesdb`.`campeonato_playoffs_tipos` (
   `qtd_jogos_serie` INT NOT NULL,
   `qtd_jogos_serie_final` INT NOT NULL,
   `duplaEliminacao` CHAR(1) NOT NULL,
+  `tipo` INT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -135,6 +136,7 @@ CREATE TABLE IF NOT EXISTS `cesdb`.`campeonato_formato` (
   `numDeDivisoes` INT NOT NULL,
   `qtd_jogos_serie` INT NOT NULL,
   `jogarInterDiv` CHAR(1) NOT NULL,
+  `series_semana` INT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -1078,33 +1080,33 @@ INSERT INTO equipe_jogador (jogador_id, equipe_id, salario, temporada, ano, titu
 (96,17,0,1,2017,1,"A"),
 (97,17,0,1,2017,1,"A");
 
-INSERT INTO campeonato_playoffs_tipos (descricao, nodetimes, duplaeliminacao, qtd_jogos_serie, qtd_jogos_serie_final) VALUES
-("2 Times, Unica Eliminação, Bo3 qualificação, Bo5 final",2,0, 3, 5),
-("4 Times, Unica Eliminação, Bo3 qualificação, Bo5 final",4,0, 3, 5),
-("8 Times, Unica Eliminação, Bo3 qualificação, Bo5 final",8,0, 3, 5),
-("16 Times, Unica Eliminação, Bo3 qualificação, Bo5 final",16,0, 3, 5),
-("32 Times, Unica Eliminação, Bo3 qualificação, Bo5 final",32,0, 3, 5);
+INSERT INTO campeonato_playoffs_tipos (descricao, nodetimes, duplaeliminacao, qtd_jogos_serie, qtd_jogos_serie_final,tipo) VALUES
+("2 Times, Unica Eliminação, Bo3 qualificação, Bo5 final",2,0, 3, 5, 1),
+("4 Times, Unica Eliminação, Bo3 qualificação, Bo5 final",4,0, 3, 5, 1),
+("8 Times, Unica Eliminação, Bo3 qualificação, Bo5 final",8,0, 3, 5, 1),
+("16 Times, Unica Eliminação, Bo3 qualificação, Bo5 final",16,0, 3, 5, 1),
+("32 Times, Unica Eliminação, Bo3 qualificação, Bo5 final",32,0, 3, 5, 1);
 
-INSERT INTO campeonato_formato (descricao, numdetimes, numdedivisoes, jogarinterdiv, qtd_jogos_serie) VALUES
-("6 times, 1 divisão, 3 jogos por série", 6,1,"N", 3),
-("8 times, 1 divisão, 3 jogos por série", 8,1,"N", 3),
-("8 times, 2 divisões, 3 jogos por série", 8,2,"N", 3),
-("8 times, 2 divisões e jogos interdivisões, 3 jogos por série", 8,2,"S", 3),
-("12 times, 1 divisão, 3 jogos por série", 12,1,"N", 3),
-("12 times, 2 divisões, 3 jogos por série", 12,2,"N", 3),
-("12 times, 2 divisões e jogos interdivisões, 3 jogos por série", 12,2,"S", 3),
-("16 times, 1 divisão, 3 jogos por série", 16,1,"N", 3),
-("16 times, 2 divisões, 3 jogos por série", 16,2,"N", 3),
-("16 times, 2 divisões e jogos interdivisões, 3 jogos por série", 16,2,"S", 3),
-("18 times, 1 divisão, 3 jogos por série", 18,1,"N", 3),
-("18 times, 2 divisões, 3 jogos por série", 18,2,"N", 3),
-("18 times, 2 divisões e jogos interdivisões, 3 jogos por série", 18,2,"S", 3),
-("24 times, 1 divisão, 3 jogos por série", 24,1,"N", 3),
-("24 times, 2 divisões, 3 jogos por série", 24,2,"N", 3),
-("24 times, 2 divisões e jogos interdivisões, 3 jogos por série", 24,2,"S", 3),
-("32 times, 1 divisão, 3 jogos por série", 32,1,"N", 3),
-("32 times, 2 divisões, 3 jogos por série", 32,2,"N", 3),
-("32 times, 2 divisões, jogos interdivisões, 3 jogos por série", 32,2,"S", 3);
+INSERT INTO campeonato_formato (descricao, numdetimes, numdedivisoes, jogarinterdiv, qtd_jogos_serie, series_semana) VALUES
+("6 times, 1 divisão, 3 jogos por série", 6,1,"N", 3, 4),
+("8 times, 1 divisão, 3 jogos por série", 8,1,"N", 3, 4),
+("8 times, 2 divisões, 3 jogos por série", 8,2,"N", 3, 4),
+("8 times, 2 divisões e jogos interdivisões, 3 jogos por série", 8,2,"S", 3, 4),
+("12 times, 1 divisão, 3 jogos por série", 12,1,"N", 3, 4),
+("12 times, 2 divisões, 3 jogos por série", 12,2,"N", 3, 4),
+("12 times, 2 divisões e jogos interdivisões, 3 jogos por série", 12,2,"S", 3, 4),
+("16 times, 1 divisão, 3 jogos por série", 16,1,"N", 3, 4),
+("16 times, 2 divisões, 3 jogos por série", 16,2,"N", 3, 4),
+("16 times, 2 divisões e jogos interdivisões, 3 jogos por série", 16,2,"S", 3, 4),
+("18 times, 1 divisão, 3 jogos por série", 18,1,"N", 3, 4),
+("18 times, 2 divisões, 3 jogos por série", 18,2,"N", 3, 4),
+("18 times, 2 divisões e jogos interdivisões, 3 jogos por série", 18,2,"S", 3, 4),
+("24 times, 1 divisão, 3 jogos por série", 24,1,"N", 3, 4),
+("24 times, 2 divisões, 3 jogos por série", 24,2,"N", 3, 4),
+("24 times, 2 divisões e jogos interdivisões, 3 jogos por série", 24,2,"S", 3, 4),
+("32 times, 1 divisão, 3 jogos por série", 32,1,"N", 3, 4),
+("32 times, 2 divisões, 3 jogos por série", 32,2,"N", 3, 4),
+("32 times, 2 divisões, jogos interdivisões, 3 jogos por série", 32,2,"S", 3, 4);
 
 INSERT INTO campeonato (nome, ano, temporada, playoffs_id, camp_formato_id, status, regiao_id) VALUES
 ("Campeonato Brasileiro de League of Legends - 2012", 2012, 1, 3, 2, "C", 1),

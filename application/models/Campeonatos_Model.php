@@ -59,6 +59,12 @@ class Campeonatos_Model extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function get_playoffs_formato($id){
+		$this->db->where('id', $id);
+		$query = $this->db->get('campeonato_playoffs_tipos');
+		return $query->result_array();
+	}
+
 	public function inserir_campeonato_base($dados = null) {
 
 		if ($this->db->insert('campeonato', $dados)) {
@@ -67,5 +73,17 @@ class Campeonatos_Model extends CI_Model {
 		} else {
 			return false;
 		}
+	}
+
+	public function gerar_tabela_pontuacao($tabela) {
+	
+	$count = 0;
+	foreach($tabela as $key => $value){
+		$count++;
+		if (!$this->db->insert('campeonato_equipes', $tabela[$count])) {
+			return false;
+		}
+	}
+	return true;
 	}
 }

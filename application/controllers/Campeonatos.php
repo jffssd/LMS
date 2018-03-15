@@ -103,7 +103,14 @@ class Campeonatos extends CI_Controller{
 		}
 	}
 
-	public function info(){
+
+	public function cadastrar(){
+		$this->load->view('templates/header');
+
+		$this->load->view('campeonato/v_campeonato_cadastro');
+	}
+
+	public function processar_inclusao(){
 
 		$dados = array(
 
@@ -117,15 +124,43 @@ class Campeonatos extends CI_Controller{
 			"status" => 'A'
 		);
 
+		$equipes = $this->input->post('equipes');
+		/*
+		*	campos: id, descricao, numDeTimes, qtd_jogos_serie, jogarInterDiv, series_semana
+		*	call $camp_formato[0]['numDeTimes']
+		*/		
 		$camp_formato = $this->Campeonatos_Model->get_campeonato_formato($dados['camp_formato_id']);
+		
+		/*
+		*	campos: id, descricao, noDeTimes, qtd_jogos_serie, qtd_jogos_serie_final, duplaEliminacao, 
+		*	call $playoffs_info[0]['qtd_jogos_serie']
+		*/
+		$playoffs_info = $this->Campeonatos_Model->get_playoffs_formato($dados['playoffs_id']);
 
+		//Cadastra campeonato e recebe o seu id
 		$id_camp =  $this->Campeonatos_Model->inserir_campeonato_base($dados);
 
-		die(var_dump($camp_return));
-		//die(var_dump($camp_formato[0]['numDeTimes']));
-		if ($this->Campeonatos_Model->inserir_campeonato_base($dados)) {
+		
+		$count = 0;
+		foreach($equipes as $value){
+			$count++;
+			$tabela[$count] = array(
+								'campeonato_id' => $id_camp,
+								'equipe_id' => $value
+							);
+		}
+		// Cria uma a tabela de pontos corridos do campeonato
+		if($this->Campeonatos_Model->gerar_tabela_pontuacao($tabela)){
+			
+			$qtd_semanas = count($equipes) - 1;
+			$qtd_serie_semana = 4;
 
-		} else {
+			/*Algoritimo Gerar series*/
+
+
+
+
+		}else{
 
 		}
 	}
