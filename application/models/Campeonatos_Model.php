@@ -13,7 +13,7 @@ class Campeonatos_Model extends CI_Model {
 
 	public function get_campeonato_info($id){
 
-			$this->db->select('campeonato.id, campeonato.nome, campeonato.regiao_id, campeonato.ano, campeonato.temporada, campeonato.status, campeonato.logo, campeonato_formato.numDeTimes as fg_numDeTimes, campeonato_formato.numDeDivisoes, campeonato_formato.qtd_jogos_serie as fg_qtd_jogos_serie, campeonato_playoffs_tipos.noDeTimes as pl_numDeTimes, campeonato_playoffs_tipos.qtd_jogos_serie as pl_qtd_jogos_serie, campeonato_playoffs_tipos.qtd_jogos_serie_final as pl_qtd_jogos_serie_final, regiao.sigla as regiao_sigla');
+			$this->db->select('campeonato.id, campeonato.nome, campeonato.regiao_id, campeonato.ano, campeonato.temporada, campeonato.status, campeonato.logo, campeonato_formato.numDeTimes as fg_numDeTimes, campeonato_formato.numDeDivisoes, campeonato_formato.qtd_jogos_serie as fg_qtd_jogos_serie, campeonato_playoffs_tipos.numDeTimes as pl_numDeTimes, campeonato_playoffs_tipos.qtd_jogos_serie as pl_qtd_jogos_serie, campeonato_playoffs_tipos.qtd_jogos_serie_final as pl_qtd_jogos_serie_final, regiao.sigla as regiao_sigla');
 
 			$this->db->join('campeonato_formato', 'campeonato.camp_formato_id = campeonato_formato.id');
 			$this->db->join('campeonato_playoffs_tipos', 'campeonato.playoffs_id = campeonato_playoffs_tipos.id');
@@ -75,20 +75,9 @@ class Campeonatos_Model extends CI_Model {
 		}
 	}
 
-	public function gera_series_fase_grupos($id_camp, $semana, $time1, $time2, $equipe_vit, $fase, $temporada, $qtd_jogos_serie, $status) {
+	public function gera_series_fase_grupos($info_series) {
 
-		$dados = array(
-						'campeonato_id' => $id_camp,
-						'semana' => $semana,
-						'equipe_id1' => $time1,
-						'equipe_id2' => $time2,
-						'equipe_vit' => 1,
-						'fase' => $fase,
-						'temporada' => $temporada,
-						'qtd_jogos_serie' => $qtd_jogos_serie,
-						'status' => $status
-					);
-		if ($this->db->insert('campeonato_serie', $dados)) {
+		if ($this->db->insert('campeonato_serie', $info_series)) {
 			return true;
 		} else {
 			return false;

@@ -121,7 +121,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `cesdb`.`campeonato_playoffs_tipos` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(100) NOT NULL,
-  `noDeTimes` INT NOT NULL,
+  `numDeTimes` INT NOT NULL,
   `qtd_jogos_serie` INT NOT NULL,
   `qtd_jogos_serie_final` INT NOT NULL,
   `duplaEliminacao` CHAR(1) NOT NULL,
@@ -370,7 +370,6 @@ CREATE TABLE IF NOT EXISTS `cesdb`.`campeonato_serie` (
   `equipe_vit` INT NOT NULL,
   `fase` INT NOT NULL DEFAULT 1,
   `semana` INT NOT NULL,
-  `temporada` INT NOT NULL,
   `qtd_jogos_serie` INT NOT NULL,
   `status` CHAR(1) NOT NULL,
   PRIMARY KEY (`id`, `campeonato_id`),
@@ -1081,7 +1080,7 @@ INSERT INTO equipe_jogador (jogador_id, equipe_id, salario, temporada, ano, titu
 (96,17,0,1,2017,1,"A"),
 (97,17,0,1,2017,1,"A");
 
-INSERT INTO campeonato_playoffs_tipos (descricao, nodetimes, duplaeliminacao, qtd_jogos_serie, qtd_jogos_serie_final,tipo) VALUES
+INSERT INTO campeonato_playoffs_tipos (descricao, numdetimes, duplaeliminacao, qtd_jogos_serie, qtd_jogos_serie_final,tipo) VALUES
 ("2 Times, Unica Eliminação, Bo3 qualificação, Bo5 final",2,0, 3, 5, 1),
 ("4 Times, Unica Eliminação, Bo3 qualificação, Bo5 final",4,0, 3, 5, 1),
 ("8 Times, Unica Eliminação, Bo3 qualificação, Bo5 final",8,0, 3, 5, 1),
@@ -1345,41 +1344,41 @@ INSERT INTO campeonato_equipes (campeonato_id, equipe_id) VALUES
 (12, 15),
 (12, 16);
 
-INSERT INTO campeonato_serie (campeonato_id, equipe_id1, equipe_id2, equipe_vit, fase, semana, temporada, qtd_jogos_serie, status) VALUES
-(12, 15, 5, 5, 1, 1, 1, 3, 'C'),
-(12, 4, 16, 16, 1, 1, 1, 3, 'C'),
-(12, 1, 8, 1, 1, 1, 1, 3, 'C'),
-(12, 2, 7, 2, 1, 1, 1, 3, 'C'),
+INSERT INTO campeonato_serie (campeonato_id, equipe_id1, equipe_id2, equipe_vit, fase, semana, qtd_jogos_serie, status) VALUES
+(12, 15, 5, 5, 1, 1, 3, 'C'),
+(12, 4, 16, 16, 1, 1, 3, 'C'),
+(12, 1, 8, 1, 1, 1, 3, 'C'),
+(12, 2, 7, 2, 1, 1, 3, 'C'),
 
-(12, 2, 4, 2, 1, 2, 1, 3, 'C'),
-(12, 8, 15, 8, 1, 2, 1, 3, 'C'),
-(12, 5, 7, 7, 1, 2, 1, 3, 'C'),
-(12, 16, 1, 16, 1, 2, 1, 3, 'C'),
+(12, 2, 4, 2, 1, 2, 3, 'C'),
+(12, 8, 15, 8, 1, 2, 3, 'C'),
+(12, 5, 7, 7, 1, 2, 3, 'C'),
+(12, 16, 1, 16, 1, 2, 3, 'C'),
 
-(12, 4, 1, 4, 1, 3, 1, 3, 'C'),
-(12, 8, 5, 5, 1, 3, 1, 3, 'C'),
-(12, 16, 2, 16, 1, 3, 1, 3, 'C'),
-(12, 7, 15, 7, 1, 3, 1, 3, 'C'),
+(12, 4, 1, 4, 1, 3, 3, 'C'),
+(12, 8, 5, 5, 1, 3, 3, 'C'),
+(12, 16, 2, 16, 1, 3, 3, 'C'),
+(12, 7, 15, 7, 1, 3, 3, 'C'),
 
-(12, 5, 1, 0, 1, 4, 1, 3, 'C'),
-(12, 16, 7, 0, 1, 4, 1, 3, 'C'),
-(12, 8, 2, 0, 1, 4, 1, 3, 'C'),
-(12, 15, 4, 0, 1, 4, 1, 3, 'C'),
+(12, 5, 1, 0, 1, 4, 3, 'C'),
+(12, 16, 7, 0, 1, 4, 3, 'C'),
+(12, 8, 2, 0, 1, 4, 3, 'C'),
+(12, 15, 4, 0, 1, 4, 3, 'C'),
 
-(12, 16, 8, 0, 1, 5, 1, 3, 'C'),
-(12, 5, 2, 0, 1, 5, 1, 3, 'C'),
-(12, 15, 1, 0, 1, 5, 1, 3, 'C'),
-(12, 7, 4, 0, 1, 5, 1, 3, 'C'),
+(12, 16, 8, 0, 1, 5, 3, 'C'),
+(12, 5, 2, 0, 1, 5, 3, 'C'),
+(12, 15, 1, 0, 1, 5, 3, 'C'),
+(12, 7, 4, 0, 1, 5, 3, 'C'),
 
-(12, 2, 15, 0, 1, 6, 1, 3, 'C'),
-(12, 1, 7, 0, 1, 6, 1, 3, 'C'),
-(12, 4, 8, 0, 1, 6, 1, 3, 'C'),
-(12, 5, 16, 0, 1, 6, 1, 3, 'C'),
+(12, 2, 15, 0, 1, 6, 3, 'C'),
+(12, 1, 7, 0, 1, 6, 3, 'C'),
+(12, 4, 8, 0, 1, 6, 3, 'C'),
+(12, 5, 16, 0, 1, 6, 3, 'C'),
 
-(12, 7, 8, 0, 1, 7, 1, 3, 'C'),
-(12, 4, 5, 0, 1, 7, 1, 3, 'C'),
-(12, 15, 16, 0, 1, 7, 1, 3, 'C'),
-(12, 1, 2, 0, 1, 7, 1, 3, 'C');
+(12, 7, 8, 0, 1, 7, 3, 'C'),
+(12, 4, 5, 0, 1, 7, 3, 'C'),
+(12, 15, 16, 0, 1, 7, 3, 'C'),
+(12, 1, 2, 0, 1, 7, 3, 'C');
 
 DELIMITER $$
 

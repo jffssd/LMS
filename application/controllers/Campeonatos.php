@@ -132,7 +132,7 @@ class Campeonatos extends CI_Controller{
 		$camp_formato = $this->Campeonatos_Model->get_campeonato_formato($dados['camp_formato_id']);
 
 		/*
-		*	campos: id, descricao, noDeTimes, qtd_jogos_serie, qtd_jogos_serie_final, duplaEliminacao,
+		*	campos: id, descricao, numDeTimes, qtd_jogos_serie, qtd_jogos_serie_final, duplaEliminacao,
 		*	call $playoffs_info[0]['qtd_jogos_serie']
 		*/
 		$playoffs_info = $this->Campeonatos_Model->get_playoffs_formato($dados['playoffs_id']);
@@ -152,10 +152,14 @@ class Campeonatos extends CI_Controller{
 		// Cria uma a tabela de pontos corridos do campeonato
 		if($this->Campeonatos_Model->gerar_tabela_pontuacao($tabela)){
 
-			$qtd_semanas = count($equipes) - 1;
-			$qtd_serie_semana = 4;
-
-
+			$info_series = array(
+									'fase' => 1,
+									'qtd_jogos_serie' => 3,
+									'equipe_vit' => 1,
+									'status' => 'A',
+									'campeonato_id' => $id_camp
+								);
+			
 			/*Algoritimo Gerar series*/
 			$qtde_times = count($equipes); // Quantidade de Times
 			$num_rodadas = $qtde_times - 1; //numero de rodadas
@@ -192,17 +196,13 @@ class Campeonatos extends CI_Controller{
 				$jogos_temp = array();
 			}
 
-			$fase = 1;
-			$temporada = 1;
-			$qtd_jogos_serie = 3;
-			$equipe_vit = 1;
-			$status = 'A';
 			for ($rod = 0; $rod < $num_rodadas; $rod++) {
-				$semana =  ($rod + 1);
+				$info_series['semana']  =  ($rod + 1);
 				for ($jog = 0; $jog < $times_por_rodada; $jog+=2) {
-					$time1 = $jogos[($rod + 1)][$jog];
-					$time2 = $jogos[($rod + 1)][($jog + 1)];
-					if(!$this->Campeonatos_Model->gera_series_fase_grupos($id_camp, $semana, $time1, $time2, $equipe_vit, $fase, $temporada, $qtd_jogos_serie, $status)){
+					$info_series['equipe_id1'] = $jogos[($rod + 1)][$jog];
+					$info_series['equipe_id2']  = $jogos[($rod + 1)][($jog + 1)];
+
+					if(!$this->Campeonatos_Model->gera_series_fase_grupos($info_series)){
 						echo 'Um erro acontenceu ao tentar gerar as séries da fase de grupo';
 					}else{
 						continue;
