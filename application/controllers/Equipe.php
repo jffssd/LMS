@@ -11,13 +11,13 @@ class Equipe extends CI_Controller{
 
 		$data['equipes'] = $this->Equipes_Model->get_equipes();
 
-        $data['title'] = 'Todos as Equipes';
-        $referencia['item'] = 'equipe';
+		$data['title'] = 'Todos as Equipes';
+		$referencia['item'] = 'equipes';
         $referencia['sub-item'] = 'todos';
 
         $this->load->view('templates/header');
         $this->load->view('templates/navbar');
-        $this->load->view('templates/sidemenu', $referencia);
+        $this->load->view('templates/usuario/sidemenu', $referencia);
         $this->load->view('templates/page_start');
 		$this->load->view('equipe/v_equipe', $data);
         $this->load->view('templates/footer');
@@ -30,23 +30,19 @@ class Equipe extends CI_Controller{
 			redirect('users/profile');
 		}
 
-		$status_equipe = array(
-								1 => 'Ativo',
-								2 => 'Inativo'
-		);
-		$data['status_equipe'] = $status_equipe;
+		$data['status_equipe'] = 1;
 		$data['paises'] = $this->Paises_Model->get_paises();
 		$data['regioes'] = $this->General_Model->get_regioes();
 		$data['tecnicos'] = $this->General_Model->get_tecnicos();
 
 
 		$data['title'] = 'Cadastrar Equipe';
-        $referencia['item'] = 'equipe';
+		$referencia['item'] = 'equipes';
         $referencia['sub-item'] = 'cadastro';
 
         $this->load->view('templates/header');
         $this->load->view('templates/navbar');
-        $this->load->view('templates/sidemenu', $referencia);
+        $this->load->view('templates/usuario/sidemenu', $referencia);
         $this->load->view('templates/page_start');
 		$this->load->view('equipe/v_equipe_cadastro', $data);
         $this->load->view('templates/footer');
@@ -114,12 +110,12 @@ class Equipe extends CI_Controller{
 
 
 			$data['title'] = 'Cadastrar Equipe';
-	        $referencia['item'] = 'equipe';
+			$referencia['item'] = 'equipes';
 	        $referencia['sub-item'] = 'cadastro';
 
 	        $this->load->view('templates/header');
 	        $this->load->view('templates/navbar');
-	        $this->load->view('templates/sidemenu', $referencia);
+	        $this->load->view('templates/usuario/sidemenu', $referencia);
 	        $this->load->view('templates/page_start');
 			$this->load->view('equipe/v_equipe_cadastro', $data);
 	        $this->load->view('templates/footer');
@@ -205,12 +201,12 @@ class Equipe extends CI_Controller{
 			$data['tecnicos'] = $this->General_Model->get_tecnicos();
 
 			$data['title'] = 'Cadastrar Equipe';
-	        $referencia['item'] = 'equipe';
+			$referencia['item'] = 'equipes';
 	        $referencia['sub-item'] = 'cadastro';
 
 	        $this->load->view('templates/header');
 	        $this->load->view('templates/navbar');
-	        $this->load->view('templates/sidemenu', $referencia);
+	        $this->load->view('templates/usuario/sidemenu', $referencia);
 	        $this->load->view('templates/page_start');
 			$this->load->view('equipe/v_equipe_cadastro', $data);
 	        $this->load->view('templates/footer');
@@ -252,10 +248,6 @@ class Equipe extends CI_Controller{
 
 		if ($id) {
 			$equipes = $this->Equipes_Model->get_equipes($id);
-			$status_equipe = array(
-				1 => 'Ativo',
-				2 => 'Inativo'
-			);
 
 			if ($equipes->num_rows() > 0 ) {
 
@@ -277,16 +269,15 @@ class Equipe extends CI_Controller{
 				$data['regioes'] = $this->General_Model->get_regioes();
 				$data['tecnicos'] = $this->General_Model->get_tecnicos();
 
-				$data['status_equipe'] = $status_equipe;
-
+				$data['status_equipe'] = 1;
 
 				$data['title'] = 'Editar Equipe';
-		        $referencia['item'] = 'equipe';
+				$referencia['item'] = 'equipes';
 		        $referencia['sub-item'] = 'editar';
 
 		        $this->load->view('templates/header');
 		        $this->load->view('templates/navbar');
-		        $this->load->view('templates/sidemenu', $referencia);
+		        $this->load->view('templates/usuario/sidemenu', $referencia);
 		        $this->load->view('templates/page_start');
 				$this->load->view('equipe/v_equipe_edicao', $data);
 		        $this->load->view('templates/footer');
@@ -338,13 +329,14 @@ class Equipe extends CI_Controller{
 				$data['social_in'] = $equipe->row()->social_in;
 				$data['paises'] = $this->Paises_Model->get_paises();
 				$data['regioes'] = $this->General_Model->get_regioes();
+
 				$data['title'] = 'Detalhes da Equipe';
-		        $referencia['item'] = 'equipe';
+				$referencia['item'] = 'equipes';
 		        $referencia['sub-item'] = 'todos';
 
 		        $this->load->view('templates/header');
 		        $this->load->view('templates/navbar');
-		        $this->load->view('templates/sidemenu', $referencia);
+		        $this->load->view('templates/usuario/sidemenu', $referencia);
 		        $this->load->view('templates/page_start');
 				$this->load->view('equipe/v_equipe_detalhes', $data);
 		        $this->load->view('templates/footer');

@@ -18,7 +18,7 @@
 
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');
-		$this->load->view('templates/administrador/sidemenu', $referencia);
+		$this->load->view('templates//usuario/sidemenu', $referencia);
 		$this->load->view('templates/sidemenu');
 		$this->load->view('pages/'.$page, $data);
 		$this->load->view('templates/footer');

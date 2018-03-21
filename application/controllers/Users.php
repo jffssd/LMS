@@ -18,7 +18,7 @@
 
 			$this->load->view('templates/header');
 			$this->load->view('templates/navbar');
-			$this->load->view('templates/sidemenu', $referencia);
+			$this->load->view('templates/usuario/sidemenu', $referencia);
 			$this->load->view('users/dashboard', $data);
 			$this->load->view('templates/footer');
 		}
@@ -33,7 +33,7 @@
 
 			$this->load->view('templates/header');
 			$this->load->view('templates/navbar');
-			$this->load->view('templates/sidemenu', $referencia);
+			$this->load->view('templates/usuario/sidemenu', $referencia);
 			$this->load->view('templates/page_start');
 			$this->load->view('users/mensagens', $data);
 			$this->load->view('templates/footer');
@@ -50,7 +50,7 @@
 			$data['mensagens'] = $this->User_Model->get_mensagens_usuario($this->session->userdata('usuario_id'));
 			$this->load->view('templates/header');
 			$this->load->view('templates/navbar');
-			$this->load->view('templates/sidemenu', $referencia);
+			$this->load->view('templates/usuario/sidemenu', $referencia);
 			$this->load->view('templates/page_start');
 			$this->load->view('users/profile', $data);
 			$this->load->view('templates/footer');

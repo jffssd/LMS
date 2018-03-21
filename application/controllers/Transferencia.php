@@ -3,11 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Transferencia extends CI_Controller {
 
+	public function __construct(){
+		parent::__construct();
+    }
+
 	public function index(){
 
         $data['transf_profissional'] = $this->Transferencias_Model->get_transferencias_profissionais();
 		$data['transf_jogadores'] = $this->Transferencias_Model->get_transferencias_jogadores();
-
 
 		$data['title'] = 'Detalhes das Transferências';
 		$referencia['item'] = 'transferencia';
@@ -15,7 +18,7 @@ class Transferencia extends CI_Controller {
 
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');
-		$this->load->view('templates/administrador/sidemenu', $referencia);
+		$this->load->view('templates/usuario/sidemenu', $referencia);
 		$this->load->view('templates/page_start');
         $this->load->view('transferencia/v_transferencia', $data);
 		$this->load->view('templates/footer');
@@ -42,7 +45,7 @@ class Transferencia extends CI_Controller {
 
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');
-		$this->load->view('templates/administrador/sidemenu', $referencia);
+		$this->load->view('templates/usuario/sidemenu', $referencia);
 		$this->load->view('templates/page_start');
 		$this->load->view('transferencia/v_transferencia_cadastro', $data);
 		$this->load->view('templates/footer');
@@ -118,7 +121,7 @@ class Transferencia extends CI_Controller {
 
 			$this->load->view('templates/header');
 			$this->load->view('templates/navbar');
-			$this->load->view('templates/administrador/sidemenu', $referencia);
+			$this->load->view('templates/usuario/sidemenu', $referencia);
 			$this->load->view('templates/page_start');
 			$this->load->view('transferencia/v_transferencia_cadastro', $data);
 			$this->load->view('templates/footer');

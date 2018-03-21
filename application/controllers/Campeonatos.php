@@ -2,7 +2,6 @@
 class Campeonatos extends CI_Controller{
 
 	public function __construct(){
-
 		parent::__construct();
 	}
 
@@ -16,7 +15,7 @@ class Campeonatos extends CI_Controller{
 
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');
-		$this->load->view('templates/sidemenu', $referencia);
+		$this->load->view('templates/usuario/sidemenu', $referencia);
 		$this->load->view('templates/page_start');
 		$this->load->view('campeonato/v_campeonato', $data);
 		$this->load->view('templates/footer');
@@ -66,7 +65,7 @@ class Campeonatos extends CI_Controller{
 
 				$this->load->view('templates/header');
 				$this->load->view('templates/navbar');
-				$this->load->view('templates/sidemenu', $referencia);
+				$this->load->view('templates/usuario/sidemenu', $referencia);
 				$this->load->view('templates/page_start');
 				$this->load->view('campeonato/v_campeonato_detalhes', $data);
 				$this->load->view('templates/footer');
@@ -92,7 +91,7 @@ class Campeonatos extends CI_Controller{
 
 			$this->load->view('templates/header');
 			$this->load->view('templates/navbar');
-			$this->load->view('templates/sidemenu', $referencia);
+			$this->load->view('templates/usuario/sidemenu', $referencia);
 			$this->load->view('templates/page_start');
 			$this->load->view('campeonato/v_campeonato_serie_detalhes', $data);
 			$this->load->view('templates/footer');
@@ -112,8 +111,10 @@ class Campeonatos extends CI_Controller{
 
 	public function processar_inclusao(){
 
-		$dados = array(
+		$playoff_tipo = 0; //Default
+		$qtd_times_playoff = 4;
 
+		$dados = array(
 			"nome" => $this->input->post('nome'),
 			"ano" => $this->input->post('ano'),
 			"temporada" => $this->input->post('temporada'),
@@ -204,12 +205,21 @@ class Campeonatos extends CI_Controller{
 
 					if(!$this->Campeonatos_Model->gera_series_fase_grupos($info_series)){
 						echo 'Um erro acontenceu ao tentar gerar as séries da fase de grupo';
-					}else{
-						continue;
 					}
 				}
 			}
-			echo 'aparentemente deu certo...';
+
+			/*
+			*	Tipos de playoff:
+			*	0 - Padrão, 1 - Classificação direta	
+			*/
+
+			if($playoff_tipo == 0){
+				for($x = 1; $x < $qtd_times_playoff + 1; $x++){
+					
+				}
+			}
+
 		}else{
 
 		}

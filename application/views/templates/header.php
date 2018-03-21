@@ -5,8 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<title>Carreira e-Sports!</title>
-		<meta name="description" content="Carreira e-Sports!">
-		<meta name="author" content="jffssd">
+		<meta name="description" content="Centro e-Sports!">
+		<meta name="author" content="jffssd@gmail.com">
 
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="<?php echo base_url('assets/img/favicon.ico');?>">

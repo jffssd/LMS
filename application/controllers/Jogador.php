@@ -6,7 +6,7 @@ class Jogador extends CI_Controller{
 		parent::__construct();
 		if($this->session->userdata('permissao') != 1) {
 			redirect('users/profile');
-		}
+        }
     }
     
     public function index(){
@@ -19,7 +19,7 @@ class Jogador extends CI_Controller{
 
         $this->load->view('templates/header');
         $this->load->view('templates/navbar');
-        $this->load->view('templates/administrador/sidemenu', $referencia);
+        $this->load->view('templates/usuario/sidemenu', $referencia);
         $this->load->view('templates/page_start');
         $this->load->view('jogador/v_jogador', $data);
         $this->load->view('templates/footer');
@@ -37,7 +37,7 @@ class Jogador extends CI_Controller{
 
         $this->load->view('templates/header');
         $this->load->view('templates/navbar');
-        $this->load->view('templates/administrador/sidemenu', $referencia);
+        $this->load->view('templates/usuario/sidemenu', $referencia);
         $this->load->view('templates/page_start');
         $this->load->view('jogador/v_jogador_cadastro', $data);
         $this->load->view('templates/footer');
@@ -72,7 +72,7 @@ class Jogador extends CI_Controller{
 
                 $this->load->view('templates/header');
                 $this->load->view('templates/navbar');
-                $this->load->view('templates/administrador/sidemenu', $referencia);
+                $this->load->view('templates/usuario/sidemenu', $referencia);
                 $this->load->view('templates/page_start');
                 $this->load->view('jogador/v_jogador_edicao', $data);
                 $this->load->view('templates/footer');
@@ -127,7 +127,7 @@ class Jogador extends CI_Controller{
 
         $this->load->view('templates/header');
         $this->load->view('templates/navbar');
-        $this->load->view('templates/administrador/sidemenu', $referencia);
+        $this->load->view('templates/usuario/sidemenu', $referencia);
         $this->load->view('templates/page_start');
         $this->load->view('jogador/v_jogador_cadastro', $data);
         $this->load->view('templates/footer');
@@ -198,7 +198,7 @@ class Jogador extends CI_Controller{
 
                 $this->load->view('templates/header');
                 $this->load->view('templates/navbar');
-                $this->load->view('templates/administrador/sidemenu', $referencia);
+                $this->load->view('templates/usuario/sidemenu', $referencia);
                 $this->load->view('templates/page_start');
                 $this->load->view('jogador/v_jogador_detalhes', $data);
                 $this->load->view('templates/footer');

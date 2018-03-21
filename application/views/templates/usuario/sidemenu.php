@@ -39,7 +39,7 @@
                 </li>
                                     
                 <li class="submenu">
-                    <a href="#"><i class="fa fa-fw fa-users"></i> <span> Equipes </span> <span class="menu-arrow"></span></a>
+                    <a <?php echo $item=='equipes' ? 'class="active"' : ''; ?> href="#"><i class="fa fa-fw fa-users"></i> <span> Equipes </span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled">
                         <li class="submenuitem"><a href="<?php echo base_url('equipe');?>">Todos</a></li>
                         <li class="submenuitem"><a href="#">Favoritas</a></li>
@@ -49,7 +49,7 @@
                 </li>
 
                 <li class="submenu">
-                    <a href="#"><i class="fa fa-fw fa-user"></i> <span> Jogadores </span> <span class="menu-arrow"></span></a>
+                    <a <?php echo $item=='jogadores' ? 'class="active"' : ''; ?> href="#"><i class="fa fa-fw fa-user"></i> <span> Jogadores </span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled">
                         <li class="submenuitem"><a href="<?php echo base_url('jogador');?>">Todos</a></li>
                         <li class="submenuitem"><a href="#">Favoritos</a></li>
@@ -58,7 +58,7 @@
                 </li>
                 
                 <li class="submenu">
-                    <a href="#"><i class="fa fa-fw fa-handshake-o"></i> <span> Transferências </span> <span class="menu-arrow"></span></a>
+                    <a <?php echo $item=='transferencias' ? 'class="active"' : ''; ?> href="#"><i class="fa fa-fw fa-handshake-o"></i> <span> Transferências </span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled">
                         <li class="submenuitem"><a href="<?php echo base_url('transferencia');?>">Todos</a></li>
                         <li class="submenuitem"><a href="#">Por Região</a></li>
@@ -66,7 +66,7 @@
                 </li>
 
                 <li class="submenu">
-                    <a href="<?php echo base_url('configuracoes');?>"><i class="fa fa-fw fa-cog "></i><span> Configurações </span> </a>
+                    <a <?php echo $item=='configuracoes' ? 'class="active"' : ''; ?> href="<?php echo base_url('configuracoes');?>"><i class="fa fa-fw fa-cog "></i><span> Configurações </span> </a>
                 </li>
                 
         </ul>
