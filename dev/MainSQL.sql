@@ -310,6 +310,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `cesdb`.`campeonato` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
+  `descricao` VARCHAR(100),
   `ano` INT NOT NULL,
   `temporada` CHAR(1) NOT NULL,
   `playoffs_id` INT NULL,
@@ -1108,19 +1109,19 @@ INSERT INTO campeonato_formato (descricao, numdetimes, numdedivisoes, jogarinter
 ("32 times, 2 divisões, 3 jogos por série", 32,2,"N", 3, 4),
 ("32 times, 2 divisões, jogos interdivisões, 3 jogos por série", 32,2,"S", 3, 4);
 
-INSERT INTO campeonato (nome, ano, temporada, playoffs_id, camp_formato_id, status, regiao_id) VALUES
-("Campeonato Brasileiro de League of Legends - 2012", 2012, 1, 3, 2, "C", 1),
-("Campeonato Brasileiro de League of Legends - 2013", 2013, 1, 3, 2, "C", 1),
-("Liga Brasileira - Série dos Campeões League of Legends 2014", 2014, 1, 3, 3, "C", 1),
-("Campeonato Brasileiro de League of Legends - 2014", 2014, 2, 3, 3, "C", 1),
-("CBLoL - 1a Etapa - Campeonato Brasileiro de League of Legends - 2015", 2015, 1, 3, 3, "C", 1),
-("CBLoL - 2a Etapa - Campeonato Brasileiro de League of Legends - 2015", 2015, 2, 3, 3, "C", 1),
-("CBLoL - Pós-Temporada - Campeonato Brasileiro de League of Legends - 2015", 2015, 2, 3, 3, "C", 1),
-("CBLoL - 1a Etapa - Campeonato Brasileiro de League of Legends - 2016", 2016, 1, 3, 3, "C", 1),
-("CBLoL - 2a Etapa - Campeonato Brasileiro de League of Legends - 2016", 2016, 2, 3, 3, "C", 1),
-("CBLoL - 1a Etapa - Campeonato Brasileiro de League of Legends - 2017", 2017, 1, 3, 3, "C", 1),
-("CBLoL - 2a Etapa - Campeonato Brasileiro de League of Legends - 2017", 2017, 2, 3, 3, "C", 1),
-("CBLoL 2018 - 1a Etapa - Campeonato Brasileiro de League of Legends", 2018, 1, 3, 3, "A", 1);
+INSERT INTO campeonato (nome, descricao, ano, temporada, playoffs_id, camp_formato_id, status, regiao_id, logo) VALUES
+("CBLOL 2012", "Campeonato Brasileiro de League of Legends - 2012", 2012, 1, 3, 2, "C", 1, "CBLOL-2012.png"),
+("CBLOL 2013", "Campeonato Brasileiro de League of Legends - 2013", 2013, 1, 3, 2, "C", 1, "CBLOL-2013.png"),
+("CBLOL 2014 - 1ª Temporada", "Campeonato Brasileiro de League of Legends 2014 - 1ª Temporada", 2014, 1, 3, 3, "C", 1, "CBLOL-2014.png"),
+("CBLOL 2014 - 2ª Temporada", "Campeonato Brasileiro de League of Legends 2014 - 2ª Temporada", 2014, 2, 3, 3, "C", 1, "CBLOL-2014.png"),
+("CBLOL 2015 - 1ª Temporada", "Campeonato Brasileiro de League of Legends 2015 - 1ª Temporada", 2015, 1, 3, 3, "C", 1, "CBLOL-2015.png"),
+("CBLOL 2015 - 2ª Temporada", "Campeonato Brasileiro de League of Legends 2015 - 2ª Temporada", 2015, 2, 3, 3, "C", 1, "CBLOL-2015.png"),
+("CBLOL 2015 - Pós-Temporada", "Campeonato Brasileiro de League of Legends 2015 - Pós Temporada", 2015, 2, 3, 3, "C", 1, "CBLOL-2015.png"),
+("CBLOL 2016 - 1ª Temporada", "Campeonato Brasileiro de League of Legends 2016 - 1ª Temporada", 2016, 1, 3, 3, "C", 1, "CBLOL-2016.png"),
+("CBLOL 2016 - 2ª Temporada", "Campeonato Brasileiro de League of Legends 2016 - 2ª Temporada", 2016, 2, 3, 3, "C", 1, "CBLOL-2016.png"),
+("CBLOL 2017 - 1ª Temporada", "Campeonato Brasileiro de League of Legends 2017 - 1ª Temporada", 2017, 1, 3, 3, "C", 1, "CBLOL-2017.png"),
+("CBLOL 2017 - 2ª Temporada", "Campeonato Brasileiro de League of Legends 2017 - 2ª Temporada", 2017, 2, 3, 3, "C", 1, "CBLOL-2017.png"),
+("CBLOL 2018 - 1ª Temporada", "Campeonato Brasileiro de League of Legends 2018 - 1ª Temporada", 2018, 1, 3, 3, "A", 1, "CBLOL-2018.png");
 
 INSERT INTO equipe_campeonato (equipe_id, campeonato_id, posicao) VALUES
 

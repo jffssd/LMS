@@ -1229,3 +1229,182 @@ a.btn:focus {
 .label-info {
     background-color: #5bc0de;
 }
+.card-custom-jogador-time {
+  overflow: hidden;
+  min-height: 120px;
+  border: 0;
+  box-shadow: 0 0 15px rgba(10, 10, 10, 0.3);
+  border-radius: 10px;
+}
+
+.card-custom-img {
+  height: 80px;
+  min-height: 80px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-color: inherit;
+
+}
+
+/* First border-left-width setting is a fallback */
+.card-custom-img::after {
+  position: absolute;
+  content: '';
+  top: 40px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-top-width: 40px;
+  border-right-width: 0;
+  border-bottom-width: 0;
+  border-left-width: 545px;
+  border-left-width: calc(575px - 5vw);
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: #222;
+}
+
+.card-custom-avatar img {
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(10, 10, 10, 0.3);
+  position: absolute;
+  top: 10px;
+  left: 1.25rem;
+  width: 100px;
+  height: 100px;
+  border: 2px solid #333;
+}
+
+.card-jogador-title-name{
+	position: absolute; 
+	top:40px; 
+	left: 130px;
+	background-color: #222; 
+	border: 1px solid #333333;
+	border-radius: 5px; 
+	padding: 5px 8px 3px 5px;
+
+}
+
+.card-jogador-title-name h4{
+	margin: 0px;
+}
+
+.card-jogador-flag{
+	height:19px;
+	width:29px;
+	margin-bottom: 8px;
+}
+
+.card-jogador-data{
+	width: 25%; 
+	height: 30px;
+	text-align: center;
+	color: #eee;
+	padding-top: 3px;
+}
+
+.card-jogador-data-icon{
+	margin-top: -4px; 
+	margin-left: 3px; 
+	border-radius: 50%;
+}
+
+.data-abates{
+    cursor:pointer;
+    color: #ee4546;
+    font-weight: bold;
+}
+
+.data-mortes{
+    cursor:pointer;
+    color: #633b90;
+    font-weight: bold;
+}
+
+.data-assists{
+    cursor:pointer;
+    color: #26ce85;
+    font-weight: bold;
+}
+
+.card-jogador-posicao{
+	position: absolute; 
+	bottom: 5px; 
+	left: 0px;  
+	width: 42px;  
+	height: 42px; 
+	z-index: 3; 
+	background-color: #222; 
+	border-radius: 50%; 
+	padding-top: 3px; 
+	padding-left: 4px; 
+	border: 2px solid #333;
+}
+
+.jogador-score-tab{
+	position: absolute; 
+	right: 10px; 
+	top:12px; 
+	background-color: #222;
+	border: 1px solid #333; 
+	text-align: center; 
+	padding: 8px; 
+	border-radius: 5px;
+}
+
+@media (max-width: 600px) 
+{
+  .card-jogador-data-icon 
+   {
+    display: none;
+   }
+   .jogador-score-tab
+   {
+    display: none;
+   }
+   .card-jogador-posicao{
+   		bottom: 15px; 
+   }
+}
+
+.card-body-team{
+	padding: 0px;
+	background-color: #eeeeee; 
+	padding-top: 10px;
+}
+
+.card-team-tag{
+	border: none; 
+	margin-bottom: 10px;
+}
+
+.bg-ces-dark{
+	background-color: #1e282c;
+	color: #d4d4d4 !important;
+	text-align:center;
+}
+
+
+.circle-button{
+	width: 45px;
+ 	height: 45px;
+ 	text-align: center;
+	padding: 6px 0;
+	font-size: 22px;
+	line-height: 1.428571429;
+	border-radius: 50%;
+}
+
+.social-button{
+	background-color: #aaaaaa;
+	color: #dcdcdc !important;
+}
+
+.social-button:hover{
+	background-color: #ee4445;
+	color: #364850 !important;
+}

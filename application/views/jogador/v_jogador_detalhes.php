@@ -1,8 +1,10 @@
-ID: <?php echo $id;?><br>
+<div class="col-md-6">
+    <img src="<?php echo site_url();?>assets/img/jogadores/<?php echo $foto;?>" height="250" width="250" style="border: 1px solid black;">
+</div>
 Nome: <?php echo $nome;?><br>
 Nick: <?php echo $nick;?><br>
 Sobrenome: <?php echo $sobrenome;?><br>
-Foto: <?php echo $foto;?><br>
+
 Idade: <?php echo $idade;?><br>
 Genero: <?php echo $genero;?><br>
 Função ID: <?php echo $funcao_id;?><br>
@@ -35,9 +37,15 @@ Status: <?php echo $status;?><br>
 }
 </style>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+
+<div class="col-md-6">
+<canvas id="line-chart" width="800" height="450"></canvas>
+</div>
 <?php 
 $count = 0;
-for($i = 1; $i <= 5; $i++){ ?>
+for($i = 1; $i <= 2; $i++){ ?>
     <div class="row">
     <?php
     for($j = 1; $j <= 5; $j++){
@@ -50,3 +58,28 @@ for($i = 1; $i <= 5; $i++){ ?>
 
 
 
+<script>
+new Chart(document.getElementById("line-chart"), {
+  type: 'line',
+  data: {
+    labels: ['Jan/2018','Fev/2018','Mar/2018','Abr/2018','Mai/2018','Jun/2018'],
+    datasets: [{ 
+        data: [84,82,87,88,87,89],
+        label: "Pontuação",
+        borderColor: "#3e95cd",
+        fill: true
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: false,
+    },
+    elements: {
+            line: {
+                tension: 0.1, // disables bezier curves
+            }
+        }
+  }
+});
+</script>

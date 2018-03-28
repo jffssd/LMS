@@ -16,6 +16,7 @@ $( document ).ready(function() {
         this.$openLeftBtn = $(".open-left"),
         this.$menuItem = $("#sidebar-menu a")
     };
+
     Sidemenu.prototype.openLeftBar = function() {
       $("#main").toggleClass("enlarged");
       $("#main").addClass("forced");
@@ -108,8 +109,7 @@ $( document ).ready(function() {
 
       // right side-bar toggle
       $('.right-bar-toggle').on('click', function(e){
-
-          $('#main').toggleClass('right-bar-enabled');
+            $('#main').toggleClass('right-bar-enabled');
       });
 
 
